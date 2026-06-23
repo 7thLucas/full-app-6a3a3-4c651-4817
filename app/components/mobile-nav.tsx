@@ -109,12 +109,12 @@ export function MobileNav() {
                 key={item.key}
                 type="button"
                 onClick={() => handle(item)}
-                className="flex flex-1 flex-col items-center gap-1 py-1"
+                className="flex flex-1 flex-col items-center gap-1 py-1 transition-transform duration-150 active:scale-90"
               >
                 <Icon
                   className={cn(
-                    "h-5 w-5 transition-colors",
-                    active ? "text-primary" : "text-muted-foreground",
+                    "h-5 w-5 transition-all duration-200",
+                    active ? "scale-110 text-primary" : "text-muted-foreground",
                   )}
                   strokeWidth={active ? 2.25 : 1.75}
                 />
@@ -155,6 +155,22 @@ function BottomSheet({
   onClose: () => void;
   children: React.ReactNode;
 }) {
+  // Keep the sheet mounted through its exit animation: `mounted` controls the
+  // DOM presence, `shown` drives the enter/exit transition.
+  const [mounted, setMounted] = useState(open);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    if (open) {
+      setMounted(true);
+      // Wait a frame after mount so the transition runs from the off-screen
+      // starting state instead of snapping straight to the open state.
+      const raf = requestAnimationFrame(() => setShown(true));
+      return () => cancelAnimationFrame(raf);
+    }
+    setShown(false);
+  }, [open]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -164,16 +180,30 @@ function BottomSheet({
     return () => document.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
-  if (!open) return null;
+  if (!mounted) return null;
+
   return (
     <div className="fixed inset-0 z-50 md:hidden" role="dialog" aria-modal="true">
       <button
         type="button"
         aria-label="Close"
         onClick={onClose}
-        className="absolute inset-0 bg-background/70 backdrop-blur-sm animate-in fade-in"
+        className={cn(
+          "absolute inset-0 bg-background/70 backdrop-blur-sm transition-opacity duration-300 ease-out",
+          shown ? "opacity-100" : "opacity-0",
+        )}
       />
-      <div className="absolute inset-x-0 bottom-0 rounded-t-3xl border-t border-border bg-card px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-3 shadow-[0_-20px_60px_-20px_var(--primary)]">
+      <div
+        // When the exit transition (translate) finishes, drop the node.
+        onTransitionEnd={(e) => {
+          if (e.propertyName === "transform" && !open) setMounted(false);
+        }}
+        className={cn(
+          "absolute inset-x-0 bottom-0 rounded-t-3xl border-t border-border bg-card px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-3 shadow-[0_-20px_60px_-20px_var(--primary)]",
+          "transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] will-change-transform",
+          shown ? "translate-y-0" : "translate-y-full",
+        )}
+      >
         <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-border" />
         {children}
       </div>
