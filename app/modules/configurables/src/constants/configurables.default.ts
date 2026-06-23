@@ -219,7 +219,8 @@ export type TDefaultConfigurableData = {
 export const defaultConfigurablesData: TDefaultConfigurableData = {
   appName: "Driftoria",
   logoUrl: "/brand/driftoria-mark.png",
-  wordmarkUrl: "/brand/driftoria-wordmark.png",
+  wordmarkUrl:
+    "https://client-api.quantumbyte.ai/uploads/nv7sw4gs/4817/assets/driftoria-wordmark_1782212530313_pe6gtj.png",
   brandColor: {
     // Base — deep ink night with violet undertone
     background: "#0E0D14",

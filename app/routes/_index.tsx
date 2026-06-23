@@ -20,7 +20,7 @@ import {
 import { useConfigurables } from "~/modules/configurables";
 import { cn } from "~/lib/utils";
 import { Button, LiveDot, Section } from "~/components/ui";
-import { BrandWordmark, Wordmark } from "~/components/brand";
+import { BrandWordmark } from "~/components/brand";
 import { Avatar, CharacterCard } from "~/components/chat/character-card";
 import { fetchCharacters, type CharacterCardView } from "~/lib/chat.client";
 import { useAuth } from "~/hooks/use-auth";
@@ -101,7 +101,12 @@ export default function IndexPage() {
       {/* Top bar — wordmark, then search sits between it and the auth CTAs. */}
       <header className="relative z-10 border-b border-border">
         <Section className="flex items-center gap-3 py-4 sm:gap-4 sm:py-5">
-          <Wordmark appName={appName} logoUrl={config?.logoUrl} />
+          <BrandWordmark
+            appName={appName}
+            wordmarkUrl={config?.wordmarkUrl}
+            logoUrl={config?.logoUrl}
+            className="h-8"
+          />
 
           {/* Search — full pill on desktop, icon-only trigger on mobile. */}
           <button
