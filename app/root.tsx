@@ -68,6 +68,8 @@ export function ErrorBoundary() {
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
+  { rel: "icon", type: "image/png", href: "/favicon.png" },
+  { rel: "apple-touch-icon", href: "/favicon.png" },
 ];
 
 /**

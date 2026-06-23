@@ -213,7 +213,7 @@ export type TDefaultConfigurableData = {
 
 export const defaultConfigurablesData: TDefaultConfigurableData = {
   appName: "Driftoria",
-  logoUrl: "",
+  logoUrl: "/brand/driftoria-mark.png",
   brandColor: {
     // Base — deep ink night with violet undertone
     background: "#0E0D14",
