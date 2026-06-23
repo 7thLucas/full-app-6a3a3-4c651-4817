@@ -1,0 +1,76 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap');
+.dr{font-family:'Inter',system-ui,sans-serif}
+.dr-display{font-family:'Fraunces',Georgia,serif}
+.bg-paper{background:#FBF9F6}.bg-card{background:#fff}.bg-ink{background:#1B1635}
+.bg-blob{background:#2A1F52}.bg-white-10{background:rgba(255,255,255,.1)}
+.t-ink{color:#1A1730}.t-faint{color:#9B94AD}.t-body{color:#4A4560}
+.t-violet{color:#7C5CFF}.t-gold{color:#F0B450}.t-ond{color:#B8B2D6}.t-white{color:#fff}
+.t-creamlt{color:#E9E4FF}.t-violet2{color:#A593FF}
+.bd-soft{border-color:#E7E1F5}.bd-dark{border-color:#3D2F6B}
+.mode-landscape .sl-split{flex-direction:row}
+.mode-portrait .sl-split{flex-direction:column}
+.mode-landscape .sl-brand{width:44%}
+</style>
+
+<section class="dr w-full h-full overflow-auto bg-paper">
+  <div class="flex flex-col h-full p-10 lg:p-12">
+
+    <!-- Header -->
+    <div class="mb-7">
+      <span class="text-xs font-semibold tracking-widest uppercase t-violet">Audience &amp; Brand</span>
+      <h2 class="dr-display text-4xl font-semibold t-ink mt-1.5 tracking-tight">Who it's for — and how it feels</h2>
+    </div>
+
+    <div class="sl-split flex flex-1 gap-6 min-h-0">
+
+      <!-- Left: target users -->
+      <div class="flex-1 flex flex-col gap-3">
+        <span class="text-xs font-semibold tracking-widest uppercase t-faint">Target Users</span>
+
+        <div class="bg-card border bd-soft rounded-2xl px-5 py-4 flex items-start gap-3">
+          <span class="text-lg t-violet">✶</span>
+          <p class="text-sm t-body leading-snug">Creative fiction enthusiasts who love ongoing, immersive narratives</p>
+        </div>
+        <div class="bg-card border bd-soft rounded-2xl px-5 py-4 flex items-start gap-3">
+          <span class="text-lg t-violet">✶</span>
+          <p class="text-sm t-body leading-snug">AI companion &amp; roleplay users who want more than reactive chat</p>
+        </div>
+        <div class="bg-card border bd-soft rounded-2xl px-5 py-4 flex items-start gap-3">
+          <span class="text-lg t-violet">✶</span>
+          <p class="text-sm t-body leading-snug">Fans of "living world" games and narrative-driven simulation</p>
+        </div>
+        <div class="bg-card border bd-soft rounded-2xl px-5 py-4 flex items-start gap-3">
+          <span class="text-lg t-violet">✶</span>
+          <p class="text-sm t-body leading-snug">Casual readers &amp; writers who enjoy AI storytelling with optional input</p>
+        </div>
+      </div>
+
+      <!-- Right: brand & tone -->
+      <div class="sl-brand bg-ink rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden">
+        <div class="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-blob opacity-50"></div>
+        <div class="relative">
+          <span class="text-xs font-semibold tracking-widest uppercase t-gold">Brand &amp; Tone</span>
+          <p class="dr-display text-2xl font-semibold t-white leading-snug mt-3 mb-6">Immersive, cinematic, literary — reads like a living novel, not a chatbot.</p>
+
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="text-xs font-semibold t-creamlt bg-white-10 px-3 py-1.5 rounded-full">Premium</span>
+            <span class="text-xs font-semibold t-creamlt bg-white-10 px-3 py-1.5 rounded-full">Editorial</span>
+            <span class="text-xs font-semibold t-creamlt bg-white-10 px-3 py-1.5 rounded-full">Unhurried</span>
+            <span class="text-xs font-semibold t-creamlt bg-white-10 px-3 py-1.5 rounded-full">Calm depth</span>
+          </div>
+        </div>
+
+        <div class="relative space-y-3">
+          <div class="flex items-start gap-2.5 text-xs t-ond">
+            <span class="t-gold font-bold">✕</span> Not gamified progression or impersonal mass-market tone
+          </div>
+          <div class="pt-3 border-t bd-dark">
+            <p class="dr-display italic t-violet2 text-sm">"Your story lives, even when you don't."</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

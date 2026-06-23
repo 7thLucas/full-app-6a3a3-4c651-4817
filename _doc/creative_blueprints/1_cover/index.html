@@ -1,58 +1,83 @@
 <style>
-.mode-landscape .sl-layout { flex-direction: row; }
-.mode-portrait .sl-layout { flex-direction: column; }
-.mode-landscape .sl-left { width: 46%; }
-.mode-landscape .sl-right { width: 54%; }
-.mode-portrait .sl-left { flex: none; padding: 2.5rem; }
-.mode-portrait .sl-right { flex: 1; min-height: 0; }
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap');
+.dr{font-family:'Inter',system-ui,sans-serif}
+.dr-display{font-family:'Fraunces',Georgia,serif}
+.bg-paper{background:#FBF9F6}.bg-paper-95{background:rgba(251,249,246,.95)}
+.bg-ink{background:#1B1635}.bg-violet-soft{background:#F2EEFF}.bg-gold-soft{background:#FBF1DD}
+.bg-dot{background:#6D4AFF}
+.t-ink{color:#1A1730}.t-muted{color:#6B6580}.t-faint{color:#9B94AD}
+.t-violet{color:#7C5CFF}.t-violet-d{color:#6D4AFF}.t-gold{color:#F0B450}
+.t-creamlt{color:#E9E4FF}.t-goldd{color:#B07A23}
+.overlay-top{background:linear-gradient(to top,rgba(27,22,53,.45),transparent 60%)}
+.mode-landscape .sl-layout{flex-direction:row}
+.mode-portrait .sl-layout{flex-direction:column}
+.mode-landscape .sl-left{width:48%}
+.mode-landscape .sl-right{width:52%}
+.mode-portrait .sl-left{flex:none}
+.mode-portrait .sl-right{flex:1;min-height:260px}
 </style>
 
-<section class="w-full h-full overflow-auto bg-white">
+<section class="dr w-full h-full overflow-auto bg-paper">
   <div class="sl-layout flex h-full">
 
     <!-- Left: text column -->
-    <div class="sl-left flex flex-col justify-between p-12">
+    <div class="sl-left flex flex-col justify-between p-12 lg:p-14">
 
-      <!-- Eyebrow + wordmark -->
-      <div>
-        <p class="text-3xl font-black tracking-tight text-slate-900 mb-1">Driftoria</p>
-        <div class="flex items-center gap-2">
-          <div class="w-5 h-px bg-violet-500"></div>
-          <span class="text-xs font-semibold tracking-widest uppercase text-violet-600">AI Narrative Companion</span>
+      <!-- Wordmark -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-ink flex items-center justify-center">
+          <span class="dr-display t-gold text-xl font-semibold leading-none">D</span>
+        </div>
+        <div>
+          <p class="text-lg font-extrabold tracking-tight t-ink leading-none">Driftoria</p>
+          <div class="flex items-center gap-2 mt-1">
+            <div class="w-4 h-px bg-dot"></div>
+            <span class="text-xs font-semibold tracking-widest uppercase t-violet">AI Character &amp; Narrative</span>
+          </div>
         </div>
       </div>
 
       <!-- Headline block -->
       <div>
-        <h1 class="text-6xl font-black leading-none text-slate-900 mb-5">
-          The Story<br/>That Never<br/>Sleeps.
+        <h1 class="dr-display text-6xl lg:text-7xl font-semibold leading-none t-ink mb-6 tracking-tight">
+          The story<br/>that never<br/><span class="italic t-violet-d">sleeps.</span>
         </h1>
-        <p class="text-sm text-slate-500 leading-relaxed max-w-xs">
-          Characters breathe. Scenes unfold. Your narrative advances — with or without you.
+        <p class="text-base t-muted leading-relaxed max-w-sm">
+          An AI narrative engine that writes your story forward — generating scenes and evolving characters on its own clock. Step in to shape it. Or simply read along.
         </p>
-        <div class="flex gap-2 mt-6">
-          <span class="bg-violet-100 text-violet-700 text-xs font-semibold px-3 py-1.5 rounded-full">Autonomous</span>
-          <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1.5 rounded-full">Character-driven</span>
-          <span class="bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1.5 rounded-full">Always on</span>
+        <div class="flex flex-wrap gap-2 mt-7">
+          <span class="bg-ink t-creamlt text-xs font-semibold px-3.5 py-1.5 rounded-full">Autonomous</span>
+          <span class="bg-violet-soft t-violet-d text-xs font-semibold px-3.5 py-1.5 rounded-full">Character-driven</span>
+          <span class="bg-gold-soft t-goldd text-xs font-semibold px-3.5 py-1.5 rounded-full">Always on</span>
         </div>
       </div>
 
-      <!-- Attribution -->
-      <data-attribution />
+      <!-- Promise + attribution -->
+      <div>
+        <p class="dr-display italic text-sm t-faint mb-4">"Your story lives, even when you don't."</p>
+        <data-attribution />
+      </div>
 
     </div>
 
     <!-- Right: image -->
     <div class="sl-right relative overflow-hidden">
       <img
-        src="https://api.qb-deck.quantumbyte.ai/common/image-generation?prompt=cinematic%20illustration%20of%20a%20glowing%20open%20book%20floating%20in%20deep%20violet%20and%20indigo%20night%20sky%2C%20luminous%20AI%20characters%20and%20scenes%20emerging%20from%20its%20pages%2C%20dramatic%20editorial%20storytelling%20atmosphere%2C%20gold%20and%20purple%20light%2C%20premium%20art%20direction%2C%20dark%20moody%20cinematic"
+        src="https://api.qb-deck.quantumbyte.ai/common/image-generation?prompt=cinematic%20editorial%20illustration%20of%20a%20glowing%20open%20book%20floating%20in%20a%20deep%20indigo%20and%20violet%20night%20sky%2C%20luminous%20characters%20and%20scenes%20drifting%20out%20of%20its%20pages%20like%20constellations%2C%20warm%20gold%20light%2C%20premium%20literary%20art%20direction%2C%20dark%20moody%20atmospheric%2C%20painterly"
         alt="Autonomous narrative visual"
         class="w-full h-full object-cover"
       />
-      <!-- Subtle overlay card -->
-      <div class="absolute bottom-7 right-7 bg-white rounded-2xl px-5 py-3 shadow-xl">
-        <p class="text-xs font-bold text-slate-800">Story never stops.</p>
-        <p class="text-xs text-slate-400 mt-0.5">Your narrative, on its own clock.</p>
+      <div class="absolute inset-0 overlay-top"></div>
+      <!-- Overlay card -->
+      <div class="absolute bottom-7 right-7 left-7 lg:left-auto bg-paper-95 rounded-2xl px-5 py-4 shadow-2xl max-w-xs">
+        <div class="flex items-center gap-2 mb-1.5">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-dot opacity-60"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-dot"></span>
+          </span>
+          <p class="text-xs font-bold t-ink">Story engine running</p>
+        </div>
+        <p class="text-xs t-faint leading-relaxed">Three new beats generated since you last closed the app.</p>
       </div>
     </div>
 

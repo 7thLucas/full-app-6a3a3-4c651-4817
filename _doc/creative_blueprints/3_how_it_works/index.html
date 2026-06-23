@@ -1,0 +1,67 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap');
+.dr{font-family:'Inter',system-ui,sans-serif}
+.dr-display{font-family:'Fraunces',Georgia,serif}
+.bg-paper{background:#FBF9F6}.bg-card{background:#fff}.bg-ink{background:#1B1635}
+.bg-violet-soft{background:#F2EEFF}.bg-blob{background:#2A1F52}
+.t-ink{color:#1A1730}.t-muted{color:#6B6580}.t-faint{color:#9B94AD}
+.t-violet-d{color:#6D4AFF}.t-violet{color:#7C5CFF}.t-gold{color:#F0B450}
+.t-ond{color:#B8B2D6}.t-white{color:#fff}.t-cream{color:#5A4B86}.t-cream2{color:#33235C}.t-stepfaint{color:#B0A9C4}
+.bd-soft{border-color:#E7E1F5}.bd-violet{border-color:#E0D6FF}
+.mode-portrait .sl-steps{grid-template-columns:1fr 1fr}
+</style>
+
+<section class="dr w-full h-full overflow-auto bg-paper">
+  <div class="flex flex-col h-full p-10 lg:p-12">
+
+    <!-- Header -->
+    <div class="flex items-end justify-between mb-7">
+      <div>
+        <span class="text-xs font-semibold tracking-widest uppercase t-violet">How It Works</span>
+        <h2 class="dr-display text-4xl font-semibold t-ink mt-1.5 tracking-tight">A loop that never finishes</h2>
+      </div>
+      <span class="hidden lg:inline-block dr-display italic text-sm t-faint">Shaped by you — not driven by you.</span>
+    </div>
+
+    <!-- Steps -->
+    <div class="sl-steps grid grid-cols-5 gap-4 flex-1 min-h-0">
+
+      <!-- 1 -->
+      <div class="bg-card border bd-soft rounded-2xl p-6 flex flex-col">
+        <div class="mb-4"><span class="dr-display text-3xl font-semibold t-violet-d">01</span></div>
+        <h4 class="text-sm font-bold t-ink mb-2">Start a story</h4>
+        <p class="text-xs t-muted leading-relaxed flex-1">Pick or create a character and seed an opening scenario — setting, premise, tone.</p>
+      </div>
+
+      <!-- 2 -->
+      <div class="bg-ink rounded-2xl p-6 flex flex-col relative overflow-hidden">
+        <div class="absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-blob opacity-60"></div>
+        <div class="relative mb-4"><span class="dr-display text-3xl font-semibold t-gold">02</span></div>
+        <h4 class="relative text-sm font-bold t-white mb-2">Engine runs</h4>
+        <p class="relative text-xs t-ond leading-relaxed flex-1">The autonomous engine generates beats on your cadence — advancing plot and evolving characters, present or not.</p>
+      </div>
+
+      <!-- 3 -->
+      <div class="bg-card border bd-soft rounded-2xl p-6 flex flex-col">
+        <div class="mb-4"><span class="dr-display text-3xl font-semibold t-violet-d">03</span></div>
+        <h4 class="text-sm font-bold t-ink mb-2">Step in anytime</h4>
+        <p class="text-xs t-muted leading-relaxed flex-1">Read new beats on the timeline, then optionally chat — add context, redirect, or speak to a character.</p>
+      </div>
+
+      <!-- 4 -->
+      <div class="bg-violet-soft border bd-violet rounded-2xl p-6 flex flex-col">
+        <div class="mb-4"><span class="dr-display text-3xl font-semibold t-violet-d">04</span></div>
+        <h4 class="text-sm font-bold t-cream2 mb-2">Story absorbs input</h4>
+        <p class="text-xs t-cream leading-relaxed flex-1">Each intervention feeds the engine, shaping the next beats — without overriding the story's own momentum.</p>
+      </div>
+
+      <!-- 5 -->
+      <div class="bg-card border bd-soft rounded-2xl p-6 flex flex-col">
+        <div class="mb-4 flex items-center gap-2"><span class="dr-display text-3xl font-semibold t-violet-d">05</span><span class="t-stepfaint text-lg">↺</span></div>
+        <h4 class="text-sm font-bold t-ink mb-2">Repeat, forever</h4>
+        <p class="text-xs t-muted leading-relaxed flex-1">The loop continues indefinitely. The story is never finished — and never frozen.</p>
+      </div>
+
+    </div>
+  </div>
+</section>

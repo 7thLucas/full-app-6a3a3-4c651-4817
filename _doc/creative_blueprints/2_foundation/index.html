@@ -1,71 +1,64 @@
 <style>
-.mode-landscape .sl-panels { flex-direction: row; }
-.mode-portrait .sl-panels { flex-direction: column; }
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap');
+.dr{font-family:'Inter',system-ui,sans-serif}
+.dr-display{font-family:'Fraunces',Georgia,serif}
+.bg-paper{background:#FBF9F6}.bg-card{background:#fff}.bg-ink{background:#1B1635}
+.bg-violet-soft{background:#F2EEFF}.bg-blob{background:#2A1F52}
+.t-ink{color:#1A1730}.t-muted{color:#6B6580}.t-body{color:#4A4560}
+.t-violet{color:#7C5CFF}.t-violet-d{color:#6D4AFF}.t-gold{color:#F0B450}
+.t-ond{color:#B8B2D6}.t-ondf{color:#9C95C2}.t-white{color:#fff}
+.bd-soft{border-color:#E7E1F5}.bd-gold-line{border-color:rgba(240,180,80,.4)}
+.shadow-soft{box-shadow:0 12px 40px -12px rgba(109,74,255,.18)}
+.mode-landscape .sl-panels{flex-direction:row}
+.mode-portrait .sl-panels{flex-direction:column}
 </style>
 
-<section class="w-full h-full overflow-auto bg-white">
-  <div class="flex flex-col h-full p-10">
+<section class="dr w-full h-full overflow-auto bg-paper">
+  <div class="flex flex-col h-full p-10 lg:p-12">
 
     <!-- Header -->
-    <div class="mb-6">
-      <span class="text-xs font-semibold tracking-widest uppercase text-violet-600">Foundation</span>
-      <h2 class="text-3xl font-black text-slate-900 mt-1">The Gap Every Companion App Ignores</h2>
+    <div class="mb-7">
+      <span class="text-xs font-semibold tracking-widest uppercase t-violet">Foundation</span>
+      <h2 class="dr-display text-4xl font-semibold t-ink mt-1.5 tracking-tight">The gap every companion app ignores</h2>
     </div>
 
     <!-- Problem / Solution panels -->
-    <div class="sl-panels flex flex-1 gap-5 min-h-0">
+    <div class="sl-panels flex flex-1 gap-6 min-h-0">
 
       <!-- Problem -->
-      <div class="flex-1 bg-indigo-950 rounded-2xl p-8 flex flex-col justify-between">
-        <div>
-          <span class="inline-block text-xs font-semibold tracking-widest uppercase text-amber-400 border border-amber-500 px-3 py-1 rounded-full mb-5">The Problem</span>
-          <h3 class="text-2xl font-bold text-white leading-snug mb-4">
+      <div class="flex-1 bg-ink rounded-3xl p-9 flex flex-col justify-between relative overflow-hidden">
+        <div class="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-blob opacity-50"></div>
+        <div class="relative">
+          <span class="inline-block text-xs font-semibold tracking-widest uppercase t-gold border bd-gold-line px-3 py-1 rounded-full mb-6">The Problem</span>
+          <h3 class="dr-display text-3xl font-semibold t-white leading-tight mb-4">
             Every story stops<br/>when you do.
           </h3>
-          <p class="text-sm text-indigo-200 leading-relaxed">
+          <p class="text-sm t-ond leading-relaxed">
             AI companion apps are purely reactive — the narrative only moves when you send a message. Close the app, and your world freezes. Characters don't think. Scenes don't unfold. The story has no pulse of its own.
           </p>
         </div>
-        <ul class="mt-5 space-y-2.5">
-          <li class="flex items-start gap-2.5 text-xs text-indigo-300">
-            <span class="text-amber-400 font-bold mt-px">✕</span>
-            Story freezes the moment you go offline
-          </li>
-          <li class="flex items-start gap-2.5 text-xs text-indigo-300">
-            <span class="text-amber-400 font-bold mt-px">✕</span>
-            Characters exist only in response to you
-          </li>
-          <li class="flex items-start gap-2.5 text-xs text-indigo-300">
-            <span class="text-amber-400 font-bold mt-px">✕</span>
-            Narrative demands constant effort just to stay alive
-          </li>
+        <ul class="relative mt-6 space-y-3">
+          <li class="flex items-start gap-3 text-sm t-ondf"><span class="t-gold font-bold mt-px">✕</span> Story freezes the moment you go offline</li>
+          <li class="flex items-start gap-3 text-sm t-ondf"><span class="t-gold font-bold mt-px">✕</span> Characters exist only in response to you</li>
+          <li class="flex items-start gap-3 text-sm t-ondf"><span class="t-gold font-bold mt-px">✕</span> Staying alive demands constant effort</li>
         </ul>
       </div>
 
       <!-- Solution -->
-      <div class="flex-1 bg-violet-50 border border-violet-200 rounded-2xl p-8 flex flex-col justify-between">
+      <div class="flex-1 bg-card border bd-soft rounded-3xl p-9 flex flex-col justify-between shadow-soft">
         <div>
-          <span class="inline-block text-xs font-semibold tracking-widest uppercase text-violet-700 bg-violet-200 px-3 py-1 rounded-full mb-5">The Solution</span>
-          <h3 class="text-2xl font-bold text-slate-900 leading-snug mb-4">
-            A narrative that has<br/>its own pulse.
+          <span class="inline-block text-xs font-semibold tracking-widest uppercase t-violet-d bg-violet-soft px-3 py-1 rounded-full mb-6">The Solution</span>
+          <h3 class="dr-display text-3xl font-semibold t-ink leading-tight mb-4">
+            A narrative with<br/>its own pulse.
           </h3>
-          <p class="text-sm text-slate-600 leading-relaxed">
-            An autonomous AI engine that writes your story forward — generating scenes, evolving characters, and building narrative tension on its own clock. Step in any time to shape what happens next. Or simply read along. You're always the author. Never the gatekeeper.
+          <p class="text-sm t-muted leading-relaxed">
+            An autonomous AI engine writes your story forward — generating scenes, evolving characters, and building tension on its own clock. Step in any time to shape what happens next. Or simply read along. You're always the author, never the gatekeeper.
           </p>
         </div>
-        <ul class="mt-5 space-y-2.5">
-          <li class="flex items-start gap-2.5 text-xs text-violet-800">
-            <span class="text-violet-500 font-bold mt-px">✓</span>
-            Story advances 3× daily, automatically
-          </li>
-          <li class="flex items-start gap-2.5 text-xs text-violet-800">
-            <span class="text-violet-500 font-bold mt-px">✓</span>
-            Characters act on their own motivations
-          </li>
-          <li class="flex items-start gap-2.5 text-xs text-violet-800">
-            <span class="text-violet-500 font-bold mt-px">✓</span>
-            Intervene any time — or just read along
-          </li>
+        <ul class="mt-6 space-y-3">
+          <li class="flex items-start gap-3 text-sm t-body"><span class="t-violet-d font-bold mt-px">✓</span> Story advances automatically, on a cadence you set</li>
+          <li class="flex items-start gap-3 text-sm t-body"><span class="t-violet-d font-bold mt-px">✓</span> Characters act on their own motivations</li>
+          <li class="flex items-start gap-3 text-sm t-body"><span class="t-violet-d font-bold mt-px">✓</span> Intervene any time — or just read along</li>
         </ul>
       </div>
 

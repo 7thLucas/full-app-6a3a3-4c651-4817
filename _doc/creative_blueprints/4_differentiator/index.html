@@ -1,0 +1,69 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap');
+.dr{font-family:'Inter',system-ui,sans-serif}
+.dr-display{font-family:'Fraunces',Georgia,serif}
+.bg-ink{background:#1B1635}.bg-ink-grad{background:linear-gradient(180deg,#2A1F52,#1B1635)}
+.bg-blob{background:#2A1F52}.bg-glow{background:#6D4AFF}.bg-violet{background:#6D4AFF}
+.bg-white-05{background:rgba(255,255,255,.05)}
+.t-white{color:#fff}.t-gold{color:#F0B450}.t-violet2{color:#A593FF}
+.t-ond{color:#C5BFE0}.t-ondf{color:#9C95C2}.t-onv{color:#E0D8FF}
+.bd-white-10{border-color:rgba(255,255,255,.1)}.bd-dark{border-color:#3D2F6B}.bd-gold-line{border-color:rgba(240,180,80,.4)}
+.shadow-glow{box-shadow:0 12px 40px -8px rgba(109,74,255,.6)}
+.mode-landscape .sl-split{flex-direction:row}
+.mode-portrait .sl-split{flex-direction:column}
+.mode-landscape .sl-wow{width:42%}
+</style>
+
+<section class="dr w-full h-full overflow-auto bg-ink">
+  <div class="flex flex-col h-full p-10 lg:p-12 relative overflow-hidden">
+    <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blob opacity-50"></div>
+    <div class="absolute top-1/3 -left-20 w-72 h-72 rounded-full bg-glow opacity-10 blur-2xl"></div>
+
+    <!-- Header -->
+    <div class="relative mb-8">
+      <span class="text-xs font-semibold tracking-widest uppercase t-gold">Strategic Differentiator</span>
+      <h2 class="dr-display text-4xl lg:text-5xl font-semibold t-white mt-1.5 tracking-tight leading-tight">
+        Every companion waits.<br/><span class="italic t-violet2">Driftoria acts.</span>
+      </h2>
+    </div>
+
+    <!-- Split -->
+    <div class="sl-split relative flex flex-1 gap-6 min-h-0">
+
+      <!-- Left: argument -->
+      <div class="flex-1 flex flex-col justify-between">
+        <p class="text-base t-ond leading-relaxed max-w-md">
+          Autonomous narrative progression. While every competitor goes dark the instant the user stops typing, our engine keeps generating beats, evolving characters, and building tension — then invites the user to respond, redirect, or simply read along.
+        </p>
+
+        <div class="grid grid-cols-2 gap-4 mt-6">
+          <div class="bg-white-05 border bd-white-10 rounded-2xl p-5">
+            <p class="text-xs font-semibold tracking-widest uppercase t-ondf mb-2">Them</p>
+            <p class="dr-display text-xl font-semibold t-white leading-snug">Reactive chat</p>
+            <p class="text-xs t-ondf mt-1.5">Story freezes when you leave.</p>
+          </div>
+          <div class="bg-violet rounded-2xl p-5 shadow-glow">
+            <p class="text-xs font-semibold tracking-widest uppercase t-onv mb-2">Us</p>
+            <p class="dr-display text-xl font-semibold t-white leading-snug">Living narrative</p>
+            <p class="text-xs t-onv mt-1.5">Story moves on its own clock.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Day-One Wow -->
+      <div class="sl-wow bg-ink-grad border bd-dark rounded-3xl p-8 flex flex-col justify-between">
+        <div>
+          <span class="inline-block text-xs font-semibold tracking-widest uppercase t-gold border bd-gold-line px-3 py-1 rounded-full mb-5">Day-One Wow</span>
+          <h3 class="dr-display text-2xl font-semibold t-white leading-snug mb-3">The engine keeps the story moving without you.</h3>
+          <p class="text-sm t-ond leading-relaxed">
+            Start a scenario. Close the app. Come back later — and the story has advanced on its own. Characters acted. Scenes unfolded. The narrative pushed forward.
+          </p>
+        </div>
+        <div class="mt-6 pt-5 border-t bd-dark">
+          <p class="text-xs t-ondf leading-relaxed">No other AI character app does this. Every competitor goes dark the instant you stop typing.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

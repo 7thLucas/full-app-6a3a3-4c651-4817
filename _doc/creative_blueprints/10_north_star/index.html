@@ -1,0 +1,106 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap');
+.dr{font-family:'Inter',system-ui,sans-serif}
+.dr-display{font-family:'Fraunces',Georgia,serif}
+.bg-paper{background:#FBF9F6}.bg-card{background:#fff}.bg-ink{background:#1B1635}
+.bg-ink-2{background:#221A40}.bg-violet-soft{background:#F2EEFF}.bg-gold-soft{background:#FBF1DD}
+.bg-blob{background:#2A1F52}
+.t-ink{color:#1A1730}.t-muted{color:#6B6580}.t-faint{color:#9B94AD}.t-body{color:#4A4560}
+.t-violet{color:#6D4AFF}.t-violet2{color:#A593FF}.t-gold{color:#F0B450}
+.t-ond{color:#B8B2D6}.t-ondf{color:#9C95C2}.t-goldd{color:#7A5418}.t-white{color:#fff}
+.t-cream2{color:#33235C}
+.bd-soft{border-color:#E7E1F5}.bd-violet{border-color:#E0D6FF}.bd-gold{border-color:#F0DFB8}.bd-dark{border-color:#3D2F6B}
+.bd-gold-line{border-color:rgba(240,180,80,.5)}
+.mode-portrait .sl-grid{grid-template-columns:1fr}
+</style>
+
+<section class="dr w-full h-full overflow-auto bg-paper">
+  <div class="flex flex-col h-full p-10 lg:p-12">
+
+    <!-- Header -->
+    <div class="flex items-start justify-between mb-4">
+      <div>
+        <span class="text-xs font-semibold tracking-widest uppercase t-violet">North Star Metric</span>
+        <h2 class="dr-display text-4xl font-semibold t-ink mt-1.5">Weekly Verified Operations</h2>
+      </div>
+      <span class="bg-gold-soft t-goldd text-xs font-semibold px-3 py-1.5 rounded-full flex-shrink-0">
+        Projected impact — based on your inputs
+      </span>
+    </div>
+
+    <!-- Operation definition -->
+    <div class="bg-violet-soft border bd-violet rounded-xl px-5 py-3 mb-4">
+      <span class="text-xs font-bold t-violet uppercase tracking-widest">Verified Operation</span>
+      <p class="text-sm t-body mt-1">
+        <strong class="t-ink">Story Beat Generated</strong> — a scene, narrative event, or chapter produced by the autonomous engine (or triggered by a user message), delivered to an active user in the deployed app. Clicks, logins, and page views are not operations.
+      </p>
+    </div>
+
+    <!-- Formula + Value columns -->
+    <div class="sl-grid grid grid-cols-2 gap-4 flex-1 min-h-0">
+
+      <!-- WVO Formula -->
+      <div class="bg-ink rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden">
+        <div class="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-blob opacity-50"></div>
+        <p class="relative text-xs font-semibold t-gold uppercase tracking-widest mb-4">WVO Formula</p>
+        <div class="relative space-y-3 text-sm flex-1">
+          <div class="flex items-center justify-between">
+            <span class="t-ond">Beats per day per user</span>
+            <span class="font-bold t-white">3</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="t-ond">× Days per week</span>
+            <span class="font-bold t-white">7</span>
+          </div>
+          <div class="border-t bd-dark pt-3 flex items-center justify-between">
+            <span class="t-ond">= Beats / week / user</span>
+            <span class="font-bold t-violet2 text-base">21</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="t-ond">× Active users</span>
+            <span class="border bd-gold-line t-gold text-xs font-semibold px-2 py-0.5 rounded">Assumption — adjust</span>
+          </div>
+          <div class="border-t bd-dark pt-3 flex items-center justify-between">
+            <span class="font-semibold t-white">= Weekly Verified Ops</span>
+            <span class="dr-display text-2xl font-semibold t-violet2">21 × N</span>
+          </div>
+        </div>
+        <p class="relative text-xs t-ondf mt-4">Example: 100 active users → <strong class="t-ond">2,100 story beats / week</strong></p>
+      </div>
+
+      <!-- Value derivation -->
+      <div class="flex flex-col gap-3">
+
+        <div class="bg-ink-2 rounded-2xl p-5 flex-1">
+          <p class="text-xs font-semibold t-faint uppercase tracking-widest mb-4">Engagement Value</p>
+          <div class="space-y-3 text-sm">
+            <div class="flex items-center justify-between">
+              <span class="t-ond">WVO × 8 min / beat</span>
+              <span class="font-bold t-white">= 168 min / user / wk</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="t-ond">Example (100 users)</span>
+              <span class="font-bold t-violet2">16,800 min / wk</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="t-ond">In hours per week</span>
+              <span class="font-bold t-violet2">280 hrs / wk</span>
+            </div>
+            <div class="border-t bd-dark pt-3 flex items-center justify-between">
+              <span class="font-semibold t-white">Annual (× 52 weeks)</span>
+              <span class="dr-display text-xl font-semibold t-violet2">14,560 hrs / yr</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="border bd-gold bg-gold-soft rounded-xl p-4">
+          <p class="text-xs t-goldd leading-relaxed">
+            <strong>100 active users</strong> is an example assumption.
+            <span class="font-semibold">Adjust it</span> to your actual or target count — all totals scale proportionally. Pricing is TBD; cost-based ROI will be added once confirmed.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

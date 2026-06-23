@@ -1,0 +1,70 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap');
+.dr{font-family:'Inter',system-ui,sans-serif}
+.dr-display{font-family:'Fraunces',Georgia,serif}
+.bg-paper{background:#FBF9F6}.bg-card{background:#fff}.bg-ink{background:#1B1635}
+.bg-violet-soft{background:#F2EEFF}.bg-gold-soft{background:#FBF1DD}.bg-blob{background:#2A1F52}
+.bg-gold{background:#F0B450}.bg-white-10{background:rgba(255,255,255,.1)}.bg-white-70{background:rgba(255,255,255,.7)}
+.t-ink{color:#1A1730}.t-muted{color:#6B6580}
+.t-violet{color:#7C5CFF}.t-violet-d{color:#6D4AFF}.t-ond{color:#B8B2D6}.t-white{color:#fff}
+.t-cream{color:#5A4B86}.t-cream2{color:#33235C}.t-goldd{color:#7A5418}.t-goldd2{color:#8A6526}
+.bd-soft{border-color:#E7E1F5}.bd-violet{border-color:#E0D6FF}.bd-gold{border-color:#F0DFB8}
+.mode-portrait .sl-grid{grid-template-columns:1fr}
+</style>
+
+<section class="dr w-full h-full overflow-auto bg-paper">
+  <div class="flex flex-col h-full p-10 lg:p-12">
+
+    <!-- Header -->
+    <div class="mb-7">
+      <span class="text-xs font-semibold tracking-widest uppercase t-violet">Key Use Cases</span>
+      <h2 class="dr-display text-4xl font-semibold t-ink mt-1.5 tracking-tight">One engine, four ways to play</h2>
+    </div>
+
+    <!-- 2 x 2 modes -->
+    <div class="sl-grid grid grid-cols-2 gap-4 flex-1 min-h-0">
+
+      <!-- Read-along -->
+      <div class="bg-card border bd-soft rounded-2xl p-7 flex flex-col">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-violet-soft flex items-center justify-center text-xl">📖</div>
+          <h4 class="dr-display text-xl font-semibold t-ink">Read-along</h4>
+        </div>
+        <p class="text-sm t-muted leading-relaxed">User rarely chats — treats the app as an evolving novel that writes itself, checking in to read new beats as they land.</p>
+        <span class="mt-4 self-start text-xs font-semibold t-violet-d bg-violet-soft px-3 py-1 rounded-full">Low intervention</span>
+      </div>
+
+      <!-- Co-author -->
+      <div class="bg-ink rounded-2xl p-7 flex flex-col relative overflow-hidden">
+        <div class="absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-blob opacity-60"></div>
+        <div class="relative flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-white-10 flex items-center justify-center text-xl">✍️</div>
+          <h4 class="dr-display text-xl font-semibold t-white">Co-author</h4>
+        </div>
+        <p class="relative text-sm t-ond leading-relaxed">User intervenes often, steering plot and dialogue while the engine fills the gaps and sustains momentum between sessions.</p>
+        <span class="relative mt-4 self-start text-xs font-semibold t-ink bg-gold px-3 py-1 rounded-full">High intervention</span>
+      </div>
+
+      <!-- Scenario sandbox -->
+      <div class="bg-gold-soft border bd-gold rounded-2xl p-7 flex flex-col">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-white-70 flex items-center justify-center text-xl">🧪</div>
+          <h4 class="dr-display text-xl font-semibold t-goldd">Scenario sandbox</h4>
+        </div>
+        <p class="text-sm t-goldd2 leading-relaxed">User drops "what if" prompts to test directions, then watches how the story metabolizes them into the next beats.</p>
+        <span class="mt-4 self-start text-xs font-semibold t-goldd bg-white-70 px-3 py-1 rounded-full">Experimental</span>
+      </div>
+
+      <!-- Companion roleplay -->
+      <div class="bg-violet-soft border bd-violet rounded-2xl p-7 flex flex-col">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-white-70 flex items-center justify-center text-xl">💞</div>
+          <h4 class="dr-display text-xl font-semibold t-cream2">Companion roleplay</h4>
+        </div>
+        <p class="text-sm t-cream leading-relaxed">User chats directly with a character; the engine keeps that character's life and world moving between sessions.</p>
+        <span class="mt-4 self-start text-xs font-semibold t-violet-d bg-white-70 px-3 py-1 rounded-full">Relationship-led</span>
+      </div>
+
+    </div>
+  </div>
+</section>
