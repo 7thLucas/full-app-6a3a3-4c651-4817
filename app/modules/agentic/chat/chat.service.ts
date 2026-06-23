@@ -134,6 +134,83 @@ export async function ensureSeedCharacters(): Promise<void> {
 
   const added = result.upsertedCount ?? 0;
   if (added > 0) logger.info(`Seeded ${added} starter chat companion(s)`);
+
+  await backfillStarterProfiles(cfg, starters);
+}
+
+/** Aggregation expression: true when a string field is missing or empty. */
+function isBlank(field: string) {
+  return { $eq: [{ $ifNull: [field, ""] }, ""] };
+}
+
+/** Aggregation expression: true when an array field is missing or empty. */
+function isEmptyArray(field: string) {
+  return { $eq: [{ $size: { $ifNull: [field, []] } }, 0] };
+}
+
+/**
+ * Back-fill profile fields onto starters seeded before those fields existed.
+ *
+ * Idempotent and self-guarding: a cheap count skips the write once every
+ * starter row has a profile. Each field is only overwritten when blank, via an
+ * aggregation-pipeline update — so manual edits, real chat growth, or accrued
+ * likes on existing rows are preserved. Safe to run on every feed hit.
+ */
+async function backfillStarterProfiles(
+  cfg: TDefaultConfigurableData,
+  starters: TDefaultConfigurableData["starterChatCharacters"],
+): Promise<void> {
+  const staleOr: Record<string, unknown>[] = [
+    { description: { $in: ["", null] } },
+    { description: { $exists: false } },
+  ];
+  // Only treat an empty gallery as stale when avatars are on — otherwise it's
+  // intentionally empty and would make the guard loop forever.
+  if (cfg.enableCharacterAvatars) staleOr.push({ galleryUrls: { $size: 0 } });
+
+  const stale = await CharacterModel.countDocuments({
+    creatorId: "system",
+    $or: staleOr,
+  }).exec();
+  if (!stale) return;
+
+  const result = await CharacterModel.bulkWrite(
+    starters.map((s) => {
+      const stats = seedStats(s.name);
+      const gallery = cfg.enableCharacterAvatars
+        ? buildGalleryUrls(cfg.imageGenUrl, s.name, s.avatarPrompt)
+        : [];
+      const avatar = cfg.enableCharacterAvatars
+        ? buildImageUrl(cfg.imageGenUrl, avatarPrompt(s.name, s.avatarPrompt), { seedKey: s.name })
+        : "";
+      return {
+        updateOne: {
+          filter: { name: s.name, creatorId: "system" },
+          update: [
+            {
+              $set: {
+                description: { $cond: [isBlank("$description"), s.description ?? s.tagline, "$description"] },
+                scenario: { $cond: [isBlank("$scenario"), s.scenario ?? "", "$scenario"] },
+                gender: { $cond: [isBlank("$gender"), s.gender ?? "", "$gender"] },
+                category: { $cond: [isBlank("$category"), s.category ?? "", "$category"] },
+                creatorName: { $cond: [isBlank("$creatorName"), "system", "$creatorName"] },
+                avatarUrl: { $cond: [isBlank("$avatarUrl"), avatar, "$avatarUrl"] },
+                galleryUrls: { $cond: [isEmptyArray("$galleryUrls"), gallery, "$galleryUrls"] },
+                chatCount: { $cond: [{ $lte: [{ $ifNull: ["$chatCount", 0] }, 0] }, stats.chatCount, "$chatCount"] },
+                likeCount: { $cond: [{ $lte: [{ $ifNull: ["$likeCount", 0] }, 0] }, stats.likeCount, "$likeCount"] },
+                followerCount: {
+                  $cond: [{ $lte: [{ $ifNull: ["$followerCount", 0] }, 0] }, stats.followerCount, "$followerCount"],
+                },
+              },
+            },
+          ],
+        },
+      };
+    }),
+  );
+
+  const touched = result.modifiedCount ?? 0;
+  if (touched > 0) logger.info(`Back-filled profiles for ${touched} starter companion(s)`);
 }
 
 export async function listCharacters(): Promise<CharacterDoc[]> {
