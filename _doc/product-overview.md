@@ -2,10 +2,10 @@
 
 ## Product Identity
 
-**Working Title:** AI Story Companion (final name TBD — to be confirmed during onboarding)
+**Name:** Driftoria
 **Category:** AI Character & Narrative App
 **Differentiated from:** Emochi and comparable AI companion chat apps — this app adds autonomous narrative progression
-**Phase:** Initial concept
+**Phase:** Pre-build
 
 ---
 
