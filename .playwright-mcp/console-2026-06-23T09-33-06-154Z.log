@@ -1,4 +1,0 @@
-[     213ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=5022fa71:20102
-[     258ms] [LOG] [Configurables] Fetching /api/configurables... @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:35
-[     286ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 50} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:44
-[     286ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: false, timestamp: 1782207186440} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:23

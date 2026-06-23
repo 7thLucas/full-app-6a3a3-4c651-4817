@@ -1,9 +1,0 @@
-[    1150ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=5022fa71:20102
-[    1206ms] [LOG] [Configurables] Fetching /api/configurables... @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:35
-[    1226ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 50} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:44
-[    1226ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: false, timestamp: 1782208749479} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:23
-[   14050ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/node_modules/@react-router/dev/dist/config/defaults/entry.client.tsx:0
-[   14050ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/root.tsx:0
-[   14051ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/routes/_index.tsx:0
-[   14051ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css:0
-[   14063ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@id/__x00__virtual:react-router/inject-hmr-runtime:0

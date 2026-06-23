@@ -1,5 +1,0 @@
-[     762ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=5022fa71:20102
-[     770ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/favicon.ico:0
-[     816ms] [LOG] [Configurables] Fetching /api/configurables... @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:35
-[     841ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 50} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:44
-[     841ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: false, timestamp: 1782207156389} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:23
