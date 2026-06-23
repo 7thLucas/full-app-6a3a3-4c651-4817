@@ -25,6 +25,8 @@ export interface User extends Document {
   planExpiresAt?: Date | null;
   /** Stripe customer id once a real checkout has run (unused in mock mode). */
   stripeCustomerId?: string | null;
+  /** Active Stripe subscription id, for cancel/lifecycle (unused in mock mode). */
+  stripeSubscriptionId?: string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -45,6 +47,7 @@ const UserSchema = new Schema<User>(
     plan: { type: String, enum: ["free", "plus", "pro"], default: "free", index: true },
     planExpiresAt: { type: Date, default: null },
     stripeCustomerId: { type: String, default: null },
+    stripeSubscriptionId: { type: String, default: null },
   },
   { timestamps: true },
 );

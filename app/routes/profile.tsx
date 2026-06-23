@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router";
-import { Compass, LogOut, MessagesSquare, User } from "lucide-react";
+import { Compass, Crown, LogOut, MessagesSquare, User } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
 import { Button, Eyebrow, Section } from "~/components/ui";
 import { Wordmark } from "~/components/brand";
@@ -77,6 +77,20 @@ export default function Profile() {
           >
             <Compass className="h-4 w-4" strokeWidth={1.75} />
             Explore companions
+          </Button>
+          <Button
+            variant="outline"
+            size="lg"
+            className="w-full justify-between"
+            onClick={() => navigate("/billing")}
+          >
+            <span className="flex items-center gap-2">
+              <Crown className="h-4 w-4" strokeWidth={1.75} />
+              Plans &amp; billing
+            </span>
+            <span className="rounded-full bg-primary/15 px-2.5 py-0.5 text-xs font-medium capitalize text-primary">
+              {user?.plan ?? "free"}
+            </span>
           </Button>
           <Button
             variant="ghost"

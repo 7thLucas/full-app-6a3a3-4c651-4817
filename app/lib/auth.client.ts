@@ -10,6 +10,8 @@ export interface AuthUser {
   email: string;
   name: string;
   roles: string[];
+  plan?: "free" | "plus" | "pro";
+  planExpiresAt?: string | null;
 }
 
 function unwrap<T>(res: { success: boolean; data?: T; message?: string }): T {
