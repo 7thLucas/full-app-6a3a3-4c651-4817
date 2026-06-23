@@ -88,7 +88,7 @@ export function CharacterRail({
       </div>
 
       {open && (
-        <div className="mt-5 space-y-2.5 border-t border-border pt-5">
+        <div className="animate-rise mt-5 space-y-2.5 border-t border-border pt-5">
           <input
             className={inputCls}
             placeholder="Name"

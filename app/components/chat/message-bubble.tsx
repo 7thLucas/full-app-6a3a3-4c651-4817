@@ -30,7 +30,7 @@ export function MessageBubble({
 
   if (isUser) {
     return (
-      <div className="flex justify-end">
+      <div className="flex animate-rise justify-end">
         <div className="max-w-[80%] rounded-2xl rounded-br-md bg-primary px-4 py-2.5 text-[0.95rem] leading-relaxed text-primary-foreground">
           {message.content}
         </div>
@@ -39,7 +39,7 @@ export function MessageBubble({
   }
 
   return (
-    <div className="space-y-2.5">
+    <div className="animate-rise space-y-2.5">
       {message.narration ? (
         <p className="px-2 text-center font-serif text-[0.9rem] italic leading-relaxed text-muted-foreground">
           <span className="mr-1.5 text-accent/70">—</span>

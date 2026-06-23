@@ -98,11 +98,15 @@ export default function ChatHistory() {
           </div>
         ) : (
           <ul className="mt-8 space-y-3">
-            {sessions.map((s) => (
-              <li key={s.characterId}>
+            {sessions.map((s, i) => (
+              <li
+                key={s.characterId}
+                className="animate-rise"
+                style={{ animationDelay: `${Math.min(i, 8) * 60}ms` }}
+              >
                 <Link
                   to={`/chat/${s.characterId}`}
-                  className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-4 transition-colors hover:border-primary/50"
+                  className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
                 >
                   <Avatar src={s.avatarUrl} name={s.name} className="h-12 w-12 text-sm" />
                   <div className="min-w-0 flex-1">
