@@ -17,7 +17,6 @@ import {
   Home,
   Loader2,
   LogIn,
-  LogOut,
   MessagesSquare,
   Plus,
   User,
@@ -29,7 +28,7 @@ import { Button } from "~/components/ui";
 import { useAuth } from "~/hooks/use-auth";
 
 /** Routes that show the bottom nav. Conversation/create/auth pages stay clear. */
-const VISIBLE_ON = new Set(["/", "/chat", "/chat/history", "/story"]);
+const VISIBLE_ON = new Set(["/", "/chat", "/chat/history", "/story", "/profile"]);
 
 interface NavItem {
   key: string;
@@ -44,14 +43,14 @@ const ITEMS: NavItem[] = [
   { key: "chats", label: "Chats", to: "/chat/history", icon: MessagesSquare, gated: true },
   { key: "new", label: "New", to: "/chat/create", icon: Plus, gated: true },
   { key: "explore", label: "Explore", to: "/chat", icon: Compass, gated: true },
-  { key: "profile", label: "Profile", to: "__profile__", icon: User, gated: true },
+  { key: "profile", label: "Profile", to: "/profile", icon: User, gated: true },
 ];
 
 export function MobileNav() {
   const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
-  const [sheet, setSheet] = useState<null | "auth" | "profile">(null);
+  const [sheet, setSheet] = useState<null | "auth">(null);
   const [pendingTo, setPendingTo] = useState<string | null>(null);
 
   const visible = VISIBLE_ON.has(location.pathname);
@@ -67,11 +66,6 @@ export function MobileNav() {
   if (!visible) return null;
 
   const handle = (item: NavItem) => {
-    if (item.key === "profile") {
-      setSheet(isAuthenticated ? "profile" : "auth");
-      setPendingTo(isAuthenticated ? null : "/chat");
-      return;
-    }
     if (item.gated && !isAuthenticated) {
       setPendingTo(item.to);
       setSheet("auth");
@@ -81,7 +75,6 @@ export function MobileNav() {
   };
 
   const isActive = (item: NavItem) => {
-    if (item.key === "profile") return sheet === "profile";
     if (item.to === "/") return location.pathname === "/";
     return item.to.startsWith("/") && location.pathname.startsWith(item.to);
   };
@@ -145,8 +138,6 @@ export function MobileNav() {
             redirectTo={pendingTo ?? "/chat"}
             onClose={() => setSheet(null)}
           />
-        ) : sheet === "profile" ? (
-          <ProfileSheet onClose={() => setSheet(null)} />
         ) : null}
       </BottomSheet>
     </>
@@ -320,59 +311,6 @@ function AuthSheet({
           {isRegister ? "Sign in" : "Create an account"}
         </button>
       </p>
-    </div>
-  );
-}
-
-/* ── Profile sheet (signed-in menu) ───────────────────────────────────── */
-
-function ProfileSheet({ onClose }: { onClose: () => void }) {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const go = (to: string) => {
-    onClose();
-    navigate(to);
-  };
-
-  return (
-    <div className="pb-2">
-      <div className="flex items-center gap-3">
-        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/15 font-heading text-lg font-semibold text-primary">
-          {(user?.name ?? "?").slice(0, 1).toUpperCase()}
-        </span>
-        <div className="min-w-0">
-          <p className="truncate font-heading text-lg font-semibold text-foreground">
-            {user?.name ?? "Your profile"}
-          </p>
-          {user?.email ? (
-            <p className="truncate text-sm text-muted-foreground">{user.email}</p>
-          ) : null}
-        </div>
-      </div>
-
-      <div className="mt-5 space-y-2">
-        <Button variant="outline" size="lg" className="w-full justify-start" onClick={() => go("/chat/history")}>
-          <MessagesSquare className="h-4 w-4" strokeWidth={1.75} />
-          My chats
-        </Button>
-        <Button variant="outline" size="lg" className="w-full justify-start" onClick={() => go("/chat")}>
-          <Compass className="h-4 w-4" strokeWidth={1.75} />
-          Explore companions
-        </Button>
-        <Button
-          variant="ghost"
-          size="lg"
-          className="w-full justify-start text-muted-foreground"
-          onClick={async () => {
-            await logout();
-            onClose();
-          }}
-        >
-          <LogOut className="h-4 w-4" strokeWidth={1.75} />
-          Sign out
-        </Button>
-      </div>
     </div>
   );
 }
