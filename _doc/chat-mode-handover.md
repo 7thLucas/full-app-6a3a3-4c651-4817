@@ -116,6 +116,55 @@ key. Mongo connection is the app's existing one.
 
 ---
 
+## 8. Auth (email + password) — as-built
+
+Real auth, **zero new dependencies** (Node `crypto` only).
+
+### Files (under `app/api/`)
+| File | Role |
+|---|---|
+| `models/user.model.ts` | `User` (email unique, name, `passwordHash`, `roles[]`) + `toUserView`. |
+| `lib/password.ts` | scrypt hash/verify. Stored as `scrypt$<salt>$<hash>`. |
+| `lib/session.ts` | HMAC-SHA256 signed session token `payload.sig` (`{uid,exp}`), 30-day TTL. Secret from `AUTH_SECRET` → `QB_SCAFFOLDER_KEY` → dev fallback (warns). |
+| `lib/cookies.ts` | Cookie parse + `driftoria_session` build/clear (HttpOnly, SameSite=Lax, Secure in prod). |
+| `services/auth.service.ts` | `registerUser` / `loginUser` / `getUserById`. Email + min-8 password validation; constant-ish verify to blunt enumeration. |
+| `middleware/auth.guard.ts` | `attachOptionalUser` (global, never blocks), `authGuard` (401), `permissionGuard(...roles)` (403). |
+| `auth/auth.routes.ts` | `POST /api/auth/register\|login\|logout`, `GET /api/auth/me`. |
+
+### Wiring
+- `app/api/routes.ts` mounts `attachOptionalUser` **first** (populates `req.user` for
+  every `/api` request), then the auth router, then auto-discovered module routes.
+- `chat/chat.owner.ts` `resolveOwnerId` already prefers `req.user.id` → **logged-in users
+  get account-keyed chat threads + memory automatically**; guests fall back to the
+  anonymous `driftoria_uid` cookie.
+
+### Frontend
+- `app/lib/auth.client.ts` — register/login/logout/me wrappers (`withCredentials` already on).
+- `app/hooks/use-auth.tsx` — `useAuth()`: shared store via `useSyncExternalStore`, fetches
+  `/api/auth/me` once; exposes `user, isAuthenticated, login, register, logout, refresh`.
+  No root.tsx provider needed.
+- `app/routes/login.tsx`, `app/routes/register.tsx` — themed pages, `?redirect=` support.
+- Chat discovery header shows name + Sign out, or Sign in.
+
+### Verified (runtime smoke test)
+register → me(cookie) → weak-pw 400 → dup 409 → wrong-pw 401 → logout → me null → re-login.
+Logged-in session uses `driftoria_session` (no anon cookie minted); guest mints
+`driftoria_uid`. All pass.
+
+### To protect a route
+```ts
+import { authGuard, permissionGuard } from "~/api/middleware/auth.guard";
+router.post("/admin/thing", authGuard, permissionGuard("admin"), handler);
+```
+
+### Env
+`AUTH_SECRET` (required for secure sessions in prod — falls back with a warning).
+
+### Not done
+OAuth/social login, email verification, password reset, rate limiting on auth endpoints.
+
+---
+
 ## 7. Not done / next (see proposal §10–11 for the full grid)
 
 - **Monetization UI** — server caps exist; no plans/paywall/upgrade/billing.

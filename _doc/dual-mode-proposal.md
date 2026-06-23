@@ -200,7 +200,8 @@ The autonomous **offline companion ping** is our defensible edge Emochi cannot c
 | Companion memory + ribbon | ✅ Done | Rolling `memory[]` capped by `memoryDepth`; `MemoryRibbon` UI. |
 | Offline companion ping | ✅ Done | On session open after `offlinePingAfterHours`; reuses engine. |
 | Character creation | ✅ Done | `chat.create.tsx` → `POST /api/chat/characters`, auto-avatar. |
-| **Per-user threads (`ownerId`)** | ✅ Done | Anonymous per-browser cookie (`chat.owner.ts`); auth-ready. |
+| **Per-user threads (`ownerId`)** | ✅ Done | Logged-in → user id; guest → anonymous cookie (`chat.owner.ts`). |
+| **Real auth (email + password)** | ✅ Done | scrypt hash + HMAC signed-session cookie, zero new deps. Register/login/logout/me, `authGuard`/`permissionGuard`, login/register pages. See [chat-mode-handover.md](./chat-mode-handover.md) §8. |
 | Monetization gates (paywall UI) | ⚠️ Partial | Free-tier image cap enforced server-side; **no billing/upgrade UI**. |
 | Multi-room per character (new chat) | ❌ Not done | One thread per (character, owner). No "start fresh" / alt scenarios. |
 | Multi-story (Story Mode) | ❌ Not done | Story Mode still singleton — unchanged. |
@@ -214,9 +215,10 @@ The autonomous **offline companion ping** is our defensible edge Emochi cannot c
 
 Honest gaps remaining after this build:
 
-1. **Accounts & cross-device sync** — Emochi has real login; we have an anonymous
-   per-browser cookie. Clear cookies / switch device = new identity. Wire auth →
-   `resolveOwnerId` already prefers an authenticated id when present.
+1. **Accounts & cross-device sync** — ✅ Now covered: real email+password auth wired
+   (scrypt + signed-session cookie). Logged-in users get account-keyed threads/memory;
+   guests still chat via anonymous cookie. Remaining: OAuth/social login, email
+   verification, password reset — not built.
 2. **Voice messages / TTS** — Emochi speaks; we are text + image only.
 3. **Scale of catalog** — Emochi: 800k–1M creator characters with ratings, trending,
    search. We have a flat feed + tag filter + create. No popularity ranking, no search,

@@ -7,6 +7,7 @@ import { Button, Eyebrow, LiveDot, Section } from "~/components/ui";
 import { Wordmark } from "~/components/brand";
 import { CharacterCard } from "~/components/chat/character-card";
 import { fetchCharacters, type CharacterCardView } from "~/lib/chat.client";
+import { useAuth } from "~/hooks/use-auth";
 
 export function meta() {
   return [{ title: "Driftoria — Meet your companions" }];
@@ -16,6 +17,7 @@ export default function ChatDiscovery() {
   const { config } = useConfigurables();
   const appName = config?.appName ?? "Driftoria";
   const tags = config?.discoveryTags ?? [];
+  const { user, isAuthenticated, logout } = useAuth();
 
   const [characters, setCharacters] = useState<CharacterCardView[]>([]);
   const [loading, setLoading] = useState(true);
@@ -46,12 +48,22 @@ export default function ChatDiscovery() {
         <Section className="flex items-center justify-between py-5">
           <Wordmark appName={appName} logoUrl={config?.logoUrl} />
           <div className="flex items-center gap-2">
-            <Link to="/">
-              <Button variant="ghost" size="sm">
-                <ArrowLeft className="h-4 w-4" strokeWidth={1.75} />
-                Home
-              </Button>
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <span className="hidden text-sm text-muted-foreground sm:inline">
+                  {user?.name}
+                </span>
+                <Button variant="ghost" size="sm" onClick={() => void logout()}>
+                  Sign out
+                </Button>
+              </>
+            ) : (
+              <Link to="/login?redirect=/chat">
+                <Button variant="ghost" size="sm">
+                  Sign in
+                </Button>
+              </Link>
+            )}
             <Link to="/chat/create">
               <Button size="sm">
                 <Plus className="h-4 w-4" strokeWidth={1.75} />
