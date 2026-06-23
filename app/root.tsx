@@ -93,6 +93,21 @@ function RouteChangeReporter() {
   return null;
 }
 
+/**
+ * Re-plays a small fade+rise each time the path changes, so navigating
+ * between pages reads as a deliberate transition rather than a hard cut.
+ * Keyed on pathname only (not search) to avoid remounting on in-page param
+ * changes like filters.
+ */
+function RouteFade({ children }: { children: React.ReactNode }) {
+  const { pathname } = useLocation();
+  return (
+    <div key={pathname} className="animate-route">
+      {children}
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -107,7 +122,9 @@ export default function App() {
         <ConfigurablesProvider>
           <ConfigurablesCSSBridge />
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Outlet />
+            <RouteFade>
+              <Outlet />
+            </RouteFade>
             <MobileNav />
           </ThemeProvider>
         </ConfigurablesProvider>

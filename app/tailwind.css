@@ -249,6 +249,16 @@
   animation: drift-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Page-level reveal on route change. Deliberately small (4px) and quick so
+   navigation feels settled, not theatrical. */
+@keyframes route-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-route {
+  animation: route-fade 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .font-heading { font-family: var(--heading-font); }
 .font-body { font-family: var(--text-font); }
 /* Chrome / controls / meta — a clean geometric sans, distinct from the
@@ -319,10 +329,12 @@
   .animate-breathe,
   .animate-drift,
   .animate-rise,
+  .animate-route,
   .animate-pulse-soft,
   .shimmer,
   .caret::after { animation: none !important; }
-  .animate-rise { opacity: 1 !important; transform: none !important; }
+  .animate-rise,
+  .animate-route { opacity: 1 !important; transform: none !important; }
   .engine-ring { transition: none !important; }
   html { scroll-behavior: auto !important; }
 }
