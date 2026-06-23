@@ -21,6 +21,25 @@ An AI-driven narrative engine where the story continues even when the user is of
 
 ---
 
+## How It Works
+
+1. **Start a story** — User picks or creates a character and seeds an opening scenario (setting, premise, tone).
+2. **Engine runs** — The autonomous story engine generates beats on the user's chosen cadence, advancing the plot and evolving characters whether or not the user is present.
+3. **Step in anytime** — User opens the app, reads new beats on the timeline, and optionally chats: add context, redirect the plot, introduce a scenario, or speak to a character directly.
+4. **Story absorbs input** — Each intervention feeds the engine, shaping the next beats without overriding the story's own momentum.
+5. **Repeat** — The loop continues indefinitely; the story is never "finished" and never frozen.
+
+---
+
+## Key Use Cases
+
+- **Read-along mode** — User rarely chats; treats the app as an evolving novel that writes itself, checking in to read new beats.
+- **Co-author mode** — User intervenes often, steering plot and dialogue while the engine fills gaps and sustains momentum.
+- **Scenario sandbox** — User drops "what if" prompts to test directions, then watches how the story metabolizes them.
+- **Companion roleplay** — User chats directly with a character; the engine keeps that character's life and world moving between sessions.
+
+---
+
 ## Target Users
 
 - Creative fiction enthusiasts who love ongoing, immersive narratives
@@ -50,9 +69,54 @@ An AI-driven narrative engine where the story continues even when the user is of
 
 ---
 
+## Day-One Wow
+
+The moment that sells the app on first use: **the autonomous engine keeps the story moving without you.** A user starts a scenario, closes the app, comes back later — and the story has advanced on its own. Characters acted, scenes unfolded, the narrative pushed forward. No other AI character app does this; every competitor goes dark the instant the user stops typing.
+
+---
+
 ## Strategic Differentiator
 
 Autonomous narrative progression. Every AI companion in this space waits for the user. This app acts — continuously generating story beats, evolving characters, and building narrative tension — then invites the user to respond, redirect, or simply read along. The story is always moving forward.
+
+---
+
+## Monetization (Proposed — to be confirmed)
+
+- **Freemium** — Free tier with capped autonomous cadence (e.g. 1 beat/day) and limited active stories.
+- **Subscription** — Paid tier unlocks faster pacing (3–6+ beats/day), more concurrent stories, premium characters, and longer memory/context.
+- **Pricing:** TBD — not yet confirmed.
+
+---
+
+## Non-Goals (Out of Scope)
+
+- Gamified progression: XP, levels, streaks, leaderboards.
+- Purely reactive chatbot with no autonomous progression.
+- Multiplayer / shared-world stories (single-user narratives at launch).
+- Image, voice, or video generation at MVP — text-first.
+- Impersonal mass-market companion tone.
+
+---
+
+## Success Metrics
+
+- **North Star:** Story Beats Generated (see below).
+- **Engagement:** Active stories per user; return rate after autonomous beats land.
+- **Intervention rate:** Share of beats touched by user input (signals co-author depth).
+- **Retention:** D1 / D7 / D30 — does the "living story" pull users back.
+- **Conversion:** Free → paid uplift driven by pacing/limits.
+
+---
+
+## Risks & Open Questions
+
+- **Quality drift:** Autonomous beats may wander, repeat, or break character over long runs — needs memory + coherence guardrails.
+- **Cost:** Continuous offline generation = recurring LLM spend per user even when idle; cadence caps mitigate.
+- **Relevance:** Beats generated while offline may feel stale or ignore recent user intent.
+- **Safety/moderation:** Roleplay + autonomous generation raises content-safety surface area.
+- **Engagement balance:** Too autonomous → user feels redundant; too dependent → defeats the differentiator.
+- **Unknowns:** Active user count, pricing, exact memory model — all unconfirmed.
 
 ---
 
