@@ -27,7 +27,8 @@ export function meta() {
 
 /** Compact social-proof formatting: 83400 → "83.4k", 1200000 → "1.2M". */
 function formatCount(n: number): string {
-  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1).replace(/\.0$/, "")}M`;
+  if (n >= 1_000_000)
+    return `${(n / 1_000_000).toFixed(1).replace(/\.0$/, "")}M`;
   if (n >= 1_000) return `${(n / 1_000).toFixed(1).replace(/\.0$/, "")}k`;
   return String(n);
 }
@@ -75,7 +76,10 @@ export default function CharacterProfile() {
     setLikeBump(0);
     fetchCharacterProfile(characterId)
       .then((p) => live && setProfile(p))
-      .catch((e) => live && setError(e instanceof Error ? e.message : "Failed to load"))
+      .catch(
+        (e) =>
+          live && setError(e instanceof Error ? e.message : "Failed to load"),
+      )
       .finally(() => live && setLoading(false));
     fetchCharacters()
       .then((all) => live && setSimilar(all))
@@ -201,7 +205,9 @@ export default function CharacterProfile() {
         </div>
       ) : error || !profile ? (
         <div className="flex h-screen flex-col items-center justify-center gap-4 px-6 text-center">
-          <p className="text-sm text-muted-foreground">{error ?? "Character not found"}</p>
+          <p className="text-sm text-muted-foreground">
+            {error ?? "Character not found"}
+          </p>
           <Link to="/chat">
             <Button variant="ghost" size="sm">
               <ArrowLeft className="h-4 w-4" strokeWidth={1.75} />
@@ -212,7 +218,7 @@ export default function CharacterProfile() {
       ) : (
         <div className="relative z-10 mx-auto w-full max-w-xl md:max-w-none pb-28">
           {/* Hero portrait */}
-          <div className="relative aspect-[4/5] w-full overflow-hidden bg-secondary">
+          <div className="relative w-full overflow-hidden bg-secondary aspect-[4/5] md:aspect-auto md:h-[300px] lg:h-[550px] xl:h-[700px]">
             {profile.avatarUrl ? (
               <img
                 src={profile.avatarUrl}
@@ -277,9 +283,21 @@ export default function CharacterProfile() {
           <div className="space-y-7 px-5 pt-6">
             {/* Stats */}
             <div className="flex items-center justify-around rounded-2xl border border-border bg-card py-4">
-              <Stat icon={MessageCircle} value={profile.chatCount} label="Chats" />
-              <Stat icon={Heart} value={profile.likeCount + likeBump} label="Likes" />
-              <Stat icon={Users} value={profile.followerCount} label="Followers" />
+              <Stat
+                icon={MessageCircle}
+                value={profile.chatCount}
+                label="Chats"
+              />
+              <Stat
+                icon={Heart}
+                value={profile.likeCount + likeBump}
+                label="Likes"
+              />
+              <Stat
+                icon={Users}
+                value={profile.followerCount}
+                label="Followers"
+              />
             </div>
 
             {/* Tags */}
@@ -297,7 +315,9 @@ export default function CharacterProfile() {
             ) : null}
 
             {/* Tagline */}
-            <p className="text-lg leading-relaxed text-foreground">{profile.tagline}</p>
+            <p className="text-lg leading-relaxed text-foreground">
+              {profile.tagline}
+            </p>
 
             {/* About */}
             {profile.description && profile.description !== profile.tagline ? (
