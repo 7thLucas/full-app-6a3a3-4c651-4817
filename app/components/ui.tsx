@@ -32,7 +32,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     <button
       ref={ref}
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full font-body font-medium tracking-wide",
+        "inline-flex items-center justify-center gap-2 rounded-full font-ui font-medium tracking-wide",
         "transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         "disabled:pointer-events-none disabled:opacity-50",
         variantClasses[variant],
@@ -62,7 +62,7 @@ export function Eyebrow({ children, className }: { children: ReactNode; classNam
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 font-body text-xs uppercase tracking-[0.32em] text-muted-foreground",
+        "inline-flex items-center gap-2 font-ui text-xs uppercase tracking-[0.32em] text-muted-foreground",
         className,
       )}
     >

@@ -3,6 +3,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
 import { Button, Eyebrow, LiveDot, Section } from "~/components/ui";
 import { FeatureIcon, Wordmark } from "~/components/brand";
+import { LivePreview } from "~/components/story/live-preview";
 
 export function meta() {
   return [
@@ -82,33 +83,9 @@ export default function IndexPage() {
           </p>
         </div>
 
-        {/* Living-world preview card */}
+        {/* Living-world preview — a self-advancing demo of the engine */}
         <div className="mx-auto mt-16 max-w-3xl animate-rise">
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-card/80 p-8 backdrop-blur-sm sm:p-10">
-            <div className="flex items-center justify-between">
-              <Eyebrow>
-                <LiveDot /> The engine is writing
-              </Eyebrow>
-              <span className="font-body text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                while you were away
-              </span>
-            </div>
-            <h3 className="mt-6 font-heading text-2xl font-semibold tracking-tight">
-              The Tide Returns Something
-            </h3>
-            <p className="prose-measure mt-4 text-[1.05rem] leading-[1.75] text-foreground/85">
-              By the time the lantern guttered, the fog had crept past the breakwater and
-              settled over the harbor like a held breath. Mara found the box at the
-              waterline — sealed, salt-bleached, and warm to the touch, as though it had
-              been carried a long way by something that did not want to let go.
-            </p>
-            <div className="mt-6 flex items-center gap-3 text-sm text-muted-foreground">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              <span className="font-body italic">
-                Generated autonomously — no message required.
-              </span>
-            </div>
-          </div>
+          <LivePreview />
         </div>
       </Section>
 

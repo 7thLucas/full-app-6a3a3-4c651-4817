@@ -44,7 +44,7 @@ export function PacingControl({
           >
             <span
               className={cn(
-                "font-body text-sm font-medium",
+                "font-ui text-sm font-medium",
                 active ? "text-foreground" : "text-muted-foreground",
               )}
             >
@@ -52,7 +52,7 @@ export function PacingControl({
             </span>
             <span
               className={cn(
-                "font-body text-xs tabular-nums",
+                "font-ui text-xs tabular-nums",
                 active ? "text-primary" : "text-muted-foreground/60",
               )}
             >

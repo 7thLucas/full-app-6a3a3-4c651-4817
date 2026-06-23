@@ -11,9 +11,10 @@ import {
 import { useConfigurables } from "~/modules/configurables";
 import { Button, Eyebrow, LiveDot } from "~/components/ui";
 import { Wordmark } from "~/components/brand";
-import { BeatCard } from "~/components/story/beat-card";
+import { BeatCard, WritingBeat } from "~/components/story/beat-card";
 import { PacingControl } from "~/components/story/pacing-control";
 import { CharacterRail } from "~/components/story/character-rail";
+import { EngineStatus } from "~/components/story/engine-status";
 import {
   addCharacter as apiAddCharacter,
   advanceStory,
@@ -222,19 +223,25 @@ export default function StoryStudio() {
             </div>
           ) : (
             <div className="space-y-6">
-              {beats.map((beat) => (
-                <BeatCard key={beat.beatId} beat={beat} />
-              ))}
+              {(() => {
+                const firstAway = beats.findIndex((b) => b.whileAway);
+                return beats.map((beat, i) => (
+                  <BeatCard
+                    key={beat.beatId}
+                    beat={beat}
+                    staggerIndex={
+                      beat.whileAway && firstAway >= 0 ? i - firstAway : 0
+                    }
+                  />
+                ));
+              })()}
             </div>
           )}
 
-          {/* Busy indicator for autonomous generation */}
+          {/* In-flight generation — a shaped skeleton rather than a spinner. */}
           {(busy === "advancing" || busy === "intervening") && (
-            <div className="mt-6 flex items-center gap-3 rounded-2xl border border-border bg-card/60 px-5 py-4 text-muted-foreground animate-rise">
-              <Loader2 className="h-4 w-4 animate-spin text-primary" />
-              <span className="font-body italic">
-                {busy === "advancing" ? "The story drifts forward…" : "The world responds…"}
-              </span>
+            <div className="mt-6">
+              <WritingBeat mode={busy} />
             </div>
           )}
 
@@ -272,7 +279,7 @@ export default function StoryStudio() {
                 </Button>
               </div>
               <div className="mt-2 flex items-center justify-between px-2">
-                <span className="font-body text-xs text-muted-foreground/60">
+                <span className="font-ui text-xs text-muted-foreground/60">
                   Shape the story — you never have to drive it.
                 </span>
                 <Button
@@ -296,6 +303,15 @@ export default function StoryStudio() {
 
         {/* Right rail */}
         <aside className="space-y-5 lg:sticky lg:top-24 lg:self-start">
+          {/* Live engine meter — the world keeps moving */}
+          {story && (
+            <EngineStatus
+              lastAdvancedAt={story.lastAdvancedAt}
+              pacing={story.pacing}
+              rates={rates}
+            />
+          )}
+
           {/* Pacing */}
           <div className="rounded-2xl border border-border bg-card p-5">
             <h3 className="mb-1 font-heading text-base font-semibold tracking-tight">Pacing</h3>

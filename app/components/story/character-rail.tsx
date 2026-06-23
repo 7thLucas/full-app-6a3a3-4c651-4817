@@ -45,7 +45,7 @@ export function CharacterRail({
   }
 
   const inputCls =
-    "w-full rounded-xl border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary/60 focus:outline-none focus:ring-1 focus:ring-ring";
+    "w-full rounded-xl border border-input bg-background px-3 py-2 font-ui text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary/60 focus:outline-none focus:ring-1 focus:ring-ring";
 
   return (
     <div className="rounded-2xl border border-border bg-card p-5">
@@ -76,7 +76,7 @@ export function CharacterRail({
               <p className="font-heading text-sm font-semibold leading-tight text-foreground">
                 {c.name}
               </p>
-              <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+              <p className="font-ui text-[0.7rem] uppercase tracking-[0.15em] text-muted-foreground">
                 {c.role}
               </p>
               <p className="mt-1.5 text-[0.85rem] leading-relaxed text-muted-foreground/90">
