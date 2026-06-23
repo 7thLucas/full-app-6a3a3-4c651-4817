@@ -11,7 +11,7 @@
  */
 
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import {
   Compass,
   Home,
@@ -21,6 +21,7 @@ import {
   MessagesSquare,
   Plus,
   User,
+  UserPlus,
   X,
 } from "lucide-react";
 import { cn } from "~/lib/utils";
@@ -79,10 +80,11 @@ export function MobileNav() {
     navigate(item.to);
   };
 
-  const isActive = (item: NavItem) =>
-    item.to === "/"
-      ? location.pathname === "/"
-      : item.to.startsWith("/") && location.pathname.startsWith(item.to);
+  const isActive = (item: NavItem) => {
+    if (item.key === "profile") return sheet === "profile";
+    if (item.to === "/") return location.pathname === "/";
+    return item.to.startsWith("/") && location.pathname.startsWith(item.to);
+  };
 
   return (
     <>
@@ -162,6 +164,15 @@ function BottomSheet({
   onClose: () => void;
   children: React.ReactNode;
 }) {
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-50 md:hidden" role="dialog" aria-modal="true">
@@ -191,8 +202,10 @@ function AuthSheet({
   redirectTo: string;
   onClose: () => void;
 }) {
-  const { login } = useAuth();
+  const { login, register } = useAuth();
   const navigate = useNavigate();
+  const [mode, setMode] = useState<"login" | "register">("login");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
@@ -204,21 +217,33 @@ function AuthSheet({
     setBusy(true);
     setError(null);
     try {
-      await login(email, password);
+      if (mode === "register") {
+        await register(email, password, name);
+      } else {
+        await login(email, password);
+      }
       onClose();
       navigate(redirectTo);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Login failed");
+      setError(
+        err instanceof Error
+          ? err.message
+          : mode === "register"
+            ? "Sign up failed"
+            : "Login failed",
+      );
       setBusy(false);
     }
   };
+
+  const isRegister = mode === "register";
 
   return (
     <div className="pb-2">
       <div className="flex items-start justify-between">
         <div>
           <h2 className="font-heading text-xl font-semibold tracking-tight text-foreground">
-            Sign in to continue
+            {isRegister ? "Create your account" : "Sign in to continue"}
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
             Your companions and conversations, wherever you sign in.
@@ -235,6 +260,16 @@ function AuthSheet({
       </div>
 
       <form onSubmit={submit} className="mt-5 space-y-3">
+        {isRegister ? (
+          <input
+            type="text"
+            autoComplete="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Your name"
+            className={field}
+          />
+        ) : null}
         <input
           type="email"
           autoComplete="email"
@@ -245,7 +280,7 @@ function AuthSheet({
         />
         <input
           type="password"
-          autoComplete="current-password"
+          autoComplete={isRegister ? "new-password" : "current-password"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="••••••••"
@@ -256,7 +291,12 @@ function AuthSheet({
           {busy ? (
             <>
               <Loader2 className="h-4 w-4 animate-spin" strokeWidth={1.75} />
-              Signing in…
+              {isRegister ? "Creating account…" : "Signing in…"}
+            </>
+          ) : isRegister ? (
+            <>
+              <UserPlus className="h-4 w-4" strokeWidth={1.75} />
+              Create account
             </>
           ) : (
             <>
@@ -268,14 +308,17 @@ function AuthSheet({
       </form>
 
       <p className="mt-4 text-center text-sm text-muted-foreground">
-        New here?{" "}
-        <Link
-          to={`/register?redirect=${encodeURIComponent(redirectTo)}`}
-          onClick={onClose}
+        {isRegister ? "Already have an account?" : "New here?"}{" "}
+        <button
+          type="button"
+          onClick={() => {
+            setError(null);
+            setMode(isRegister ? "login" : "register");
+          }}
           className="text-primary hover:underline"
         >
-          Create an account
-        </Link>
+          {isRegister ? "Sign in" : "Create an account"}
+        </button>
       </p>
     </div>
   );

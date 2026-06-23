@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router";
-import { ArrowLeft, Loader2, Plus, Sparkles } from "lucide-react";
+import { Loader2, Plus, Search, Sparkles, X } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
 import { cn } from "~/lib/utils";
 import { Button, Eyebrow, LiveDot, Section } from "~/components/ui";
@@ -31,6 +31,7 @@ export default function ChatDiscovery() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     let live = true;
@@ -44,9 +45,17 @@ export default function ChatDiscovery() {
   }, []);
 
   const filtered = useMemo(() => {
-    if (!activeTag) return characters;
-    return characters.filter((c) => c.tags?.includes(activeTag));
-  }, [characters, activeTag]);
+    const q = query.trim().toLowerCase();
+    return characters.filter((c) => {
+      if (activeTag && !c.tags?.includes(activeTag)) return false;
+      if (!q) return true;
+      return (
+        c.name.toLowerCase().includes(q) ||
+        c.tagline.toLowerCase().includes(q) ||
+        c.tags?.some((t) => t.toLowerCase().includes(q))
+      );
+    });
+  }, [characters, activeTag, query]);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background font-body text-foreground grain pb-24 md:pb-0">
@@ -97,8 +106,32 @@ export default function ChatDiscovery() {
           </p>
         </div>
 
+        <div className="relative mt-8 max-w-xl">
+          <Search
+            className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+            strokeWidth={1.75}
+          />
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search companions by name, vibe, or tag…"
+            className="w-full rounded-full border border-border bg-card py-3 pl-11 pr-10 text-[0.95rem] text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/60"
+          />
+          {query ? (
+            <button
+              type="button"
+              onClick={() => setQuery("")}
+              aria-label="Clear search"
+              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-muted-foreground hover:bg-secondary"
+            >
+              <X className="h-4 w-4" strokeWidth={1.75} />
+            </button>
+          ) : null}
+        </div>
+
         {tags.length ? (
-          <div className="-mx-6 mt-8 flex gap-2 overflow-x-auto px-6 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="-mx-6 mt-5 flex gap-2 overflow-x-auto px-6 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <button
               type="button"
               onClick={() => setActiveTag(null)}
@@ -142,14 +175,29 @@ export default function ChatDiscovery() {
           <div className="mt-16 rounded-2xl border border-border bg-card p-10 text-center">
             <Sparkles className="mx-auto h-6 w-6 text-primary" strokeWidth={1.75} />
             <p className="mt-4 text-muted-foreground">
-              No companions here yet. Be the first to create one.
+              {query || activeTag
+                ? "No companions match your search."
+                : "No companions here yet. Be the first to create one."}
             </p>
-            <Link to="/chat/create" className="mt-6 inline-block">
-              <Button>
-                <Plus className="h-4 w-4" strokeWidth={1.75} />
-                Create a companion
+            {query || activeTag ? (
+              <Button
+                variant="outline"
+                className="mt-6"
+                onClick={() => {
+                  setQuery("");
+                  setActiveTag(null);
+                }}
+              >
+                Clear filters
               </Button>
-            </Link>
+            ) : (
+              <Link to="/chat/create" className="mt-6 inline-block">
+                <Button>
+                  <Plus className="h-4 w-4" strokeWidth={1.75} />
+                  Create a companion
+                </Button>
+              </Link>
+            )}
           </div>
         ) : (
           <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
