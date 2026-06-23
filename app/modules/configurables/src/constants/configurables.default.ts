@@ -59,72 +59,196 @@ export type TFont = {
   textFont: string;
 };
 
+export type TFeature = {
+  icon: string;
+  title: string;
+  description: string;
+};
+
+export type TStarterCharacter = {
+  name: string;
+  role: string;
+  persona: string;
+  motivation: string;
+};
+
 export type TDefaultConfigurableData = {
   appName: string;
   logoUrl: string;
   brandColor: TBrandColor;
   font: TFont;
-  // Mirror new schema fields here. Example:
-  //   maxItemsPerPage?: number;
-  //   enableNotifications?: boolean;
-  //   featuredCategories?: string[];
+  // Branding & copy
+  tagline: string;
+  heroEyebrow: string;
+  heroHeadline: string;
+  heroSubheadline: string;
+  heroPrimaryCta: string;
+  heroSecondaryCta: string;
+  // Features
+  featuresHeading: string;
+  features: TFeature[];
+  // Studio copy
+  interventionPlaceholder: string;
+  emptyStoryMessage: string;
+  // Story engine behavior
+  defaultPacing: "slow" | "moderate" | "active";
+  slowBeatsPerDay: number;
+  moderateBeatsPerDay: number;
+  activeBeatsPerDay: number;
+  autonomousCatchUpBeats: number;
+  showCharactersRail: boolean;
+  // Scenario seeds
+  scenarioSeeds: string[];
+  // Starter characters & story
+  starterCharacters: TStarterCharacter[];
+  starterStoryTitle: string;
+  starterStoryPremise: string;
+  // Footer
+  footerText: string;
 };
 
 export const defaultConfigurablesData: TDefaultConfigurableData = {
-  appName: "My App",
+  appName: "Driftoria",
   logoUrl: "",
   brandColor: {
-    // Base
-    background:        "#ffffff",
-    foreground:        "#09090b",
-    // Card
-    card:              "#ffffff",
-    cardForeground:    "#09090b",
+    // Base — deep ink night with violet undertone
+    background:        "#0E0D14",
+    foreground:        "#F4F1EC",
+    // Card — raised editorial panels
+    card:              "#17151F",
+    cardForeground:    "#F4F1EC",
     // Popover
-    popover:           "#ffffff",
-    popoverForeground: "#09090b",
-    // Primary
-    primary:           "#2563eb",
-    primaryForeground: "#ffffff",
-    // Secondary
-    secondary:           "#f4f4f5",
-    secondaryForeground: "#18181b",
+    popover:           "#1F1C2A",
+    popoverForeground: "#F4F1EC",
+    // Primary — aurora violet
+    primary:           "#8B7BF0",
+    primaryForeground: "#0E0D14",
+    // Secondary — elevated surface
+    secondary:           "#1F1C2A",
+    secondaryForeground: "#F4F1EC",
     // Muted
-    muted:           "#f4f4f5",
-    mutedForeground: "#71717a",
-    // Accent
-    accent:           "#f4f4f5",
-    accentForeground: "#18181b",
+    muted:           "#1F1C2A",
+    mutedForeground: "#A9A4B8",
+    // Accent — ember (living, autonomous activity)
+    accent:           "#E8A87C",
+    accentForeground: "#0E0D14",
     // Destructive
-    destructive:           "#ef4444",
-    destructiveForeground: "#fafafa",
+    destructive:           "#E06A6A",
+    destructiveForeground: "#0E0D14",
     // Border / Input / Ring
-    border: "#e4e4e7",
-    input:  "#e4e4e7",
-    ring:   "#2563eb",
+    border: "#262232",
+    input:  "#262232",
+    ring:   "#8B7BF0",
     // Charts
-    chart1: "#f97316",
-    chart2: "#0d9488",
-    chart3: "#1e3a5f",
-    chart4: "#d4a017",
-    chart5: "#ea580c",
+    chart1: "#8B7BF0",
+    chart2: "#B58CF2",
+    chart3: "#E8A87C",
+    chart4: "#6F6A80",
+    chart5: "#A9A4B8",
     // Navbar
-    navbarBackground: "#ffffff",
+    navbarBackground: "#0E0D14",
     // Sidebar
-    sidebarBackground:        "#fafafa",
-    sidebarForeground:        "#3f3f46",
-    sidebarPrimary:           "#2563eb",
-    sidebarPrimaryForeground: "#ffffff",
-    sidebarAccent:            "#f4f4f5",
-    sidebarAccentForeground:  "#18181b",
-    sidebarBorder:            "#e4e4e7",
-    sidebarRing:              "#2563eb",
+    sidebarBackground:        "#121019",
+    sidebarForeground:        "#A9A4B8",
+    sidebarPrimary:           "#8B7BF0",
+    sidebarPrimaryForeground: "#0E0D14",
+    sidebarAccent:            "#1F1C2A",
+    sidebarAccentForeground:  "#F4F1EC",
+    sidebarBorder:            "#262232",
+    sidebarRing:              "#8B7BF0",
   },
   font: {
-    headingFont: "Plus Jakarta Sans",
-    textFont: "Inter",
+    headingFont: "Playfair Display",
+    textFont: "Lora",
   },
-  // ─────────────────────────────────────────────────────────────────────
-  // Add new field defaults here. See RULES.md §5 for per-type shape.
-  // ─────────────────────────────────────────────────────────────────────
+  // Branding & copy
+  tagline: "Your story lives, even when you don't.",
+  heroEyebrow: "Autonomous AI Story Engine",
+  heroHeadline: "A living story world that never stops unfolding.",
+  heroSubheadline:
+    "Driftoria writes itself. Characters act, scenes unfold, and the plot evolves on its own — even while you're away. Step in anytime to add context, seed a scenario, or redirect the tale. You shape the story; you never have to drive it.",
+  heroPrimaryCta: "Enter your story",
+  heroSecondaryCta: "How it works",
+  // Features
+  featuresHeading: "Not a chatbot. A world with momentum.",
+  features: [
+    {
+      icon: "Sparkles",
+      title: "Autonomous Story Engine",
+      description:
+        "The narrative advances on its own at a cadence you choose — generating scenes, character decisions, and new beats without waiting for a single message.",
+    },
+    {
+      icon: "Users",
+      title: "Living Characters",
+      description:
+        "Characters carry distinct personalities, backstories, and motivations that evolve over time, making decisions of their own between your visits.",
+    },
+    {
+      icon: "PenLine",
+      title: "Step In Anytime",
+      description:
+        "Drop into the story to speak to a character, add context, or redirect the plot. Every intervention quietly shapes what the engine writes next.",
+    },
+    {
+      icon: "ScrollText",
+      title: "Narrative Timeline",
+      description:
+        "A chronological, novel-like record of every autonomous scene and your interventions — a living chapter log you can read at leisure.",
+    },
+    {
+      icon: "Gauge",
+      title: "Pacing You Control",
+      description:
+        "Slow burn, moderate, or active. Set how fast the world moves and let the story breathe at the rhythm you prefer.",
+    },
+    {
+      icon: "Wand2",
+      title: "Scenario Seeding",
+      description:
+        "Plant a 'what if' and watch it ripple. Seeds influence upcoming beats without locking in any single outcome.",
+    },
+  ],
+  // Studio copy
+  interventionPlaceholder: "Step into the story…",
+  emptyStoryMessage:
+    "Your world is quiet for now. Advance the story to let it begin to breathe — or step in and set the first scene yourself.",
+  // Story engine behavior
+  defaultPacing: "moderate",
+  slowBeatsPerDay: 1,
+  moderateBeatsPerDay: 3,
+  activeBeatsPerDay: 6,
+  autonomousCatchUpBeats: 3,
+  showCharactersRail: true,
+  // Scenario seeds
+  scenarioSeeds: [
+    "A stranger arrives at the edge of town carrying a letter no one will claim.",
+    "An old promise resurfaces, and someone must finally decide whether to keep it.",
+    "A storm cuts the world off for three days — and forces two rivals together.",
+    "A secret long buried begins, quietly, to surface.",
+  ],
+  // Starter characters & story
+  starterCharacters: [
+    {
+      name: "Mara Vance",
+      role: "Lighthouse keeper",
+      persona:
+        "Quietly observant, guarded, with a dry warmth that surfaces only when she trusts you. Speaks in measured, weathered prose.",
+      motivation:
+        "To keep the light burning and protect the small harbor town from the things the sea brings in.",
+    },
+    {
+      name: "Elias Crane",
+      role: "Wandering archivist",
+      persona:
+        "Curious, restless, hopelessly drawn to half-told stories. Charming but evasive about his own past.",
+      motivation:
+        "To uncover the truth behind a vanished town that history seems determined to forget.",
+    },
+  ],
+  starterStoryTitle: "The Harbor at Hollowmere",
+  starterStoryPremise:
+    "In a fog-bound harbor town where the tide carries more than salt, a guarded lighthouse keeper and a wandering archivist are drawn into a mystery the town has spent a generation trying to drown. The story unfolds whether or not anyone is watching.",
+  // Footer
+  footerText: "Driftoria — a living story, powered by AI and shaped by you.",
 };

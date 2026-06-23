@@ -20,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@qb/agentic": "file:./app/modules/agentic",
     "@react-router/express": "^7.0.0",
     "@react-router/node": "^7.0.0",
     "@typegoose/typegoose": "^12.20.0",
@@ -33,18 +34,19 @@
     "lucide-react": "^0.514.0",
     "mongoose": "~8.21.0",
     "mongoose-delete": "^1.0.7",
+    "multer": "^1.4.5-lts.2",
     "next-themes": "^0.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.0.0",
     "tailwind-merge": "^3.5.0",
-    "tsx": "^4.20.6",
-    "@qb/agentic": "file:./app/modules/agentic"
+    "tsx": "^4.20.6"
   },
   "devDependencies": {
     "@react-router/dev": "^7.0.0",
     "@react-router/remix-routes-option-adapter": "^7.6.2",
     "@types/express": "^5.0.5",
+    "@types/multer": "^2.1.0",
     "@types/node": "^24.10.1",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",

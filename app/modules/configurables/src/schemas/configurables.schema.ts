@@ -171,5 +171,83 @@ export const configurableSchemas: ConfigurableSchemas = {
         },
       ],
     },
+
+    // ── Branding & Copy ─────────────────────────────────────────────────
+    { fieldName: "tagline", type: "string", required: false, label: "Tagline" },
+    { fieldName: "heroEyebrow", type: "string", required: false, label: "Hero Eyebrow Label" },
+    { fieldName: "heroHeadline", type: "string", required: false, label: "Hero Headline" },
+    { fieldName: "heroSubheadline", type: "string", required: false, label: "Hero Subheadline" },
+    { fieldName: "heroPrimaryCta", type: "string", required: false, label: "Hero Primary CTA Label" },
+    { fieldName: "heroSecondaryCta", type: "string", required: false, label: "Hero Secondary CTA Label" },
+
+    // ── Feature section ─────────────────────────────────────────────────
+    { fieldName: "featuresHeading", type: "string", required: false, label: "Features Heading" },
+    {
+      fieldName: "features",
+      type: "array",
+      required: false,
+      label: "Features",
+      item: {
+        type: "object",
+        required: true,
+        fields: [
+          { fieldName: "icon", type: "string", required: true, label: "Icon (lucide name)" },
+          { fieldName: "title", type: "string", required: true, label: "Title" },
+          { fieldName: "description", type: "string", required: true, label: "Description" },
+        ],
+      },
+    },
+
+    // ── Studio (app) copy ───────────────────────────────────────────────
+    { fieldName: "interventionPlaceholder", type: "string", required: false, label: "Intervention Composer Placeholder" },
+    { fieldName: "emptyStoryMessage", type: "string", required: false, label: "Empty Story Message" },
+
+    // ── Story engine behavior (configurable logic) ──────────────────────
+    {
+      fieldName: "defaultPacing",
+      type: "enum",
+      required: true,
+      label: "Default Pacing",
+      options: ["slow", "moderate", "active"],
+    },
+    { fieldName: "slowBeatsPerDay", type: "number", required: true, label: "Slow Burn — Beats Per Day", min: 1, max: 24 },
+    { fieldName: "moderateBeatsPerDay", type: "number", required: true, label: "Moderate — Beats Per Day", min: 1, max: 24 },
+    { fieldName: "activeBeatsPerDay", type: "number", required: true, label: "Active — Beats Per Day", min: 1, max: 48 },
+    { fieldName: "autonomousCatchUpBeats", type: "number", required: true, label: "Max Autonomous Catch-Up Beats", min: 1, max: 12 },
+    { fieldName: "showCharactersRail", type: "boolean", required: false, label: "Show Characters Rail" },
+
+    // ── Scenario seed suggestions ───────────────────────────────────────
+    {
+      fieldName: "scenarioSeeds",
+      type: "array",
+      required: false,
+      label: "Scenario Seed Suggestions",
+      item: { type: "string", required: true },
+    },
+
+    // ── Starter characters ──────────────────────────────────────────────
+    {
+      fieldName: "starterCharacters",
+      type: "array",
+      required: false,
+      label: "Starter Characters",
+      item: {
+        type: "object",
+        required: true,
+        fields: [
+          { fieldName: "name", type: "string", required: true, label: "Name" },
+          { fieldName: "role", type: "string", required: true, label: "Role" },
+          { fieldName: "persona", type: "string", required: true, label: "Persona" },
+          { fieldName: "motivation", type: "string", required: true, label: "Motivation" },
+        ],
+      },
+    },
+
+    // ── Starter story premise ───────────────────────────────────────────
+    { fieldName: "starterStoryTitle", type: "string", required: false, label: "Starter Story Title" },
+    { fieldName: "starterStoryPremise", type: "string", required: false, label: "Starter Story Premise" },
+
+    // ── Footer ──────────────────────────────────────────────────────────
+    { fieldName: "footerText", type: "string", required: false, label: "Footer Text" },
   ],
 };

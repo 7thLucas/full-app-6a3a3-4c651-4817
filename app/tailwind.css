@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,42 +6,42 @@
 
 @layer base {
   :root {
-    --background: #ffffff;
-    --foreground: #09090b;
-    --card: #ffffff;
-    --card-foreground: #09090b;
-    --popover: #ffffff;
-    --popover-foreground: #09090b;
-    --primary: #2563eb;
-    --primary-foreground: #ffffff;
-    --secondary: #f4f4f5;
-    --secondary-foreground: #18181b;
-    --muted: #f4f4f5;
-    --muted-foreground: #71717a;
-    --accent: #f4f4f5;
-    --accent-foreground: #18181b;
-    --destructive: #ef4444;
-    --destructive-foreground: #fafafa;
-    --border: #e4e4e7;
-    --input: #e4e4e7;
-    --ring: #2563eb;
-    --radius: 0.5rem;
-    --chart-1: #f97316;
-    --chart-2: #0d9488;
-    --chart-3: #1e3a5f;
-    --chart-4: #d4a017;
-    --chart-5: #ea580c;
-    --navbar-background: #ffffff;
-    --sidebar-background: #fafafa;
-    --sidebar-foreground: #3f3f46;
-    --sidebar-primary: #2563eb;
-    --sidebar-primary-foreground: #ffffff;
-    --sidebar-accent: #f4f4f5;
-    --sidebar-accent-foreground: #18181b;
-    --sidebar-border: #e4e4e7;
-    --sidebar-ring: #2563eb;
-    --heading-font: 'Plus Jakarta Sans', sans-serif;
-    --text-font: 'Inter', sans-serif;
+    --background: #0E0D14;
+    --foreground: #F4F1EC;
+    --card: #17151F;
+    --card-foreground: #F4F1EC;
+    --popover: #1F1C2A;
+    --popover-foreground: #F4F1EC;
+    --primary: #8B7BF0;
+    --primary-foreground: #0E0D14;
+    --secondary: #1F1C2A;
+    --secondary-foreground: #F4F1EC;
+    --muted: #1F1C2A;
+    --muted-foreground: #A9A4B8;
+    --accent: #E8A87C;
+    --accent-foreground: #0E0D14;
+    --destructive: #E06A6A;
+    --destructive-foreground: #0E0D14;
+    --border: #262232;
+    --input: #262232;
+    --ring: #8B7BF0;
+    --radius: 1rem;
+    --chart-1: #8B7BF0;
+    --chart-2: #B58CF2;
+    --chart-3: #E8A87C;
+    --chart-4: #6F6A80;
+    --chart-5: #A9A4B8;
+    --navbar-background: #0E0D14;
+    --sidebar-background: #121019;
+    --sidebar-foreground: #A9A4B8;
+    --sidebar-primary: #8B7BF0;
+    --sidebar-primary-foreground: #0E0D14;
+    --sidebar-accent: #1F1C2A;
+    --sidebar-accent-foreground: #F4F1EC;
+    --sidebar-border: #262232;
+    --sidebar-ring: #8B7BF0;
+    --heading-font: 'Playfair Display', serif;
+    --text-font: 'Lora', serif;
   }
 
   .dark {
@@ -189,3 +189,67 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+/* ── Driftoria atmosphere ─────────────────────────────────────────────── */
+
+/* Aurora gradient text */
+.text-aurora {
+  background-image: linear-gradient(120deg, var(--primary), var(--chart-2) 55%, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Soft dusk radial backdrop, layered behind content */
+.aurora-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 18% 12%, color-mix(in srgb, var(--primary) 22%, transparent), transparent 70%),
+    radial-gradient(55% 45% at 85% 8%, color-mix(in srgb, var(--chart-2) 18%, transparent), transparent 72%),
+    radial-gradient(70% 60% at 75% 95%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 75%);
+}
+
+/* Fine grain texture overlay for editorial depth */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Breathing live indicator — the engine is always running */
+@keyframes drift-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+.animate-breathe {
+  animation: drift-breathe 2.8s ease-in-out infinite;
+}
+
+/* Slow ambient drift for atmospheric layers */
+@keyframes drift-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -14px, 0); }
+}
+.animate-drift {
+  animation: drift-float 14s ease-in-out infinite;
+}
+
+/* Gentle rise-and-fade for newly revealed beats */
+@keyframes drift-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise {
+  animation: drift-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.font-heading { font-family: var(--heading-font); }
+.font-body { font-family: var(--text-font); }
+
+/* Comfortable reading measure for narrative prose */
+.prose-measure { max-width: 66ch; }
