@@ -44,6 +44,11 @@ const logger = createLogger("ChatService");
 
 const RECENT_MESSAGE_WINDOW = 12;
 
+// Fixed anchor for starter ordering. Starters are stamped createdAt = this +
+// index, so the configured array order drives the discovery feed (sorted by
+// createdAt asc) and sits safely before any real user-created character.
+const STARTER_EPOCH = Date.parse("2024-01-01T00:00:00.000Z");
+
 async function getConfig(): Promise<TDefaultConfigurableData> {
   const data = (await ConfigurablesService.getData()) as Partial<TDefaultConfigurableData>;
   return { ...defaultConfigurablesData, ...data } as TDefaultConfigurableData;
@@ -107,7 +112,7 @@ export async function ensureSeedCharacters(): Promise<void> {
   }
 
   const result = await CharacterModel.bulkWrite(
-    starters.map((s) => ({
+    starters.map((s, i) => ({
       updateOne: {
         filter: { name: s.name, creatorId: "system" },
         update: {
@@ -118,19 +123,30 @@ export async function ensureSeedCharacters(): Promise<void> {
             persona: s.persona,
             greeting: s.greeting,
             tags: s.tags ?? [],
-            avatarUrl: cfg.enableCharacterAvatars
-              ? buildImageUrl(cfg.imageGenUrl, avatarPrompt(s.name, s.avatarPrompt), {
-                  seedKey: s.name,
-                })
-              : "",
+            // A hand-authored `avatarUrl` wins; otherwise generate from the
+            // prompt (when avatars are enabled), else leave blank.
+            avatarUrl: s.avatarUrl
+              ? s.avatarUrl
+              : cfg.enableCharacterAvatars
+                ? buildImageUrl(cfg.imageGenUrl, avatarPrompt(s.name, s.avatarPrompt), {
+                    seedKey: s.name,
+                  })
+                : "",
             description: s.description ?? "",
             scenario: s.scenario ?? "",
             gender: s.gender ?? "",
             category: s.category ?? "",
             creatorName: "system",
-            galleryUrls: cfg.enableCharacterAvatars
-              ? buildGalleryUrls(cfg.imageGenUrl, s.name, s.avatarPrompt)
-              : [],
+            galleryUrls: s.avatarUrl
+              ? [s.avatarUrl]
+              : cfg.enableCharacterAvatars
+                ? buildGalleryUrls(cfg.imageGenUrl, s.name, s.avatarPrompt)
+                : [],
+            // The discovery feed sorts by createdAt ascending, so anchor each
+            // starter's timestamp to its array index. This makes the configured
+            // order authoritative for newly-seeded starters regardless of when
+            // they're inserted (a starter added later still sorts by its slot).
+            createdAt: new Date(STARTER_EPOCH + i * 1000),
             ...seedStats(s.name),
             creatorId: "system",
           },
@@ -185,12 +201,16 @@ async function backfillStarterProfiles(
   const result = await CharacterModel.bulkWrite(
     starters.map((s) => {
       const stats = seedStats(s.name);
-      const gallery = cfg.enableCharacterAvatars
-        ? buildGalleryUrls(cfg.imageGenUrl, s.name, s.avatarPrompt)
-        : [];
-      const avatar = cfg.enableCharacterAvatars
-        ? buildImageUrl(cfg.imageGenUrl, avatarPrompt(s.name, s.avatarPrompt), { seedKey: s.name })
-        : "";
+      const gallery = s.avatarUrl
+        ? [s.avatarUrl]
+        : cfg.enableCharacterAvatars
+          ? buildGalleryUrls(cfg.imageGenUrl, s.name, s.avatarPrompt)
+          : [];
+      const avatar = s.avatarUrl
+        ? s.avatarUrl
+        : cfg.enableCharacterAvatars
+          ? buildImageUrl(cfg.imageGenUrl, avatarPrompt(s.name, s.avatarPrompt), { seedKey: s.name })
+          : "";
       return {
         updateOne: {
           filter: { name: s.name, creatorId: "system" },
