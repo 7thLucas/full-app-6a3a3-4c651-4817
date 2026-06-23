@@ -193,6 +193,16 @@ export type TDefaultConfigurableData = {
   guestMessageLimit: number;
   enableOfflinePings: boolean;
   offlinePingAfterHours: number;
+  // Autonomous chat engine pacing — the character's life continues even when
+  // the user is idle. Pings per hour drives how often the character reaches
+  // out unprompted; maxCatchUp caps how many messages accrue while away;
+  // pollIntervalSeconds is how often the frontend checks for new messages.
+  chatPingsPerHour: number;
+  chatMaxCatchUpPings: number;
+  chatPollIntervalSeconds: number;
+  chatBackgroundAdvanceMinutes: number;
+  // ISO timestamp of last background autonomous advance. Written by server tick.
+  chatLastBackgroundAdvanceAt: string;
   // LLM model ids passed to the agentic endpoint. Empty = let the platform pick
   // its default. `aiModelPremium` is used for companions on a plan whose
   // `premiumModel` flag is on; everyone else gets `aiModelBase`.
@@ -407,6 +417,11 @@ export const defaultConfigurablesData: TDefaultConfigurableData = {
   guestMessageLimit: 5,
   enableOfflinePings: true,
   offlinePingAfterHours: 6,
+  chatPingsPerHour: 0.25,
+  chatMaxCatchUpPings: 4,
+  chatPollIntervalSeconds: 120,
+  chatBackgroundAdvanceMinutes: 240,
+  chatLastBackgroundAdvanceAt: "",
   aiModelBase: "",
   aiModelPremium: "",
   chatComposerPlaceholder: "Say something to them…",

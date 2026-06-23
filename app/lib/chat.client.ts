@@ -151,6 +151,29 @@ export interface CreateCharacterInput {
   category?: string;
 }
 
+export interface PingResult {
+  session: SessionView;
+  advanced: boolean;
+}
+
+/**
+ * Poll for a single autonomous narrative advance. Returns the updated session
+ * and whether a new message was actually generated (advanced=true) or no beat
+ * was owed yet (advanced=false).
+ */
+export async function pingSession(characterId: string): Promise<PingResult> {
+  const res = await apiRequest<SessionView>(
+    `/api/chat/sessions/${characterId}/ping`,
+    { method: "POST" },
+  );
+  // The ping endpoint returns { success, data: SessionView, advanced: boolean }
+  const body = res as unknown as { success: boolean; data?: SessionView; advanced?: boolean; message?: string };
+  if (!body.success || !body.data) {
+    throw new Error(body.message ?? "Ping failed");
+  }
+  return { session: body.data, advanced: body.advanced ?? false };
+}
+
 export async function createCharacter(
   input: CreateCharacterInput,
 ): Promise<CharacterProfileView> {

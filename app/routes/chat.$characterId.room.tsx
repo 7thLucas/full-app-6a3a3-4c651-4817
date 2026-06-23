@@ -11,6 +11,7 @@ import { useAuth } from "~/hooks/use-auth";
 import {
   ChatLoginRequiredError,
   openSession,
+  pingSession,
   sendChatMessage,
   UpgradeRequiredError,
   type SessionView,
@@ -60,6 +61,27 @@ export default function ChatThread() {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [session?.messages.length, sending]);
+
+  // Poll for autonomous narrative advances while the user is idle.
+  const pollInterval = (config?.chatPollIntervalSeconds ?? 30) * 1000;
+  useEffect(() => {
+    if (!session || pollInterval <= 0) return;
+
+    const timer = setInterval(async () => {
+      // Don't poll while a user message is in-flight.
+      if (sending) return;
+      try {
+        const result = await pingSession(characterId);
+        if (result.advanced) {
+          setSession(result.session);
+        }
+      } catch {
+        // Silently skip failed polls — the next interval will retry.
+      }
+    }, pollInterval);
+
+    return () => clearInterval(timer);
+  }, [characterId, session?.characterId, pollInterval, sending]);
 
   const send = useCallback(
     async (text: string) => {

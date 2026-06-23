@@ -13,6 +13,7 @@ import { Router, type Request, type Response } from "express";
 import { createLogger } from "~/lib/logger";
 import {
   createCharacter,
+  generateAutonomousPing,
   getCharacter,
   likeCharacter,
   listCharacterCards,
@@ -147,6 +148,21 @@ router.post("/chat/sessions/:id/messages", async (req: Request, res: Response) =
     logger.error("POST /chat/sessions/:id/messages failed", error);
     const msg = error instanceof Error ? error.message : "Message failed";
     return fail(res, msg === "Character not found" ? 404 : 502, msg);
+  }
+});
+
+router.post("/chat/sessions/:id/ping", async (req: Request, res: Response) => {
+  try {
+    const ownerId = resolveOwnerId(req, res);
+    const { view, advanced } = await generateAutonomousPing(
+      String(req.params.id),
+      ownerId,
+    );
+    return res.json({ success: true, data: view, advanced });
+  } catch (error) {
+    logger.error("POST /chat/sessions/:id/ping failed", error);
+    const msg = error instanceof Error ? error.message : "Ping failed";
+    return fail(res, msg === "Character not found" ? 404 : 500, msg);
   }
 });
 

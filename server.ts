@@ -7,6 +7,7 @@ import { connectMongoDB } from "./app/lib/db.server";
 import { createServer } from "node:http";
 import apiRoutes from "./app/api";
 import { runSeeds } from "~/api/seeds";
+import crypto from "node:crypto";
 import mongoose from "mongoose";
 import fs from "node:fs";
 
@@ -29,6 +30,106 @@ async function startServer() {
 
     // Run all seeds
     await runSeeds();
+
+    // Background autonomous chat tick — DB-persisted scheduling.
+    // On first load: run immediately. Then every N minutes (configurable),
+    // but only if the last run was long enough ago (survives restarts).
+    const { ConfigurablesService } = await import("~/modules/configurables/src/services/configurables.service");
+    const { defaultConfigurablesData: defaultCfg } = await import("~/modules/configurables/src/constants/configurables.default");
+    const { advanceAllSessions } = await import("~/modules/agentic/chat/chat.service");
+    const { AgentJobModel } = await import("~/modules/agentic/agent-job.model");
+    const { ConfigurableModel } = await import("~/modules/configurables/src/models/configurables.model");
+
+    async function getStoredTickMinutes(): Promise<number> {
+      try {
+        const data = (await ConfigurablesService.getData()) as Record<string, unknown>;
+        if (typeof data?.chatBackgroundAdvanceMinutes === "number") {
+          return data.chatBackgroundAdvanceMinutes as number;
+        }
+      } catch { /* use default */ }
+      return defaultCfg.chatBackgroundAdvanceMinutes;
+    }
+
+    async function getLastAdvanceAt(): Promise<Date | null> {
+      try {
+        const data = (await ConfigurablesService.getData()) as Record<string, unknown>;
+        const v = data?.chatLastBackgroundAdvanceAt;
+        if (typeof v === "string" && v) return new Date(v);
+      } catch { /* not yet seeded */ }
+      return null;
+    }
+
+    async function persistAdvanceAt(d: Date): Promise<void> {
+      await ConfigurableModel.updateOne(
+        { _singleton: true },
+        { $set: { "configurable_data.chatLastBackgroundAdvanceAt": d.toISOString() } },
+      );
+    }
+
+    async function cleanupStalePending(): Promise<number> {
+      const result = await AgentJobModel.updateMany(
+        { prompt: "autonomous-chat-tick", status: "PENDING" },
+        { $set: { status: "ERROR", error: "orphaned — process restart or previous crash" } },
+      );
+      return result.modifiedCount ?? 0;
+    }
+
+    async function tick(force = false): Promise<void> {
+      // Resolve any orphaned PENDING jobs from a previous crash before starting.
+      const cleaned = await cleanupStalePending();
+      if (cleaned > 0) console.log(`[BackgroundTick] Cleaned up ${cleaned} stale PENDING job(s)`);
+
+      const minutes = await getStoredTickMinutes();
+      const lastAt = await getLastAdvanceAt();
+      const intervalMs = minutes * 60 * 1000;
+
+      if (!force) {
+        console.log(`[BackgroundTick] Check — minutes: ${minutes}, lastAt: ${lastAt?.toISOString() ?? "never"}, intervalMs: ${intervalMs}`);
+
+        if (lastAt && Date.now() - lastAt.getTime() < intervalMs) {
+          console.log(`[BackgroundTick] Skipped — last run was ${Math.round((Date.now() - lastAt.getTime()) / 1000)}s ago, need ${intervalMs / 1000}s`);
+          return;
+        }
+      }
+
+      console.log("[BackgroundTick] Running autonomous advance...");
+
+      const jobId = crypto.randomUUID();
+      await AgentJobModel.create({
+        jobId,
+        prompt: "autonomous-chat-tick",
+        status: "PENDING",
+        callbackToken: crypto.randomUUID(),
+      });
+
+      try {
+        const advanced = await advanceAllSessions(force);
+        await AgentJobModel.updateOne(
+          { jobId },
+          { $set: { status: "DONE", response: { advanced, at: new Date().toISOString() } } },
+        );
+        await persistAdvanceAt(new Date());
+        if (advanced > 0) console.log(`[BackgroundTick] Advanced ${advanced} session(s)`);
+      } catch (err) {
+        await AgentJobModel.updateOne(
+          { jobId },
+          { $set: { status: "ERROR", error: String(err) } },
+        );
+        throw err;
+      }
+    }
+
+    // Run immediately on first load — always, regardless of lastRunAt.
+    console.log("[BackgroundTick] Startup — forcing initial tick");
+    await tick(true);
+
+    // Check every 60s whether it's time. Interval ticks gate on the DB timestamp.
+    const tickTimer = setInterval(() => {
+      tick().catch((err) => console.error("[BackgroundTick] tick failed:", err));
+    }, 60_000);
+    tickTimer.unref();
+
+    console.log("Background autonomous tick started (DB-persisted schedule)");
 
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);

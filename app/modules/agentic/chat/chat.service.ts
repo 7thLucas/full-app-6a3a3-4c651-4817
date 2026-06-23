@@ -34,6 +34,8 @@ import {
 } from "../chat.model";
 import { avatarPrompt, buildGalleryUrls, buildImageUrl, scenePrompt } from "./chat.image";
 import {
+  computeOwedPings,
+  generateAutonomousMessage,
   generateOfflinePing,
   generateReply,
   type CharacterBrief,
@@ -564,7 +566,15 @@ export async function openSession(
     hoursAway >= cfg.offlinePingAfterHours
   ) {
     try {
-      const gen = await generateOfflinePing({
+      const owed = computeOwedPings({
+        since: new Date(session.lastMessageAt),
+        now: new Date(),
+        pingsPerHour: cfg.chatPingsPerHour,
+        maxCatchUp: cfg.chatMaxCatchUpPings,
+      });
+
+      // First message: warm "welcome back" ping
+      const ping = await generateOfflinePing({
         character: brief(character),
         memory: session.memory,
         recentMessages: recent(session),
@@ -573,13 +583,31 @@ export async function openSession(
         model: pickModel(cfg, limits),
       });
       ({ smartReplies } = await applyGenerated(
-        session,
-        cfg,
-        limits,
-        gen,
-        true,
+        session, cfg, limits, ping, true,
         character.scenario || character.persona,
       ));
+
+      // Remaining beats: narrative-advancing autonomous messages
+      for (let i = 1; i < owed; i++) {
+        try {
+          const msg = await generateAutonomousMessage({
+            character: brief(character),
+            memory: session.memory,
+            recentMessages: recent(session),
+            smartReplyCount: cfg.smartReplyCount,
+            model: pickModel(cfg, limits),
+          });
+          ({ smartReplies } = await applyGenerated(
+            session, cfg, limits, msg, true,
+            character.scenario || character.persona,
+          ));
+        } catch (err) {
+          logger.warn(`Autonomous catch-up beat ${i + 1}/${owed} failed; stopping early`, {
+            reason: err instanceof Error ? err.message : String(err),
+          });
+          break;
+        }
+      }
     } catch (err) {
       logger.warn("Offline ping failed; skipping", {
         reason: err instanceof Error ? err.message : String(err),
@@ -651,6 +679,123 @@ export async function sendMessage(
   // Meter the user turn against the owner's daily plan budget.
   void recordUsage(ownerId, "messages").catch(() => {});
   return toSessionView(character, session, smartReplies);
+}
+
+/**
+ * Generate one autonomous narrative-advancing message if enough time has
+ * elapsed since the last message. Returns the updated session, or null when
+ * no beat is owed yet (caller should respond with `advanced: false`).
+ */
+export async function generateAutonomousPing(
+  characterId: string,
+  ownerId: string,
+): Promise<{ view: SessionView; advanced: boolean }> {
+  const cfg = await getConfig();
+  const { limits } = await getLimitsFor(ownerId);
+
+  if (!cfg.enableOfflinePings || !limits.offlinePings) {
+    const character = await getCharacter(characterId);
+    if (!character) throw new Error("Character not found");
+    const session = await getOrCreateSession(character, ownerId);
+    return { view: toSessionView(character, session, []), advanced: false };
+  }
+
+  const character = await getCharacter(characterId);
+  if (!character) throw new Error("Character not found");
+
+  const session = await getOrCreateSession(character, ownerId);
+
+  const owed = computeOwedPings({
+    since: new Date(session.lastMessageAt),
+    now: new Date(),
+    pingsPerHour: cfg.chatPingsPerHour,
+    maxCatchUp: 1, // single advance per poll
+  });
+
+  if (owed < 1) {
+    return { view: toSessionView(character, session, []), advanced: false };
+  }
+
+  let smartReplies: string[] = [];
+  try {
+    const gen = await generateAutonomousMessage({
+      character: brief(character),
+      memory: session.memory,
+      recentMessages: recent(session),
+      smartReplyCount: cfg.smartReplyCount,
+      model: pickModel(cfg, limits),
+    });
+    ({ smartReplies } = await applyGenerated(
+      session, cfg, limits, gen, true,
+      character.scenario || character.persona,
+    ));
+  } catch (err) {
+    logger.warn("Autonomous ping generation failed", {
+      reason: err instanceof Error ? err.message : String(err),
+    });
+    return { view: toSessionView(character, session, smartReplies), advanced: false };
+  }
+
+  await session.save();
+  return { view: toSessionView(character, session, smartReplies), advanced: true };
+}
+
+/**
+ * Background tick: advance every session that has been idle long enough to owe
+ * at least one autonomous beat. Called by the in-process interval.
+ * Returns count of sessions that actually generated a message.
+ */
+export async function advanceAllSessions(force = false): Promise<number> {
+  const cfg = await getConfig();
+
+  const baseFilter = { messages: { $elemMatch: { role: "user" } } };
+  const allSessions = await ChatSessionModel.countDocuments(baseFilter).exec();
+
+  let filter: Record<string, unknown> = baseFilter;
+  if (!force) {
+    const pingIntervalMs = (60 * 60 * 1000) / Math.max(0.1, cfg.chatPingsPerHour);
+    const cutoff = new Date(Date.now() - pingIntervalMs);
+    filter = { ...baseFilter, lastMessageAt: { $lt: cutoff } };
+  }
+
+  const sessions = await ChatSessionModel.find(filter).exec();
+
+  const mode = force ? "FORCE" : "scheduled";
+  logger.info(`advanceAllSessions [${mode}]: ${allSessions} active sessions, ${sessions.length} to advance`);
+  if (!sessions.length) return 0;
+
+  let advanced = 0;
+  for (const session of sessions) {
+    const character = await CharacterModel.findOne({ characterId: session.characterId }).exec();
+    if (!character) continue;
+
+    const { limits } = await getLimitsFor(session.ownerId);
+    try {
+      const gen = await generateAutonomousMessage({
+        character: brief(character),
+        memory: session.memory,
+        recentMessages: recent(session),
+        smartReplyCount: cfg.smartReplyCount,
+        model: pickModel(cfg, limits),
+      });
+      await applyGenerated(
+        session, cfg, limits, gen, true,
+        character.scenario || character.persona,
+      );
+      session.lastMessageAt = new Date();
+      await session.save();
+      advanced += 1;
+    } catch (err) {
+      logger.warn("Background advance failed for session", {
+        characterId: session.characterId,
+        ownerId: session.ownerId,
+        reason: err instanceof Error ? err.message : String(err),
+      });
+    }
+  }
+
+  if (advanced > 0) logger.info(`Background tick advanced ${advanced} session(s)`);
+  return advanced;
 }
 
 export interface CharacterCardView {

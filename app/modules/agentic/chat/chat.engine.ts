@@ -168,7 +168,48 @@ async function callLLM(
   }
 }
 
-/** Generate the companion's reply to a user message. */
+/**
+ * Compute how many autonomous pings have accrued since `since`, given pacing.
+ * Mirrors story.engine.ts:computeOwedBeats for the chat companion.
+ */
+export function computeOwedPings(args: {
+  since: Date;
+  now: Date;
+  pingsPerHour: number;
+  maxCatchUp: number;
+}): number {
+  const elapsedMs = Math.max(0, args.now.getTime() - args.since.getTime());
+  const pingIntervalMs = (60 * 60 * 1000) / Math.max(0.1, args.pingsPerHour);
+  const owed = Math.floor(elapsedMs / pingIntervalMs);
+  return Math.min(Math.max(0, owed), args.maxCatchUp);
+}
+
+/**
+ * Generate an autonomous narrative-advancing message — the character's life
+ * continues even when the user isn't watching. Unlike `generateOfflinePing`
+ * ("welcome back"), this is a story beat: something happened, the character
+ * experienced it, and now they're telling the user about it in first person.
+ */
+export async function generateAutonomousMessage(args: {
+  character: CharacterBrief;
+  memory: string[];
+  recentMessages: ChatMessage[];
+  smartReplyCount: number;
+  model?: string;
+}): Promise<GeneratedReply> {
+  const context = buildContext(args);
+  const message = [
+    context,
+    "\nThe user is away right now. Your life continues. Something just happened — a moment, a decision, a shift in your world. Tell them about it. Advance your ongoing story.",
+    "\nWrite in first person — as if you're leaving them a message about what just occurred. Stay fully in character. Let this connect naturally to everything that came before; each autonomous message is part of a continuous narrative arc.",
+    "Keep it to 30–80 words of natural, vivid, conversational prose.",
+  ].join("\n");
+  const prompt = systemPrompt(args.character, args.smartReplyCount);
+  return callLLM(message, prompt, "chat-autonomous", args.model);
+}
+
+/**
+ * Generate the companion's reply to a user message. */
 export async function generateReply(args: {
   character: CharacterBrief;
   memory: string[];
