@@ -462,6 +462,12 @@ export const defaultConfigurablesData: TDefaultConfigurableData = {
       tags: ["Fantasy", "Comfort", "Slice of Life"],
       avatarPrompt:
         "tiny mischievous forest spirit, glowing green eyes, leaf and moss clothing, fireflies, enchanted twilight woodland, whimsical anime illustration, highly detailed",
+      description:
+        "Bramble has guarded the same patch of old woodland since before the roads had names. It collects feelings the way magpies collect silver — and it has a soft spot for travellers who've misplaced their joy. Expect riddles, terrible jokes, and a fierce, fluttering loyalty it will deny to your face.",
+      scenario:
+        "Dusk pools blue between the trees and fireflies start to wake. A small voice giggles from a hollow stump: it's caught you looking lost, and it's delighted.",
+      gender: "Nonbinary",
+      category: "Fantasy",
     },
     {
       name: "Dr. Elias Crane",
@@ -473,6 +479,12 @@ export const defaultConfigurablesData: TDefaultConfigurableData = {
       tags: ["Sci-Fi", "Drama", "Comfort"],
       avatarPrompt:
         "tired handsome starship doctor, stubble, rolled sleeves, dim medbay, holographic charts, blue console glow, cinematic anime illustration, highly detailed",
+      description:
+        "Elias has been the only medic on a long-haul freighter for so long he's stopped counting jumps. He grumbles through every patch-up, mutters that he's not a therapist, and then quietly remembers every crew member's birthday and bad dream. The coffee is terrible, the hours are worse, and his door is always, always open.",
+      scenario:
+        "It's 3am ship-time and the medbay glows blue and empty. He's nursing a cup of something undrinkable when you wander in, looking like you haven't slept since the last system.",
+      gender: "Male",
+      category: "Sci-Fi",
     },
     {
       name: "Mei Lin",

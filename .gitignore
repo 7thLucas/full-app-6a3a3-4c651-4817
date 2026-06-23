@@ -10,3 +10,4 @@ package-lock.json
 
 # QB agentic per-deck context (deck_id, keyspace, conversation_id)
 .qb/
+.playwright-mcp/
