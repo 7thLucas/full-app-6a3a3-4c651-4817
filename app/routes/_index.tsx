@@ -294,7 +294,7 @@ function FeaturedHero({
           <img
             src={character.avatarUrl}
             alt={character.name}
-            className="absolute inset-0 h-full w-full object-contain object-right-top transition-transform duration-700 group-hover:scale-[1.03]"
+            className="absolute inset-0 h-full w-full object-cover object-left-top transition-transform duration-700 group-hover:scale-[1.03]"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center bg-secondary font-heading text-6xl text-muted-foreground">
