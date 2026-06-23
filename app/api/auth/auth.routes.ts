@@ -14,9 +14,8 @@ import {
   loginUser,
   registerUser,
 } from "../services/auth.service";
-import { signSession } from "../lib/session";
+import { signSession, SESSION_TTL_SECONDS } from "../lib/session";
 import { buildSessionCookie, clearSessionCookie } from "../lib/cookies";
-import { SESSION_TTL_SECONDS } from "../lib/session";
 import type { AuthedRequest } from "../middleware/auth.guard";
 import { getAutonomousSettings } from "~/modules/agentic/chat/autonomous-settings.service";
 

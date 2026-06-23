@@ -215,7 +215,7 @@ export default function ChatThread() {
 
       {/* Header */}
       <header className="relative z-10 border-b border-border bg-background/80 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-3xl items-center gap-3 px-4 py-3">
+        <div className="mx-auto flex w-full max-w-3xl md:max-w-none items-center gap-3 px-4 py-3">
           <Link to={`/chat/${characterId}`}>
             <Button variant="ghost" size="sm" className="px-2">
               <ArrowLeft className="h-4 w-4" strokeWidth={1.75} />
@@ -239,7 +239,7 @@ export default function ChatThread() {
 
       {/* Messages */}
       <div className="relative z-10 flex-1 overflow-y-auto">
-        <div className="mx-auto w-full max-w-3xl space-y-4 px-4 py-6">
+        <div className="mx-auto w-full max-w-3xl md:max-w-none space-y-4 px-4 py-6">
           {loading ? (
             <div className="flex items-center justify-center gap-3 py-20 text-muted-foreground">
               <Loader2 className="h-5 w-5 animate-spin" strokeWidth={1.75} />
@@ -320,7 +320,7 @@ export default function ChatThread() {
       {/* Composer */}
       <div className="relative z-10 border-t border-border bg-background/80 backdrop-blur">
         {guestGated ? (
-          <div className="mx-auto w-full max-w-3xl px-4 py-6 text-center">
+          <div className="mx-auto w-full max-w-3xl md:max-w-none px-4 py-6 text-center">
             <Lock className="mx-auto h-6 w-6 text-primary" strokeWidth={1.75} />
             <p className="mt-3 font-heading text-lg font-semibold tracking-tight">
               {config?.guestGateTitle ?? "Sign in to keep the conversation going"}
@@ -343,7 +343,7 @@ export default function ChatThread() {
             </div>
           </div>
         ) : (
-        <div className="mx-auto w-full max-w-3xl space-y-3 px-4 py-4">
+        <div className="mx-auto w-full max-w-3xl md:max-w-none space-y-3 px-4 py-4">
           {error && session ? (
             <p className="text-xs text-destructive">{error}</p>
           ) : null}

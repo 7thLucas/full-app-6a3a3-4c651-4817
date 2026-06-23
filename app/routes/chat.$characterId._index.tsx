@@ -159,7 +159,7 @@ export default function CharacterProfile() {
               : "pointer-events-none -translate-y-2 opacity-0",
           )}
         >
-          <div className="mx-auto flex w-full max-w-xl items-center gap-3 border-b border-border bg-background/80 px-4 py-3 backdrop-blur">
+          <div className="mx-auto flex w-full max-w-xl md:max-w-none items-center gap-3 border-b border-border bg-background/80 px-4 py-3 backdrop-blur">
             <Link to="/chat">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-secondary text-foreground transition-colors hover:bg-secondary/70">
                 <ArrowLeft className="h-5 w-5" strokeWidth={1.75} />
@@ -210,7 +210,7 @@ export default function CharacterProfile() {
           </Link>
         </div>
       ) : (
-        <div className="relative z-10 mx-auto w-full max-w-xl pb-28">
+        <div className="relative z-10 mx-auto w-full max-w-xl md:max-w-none pb-28">
           {/* Hero portrait */}
           <div className="relative aspect-[4/5] w-full overflow-hidden bg-secondary">
             {profile.avatarUrl ? (
@@ -398,7 +398,7 @@ export default function CharacterProfile() {
       {/* Sticky CTA */}
       {!loading && profile ? (
         <div className="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-background/80 backdrop-blur">
-          <div className="mx-auto w-full max-w-xl px-5 py-4">
+          <div className="mx-auto w-full max-w-xl md:max-w-none px-5 py-4">
             <Button
               size="lg"
               className="w-full"

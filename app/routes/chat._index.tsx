@@ -128,7 +128,7 @@ export default function ChatDiscovery() {
       </header>
 
       <Section className="relative z-10 py-12">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl md:max-w-none">
           <Eyebrow>
             <LiveDot />
             {config?.chatModeLabel ?? "Chat Mode"}
@@ -142,7 +142,7 @@ export default function ChatDiscovery() {
           </p>
         </div>
 
-        <div className="relative mt-8 max-w-xl">
+        <div className="relative mt-8 max-w-xl md:max-w-none">
           <Search
             className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
             strokeWidth={1.75}

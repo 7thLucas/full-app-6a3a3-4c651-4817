@@ -96,7 +96,7 @@ export default function AutonomousSettingsPage() {
     return (
       <div className="relative min-h-screen bg-background font-body text-foreground">
         <div className="aurora-backdrop opacity-40" />
-        <div className="relative z-10 mx-auto flex max-w-xl flex-col items-center justify-center px-4 py-20 text-center">
+        <div className="relative z-10 mx-auto flex max-w-xl md:max-w-none flex-col items-center justify-center px-4 py-20 text-center">
           <Clock className="h-10 w-10 text-muted-foreground" strokeWidth={1.5} />
           <h1 className="mt-4 font-heading text-2xl font-semibold tracking-tight">Autonomous Settings</h1>
           <p className="mt-2 text-sm text-muted-foreground">
@@ -119,7 +119,7 @@ export default function AutonomousSettingsPage() {
     <div className="relative min-h-screen bg-background font-body text-foreground">
       <div className="aurora-backdrop opacity-40" />
 
-      <div className="relative z-10 mx-auto max-w-xl px-4 py-6">
+      <div className="relative z-10 mx-auto max-w-xl md:max-w-none px-4 py-6">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
           <Link to="/chat">

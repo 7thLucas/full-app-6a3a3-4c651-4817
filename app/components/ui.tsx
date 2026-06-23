@@ -83,7 +83,7 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={cn("relative mx-auto w-full max-w-6xl px-6", className)}>
+    <section id={id} className={cn("relative mx-auto w-full px-6", className)}>
       {children}
     </section>
   );

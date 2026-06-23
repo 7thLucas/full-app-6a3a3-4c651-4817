@@ -59,7 +59,7 @@ export default function Profile() {
           </div>
         </div>
 
-        <div className="mt-8 max-w-md space-y-2">
+        <div className="mt-8 max-w-md md:max-w-none space-y-2">
           <Button
             variant="outline"
             size="lg"

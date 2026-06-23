@@ -7,6 +7,7 @@ import {
   Coffee,
   Heart,
   Loader2,
+  LogIn,
   LogOut,
   MessageSquare,
   MessagesSquare,
@@ -132,7 +133,8 @@ export default function IndexPage() {
             ) : (
               <Link to="/login?redirect=/chat">
                 <Button variant="ghost" size="sm">
-                  {config?.landingSignInLabel ?? "Log in"}
+                  <span className="hidden md:block">{config?.landingSignInLabel ?? "Log in"}</span>
+                  <span className="md:hidden"><LogIn /></span>
                 </Button>
               </Link>
             )}
@@ -300,7 +302,7 @@ function FeaturedHero({
       to={`/chat/${character.characterId}`}
       className="group block overflow-hidden rounded-2xl border border-primary/25 bg-card shadow-[0_20px_50px_-32px_var(--primary)] transition-colors hover:border-primary/45"
     >
-      <div className="relative aspect-[4/5] sm:aspect-[16/9]">
+      <div className="relative w-full h-[400px] sm:h-[450px] min-[1440px]:h-[600px]">
         {character.avatarUrl ? (
           <img
             src={character.avatarUrl}
@@ -312,24 +314,22 @@ function FeaturedHero({
             {initials}
           </div>
         )}
+        
         {/* Readability scrim — heaviest bottom-left where the copy lives. */}
         <div className="absolute inset-0 bg-gradient-to-t from-card via-card/55 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-card/80 via-card/10 to-transparent" />
-
+        
         <div className="relative flex h-full flex-col justify-end gap-3 p-6 sm:max-w-[60%] sm:p-8">
           <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 font-ui text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-primary backdrop-blur">
             <Sparkles className="h-3.5 w-3.5" strokeWidth={2} />
             {badge}
           </span>
-
           <h2 className="font-heading text-3xl font-semibold leading-[1.05] tracking-tight drop-shadow-sm sm:text-4xl">
             {character.name}
           </h2>
-
           <p className="max-w-md text-[0.95rem] leading-relaxed text-foreground/85 sm:text-base">
             {character.tagline}
           </p>
-
           {chips.length ? (
             <div className="flex flex-wrap gap-2">
               {chips.map((t, i) => {
@@ -346,7 +346,6 @@ function FeaturedHero({
               })}
             </div>
           ) : null}
-
           <span className="mt-2 inline-flex h-12 w-fit items-center gap-2 rounded-full bg-primary px-6 font-ui text-sm font-semibold tracking-wide text-primary-foreground shadow-[0_12px_30px_-14px_var(--primary)] transition-transform group-hover:scale-[1.02]">
             <Sparkles className="h-4 w-4" strokeWidth={2} />
             {cta}
@@ -357,7 +356,6 @@ function FeaturedHero({
     </Link>
   );
 }
-
 /* ── Trending tag chip ───────────────────────────────────────────────── */
 
 function TagChip({
@@ -489,7 +487,6 @@ function SearchOverlay({
       >
         <div className="flex items-center gap-3 border-b border-border px-5">
           <Search className="h-4 w-4 shrink-0 text-muted-foreground" strokeWidth={1.75} />
-          {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
           <input
             autoFocus
             value={query}

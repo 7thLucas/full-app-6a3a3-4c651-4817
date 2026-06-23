@@ -22,6 +22,127 @@ const hmrClientPort = process.env.HMR_CLIENT_PORT
   ? Number(process.env.HMR_CLIENT_PORT)
   : defaultPort;
 
+// ── Background autonomous chat tick ──────────────────────────────────────
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function getStoredTickMinutes(deps: { svc: any; defaultCfg: any }): Promise<number> {
+  try {
+    const data = (await deps.svc.getData()) as Record<string, unknown>;
+    if (typeof data?.chatBackgroundAdvanceMinutes === "number") {
+      return data.chatBackgroundAdvanceMinutes as number;
+    }
+  } catch { /* use default */ }
+  return deps.defaultCfg.chatBackgroundAdvanceMinutes;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function getLastAdvanceAt(svc: any): Promise<Date | null> {
+  try {
+    const data = (await svc.getData()) as Record<string, unknown>;
+    const v = data?.chatLastBackgroundAdvanceAt;
+    if (typeof v === "string" && v) return new Date(v);
+  } catch { /* not yet seeded */ }
+  return null;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function persistAdvanceAt(model: any, d: Date): Promise<void> {
+  await model.updateOne(
+    { _singleton: true },
+    { $set: { "configurable_data.chatLastBackgroundAdvanceAt": d.toISOString() } },
+  );
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function cleanupStalePending(model: any): Promise<number> {
+  const result = await model.updateMany(
+    { prompt: "autonomous-chat-tick", status: "PENDING" },
+    { $set: { status: "ERROR", error: "orphaned — process restart or previous crash" } },
+  );
+  return result.modifiedCount ?? 0;
+}
+
+async function tick(
+  deps: {
+    svc: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+    defaultCfg: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+    configurableModel: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+    agentJobModel: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+    advanceAllSessions: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  },
+  force = false,
+): Promise<void> {
+  const cleaned = await cleanupStalePending(deps.agentJobModel);
+  if (cleaned > 0) console.log(`[BackgroundTick] Cleaned up ${cleaned} stale PENDING job(s)`);
+
+  const minutes = await getStoredTickMinutes(deps);
+  const lastAt = await getLastAdvanceAt(deps.svc);
+  const intervalMs = minutes * 60 * 1000;
+
+  if (!force) {
+    console.log(`[BackgroundTick] Check — minutes: ${minutes}, lastAt: ${lastAt?.toISOString() ?? "never"}, intervalMs: ${intervalMs}`);
+
+    if (lastAt && Date.now() - lastAt.getTime() < intervalMs) {
+      console.log(`[BackgroundTick] Skipped — last run was ${Math.round((Date.now() - lastAt.getTime()) / 1000)}s ago, need ${intervalMs / 1000}s`);
+      return;
+    }
+  }
+
+  console.log("[BackgroundTick] Running autonomous advance...");
+
+  const jobId = crypto.randomUUID();
+  await deps.agentJobModel.create({
+    jobId,
+    prompt: "autonomous-chat-tick",
+    status: "PENDING",
+    callbackToken: crypto.randomUUID(),
+  });
+
+  try {
+    const advanced = await deps.advanceAllSessions(force);
+    await deps.agentJobModel.updateOne(
+      { jobId },
+      { $set: { status: "DONE", response: { advanced, at: new Date().toISOString() } } },
+    );
+    await persistAdvanceAt(deps.configurableModel, new Date());
+    if (advanced > 0) console.log(`[BackgroundTick] Advanced ${advanced} session(s)`);
+  } catch (err) {
+    await deps.agentJobModel.updateOne(
+      { jobId },
+      { $set: { status: "ERROR", error: String(err) } },
+    );
+    throw err;
+  }
+}
+
+async function startBackgroundTick() {
+  const { ConfigurablesService } = await import("~/modules/configurables/src/services/configurables.service");
+  const { defaultConfigurablesData: defaultCfg } = await import("~/modules/configurables/src/constants/configurables.default");
+  const { advanceAllSessions } = await import("~/modules/agentic/chat/chat.service");
+  const { AgentJobModel } = await import("~/modules/agentic/agent-job.model");
+  const { ConfigurableModel } = await import("~/modules/configurables/src/models/configurables.model");
+
+  const deps = {
+    svc: ConfigurablesService,
+    defaultCfg,
+    configurableModel: ConfigurableModel,
+    agentJobModel: AgentJobModel,
+    advanceAllSessions,
+  };
+
+  console.log("[BackgroundTick] Startup — firing initial tick (background)");
+  void tick(deps, true).catch((err) => console.error("[BackgroundTick] Startup tick failed:", err));
+
+  const tickTimer = setInterval(() => {
+    tick(deps).catch((err) => console.error("[BackgroundTick] tick failed:", err));
+  }, 60_000);
+  tickTimer.unref();
+
+  console.log("Background autonomous tick started (DB-persisted schedule)");
+}
+
+// ── Server ───────────────────────────────────────────────────────────────
+
 async function startServer() {
   // Connect to MongoDB
   try {
@@ -31,105 +152,8 @@ async function startServer() {
     // Run all seeds
     await runSeeds();
 
-    // Background autonomous chat tick — DB-persisted scheduling.
-    // On first load: run immediately. Then every N minutes (configurable),
-    // but only if the last run was long enough ago (survives restarts).
-    const { ConfigurablesService } = await import("~/modules/configurables/src/services/configurables.service");
-    const { defaultConfigurablesData: defaultCfg } = await import("~/modules/configurables/src/constants/configurables.default");
-    const { advanceAllSessions } = await import("~/modules/agentic/chat/chat.service");
-    const { AgentJobModel } = await import("~/modules/agentic/agent-job.model");
-    const { ConfigurableModel } = await import("~/modules/configurables/src/models/configurables.model");
-
-    async function getStoredTickMinutes(): Promise<number> {
-      try {
-        const data = (await ConfigurablesService.getData()) as Record<string, unknown>;
-        if (typeof data?.chatBackgroundAdvanceMinutes === "number") {
-          return data.chatBackgroundAdvanceMinutes as number;
-        }
-      } catch { /* use default */ }
-      return defaultCfg.chatBackgroundAdvanceMinutes;
-    }
-
-    async function getLastAdvanceAt(): Promise<Date | null> {
-      try {
-        const data = (await ConfigurablesService.getData()) as Record<string, unknown>;
-        const v = data?.chatLastBackgroundAdvanceAt;
-        if (typeof v === "string" && v) return new Date(v);
-      } catch { /* not yet seeded */ }
-      return null;
-    }
-
-    async function persistAdvanceAt(d: Date): Promise<void> {
-      await ConfigurableModel.updateOne(
-        { _singleton: true },
-        { $set: { "configurable_data.chatLastBackgroundAdvanceAt": d.toISOString() } },
-      );
-    }
-
-    async function cleanupStalePending(): Promise<number> {
-      const result = await AgentJobModel.updateMany(
-        { prompt: "autonomous-chat-tick", status: "PENDING" },
-        { $set: { status: "ERROR", error: "orphaned — process restart or previous crash" } },
-      );
-      return result.modifiedCount ?? 0;
-    }
-
-    async function tick(force = false): Promise<void> {
-      // Resolve any orphaned PENDING jobs from a previous crash before starting.
-      const cleaned = await cleanupStalePending();
-      if (cleaned > 0) console.log(`[BackgroundTick] Cleaned up ${cleaned} stale PENDING job(s)`);
-
-      const minutes = await getStoredTickMinutes();
-      const lastAt = await getLastAdvanceAt();
-      const intervalMs = minutes * 60 * 1000;
-
-      if (!force) {
-        console.log(`[BackgroundTick] Check — minutes: ${minutes}, lastAt: ${lastAt?.toISOString() ?? "never"}, intervalMs: ${intervalMs}`);
-
-        if (lastAt && Date.now() - lastAt.getTime() < intervalMs) {
-          console.log(`[BackgroundTick] Skipped — last run was ${Math.round((Date.now() - lastAt.getTime()) / 1000)}s ago, need ${intervalMs / 1000}s`);
-          return;
-        }
-      }
-
-      console.log("[BackgroundTick] Running autonomous advance...");
-
-      const jobId = crypto.randomUUID();
-      await AgentJobModel.create({
-        jobId,
-        prompt: "autonomous-chat-tick",
-        status: "PENDING",
-        callbackToken: crypto.randomUUID(),
-      });
-
-      try {
-        const advanced = await advanceAllSessions(force);
-        await AgentJobModel.updateOne(
-          { jobId },
-          { $set: { status: "DONE", response: { advanced, at: new Date().toISOString() } } },
-        );
-        await persistAdvanceAt(new Date());
-        if (advanced > 0) console.log(`[BackgroundTick] Advanced ${advanced} session(s)`);
-      } catch (err) {
-        await AgentJobModel.updateOne(
-          { jobId },
-          { $set: { status: "ERROR", error: String(err) } },
-        );
-        throw err;
-      }
-    }
-
-    // Fire immediately on first load — non-blocking so server starts without delay.
-    console.log("[BackgroundTick] Startup — firing initial tick (background)");
-    void tick(true).catch((err) => console.error("[BackgroundTick] Startup tick failed:", err));
-
-    // Check every 60s whether it's time. Interval ticks gate on the DB timestamp.
-    const tickTimer = setInterval(() => {
-      tick().catch((err) => console.error("[BackgroundTick] tick failed:", err));
-    }, 60_000);
-    tickTimer.unref();
-
-    console.log("Background autonomous tick started (DB-persisted schedule)");
+    // Background autonomous tick
+    await startBackgroundTick();
 
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
@@ -147,10 +171,6 @@ async function startServer() {
   });
 
   // Body parser middleware - ONLY for API routes, not for Remix routes
-  // Remix will handle body parsing for its own routes.
-  // `verify` stashes the raw request bytes on req.rawBody so signature-verified
-  // webhooks (e.g. Stripe at /api/billing/webhook) can validate against the
-  // exact payload — express.json otherwise consumes the stream.
   app.use(
     "/api",
     express.json({

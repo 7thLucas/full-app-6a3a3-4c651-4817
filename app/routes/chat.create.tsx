@@ -90,7 +90,7 @@ export default function CreateCharacter() {
       </header>
 
       <Section className="relative z-10 py-12">
-        <div className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-2xl md:max-w-none">
           <Eyebrow>
             <Wand2 className="h-3.5 w-3.5" strokeWidth={1.75} />
             Create a companion
