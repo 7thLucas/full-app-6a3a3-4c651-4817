@@ -29,57 +29,51 @@ export function CharacterCard({
   return (
     <Link
       to={hasHistory ? `/chat/${character.characterId}/room` : `/chat/${character.characterId}`}
-      className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_20px_50px_-20px_var(--primary)]"
+      className="group relative block aspect-[3/4] overflow-hidden rounded-2xl border border-border bg-secondary transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_16px_36px_-22px_var(--primary)]"
     >
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-secondary">
-        {character.avatarUrl ? (
-          <img
-            src={character.avatarUrl}
-            alt={character.name}
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center font-heading text-4xl text-muted-foreground">
-            {initials}
-          </div>
-        )}
-        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-card via-card/70 to-transparent" />
-        {/* Social proof — real conversation count, or "New" for fresh companions. */}
-        <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-background/70 px-2 py-1 font-ui text-[0.65rem] font-medium tracking-wide text-foreground backdrop-blur">
-          {character.chatCount > 0 ? (
-            <>
-              <MessagesSquare className="h-3 w-3 text-primary" strokeWidth={2} />
-              {formatCount(character.chatCount)}
-            </>
-          ) : (
-            <span className="uppercase tracking-wider text-primary">New</span>
-          )}
-        </span>
-        {character.tags?.length ? (
-          <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
-            {character.tags.slice(0, 2).map((t) => (
-              <span
-                key={t}
-                className="rounded-full bg-background/70 px-2.5 py-1 font-ui text-[0.65rem] uppercase tracking-wider text-foreground backdrop-blur"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        ) : null}
-      </div>
+      {character.avatarUrl ? (
+        <img
+          src={character.avatarUrl}
+          alt={character.name}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center font-heading text-4xl text-muted-foreground">
+          {initials}
+        </div>
+      )}
 
-      <div className="relative -mt-10 flex flex-1 flex-col px-5 pb-5">
-        <h3 className="font-heading text-xl font-semibold tracking-tight text-foreground">
-          {character.name}
-        </h3>
-        <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
-          {character.tagline}
-        </p>
-        <div className="mt-4 flex items-center gap-2 font-ui text-sm font-medium text-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <MessageCircleHeart className="h-4 w-4" strokeWidth={1.75} />
-          Start chatting
+      {/* Readability wash so the resting copy holds against any art. */}
+      <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-card via-card/75 to-transparent" />
+
+      {/* Social proof — real conversation count, or "New" for fresh companions. */}
+      <span className="absolute right-2.5 top-2.5 inline-flex items-center gap-1 rounded-full bg-background/60 px-2 py-1 font-ui text-[0.65rem] font-medium tracking-wide text-foreground backdrop-blur">
+        {character.chatCount > 0 ? (
+          <>
+            <MessagesSquare className="h-3 w-3 text-primary" strokeWidth={2} />
+            {formatCount(character.chatCount)}
+          </>
+        ) : (
+          <span className="uppercase tracking-wider text-primary">New</span>
+        )}
+      </span>
+
+      {/* Copy rests at the base; on hover it lifts to make room for the CTA. */}
+      <div className="absolute inset-x-0 bottom-0 p-4">
+        <div className="transition-transform duration-300 ease-out group-hover:-translate-y-1">
+          <h3 className="font-heading text-lg font-semibold leading-tight tracking-tight text-foreground">
+            {character.name}
+          </h3>
+          <p className="mt-1 line-clamp-2 text-sm leading-snug text-foreground/70">
+            {character.tagline}
+          </p>
+        </div>
+        <div className="grid grid-rows-[0fr] opacity-0 transition-all duration-300 ease-out group-hover:grid-rows-[1fr] group-hover:opacity-100">
+          <span className="flex items-center gap-1.5 overflow-hidden font-ui text-sm font-medium text-primary">
+            <MessageCircleHeart className="mt-2.5 h-4 w-4" strokeWidth={1.75} />
+            <span className="mt-2.5">Start chatting</span>
+          </span>
         </div>
       </div>
     </Link>
