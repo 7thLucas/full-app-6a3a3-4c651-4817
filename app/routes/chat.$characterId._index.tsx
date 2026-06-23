@@ -20,8 +20,16 @@ import {
   type CharacterProfileView,
 } from "~/lib/chat.client";
 
+import type { LoaderFunctionArgs } from "react-router";
+import { requireUserId } from "~/lib/auth.server";
+
 export function meta() {
   return [{ title: "Driftoria — Character" }];
+}
+
+export function loader({ request }: LoaderFunctionArgs) {
+  requireUserId(request);
+  return null;
 }
 
 /** Compact social-proof formatting: 83400 → "83.4k", 1200000 → "1.2M". */

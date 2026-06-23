@@ -11,9 +11,18 @@
 import { createHash, randomUUID } from "node:crypto";
 import { ConfigurablesService } from "~/modules/configurables/src/services/configurables.service";
 import { defaultConfigurablesData } from "~/modules/configurables/src/constants/configurables.default";
-import type { TDefaultConfigurableData } from "~/modules/configurables/src/constants/configurables.default";
+import type {
+  TDefaultConfigurableData,
+  TPlanLimits,
+} from "~/modules/configurables/src/constants/configurables.default";
 import { createLogger } from "~/lib/logger";
-import { recordUsage } from "~/api/services/usage.service";
+import {
+  getLimitsFor,
+  getUsageToday,
+  QuotaError,
+  recordUsage,
+  withinLimit,
+} from "~/api/services/usage.service";
 import {
   CharacterModel,
   ChatSessionModel,
@@ -84,7 +93,10 @@ export async function ensureSeedCharacters(): Promise<void> {
   if (!starters.length) return;
 
   const seededCount = await CharacterModel.countDocuments({ creatorId: "system" }).exec();
-  if (seededCount >= starters.length) return;
+  if (seededCount >= starters.length) {
+    await backfillStarterProfiles(cfg, starters);
+    return;
+  }
 
   const result = await CharacterModel.bulkWrite(
     starters.map((s) => ({
@@ -199,6 +211,22 @@ export async function createCharacter(
   ownerId = "user",
 ): Promise<CharacterDoc> {
   const cfg = await getConfig();
+  const { plan, limits } = await getLimitsFor(ownerId);
+
+  // Enforce the owner's companion-count cap (their own creations only).
+  const owned = await CharacterModel.countDocuments({ creatorId: ownerId }).exec();
+  if (!withinLimit(owned, limits.maxCompanions)) {
+    throw new QuotaError({
+      lever: "companions",
+      plan,
+      limit: limits.maxCompanions,
+      used: owned,
+    });
+  }
+
+  // Avatar art is a paid perk: both the global toggle and the plan must allow it.
+  const avatarsAllowed = cfg.enableCharacterAvatars && limits.characterAvatars;
+
   const name = input.name.trim();
   const tagline = input.tagline.trim();
   const persona = input.persona.trim();
@@ -213,7 +241,7 @@ export async function createCharacter(
       input.greeting?.trim() ||
       `*${name} looks up as you arrive* …Oh. Hello, you. I was hoping you'd come.`,
     tags: (input.tags ?? []).map((t) => t.trim()).filter(Boolean),
-    avatarUrl: cfg.enableCharacterAvatars
+    avatarUrl: avatarsAllowed
       ? buildImageUrl(cfg.imageGenUrl, avatarPrompt(name, promptText), { seedKey: name + persona })
       : "",
     description: input.description?.trim() || tagline,
@@ -221,7 +249,7 @@ export async function createCharacter(
     gender: input.gender?.trim() || "",
     category: input.category?.trim() || "",
     creatorName: input.creatorName?.trim() || "you",
-    galleryUrls: cfg.enableCharacterAvatars
+    galleryUrls: avatarsAllowed
       ? buildGalleryUrls(cfg.imageGenUrl, name, promptText)
       : [],
     creatorId: ownerId,
@@ -279,6 +307,7 @@ function clampMemory(memory: string[], depth: number): string[] {
 async function applyGenerated(
   session: ChatSession,
   cfg: TDefaultConfigurableData,
+  limits: TPlanLimits,
   gen: GeneratedReply,
   whileAway: boolean,
   setting: string,
@@ -295,7 +324,9 @@ async function applyGenerated(
       session.messages.filter((m) => m.role === "character").length %
         Math.max(1, cfg.illustrationFrequency) ===
       0;
-    const underCap = session.imagesToday < cfg.freeTierDailyImages;
+    // Daily image cap is per-owner across all their sessions, driven by plan.
+    const imagesUsed = (await getUsageToday(session.ownerId)).images;
+    const underCap = withinLimit(imagesUsed, limits.dailyImages);
     if (underCap && turnGate) {
       imageUrl = buildImageUrl(cfg.imageGenUrl, scenePrompt(gen.imagePrompt, setting), {
         width: 768,
@@ -319,10 +350,10 @@ async function applyGenerated(
     }),
   );
 
-  if (gen.memoryNote && cfg.memoryDepth > 0) {
+  if (gen.memoryNote && limits.memoryDepth > 0) {
     if (!session.memory.includes(gen.memoryNote)) {
       session.memory.push(gen.memoryNote);
-      session.memory = clampMemory(session.memory, cfg.memoryDepth);
+      session.memory = clampMemory(session.memory, limits.memoryDepth);
     }
   }
 
@@ -396,6 +427,7 @@ export async function openSession(
   if (!character) throw new Error("Character not found");
 
   const cfg = await getConfig();
+  const { limits } = await getLimitsFor(ownerId);
   const session = await getOrCreateSession(character, ownerId);
 
   let smartReplies: string[] = [];
@@ -405,6 +437,7 @@ export async function openSession(
 
   if (
     cfg.enableOfflinePings &&
+    limits.offlinePings &&
     session.messages.length > 1 &&
     !lastFromUser &&
     hoursAway >= cfg.offlinePingAfterHours
@@ -420,6 +453,7 @@ export async function openSession(
       ({ smartReplies } = await applyGenerated(
         session,
         cfg,
+        limits,
         gen,
         true,
         character.scenario || character.persona,
@@ -449,6 +483,19 @@ export async function sendMessage(
   if (!character) throw new Error("Character not found");
 
   const cfg = await getConfig();
+  const { plan, limits } = await getLimitsFor(ownerId);
+
+  // Enforce the owner's daily message cap before spending an LLM call.
+  const usedMessages = (await getUsageToday(ownerId)).messages;
+  if (!withinLimit(usedMessages, limits.dailyMessages)) {
+    throw new QuotaError({
+      lever: "messages",
+      plan,
+      limit: limits.dailyMessages,
+      used: usedMessages,
+    });
+  }
+
   const session = await getOrCreateSession(character, ownerId);
 
   session.messages.push(newMessage({ role: "user", content: trimmed, whileAway: false }));
@@ -464,6 +511,7 @@ export async function sendMessage(
   const { smartReplies } = await applyGenerated(
     session,
     cfg,
+    limits,
     gen,
     false,
     character.scenario || character.persona,

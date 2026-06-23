@@ -23,12 +23,22 @@ import {
   toProfileView,
 } from "./chat/chat.service";
 import { resolveOwnerId } from "./chat/chat.owner";
+import { QuotaError, quotaBody } from "~/api/services/usage.service";
 
 const logger = createLogger("ChatRoutes");
 const router = Router();
 
 function fail(res: Response, status: number, message: string) {
   return res.status(status).json({ success: false, message });
+}
+
+/** If `error` is a hit quota, send a 402 upgrade response and return true. */
+function handledQuota(res: Response, error: unknown): boolean {
+  if (error instanceof QuotaError) {
+    res.status(402).json(quotaBody(error));
+    return true;
+  }
+  return false;
 }
 
 router.get("/chat/characters", async (_req: Request, res: Response) => {
@@ -81,6 +91,7 @@ router.post("/chat/characters", async (req: Request, res: Response) => {
     );
     return res.json({ success: true, data: toProfileView(character) });
   } catch (error) {
+    if (handledQuota(res, error)) return;
     logger.error("POST /chat/characters failed", error);
     return fail(res, 500, error instanceof Error ? error.message : "Failed to create companion");
   }
@@ -128,6 +139,7 @@ router.post("/chat/sessions/:id/messages", async (req: Request, res: Response) =
     const view = await sendMessage(String(req.params.id), ownerId, text);
     return res.json({ success: true, data: view });
   } catch (error) {
+    if (handledQuota(res, error)) return;
     logger.error("POST /chat/sessions/:id/messages failed", error);
     const msg = error instanceof Error ? error.message : "Message failed";
     return fail(res, msg === "Character not found" ? 404 : 502, msg);

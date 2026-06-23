@@ -40,6 +40,25 @@ function dayKey(d: Date = new Date()): string {
   return d.toISOString().slice(0, 10);
 }
 
+/** The tier one step up from `plan` (the upgrade that lifts the limit). */
+export function nextPlanUp(plan: PlanTier): PlanTier {
+  return plan === "free" ? "plus" : "pro";
+}
+
+/** Structured 402 body for a hit quota, shared by chat + story routes. */
+export function quotaBody(err: QuotaError) {
+  return {
+    success: false as const,
+    message: err.message,
+    upgradeRequired: true as const,
+    lever: err.detail.lever,
+    limit: err.detail.limit,
+    used: err.detail.used,
+    currentPlan: err.detail.plan,
+    requiredPlan: nextPlanUp(err.detail.plan),
+  };
+}
+
 async function getPlans(): Promise<TPlans> {
   const data = (await ConfigurablesService.getData()) as Partial<{ plans: TPlans }>;
   return data.plans ?? defaultConfigurablesData.plans;

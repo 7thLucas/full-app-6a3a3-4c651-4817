@@ -7,8 +7,16 @@ import { Wordmark } from "~/components/brand";
 import { Avatar } from "~/components/chat/character-card";
 import { fetchSessions, type ChatSummaryView } from "~/lib/chat.client";
 
+import type { LoaderFunctionArgs } from "react-router";
+import { requireUserId } from "~/lib/auth.server";
+
 export function meta() {
   return [{ title: "Driftoria — Your chats" }];
+}
+
+export function loader({ request }: LoaderFunctionArgs) {
+  requireUserId(request);
+  return null;
 }
 
 function relativeTime(iso: string): string {

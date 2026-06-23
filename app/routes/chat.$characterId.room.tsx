@@ -13,8 +13,16 @@ import {
   type SessionView,
 } from "~/lib/chat.client";
 
+import type { LoaderFunctionArgs } from "react-router";
+import { requireUserId } from "~/lib/auth.server";
+
 export function meta() {
   return [{ title: "Driftoria — Chat" }];
+}
+
+export function loader({ request }: LoaderFunctionArgs) {
+  requireUserId(request);
+  return null;
 }
 
 export default function ChatThread() {

@@ -7,8 +7,16 @@ import { Button, Eyebrow, Section } from "~/components/ui";
 import { Wordmark } from "~/components/brand";
 import { createCharacter } from "~/lib/chat.client";
 
+import type { LoaderFunctionArgs } from "react-router";
+import { requireUserId } from "~/lib/auth.server";
+
 export function meta() {
   return [{ title: "Driftoria — Create a companion" }];
+}
+
+export function loader({ request }: LoaderFunctionArgs) {
+  requireUserId(request);
+  return null;
 }
 
 const field =

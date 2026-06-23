@@ -9,8 +9,16 @@ import { CharacterCard } from "~/components/chat/character-card";
 import { fetchCharacters, type CharacterCardView } from "~/lib/chat.client";
 import { useAuth } from "~/hooks/use-auth";
 
+import type { LoaderFunctionArgs } from "react-router";
+import { requireUserId } from "~/lib/auth.server";
+
 export function meta() {
   return [{ title: "Driftoria — Meet your companions" }];
+}
+
+export function loader({ request }: LoaderFunctionArgs) {
+  requireUserId(request);
+  return null;
 }
 
 export default function ChatDiscovery() {
