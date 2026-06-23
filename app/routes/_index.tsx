@@ -299,12 +299,12 @@ function FeaturedHero({
       to={`/chat/${character.characterId}`}
       className="group block overflow-hidden rounded-2xl border border-primary/25 bg-card shadow-[0_20px_50px_-32px_var(--primary)] transition-colors hover:border-primary/45"
     >
-      <div className="relative min-h-[300px] sm:min-h-[360px]">
+      <div className="relative aspect-[4/3]">
         {character.avatarUrl ? (
           <img
             src={character.avatarUrl}
             alt={character.name}
-            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+            className="absolute inset-0 h-full w-full object-cover object-right-top transition-transform duration-700 group-hover:scale-[1.03]"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center bg-secondary font-heading text-6xl text-muted-foreground">
@@ -330,13 +330,13 @@ function FeaturedHero({
           </p>
 
           {chips.length ? (
-            <div className="mt-1 flex flex-wrap gap-2">
+            <div className="mt-1 flex flex-nowrap gap-2">
               {chips.map((t, i) => {
                 const Icon = i === 0 ? BookOpenText : i === 1 ? MessageSquare : Heart;
                 return (
                   <span
                     key={t}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/50 px-3 py-1.5 font-ui text-xs font-medium text-foreground/90 backdrop-blur"
+                    className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-border bg-background/50 px-3 py-1.5 font-ui text-xs font-medium text-foreground/90 backdrop-blur"
                   >
                     <Icon className="h-3.5 w-3.5 text-primary" strokeWidth={1.75} />
                     {t}
