@@ -49,32 +49,53 @@ function brief(c: CharacterDoc): CharacterBrief {
   return { name: c.name, tagline: c.tagline, persona: c.persona };
 }
 
-/** Seed the discovery feed from configurables the first time it's accessed. */
+/**
+ * Seed the discovery feed from configurables, idempotently.
+ *
+ * Each starter is upserted by (name, creatorId:"system") with `$setOnInsert`,
+ * so this is safe to call any time: missing starters get added, ones already
+ * present are left untouched (preserving their stable characterId and any
+ * later edits). That means growing `starterChatCharacters` in configurables
+ * back-fills new companions into an existing DB on the next feed access —
+ * no manual reseed. User-created characters never collide (different
+ * creatorId), and the cheap count guard skips the write once all starters
+ * are present.
+ */
 export async function ensureSeedCharacters(): Promise<void> {
-  const count = await CharacterModel.estimatedDocumentCount().exec();
-  if (count > 0) return;
-
   const cfg = await getConfig();
   const starters = cfg.starterChatCharacters ?? [];
   if (!starters.length) return;
 
-  await CharacterModel.insertMany(
+  const seededCount = await CharacterModel.countDocuments({ creatorId: "system" }).exec();
+  if (seededCount >= starters.length) return;
+
+  const result = await CharacterModel.bulkWrite(
     starters.map((s) => ({
-      characterId: randomUUID(),
-      name: s.name,
-      tagline: s.tagline,
-      persona: s.persona,
-      greeting: s.greeting,
-      tags: s.tags ?? [],
-      avatarUrl: cfg.enableCharacterAvatars
-        ? buildImageUrl(cfg.imageGenUrl, avatarPrompt(s.name, s.avatarPrompt), {
-            seedKey: s.name,
-          })
-        : "",
-      creatorId: "system",
+      updateOne: {
+        filter: { name: s.name, creatorId: "system" },
+        update: {
+          $setOnInsert: {
+            characterId: randomUUID(),
+            name: s.name,
+            tagline: s.tagline,
+            persona: s.persona,
+            greeting: s.greeting,
+            tags: s.tags ?? [],
+            avatarUrl: cfg.enableCharacterAvatars
+              ? buildImageUrl(cfg.imageGenUrl, avatarPrompt(s.name, s.avatarPrompt), {
+                  seedKey: s.name,
+                })
+              : "",
+            creatorId: "system",
+          },
+        },
+        upsert: true,
+      },
     })),
   );
-  logger.info(`Seeded ${starters.length} starter chat companions`);
+
+  const added = result.upsertedCount ?? 0;
+  if (added > 0) logger.info(`Seeded ${added} starter chat companion(s)`);
 }
 
 export async function listCharacters(): Promise<CharacterDoc[]> {
