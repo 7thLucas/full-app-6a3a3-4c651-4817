@@ -1,20 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
-import {
-  ArrowLeft,
-  Loader2,
-  Play,
-  Send,
-  Sparkles,
-  Wand2,
-} from "lucide-react";
+import { ArrowLeft, Loader2, Play, Send, Sparkles, Wand2 } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
+import { cn } from "~/lib/utils";
 import { Button, Eyebrow, LiveDot } from "~/components/ui";
 import { Wordmark } from "~/components/brand";
 import { BeatCard, WritingBeat } from "~/components/story/beat-card";
 import { PacingControl } from "~/components/story/pacing-control";
 import { CharacterRail } from "~/components/story/character-rail";
 import { EngineStatus } from "~/components/story/engine-status";
+import { StoryAlmanac } from "~/components/story/story-almanac";
+import { MemorableMoments } from "~/components/story/memorable-moments";
+import { ChapterMark } from "~/components/story/chapter-mark";
+import { storyDepth } from "~/lib/story-progress";
 import {
   addCharacter as apiAddCharacter,
   advanceStory,
@@ -43,8 +41,10 @@ export default function StoryStudio() {
   const [error, setError] = useState<string | null>(null);
   const [draft, setDraft] = useState("");
   const [awayBanner, setAwayBanner] = useState<number>(0);
+  const [flashBeat, setFlashBeat] = useState<string | null>(null);
   const didCatchUp = useRef(false);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const flashTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const rates = {
     slow: config?.slowBeatsPerDay ?? 1,
@@ -53,6 +53,27 @@ export default function StoryStudio() {
   };
   const scenarioSeeds = config?.scenarioSeeds ?? [];
   const showCast = config?.showCharactersRail !== false;
+  const showAlmanac = config?.showStoryAlmanac !== false;
+  const showMoments = config?.showMemorableMoments !== false;
+  const beatsPerChapter = config?.beatsPerChapter ?? 6;
+  const chaptersPerAct = config?.chaptersPerAct ?? 4;
+
+  // Jump the timeline to a beat (from a Memorable Moment) and briefly mark it.
+  const revealBeat = useCallback((beatId: string) => {
+    const el = document.getElementById(`beat-anchor-${beatId}`);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    setFlashBeat(beatId);
+    if (flashTimer.current) clearTimeout(flashTimer.current);
+    flashTimer.current = setTimeout(() => setFlashBeat(null), 1800);
+  }, []);
+
+  useEffect(
+    () => () => {
+      if (flashTimer.current) clearTimeout(flashTimer.current);
+    },
+    [],
+  );
 
   // Initial load + catch-up (the "while you were away" experience).
   useEffect(() => {
@@ -92,7 +113,11 @@ export default function StoryStudio() {
     try {
       setStory(await advanceStory());
     } catch (e) {
-      setError(e instanceof Error ? e.message : "The engine could not advance the story");
+      setError(
+        e instanceof Error
+          ? e.message
+          : "The engine could not advance the story",
+      );
     } finally {
       setBusy(null);
     }
@@ -160,7 +185,10 @@ export default function StoryStudio() {
             >
               <ArrowLeft className="h-4 w-4" />
             </Link>
-            <Wordmark appName={config?.appName ?? "Driftoria"} logoUrl={config?.logoUrl} />
+            <Wordmark
+              appName={config?.appName ?? "Driftoria"}
+              logoUrl={config?.logoUrl}
+            />
           </div>
           <Eyebrow>
             <LiveDot /> Engine live
@@ -174,7 +202,8 @@ export default function StoryStudio() {
           {/* Story header */}
           <div className="mb-8 border-b border-border pb-8">
             <Eyebrow>
-              <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} /> Your living story
+              <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} /> Your
+              living story
             </Eyebrow>
             <h1 className="mt-3 font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
               {story?.title ?? config?.starterStoryTitle ?? "Loading…"}
@@ -215,7 +244,10 @@ export default function StoryStudio() {
             </div>
           ) : beats.length === 0 ? (
             <div className="rounded-2xl border border-dashed border-border bg-card/50 px-8 py-16 text-center">
-              <Sparkles className="mx-auto h-8 w-8 text-muted-foreground/50" strokeWidth={1.25} />
+              <Sparkles
+                className="mx-auto h-8 w-8 text-muted-foreground/50"
+                strokeWidth={1.25}
+              />
               <p className="prose-measure mx-auto mt-5 leading-relaxed text-muted-foreground">
                 {config?.emptyStoryMessage ??
                   "Your world is quiet for now. Advance the story to let it begin to breathe."}
@@ -225,15 +257,45 @@ export default function StoryStudio() {
             <div className="space-y-6">
               {(() => {
                 const firstAway = beats.findIndex((b) => b.whileAway);
-                return beats.map((beat, i) => (
-                  <BeatCard
-                    key={beat.beatId}
-                    beat={beat}
-                    staggerIndex={
-                      beat.whileAway && firstAway >= 0 ? i - firstAway : 0
-                    }
-                  />
-                ));
+                // Where each chapter opens, so the timeline can announce it.
+                const { chapterStartIndices } = storyDepth(beats, {
+                  beatsPerChapter,
+                  chaptersPerAct,
+                });
+                const chapterAt = new Map<number, number>();
+                chapterStartIndices.forEach((idx, k) =>
+                  chapterAt.set(idx, k + 1),
+                );
+
+                return beats.map((beat, i) => {
+                  const chapterNo = chapterAt.get(i);
+                  return (
+                    <div key={beat.beatId} className="space-y-6">
+                      {/* Announce a new chapter, but not above the very first beat. */}
+                      {chapterNo && chapterNo >= 2 && (
+                        <ChapterMark
+                          chapter={chapterNo}
+                          act={Math.ceil(chapterNo / chaptersPerAct)}
+                        />
+                      )}
+                      <div
+                        id={`beat-anchor-${beat.beatId}`}
+                        className={cn(
+                          "scroll-mt-24 rounded-2xl transition-shadow duration-700",
+                          flashBeat === beat.beatId &&
+                            "ring-2 ring-accent/60 ring-offset-2 ring-offset-background",
+                        )}
+                      >
+                        <BeatCard
+                          beat={beat}
+                          staggerIndex={
+                            beat.whileAway && firstAway >= 0 ? i - firstAway : 0
+                          }
+                        />
+                      </div>
+                    </div>
+                  );
+                });
               })()}
             </div>
           )}
@@ -261,7 +323,9 @@ export default function StoryStudio() {
                     }
                   }}
                   rows={1}
-                  placeholder={config?.interventionPlaceholder ?? "Step into the story…"}
+                  placeholder={
+                    config?.interventionPlaceholder ?? "Step into the story…"
+                  }
                   className="max-h-40 min-h-[2.75rem] flex-1 resize-none bg-transparent px-2 py-2.5 text-[1rem] leading-relaxed text-foreground placeholder:text-muted-foreground/60 focus:outline-none"
                   disabled={busy === "intervening"}
                 />
@@ -312,14 +376,39 @@ export default function StoryStudio() {
             />
           )}
 
+          {/* The Almanac — narrative-native retention (Acts, continuity, today) */}
+          {showAlmanac && story && (
+            <StoryAlmanac
+              title={config?.almanacTitle ?? "The Almanac"}
+              beats={beats}
+              characters={story.characters}
+              beatsPerChapter={beatsPerChapter}
+              chaptersPerAct={chaptersPerAct}
+            />
+          )}
+
+          {/* Memorable Moments — keepsake reel that jumps back into the story */}
+          {showMoments && story && (
+            <MemorableMoments
+              title={config?.memorableMomentsTitle ?? "Pressed in the pages"}
+              beats={beats}
+              max={config?.memorableMomentsMax ?? 4}
+              onSelect={revealBeat}
+            />
+          )}
+
           {/* Pacing */}
           <div className="rounded-2xl border border-border bg-card p-5">
-            <h3 className="mb-1 font-heading text-base font-semibold tracking-tight">Pacing</h3>
+            <h3 className="mb-1 font-heading text-base font-semibold tracking-tight">
+              Pacing
+            </h3>
             <p className="mb-4 text-xs leading-relaxed text-muted-foreground">
               How fast the world moves on its own.
             </p>
             <PacingControl
-              value={story?.pacing ?? (config?.defaultPacing as Pacing) ?? "moderate"}
+              value={
+                story?.pacing ?? (config?.defaultPacing as Pacing) ?? "moderate"
+              }
               rates={rates}
               disabled={pacingBusy || !story}
               onChange={handlePacing}
@@ -336,7 +425,8 @@ export default function StoryStudio() {
                 </h3>
               </div>
               <p className="mb-4 text-xs leading-relaxed text-muted-foreground">
-                Plant a “what if.” It ripples into upcoming beats without forcing an outcome.
+                Plant a “what if.” It ripples into upcoming beats without
+                forcing an outcome.
               </p>
               <div className="space-y-2">
                 {scenarioSeeds.map((seed: string, i: number) => (

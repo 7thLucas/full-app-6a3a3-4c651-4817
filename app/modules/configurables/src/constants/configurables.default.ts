@@ -97,6 +97,14 @@ export type TDefaultConfigurableData = {
   activeBeatsPerDay: number;
   autonomousCatchUpBeats: number;
   showCharactersRail: boolean;
+  // Narrative retention (on-brand "stealth gamification" — see DESIGN.md)
+  beatsPerChapter: number;
+  chaptersPerAct: number;
+  memorableMomentsMax: number;
+  showStoryAlmanac: boolean;
+  showMemorableMoments: boolean;
+  almanacTitle: string;
+  memorableMomentsTitle: string;
   // Scenario seeds
   scenarioSeeds: string[];
   // Starter characters & story
@@ -112,33 +120,33 @@ export const defaultConfigurablesData: TDefaultConfigurableData = {
   logoUrl: "",
   brandColor: {
     // Base — deep ink night with violet undertone
-    background:        "#0E0D14",
-    foreground:        "#F4F1EC",
+    background: "#0E0D14",
+    foreground: "#F4F1EC",
     // Card — raised editorial panels
-    card:              "#17151F",
-    cardForeground:    "#F4F1EC",
+    card: "#17151F",
+    cardForeground: "#F4F1EC",
     // Popover
-    popover:           "#1F1C2A",
+    popover: "#1F1C2A",
     popoverForeground: "#F4F1EC",
     // Primary — aurora violet
-    primary:           "#8B7BF0",
+    primary: "#8B7BF0",
     primaryForeground: "#0E0D14",
     // Secondary — elevated surface
-    secondary:           "#1F1C2A",
+    secondary: "#1F1C2A",
     secondaryForeground: "#F4F1EC",
     // Muted
-    muted:           "#1F1C2A",
+    muted: "#1F1C2A",
     mutedForeground: "#A9A4B8",
     // Accent — ember (living, autonomous activity)
-    accent:           "#E8A87C",
+    accent: "#E8A87C",
     accentForeground: "#0E0D14",
     // Destructive
-    destructive:           "#E06A6A",
+    destructive: "#E06A6A",
     destructiveForeground: "#0E0D14",
     // Border / Input / Ring
     border: "#262232",
-    input:  "#262232",
-    ring:   "#8B7BF0",
+    input: "#262232",
+    ring: "#8B7BF0",
     // Charts
     chart1: "#8B7BF0",
     chart2: "#B58CF2",
@@ -148,14 +156,14 @@ export const defaultConfigurablesData: TDefaultConfigurableData = {
     // Navbar
     navbarBackground: "#0E0D14",
     // Sidebar
-    sidebarBackground:        "#121019",
-    sidebarForeground:        "#A9A4B8",
-    sidebarPrimary:           "#8B7BF0",
+    sidebarBackground: "#121019",
+    sidebarForeground: "#A9A4B8",
+    sidebarPrimary: "#8B7BF0",
     sidebarPrimaryForeground: "#0E0D14",
-    sidebarAccent:            "#1F1C2A",
-    sidebarAccentForeground:  "#F4F1EC",
-    sidebarBorder:            "#262232",
-    sidebarRing:              "#8B7BF0",
+    sidebarAccent: "#1F1C2A",
+    sidebarAccentForeground: "#F4F1EC",
+    sidebarBorder: "#262232",
+    sidebarRing: "#8B7BF0",
   },
   font: {
     headingFont: "Playfair Display",
@@ -220,6 +228,15 @@ export const defaultConfigurablesData: TDefaultConfigurableData = {
   activeBeatsPerDay: 6,
   autonomousCatchUpBeats: 3,
   showCharactersRail: true,
+  // Narrative retention — proven mechanics reframed as story artifacts.
+  // Tuned so a default 3-beats/day world matures roughly two chapters a day.
+  beatsPerChapter: 6,
+  chaptersPerAct: 4,
+  memorableMomentsMax: 4,
+  showStoryAlmanac: true,
+  showMemorableMoments: true,
+  almanacTitle: "The Almanac",
+  memorableMomentsTitle: "Pressed in the pages",
   // Scenario seeds
   scenarioSeeds: [
     "A stranger arrives at the edge of town carrying a letter no one will claim.",
