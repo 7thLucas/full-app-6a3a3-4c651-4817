@@ -9,6 +9,7 @@
 .t-ond{color:#B8B2D6}.t-white{color:#fff}.t-cream{color:#5A4B86}.t-cream2{color:#33235C}
 .bd-soft{border-color:#E7E1F5}.bd-violet{border-color:#E0D6FF}
 .dot{width:7px;height:7px;border-radius:9999px;background:#6D4AFF;display:inline-block}
+.bg-gold-soft{background:#FBF1DD}.bd-gold{border-color:#F0DFB8}.t-goldd{color:#7A5418}
 .sl-steps{flex-direction:column}
 .sl-step{flex:1 1 0%}
 .mode-landscape .sl-steps{flex-direction:row}
@@ -25,43 +26,65 @@
 
     <div class="mb-4 flex-none">
       <span class="text-xs font-semibold tracking-widest uppercase t-violet">How It Works</span>
-      <h2 class="dr-display text-3xl font-semibold t-ink mt-0.5 tracking-tight">A loop that never finishes</h2>
-      <p class="dr-display italic text-sm t-faint mt-1">Shaped by you — not driven by you.</p>
+      <h2 class="dr-display text-3xl font-semibold t-ink mt-0.5 tracking-tight">Two doors, one living engine</h2>
+      <p class="dr-display italic text-sm t-faint mt-1">Tap in for instant intimacy — or direct a story that never finishes.</p>
     </div>
 
-    <div class="sl-steps flex flex-1 gap-3 min-h-0">
+    <div class="flex flex-col flex-1 gap-4 min-h-0">
 
-      <div class="sl-step bg-card border bd-soft rounded-2xl px-5 py-4 flex items-center gap-4">
-        <span class="dr-display text-3xl font-semibold t-violet-d flex-none w-10">01</span>
-        <div><h4 class="text-sm font-bold t-ink">Start a story</h4><p class="text-xs t-muted leading-snug">Pick or create a character and seed an opening scenario — setting, premise, tone.</p></div>
+      <!-- Chat Mode flow -->
+      <div class="flex flex-col gap-2 flex-1 min-h-0">
+        <span class="text-xs font-semibold tracking-widest uppercase t-violet-d flex items-center gap-2"><span class="dot"></span> Chat Mode — the front door</span>
+        <div class="sl-steps flex flex-1 gap-3 min-h-0">
+          <div class="sl-step bg-card border bd-soft rounded-2xl px-4 py-3 flex items-center gap-3">
+            <span class="dr-display text-2xl font-semibold t-violet-d flex-none w-7">01</span>
+            <div><h4 class="text-xs font-bold t-ink">Discover</h4><p class="text-xs t-muted leading-snug">Browse a visual feed of character cards by mood, genre, or tag.</p></div>
+          </div>
+          <div class="sl-step bg-ink rounded-2xl px-4 py-3 flex items-center gap-3 relative overflow-hidden">
+            <div class="absolute -bottom-8 -right-8 w-20 h-20 rounded-full bg-blob opacity-60"></div>
+            <span class="relative dr-display text-2xl font-semibold t-gold flex-none w-7">02</span>
+            <div class="relative"><h4 class="text-xs font-bold t-white">Tap → chat</h4><p class="text-xs t-ond leading-snug">Instant first-person 1:1 dialogue. Guest OK, zero setup.</p></div>
+          </div>
+          <div class="sl-step bg-violet-soft border bd-violet rounded-2xl px-4 py-3 flex items-center gap-3">
+            <span class="dr-display text-2xl font-semibold t-violet-d flex-none w-7">03</span>
+            <div><h4 class="text-xs font-bold t-cream2">See &amp; be remembered</h4><p class="text-xs t-cream leading-snug">Illustrations drop at emotional beats; memory recalls who you are.</p></div>
+          </div>
+          <div class="sl-step bg-gold-soft border bd-gold rounded-2xl px-4 py-3 flex items-center gap-3">
+            <span class="dr-display text-2xl font-semibold t-goldd flex-none w-7">04</span>
+            <div><h4 class="text-xs font-bold t-goldd">Pinged back</h4><p class="text-xs t-goldd leading-snug">An autonomous "while you were away" message pulls you in.</p></div>
+          </div>
+        </div>
       </div>
 
-      <div class="sl-step bg-ink rounded-2xl px-5 py-4 flex items-center gap-4 relative overflow-hidden">
-        <div class="absolute -bottom-8 -right-8 w-24 h-24 rounded-full bg-blob opacity-60"></div>
-        <span class="relative dr-display text-3xl font-semibold t-gold flex-none w-10">02</span>
-        <div class="relative"><h4 class="text-sm font-bold t-white">Engine runs</h4><p class="text-xs t-ond leading-snug">The autonomous engine generates beats on your cadence — advancing plot and evolving characters, present or not.</p></div>
-      </div>
-
-      <div class="sl-step bg-card border bd-soft rounded-2xl px-5 py-4 flex items-center gap-4">
-        <span class="dr-display text-3xl font-semibold t-violet-d flex-none w-10">03</span>
-        <div><h4 class="text-sm font-bold t-ink">Step in anytime</h4><p class="text-xs t-muted leading-snug">Read new beats on the timeline, then optionally chat — add context, redirect, or speak to a character.</p></div>
-      </div>
-
-      <div class="sl-step bg-violet-soft border bd-violet rounded-2xl px-5 py-4 flex items-center gap-4">
-        <span class="dr-display text-3xl font-semibold t-violet-d flex-none w-10">04</span>
-        <div><h4 class="text-sm font-bold t-cream2">Story absorbs input</h4><p class="text-xs t-cream leading-snug">Each intervention feeds the engine, shaping the next beats — without overriding the story's own momentum.</p></div>
-      </div>
-
-      <div class="sl-step bg-card border bd-soft rounded-2xl px-5 py-4 flex items-center gap-4">
-        <span class="dr-display text-3xl font-semibold t-violet-d flex-none w-10 flex items-center gap-1">05</span>
-        <div><h4 class="text-sm font-bold t-ink">Repeat, forever <span class="t-faint">↺</span></h4><p class="text-xs t-muted leading-snug">The loop continues indefinitely. The story is never finished — and never frozen.</p></div>
+      <!-- Story Mode flow -->
+      <div class="flex flex-col gap-2 flex-1 min-h-0">
+        <span class="text-xs font-semibold tracking-widest uppercase t-faint flex items-center gap-2"><span class="dot"></span> Story Mode — the director's loop</span>
+        <div class="sl-steps flex flex-1 gap-3 min-h-0">
+          <div class="sl-step bg-card border bd-soft rounded-2xl px-4 py-3 flex items-center gap-3">
+            <span class="dr-display text-2xl font-semibold t-violet-d flex-none w-7">01</span>
+            <div><h4 class="text-xs font-bold t-ink">Start a story</h4><p class="text-xs t-muted leading-snug">Pick a character, seed an opening scenario and tone.</p></div>
+          </div>
+          <div class="sl-step bg-ink rounded-2xl px-4 py-3 flex items-center gap-3 relative overflow-hidden">
+            <div class="absolute -bottom-8 -right-8 w-20 h-20 rounded-full bg-blob opacity-60"></div>
+            <span class="relative dr-display text-2xl font-semibold t-gold flex-none w-7">02</span>
+            <div class="relative"><h4 class="text-xs font-bold t-white">Engine runs</h4><p class="text-xs t-ond leading-snug">Beats generate on your cadence — online or off.</p></div>
+          </div>
+          <div class="sl-step bg-violet-soft border bd-violet rounded-2xl px-4 py-3 flex items-center gap-3">
+            <span class="dr-display text-2xl font-semibold t-violet-d flex-none w-7">03</span>
+            <div><h4 class="text-xs font-bold t-cream2">Step in &amp; shape</h4><p class="text-xs t-cream leading-snug">Chat to redirect; the story absorbs input without losing momentum.</p></div>
+          </div>
+          <div class="sl-step bg-card border bd-soft rounded-2xl px-4 py-3 flex items-center gap-3">
+            <span class="dr-display text-2xl font-semibold t-violet-d flex-none w-7">04</span>
+            <div><h4 class="text-xs font-bold t-ink">Repeat, forever <span class="t-faint">↺</span></h4><p class="text-xs t-muted leading-snug">Never finished, never frozen.</p></div>
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
 
   <div class="flex items-center justify-between px-12 py-4 border-t bd-soft flex-none">
-    <span class="dr-display italic text-xs t-faint">"Your story lives, even when you don't."</span>
+    <span class="dr-display italic text-xs t-faint">"A character who's alive — and remembers you."</span>
     <span class="text-xs font-semibold tracking-widest uppercase t-faint">Driftoria · Product Blueprint</span>
   </div>
 
