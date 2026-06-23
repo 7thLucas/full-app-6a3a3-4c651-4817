@@ -13,13 +13,16 @@ import { Router, type Request, type Response } from "express";
 import { createLogger } from "~/lib/logger";
 import {
   createCharacter,
+  editMessage,
   generateAutonomousPing,
   getCharacter,
   likeCharacter,
   listCharacterCards,
   listSessionsForOwner,
   openSession,
+  regenerateResponse,
   sendMessage,
+  steerSession,
   toCardView,
   toProfileView,
 } from "./chat/chat.service";
@@ -148,6 +151,56 @@ router.post("/chat/sessions/:id/messages", async (req: Request, res: Response) =
     logger.error("POST /chat/sessions/:id/messages failed", error);
     const msg = error instanceof Error ? error.message : "Message failed";
     return fail(res, msg === "Character not found" ? 404 : 502, msg);
+  }
+});
+
+router.patch("/chat/sessions/:id/messages/:messageId", async (req: Request, res: Response) => {
+  const content = typeof req.body?.content === "string" ? req.body.content : "";
+  if (!content.trim()) return fail(res, 400, "content is required");
+  try {
+    const ownerId = resolveOwnerId(req, res);
+    const view = await editMessage(
+      String(req.params.id),
+      ownerId,
+      String(req.params.messageId),
+      content,
+    );
+    return res.json({ success: true, data: view });
+  } catch (error) {
+    logger.error("PATCH /chat/sessions/:id/messages/:messageId failed", error);
+    const msg = error instanceof Error ? error.message : "Edit failed";
+    const status =
+      msg === "Session not found" || msg === "Character not found" ? 404
+      : msg === "Can only edit user messages" ? 403
+      : msg === "Message not found" ? 404
+      : 500;
+    return fail(res, status, msg);
+  }
+});
+
+router.post("/chat/sessions/:id/regenerate", async (req: Request, res: Response) => {
+  try {
+    const ownerId = resolveOwnerId(req, res);
+    const view = await regenerateResponse(String(req.params.id), ownerId);
+    return res.json({ success: true, data: view });
+  } catch (error) {
+    logger.error("POST /chat/sessions/:id/regenerate failed", error);
+    const msg = error instanceof Error ? error.message : "Regenerate failed";
+    return fail(res, msg.includes("not found") ? 404 : 500, msg);
+  }
+});
+
+router.post("/chat/sessions/:id/steer", async (req: Request, res: Response) => {
+  const text = typeof req.body?.text === "string" ? req.body.text : "";
+  if (!text.trim()) return fail(res, 400, "text is required");
+  try {
+    const ownerId = resolveOwnerId(req, res);
+    const view = await steerSession(String(req.params.id), ownerId, text);
+    return res.json({ success: true, data: view });
+  } catch (error) {
+    logger.error("POST /chat/sessions/:id/steer failed", error);
+    const msg = error instanceof Error ? error.message : "Steer failed";
+    return fail(res, msg === "Character not found" ? 404 : 500, msg);
   }
 });
 

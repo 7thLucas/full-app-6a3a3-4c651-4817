@@ -1,4 +1,4 @@
-import { Loader2 } from "lucide-react";
+import { Loader2, Pencil, RefreshCw } from "lucide-react";
 import { cn } from "~/lib/utils";
 import type { ChatMessageView } from "~/lib/chat.client";
 import { Avatar } from "./character-card";
@@ -21,16 +21,32 @@ export function MessageBubble({
   message,
   characterName,
   avatarUrl,
+  onEdit,
+  onRegenerate,
+  showRegenerate,
 }: {
   message: ChatMessageView;
   characterName: string;
   avatarUrl?: string | null;
+  onEdit?: (messageId: string, content: string) => void;
+  onRegenerate?: () => void;
+  showRegenerate?: boolean;
 }) {
   const isUser = message.role === "user";
 
   if (isUser) {
     return (
-      <div className="flex animate-rise justify-end">
+      <div className="group flex animate-rise justify-end gap-2">
+        {onEdit ? (
+          <button
+            type="button"
+            onClick={() => onEdit(message.messageId, message.content)}
+            className="mt-1 opacity-0 transition-opacity group-hover:opacity-100"
+            aria-label="Edit message"
+          >
+            <Pencil className="h-3.5 w-3.5 text-muted-foreground hover:text-foreground" strokeWidth={1.75} />
+          </button>
+        ) : null}
         <div className="max-w-[80%] rounded-2xl rounded-br-md bg-primary px-4 py-2.5 text-[0.95rem] leading-relaxed text-primary-foreground">
           {message.content}
         </div>
@@ -58,6 +74,16 @@ export function MessageBubble({
           <div className="rounded-2xl rounded-tl-md bg-card px-4 py-2.5 text-[0.95rem] leading-relaxed text-card-foreground ring-1 ring-border">
             {renderContent(message.content)}
           </div>
+          {showRegenerate && onRegenerate ? (
+            <button
+              type="button"
+              onClick={onRegenerate}
+              className="flex items-center gap-1 text-[0.7rem] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <RefreshCw className="h-3 w-3" strokeWidth={1.75} />
+              Regenerate
+            </button>
+          ) : null}
           {message.imageUrl ? (
             <div className="overflow-hidden rounded-2xl border border-border bg-secondary">
               <img

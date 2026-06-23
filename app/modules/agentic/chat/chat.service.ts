@@ -658,14 +658,18 @@ export async function sendMessage(
 
   session.messages.push(newMessage({ role: "user", content: trimmed, whileAway: false }));
 
+  const seeds = session.steerSeeds?.length ? [...session.steerSeeds] : [];
   const gen = await generateReply({
     character: brief(character),
     memory: session.memory,
     recentMessages: recent(session),
     userMessage: trimmed,
     smartReplyCount: cfg.smartReplyCount,
+    steerSeeds: seeds.length ? seeds : undefined,
     model: pickModel(cfg, limits),
   });
+
+  if (session.steerSeeds.length) session.steerSeeds.shift();
 
   const { smartReplies } = await applyGenerated(
     session,
@@ -718,17 +722,21 @@ export async function generateAutonomousPing(
 
   let smartReplies: string[] = [];
   try {
+    const seeds = session.steerSeeds?.length ? [...session.steerSeeds] : [];
     const gen = await generateAutonomousMessage({
       character: brief(character),
       memory: session.memory,
       recentMessages: recent(session),
       smartReplyCount: cfg.smartReplyCount,
+      simulateUser: cfg.chatSimulateUser,
+      steerSeeds: seeds.length ? seeds : undefined,
       model: pickModel(cfg, limits),
     });
     ({ smartReplies } = await applyGenerated(
       session, cfg, limits, gen, true,
       character.scenario || character.persona,
     ));
+    if (session.steerSeeds.length) session.steerSeeds.shift();
   } catch (err) {
     logger.warn("Autonomous ping generation failed", {
       reason: err instanceof Error ? err.message : String(err),
@@ -738,6 +746,107 @@ export async function generateAutonomousPing(
 
   await session.save();
   return { view: toSessionView(character, session, smartReplies), advanced: true };
+}
+
+/** Edit a user message, trim subsequent messages, regenerate the AI response. */
+export async function editMessage(
+  characterId: string,
+  ownerId: string,
+  messageId: string,
+  newContent: string,
+): Promise<SessionView> {
+  const trimmed = newContent.trim();
+  if (!trimmed) throw new Error("Message content is required");
+
+  const character = await getCharacter(characterId);
+  if (!character) throw new Error("Character not found");
+
+  const session = await ChatSessionModel.findOne({ characterId, ownerId }).exec();
+  if (!session) throw new Error("Session not found");
+
+  const idx = session.messages.findIndex((m) => m.messageId === messageId);
+  if (idx === -1) throw new Error("Message not found");
+  if (session.messages[idx].role !== "user") throw new Error("Can only edit user messages");
+
+  session.messages[idx].content = trimmed;
+  // Trim everything after the edited message — clean rollback.
+  session.messages = session.messages.slice(0, idx + 1);
+
+  // Regenerate the AI response from the corrected context.
+  const cfg = await getConfig();
+  const { limits } = await getLimitsFor(ownerId);
+  const seeds = session.steerSeeds?.length ? [...session.steerSeeds] : [];
+  const gen = await generateReply({
+    character: brief(character),
+    memory: session.memory,
+    recentMessages: recent(session),
+    userMessage: trimmed,
+    smartReplyCount: cfg.smartReplyCount,
+    steerSeeds: seeds.length ? seeds : undefined,
+    model: pickModel(cfg, limits),
+  });
+  if (session.steerSeeds.length) session.steerSeeds.shift();
+  await applyGenerated(session, cfg, limits, gen, false, character.scenario || character.persona);
+  session.lastMessageAt = new Date();
+  await session.save();
+  return toSessionView(character, session, gen.smartReplies.slice(0, cfg.smartReplyCount));
+}
+
+/** Delete last character message and regenerate the AI response. */
+export async function regenerateResponse(
+  characterId: string,
+  ownerId: string,
+): Promise<SessionView> {
+  const character = await getCharacter(characterId);
+  if (!character) throw new Error("Character not found");
+
+  const session = await ChatSessionModel.findOne({ characterId, ownerId }).exec();
+  if (!session) throw new Error("Session not found");
+
+  // Remove last character message if present.
+  if (session.messages.length && session.messages[session.messages.length - 1].role === "character") {
+    session.messages.pop();
+  }
+
+  const lastUser = [...session.messages].reverse().find((m) => m.role === "user");
+  if (!lastUser) throw new Error("No user message to respond to");
+
+  const cfg = await getConfig();
+  const { limits } = await getLimitsFor(ownerId);
+  const seeds = session.steerSeeds?.length ? [...session.steerSeeds] : [];
+  const gen = await generateReply({
+    character: brief(character),
+    memory: session.memory,
+    recentMessages: recent(session),
+    userMessage: lastUser.content,
+    smartReplyCount: cfg.smartReplyCount,
+    steerSeeds: seeds.length ? seeds : undefined,
+    model: pickModel(cfg, limits),
+  });
+  if (session.steerSeeds.length) session.steerSeeds.shift();
+  await applyGenerated(session, cfg, limits, gen, false, character.scenario || character.persona);
+  session.lastMessageAt = new Date();
+  await session.save();
+  return toSessionView(character, session, gen.smartReplies.slice(0, cfg.smartReplyCount));
+}
+
+/** Plant a direction hint. Future autonomous messages will weave it in. */
+export async function steerSession(
+  characterId: string,
+  ownerId: string,
+  text: string,
+): Promise<SessionView> {
+  const trimmed = text.trim();
+  if (!trimmed) throw new Error("Steer text is required");
+
+  const character = await getCharacter(characterId);
+  if (!character) throw new Error("Character not found");
+
+  const session = await getOrCreateSession(character, ownerId);
+  session.steerSeeds.push(trimmed);
+  await session.save();
+
+  return toSessionView(character, session, []);
 }
 
 /**
@@ -769,19 +878,34 @@ export async function advanceAllSessions(force = false): Promise<number> {
     const character = await CharacterModel.findOne({ characterId: session.characterId }).exec();
     if (!character) continue;
 
+    // Guest gate: anon users who hit the free message limit get no autonomous advances.
+    const isAnon = session.ownerId.startsWith("anon_");
+    if (isAnon && cfg.guestMessageLimit >= 0) {
+      const userTurns = session.messages.filter((m) => m.role === "user").length;
+      if (userTurns >= cfg.guestMessageLimit) continue;
+    }
+
+    // Background tick is server-driven — plan tier doesn't gate it. The guest
+    // limit check above is the only throttle for free/anonymous users.
     const { limits } = await getLimitsFor(session.ownerId);
+
     try {
+      const seeds = session.steerSeeds?.length ? [...session.steerSeeds] : [];
       const gen = await generateAutonomousMessage({
         character: brief(character),
         memory: session.memory,
         recentMessages: recent(session),
         smartReplyCount: cfg.smartReplyCount,
+        simulateUser: cfg.chatSimulateUser,
+        steerSeeds: seeds.length ? seeds : undefined,
         model: pickModel(cfg, limits),
       });
       await applyGenerated(
         session, cfg, limits, gen, true,
         character.scenario || character.persona,
       );
+      // Consume the first seed that was woven in — the rest stay for future beats.
+      if (session.steerSeeds.length) session.steerSeeds.shift();
       session.lastMessageAt = new Date();
       await session.save();
       advanced += 1;

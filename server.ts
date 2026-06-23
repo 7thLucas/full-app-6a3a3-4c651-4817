@@ -119,9 +119,9 @@ async function startServer() {
       }
     }
 
-    // Run immediately on first load — always, regardless of lastRunAt.
-    console.log("[BackgroundTick] Startup — forcing initial tick");
-    await tick(true);
+    // Fire immediately on first load — non-blocking so server starts without delay.
+    console.log("[BackgroundTick] Startup — firing initial tick (background)");
+    void tick(true).catch((err) => console.error("[BackgroundTick] Startup tick failed:", err));
 
     // Check every 60s whether it's time. Interval ticks gate on the DB timestamp.
     const tickTimer = setInterval(() => {

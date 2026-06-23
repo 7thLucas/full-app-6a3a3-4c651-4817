@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
-import { ArrowLeft, Loader2, Lock, Send } from "lucide-react";
+import { ArrowLeft, Compass, Loader2, Lock, Send } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
 import { Button } from "~/components/ui";
 import { Avatar } from "~/components/chat/character-card";
@@ -10,9 +10,12 @@ import { MemoryRibbon } from "~/components/chat/memory-ribbon";
 import { useAuth } from "~/hooks/use-auth";
 import {
   ChatLoginRequiredError,
+  editChatMessage,
   openSession,
   pingSession,
+  regenerateChatResponse,
   sendChatMessage,
+  steerSession,
   UpgradeRequiredError,
   type SessionView,
 } from "~/lib/chat.client";
@@ -33,6 +36,13 @@ export default function ChatThread() {
   const [error, setError] = useState<string | null>(null);
   const [draft, setDraft] = useState("");
   const [gated, setGated] = useState(false);
+  const [steerDraft, setSteerDraft] = useState("");
+  const [steerExpanded, setSteerExpanded] = useState(false);
+  const [steering, setSteering] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editDraft, setEditDraft] = useState("");
+  const [editing, setEditing] = useState(false);
+  const [regenerating, setRegenerating] = useState(false);
 
   // Guests may send a few messages per companion before the login gate.
   const guestLimit = config?.guestMessageLimit ?? 5;
@@ -140,6 +150,63 @@ export default function ChatThread() {
     [characterId, sending, guestGated],
   );
 
+  const steer = useCallback(
+    async (text: string) => {
+      const trimmed = text.trim();
+      if (!trimmed || steering) return;
+      setSteerDraft("");
+      setSteering(true);
+      setSteerExpanded(false);
+      try {
+        await steerSession(characterId, trimmed);
+      } catch {
+        // silently ignore — next poll picks up any changes
+      } finally {
+        setSteering(false);
+      }
+    },
+    [characterId, steering],
+  );
+
+  const handleEditStart = useCallback((messageId: string, content: string) => {
+    setEditingId(messageId);
+    setEditDraft(content);
+  }, []);
+
+  const handleEditSubmit = useCallback(async () => {
+    const trimmed = editDraft.trim();
+    if (!trimmed || !editingId || editing) return;
+    setEditing(true);
+    try {
+      const updated = await editChatMessage(characterId, editingId, trimmed);
+      setSession(updated);
+      setEditingId(null);
+      setEditDraft("");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Edit failed");
+    } finally {
+      setEditing(false);
+    }
+  }, [characterId, editDraft, editingId, editing]);
+
+  const handleEditCancel = useCallback(() => {
+    setEditingId(null);
+    setEditDraft("");
+  }, []);
+
+  const handleRegenerate = useCallback(async () => {
+    if (regenerating) return;
+    setRegenerating(true);
+    try {
+      const updated = await regenerateChatResponse(characterId);
+      setSession(updated);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Regenerate failed");
+    } finally {
+      setRegenerating(false);
+    }
+  }, [characterId, regenerating]);
+
   const character = session?.character;
 
   return (
@@ -185,14 +252,59 @@ export default function ChatThread() {
           ) : session ? (
             <>
               {session.memory.length ? <MemoryRibbon memory={session.memory} /> : null}
-              {session.messages.map((m) => (
-                <MessageBubble
-                  key={m.messageId}
-                  message={m}
-                  characterName={character?.name ?? ""}
-                  avatarUrl={character?.avatarUrl}
-                />
-              ))}
+              {session.messages.map((m, i) => {
+                const isLast = i === session.messages.length - 1;
+                const isLastAi = isLast && m.role === "character";
+                const isEditing = editingId === m.messageId;
+
+                if (isEditing) {
+                  return (
+                    <div key={m.messageId} className="flex animate-rise justify-end gap-2">
+                      <div className="w-full max-w-[80%] space-y-2">
+                        <textarea
+                          value={editDraft}
+                          onChange={(e) => setEditDraft(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" && !e.shiftKey) {
+                              e.preventDefault();
+                              handleEditSubmit();
+                            }
+                            if (e.key === "Escape") handleEditCancel();
+                          }}
+                          rows={2}
+                          autoFocus
+                          disabled={editing}
+                          className="w-full resize-none rounded-2xl rounded-br-md border-2 border-primary bg-card px-4 py-2.5 text-[0.95rem] leading-relaxed text-foreground outline-none disabled:opacity-50"
+                        />
+                        <div className="flex justify-end gap-2">
+                          <Button variant="ghost" size="sm" onClick={handleEditCancel} disabled={editing}>
+                            Cancel
+                          </Button>
+                          <Button size="sm" onClick={handleEditSubmit} disabled={editing || !editDraft.trim()}>
+                            {editing ? (
+                              <Loader2 className="h-3 w-3 animate-spin" strokeWidth={1.75} />
+                            ) : (
+                              "Save"
+                            )}
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <MessageBubble
+                    key={m.messageId}
+                    message={m}
+                    characterName={character?.name ?? ""}
+                    avatarUrl={character?.avatarUrl}
+                    onEdit={handleEditStart}
+                    onRegenerate={handleRegenerate}
+                    showRegenerate={isLastAi}
+                  />
+                );
+              })}
               {sending ? (
                 <TypingBubble
                   characterName={character?.name ?? ""}
@@ -245,6 +357,43 @@ export default function ChatThread() {
           {session && !sending ? (
             <SmartReplies replies={session.smartReplies} onPick={send} disabled={sending} />
           ) : null}
+          {steerExpanded ? (
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                steer(steerDraft);
+              }}
+              className="flex items-end gap-2"
+            >
+              <textarea
+                value={steerDraft}
+                onChange={(e) => setSteerDraft(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") setSteerExpanded(false);
+                }}
+                rows={2}
+                placeholder="Hint a direction — e.g. 'Mira enters an art contest'…"
+                disabled={steering}
+                className="flex-1 resize-none rounded-xl border border-border bg-card px-3 py-2 text-xs leading-relaxed text-foreground outline-none placeholder:text-muted-foreground focus:border-primary/60 disabled:opacity-50"
+              />
+              <Button type="submit" size="sm" disabled={steering || !steerDraft.trim()}>
+                {steering ? (
+                  <Loader2 className="h-3 w-3 animate-spin" strokeWidth={1.75} />
+                ) : (
+                  "Plant"
+                )}
+              </Button>
+            </form>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setSteerExpanded(true)}
+              className="flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <Compass className="h-3 w-3" strokeWidth={1.75} />
+              Steer the story…
+            </button>
+          )}
           <form
             onSubmit={(e) => {
               e.preventDefault();

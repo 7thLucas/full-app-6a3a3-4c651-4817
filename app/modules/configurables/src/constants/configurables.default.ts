@@ -201,6 +201,10 @@ export type TDefaultConfigurableData = {
   chatMaxCatchUpPings: number;
   chatPollIntervalSeconds: number;
   chatBackgroundAdvanceMinutes: number;
+  // When true, autonomous messages imagine the user's presence/reacting in the
+  // scene so the story doesn't feel like a monologue into silence. No fake user
+  // dialogue is generated — only felt presence.
+  chatSimulateUser: boolean;
   // ISO timestamp of last background autonomous advance. Written by server tick.
   chatLastBackgroundAdvanceAt: string;
   // LLM model ids passed to the agentic endpoint. Empty = let the platform pick
@@ -421,6 +425,7 @@ export const defaultConfigurablesData: TDefaultConfigurableData = {
   chatMaxCatchUpPings: 4,
   chatPollIntervalSeconds: 120,
   chatBackgroundAdvanceMinutes: 240,
+  chatSimulateUser: true,
   chatLastBackgroundAdvanceAt: "",
   aiModelBase: "",
   aiModelPremium: "",

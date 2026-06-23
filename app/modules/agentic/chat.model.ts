@@ -71,6 +71,9 @@ export interface ChatSession extends Document {
   messages: ChatMessage[];
   // Short facts the companion remembers about the user, capped by memoryDepth.
   memory: string[];
+  // Pending direction hints the user planted. Future autonomous messages weave
+  // these in, then the seed is consumed (removed from the array).
+  steerSeeds: string[];
   // How many inline illustrations have been generated today (free-tier cap).
   imagesToday: number;
   imagesDayKey: string;
@@ -123,6 +126,7 @@ const ChatSessionSchema = new Schema<ChatSession>(
     ownerId: { type: String, default: "anon", index: true },
     messages: { type: [MessageSchema], default: [] },
     memory: { type: [String], default: [] },
+    steerSeeds: { type: [String], default: [] },
     imagesToday: { type: Number, default: 0 },
     imagesDayKey: { type: String, default: "" },
     lastVisitedAt: { type: Date, default: () => new Date() },

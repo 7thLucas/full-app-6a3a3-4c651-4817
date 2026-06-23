@@ -54,6 +54,7 @@ async function main() {
           "configurable_data.chatMaxCatchUpPings": 4,
           "configurable_data.chatPollIntervalSeconds": 120,
           "configurable_data.offlinePingAfterHours": 6,
+          "configurable_data.chatSimulateUser": true,
           "configurable_data.chatBackgroundAdvanceMinutes": 240,
         },
       },

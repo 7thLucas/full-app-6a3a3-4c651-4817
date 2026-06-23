@@ -174,6 +174,43 @@ export async function pingSession(characterId: string): Promise<PingResult> {
   return { session: body.data, advanced: body.advanced ?? false };
 }
 
+/** Plant a direction hint. Future autonomous messages weave it into the story. */
+export async function steerSession(
+  characterId: string,
+  text: string,
+): Promise<SessionView> {
+  return unwrap(
+    await apiRequest<SessionView>(`/api/chat/sessions/${characterId}/steer`, {
+      method: "POST",
+      data: { text },
+    }),
+  );
+}
+
+/** Edit a user message and regenerate the AI response that follows. */
+export async function editChatMessage(
+  characterId: string,
+  messageId: string,
+  content: string,
+): Promise<SessionView> {
+  return unwrap(
+    await apiRequest<SessionView>(
+      `/api/chat/sessions/${characterId}/messages/${messageId}`,
+      { method: "PATCH", data: { content } },
+    ),
+  );
+}
+
+/** Regenerate the last AI response. */
+export async function regenerateChatResponse(characterId: string): Promise<SessionView> {
+  return unwrap(
+    await apiRequest<SessionView>(
+      `/api/chat/sessions/${characterId}/regenerate`,
+      { method: "POST" },
+    ),
+  );
+}
+
 export async function createCharacter(
   input: CreateCharacterInput,
 ): Promise<CharacterProfileView> {

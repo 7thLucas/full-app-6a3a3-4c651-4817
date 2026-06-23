@@ -682,6 +682,12 @@ export const configurableSchemas: ConfigurableSchemas = {
       max: 1440,
     },
     {
+      fieldName: "chatSimulateUser",
+      type: "boolean",
+      required: false,
+      label: "Autonomous Chat — Simulate User Presence (avoids monologue feel)",
+    },
+    {
       fieldName: "aiModelBase",
       type: "string",
       required: false,

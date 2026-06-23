@@ -195,17 +195,38 @@ export async function generateAutonomousMessage(args: {
   memory: string[];
   recentMessages: ChatMessage[];
   smartReplyCount: number;
+  simulateUser?: boolean;
+  steerSeeds?: string[];
   model?: string;
 }): Promise<GeneratedReply> {
   const context = buildContext(args);
-  const message = [
+
+  const lines = [
     context,
     "\nThe user is away right now. Your life continues. Something just happened — a moment, a decision, a shift in your world. Tell them about it. Advance your ongoing story.",
+  ];
+
+  if (args.steerSeeds?.length) {
+    lines.push(
+      `\nDIRECTION NOTES the reader left for where the story could go. Weave ONE of these naturally into this beat — don't force all of them, don't resolve them completely, just let one ripple through the scene:\n${args.steerSeeds.map((s) => `- ${s}`).join("\n")}`,
+    );
+  }
+
+  if (args.simulateUser) {
+    lines.push(
+      "\nImagine the user's likely presence in this moment — are they quietly listening, distracted by their own day, leaning in with curiosity, holding their breath? Briefly imagine their reaction (a nod, a pause, a soft laugh, a moment of recognition) and let it color the scene subtly. Do NOT write dialogue for the user or pretend they said anything. Their presence is felt, not scripted. This keeps the story from feeling like a monologue into silence.",
+    );
+  }
+
+  lines.push(
     "\nWrite in first person — as if you're leaving them a message about what just occurred. Stay fully in character. Let this connect naturally to everything that came before; each autonomous message is part of a continuous narrative arc.",
     "Keep it to 30–80 words of natural, vivid, conversational prose.",
-  ].join("\n");
+  );
+
+  const message = lines.join("\n");
+  const salt = args.simulateUser ? "chat-autonomous-sim" : "chat-autonomous";
   const prompt = systemPrompt(args.character, args.smartReplyCount);
-  return callLLM(message, prompt, "chat-autonomous", args.model);
+  return callLLM(message, prompt, salt, args.model);
 }
 
 /**
@@ -216,14 +237,23 @@ export async function generateReply(args: {
   recentMessages: ChatMessage[];
   userMessage: string;
   smartReplyCount: number;
+  steerSeeds?: string[];
   model?: string;
 }): Promise<GeneratedReply> {
   const context = buildContext(args);
-  const message = [
+  const lines = [
     context,
     `\nThe user just said:\n"""${args.userMessage}"""`,
-    "\nReply as yourself, in character.",
-  ].join("\n");
+  ];
+
+  if (args.steerSeeds?.length) {
+    lines.push(
+      `\nSTORY DIRECTION the reader has set — weave this naturally into your reply if it fits the moment. Don't force it, don't resolve it completely, just let it color your response:\n${args.steerSeeds.map((s) => `- ${s}`).join("\n")}`,
+    );
+  }
+
+  lines.push("\nReply as yourself, in character.");
+  const message = lines.join("\n");
   return callLLM(message, systemPrompt(args.character, args.smartReplyCount), "chat-reply", args.model);
 }
 
