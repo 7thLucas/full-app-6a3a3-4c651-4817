@@ -1,187 +1,212 @@
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router";
-import { ArrowRight, BookOpenText, MessageCircleHeart, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpenText, Loader2, Plus, Sparkles } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
+import { cn } from "~/lib/utils";
 import { Button, Eyebrow, LiveDot, Section } from "~/components/ui";
-import { FeatureIcon, Wordmark } from "~/components/brand";
-import { LivePreview } from "~/components/story/live-preview";
+import { Wordmark } from "~/components/brand";
+import { CharacterCard } from "~/components/chat/character-card";
+import { fetchCharacters, type CharacterCardView } from "~/lib/chat.client";
+import { useAuth } from "~/hooks/use-auth";
 
 export function meta() {
   return [
-    { title: "Driftoria — Your story lives, even when you don't." },
+    { title: "Driftoria — Meet your companions" },
     {
       name: "description",
       content:
-        "Driftoria is an autonomous AI story engine. The narrative continues on its own — characters and plot evolve over time. Step in anytime to shape the tale.",
+        "Meet AI companions who talk to you, show you their world, and remember you between visits. Pick one and start.",
     },
   ];
 }
 
 export default function IndexPage() {
-  const { config, loading } = useConfigurables();
-
+  const { config } = useConfigurables();
   const appName = config?.appName ?? "Driftoria";
-  const features = config?.features ?? [];
+  const tags = config?.discoveryTags ?? [];
+  const { user, isAuthenticated, logout } = useAuth();
 
   const chatEnabled = config?.enableChatMode !== false;
   const storyEnabled = config?.enableStoryMode !== false;
-  const primaryHref = chatEnabled ? "/chat" : "/story";
+
+  const [characters, setCharacters] = useState<CharacterCardView[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [activeTag, setActiveTag] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!chatEnabled) {
+      setLoading(false);
+      return;
+    }
+    let live = true;
+    fetchCharacters()
+      .then((data) => live && setCharacters(data))
+      .catch((e) => live && setError(e instanceof Error ? e.message : "Failed to load"))
+      .finally(() => live && setLoading(false));
+    return () => {
+      live = false;
+    };
+  }, [chatEnabled]);
+
+  const filtered = useMemo(() => {
+    if (!activeTag) return characters;
+    return characters.filter((c) => c.tags?.includes(activeTag));
+  }, [characters, activeTag]);
+
+  const liveCount = characters.length;
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background font-body text-foreground grain">
-      {/* Ambient backdrop */}
       <div className="aurora-backdrop animate-drift" />
 
       {/* Nav */}
-      <header className="relative z-10">
-        <Section className="flex items-center justify-between py-6">
+      <header className="relative z-10 border-b border-border">
+        <Section className="flex items-center justify-between py-5">
           <Wordmark appName={appName} logoUrl={config?.logoUrl} />
-          <nav className="flex items-center gap-2">
-            <a
-              href="#features"
-              className="hidden rounded-full px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-block"
-            >
-              {config?.heroSecondaryCta ?? "How it works"}
-            </a>
-            <Link to={primaryHref}>
-              <Button size="sm">{config?.heroPrimaryCta ?? "Enter your story"}</Button>
-            </Link>
-          </nav>
-        </Section>
-      </header>
-
-      {/* Hero */}
-      <Section className="relative z-10 pb-20 pt-16 sm:pt-24">
-        <div className="mx-auto max-w-3xl text-center">
-          <Eyebrow className="justify-center">
-            <LiveDot />
-            {config?.heroEyebrow ?? "Autonomous AI Story Engine"}
-          </Eyebrow>
-
-          <h1 className="mt-7 font-heading text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl">
-            <span className="text-aurora">
-              {config?.heroHeadline ?? "A living story world that never stops unfolding."}
-            </span>
-          </h1>
-
-          <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            {config?.heroSubheadline ??
-              "Driftoria writes itself. Step in anytime to shape the story — you never have to drive it."}
-          </p>
-
-          {/* Two doors — pick your experience */}
-          <div className="mt-12 grid gap-4 text-left sm:grid-cols-2">
-            {chatEnabled ? (
-              <Link
-                to="/chat"
-                className="group relative overflow-hidden rounded-3xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
-              >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/15">
-                  <MessageCircleHeart className="h-5 w-5" strokeWidth={1.75} />
-                </div>
-                <h3 className="mt-5 font-heading text-xl font-semibold tracking-tight">
-                  {config?.chatModeLabel ?? "Chat Mode"}
-                </h3>
-                <p className="mt-2 text-[0.95rem] leading-relaxed text-muted-foreground">
-                  {config?.chatModeTagline ??
-                    "Meet a companion who talks to you, shows you their world, and remembers you between visits."}
-                </p>
-                <span className="mt-4 inline-flex items-center gap-1.5 font-ui text-sm font-medium text-primary">
-                  Meet your companions
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={1.75} />
+          <div className="flex items-center gap-2">
+            {isAuthenticated ? (
+              <>
+                <span className="hidden text-sm text-muted-foreground sm:inline">
+                  {user?.name}
                 </span>
+                <Button variant="ghost" size="sm" onClick={() => void logout()}>
+                  Sign out
+                </Button>
+              </>
+            ) : (
+              <Link to="/login?redirect=/chat">
+                <Button variant="ghost" size="sm">
+                  Sign in
+                </Button>
               </Link>
-            ) : null}
-
-            {storyEnabled ? (
-              <Link
-                to="/story"
-                className="group relative overflow-hidden rounded-3xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
-              >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent ring-1 ring-accent/15">
-                  <BookOpenText className="h-5 w-5" strokeWidth={1.75} />
-                </div>
-                <h3 className="mt-5 font-heading text-xl font-semibold tracking-tight">
-                  {config?.storyModeLabel ?? "Story Mode"}
-                </h3>
-                <p className="mt-2 text-[0.95rem] leading-relaxed text-muted-foreground">
-                  {config?.storyModeTagline ??
-                    "Direct a living world. Third-person, cinematic, unfolding on its own — even while you're away."}
-                </p>
-                <span className="mt-4 inline-flex items-center gap-1.5 font-ui text-sm font-medium text-accent">
-                  {config?.heroPrimaryCta ?? "Enter your story"}
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={1.75} />
-                </span>
-              </Link>
-            ) : null}
-          </div>
-
-          <p className="mt-7 font-body text-sm italic text-muted-foreground/80">
-            “{config?.tagline ?? "Your story lives, even when you don't."}”
-          </p>
-        </div>
-
-        {/* Living-world preview — a self-advancing demo of the engine */}
-        <div className="mx-auto mt-16 max-w-3xl animate-rise">
-          <LivePreview />
-        </div>
-      </Section>
-
-      {/* Features */}
-      <Section id="features" className="relative z-10 py-20">
-        <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow className="justify-center">
-            <Sparkles className="h-3.5 w-3.5" strokeWidth={1.75} />
-            What makes it alive
-          </Eyebrow>
-          <h2 className="mt-5 font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
-            {config?.featuresHeading ?? "Not a chatbot. A world with momentum."}
-          </h2>
-        </div>
-
-        <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-          {(loading && features.length === 0
-            ? Array.from({ length: 6 })
-            : features
-          ).map((feature: any, i: number) => (
-            <div
-              key={i}
-              className="group bg-card p-8 transition-colors duration-300 hover:bg-secondary/60"
-            >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/15">
-                <FeatureIcon name={feature?.icon ?? "Sparkles"} className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 font-heading text-lg font-semibold tracking-tight">
-                {feature?.title ?? " "}
-              </h3>
-              <p className="mt-3 text-[0.95rem] leading-relaxed text-muted-foreground">
-                {feature?.description ?? ""}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Closing CTA */}
-      <Section className="relative z-10 pb-28 pt-4">
-        <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-secondary/80 to-card p-12 text-center sm:p-16">
-          <div className="aurora-backdrop opacity-60" />
-          <div className="relative">
-            <h2 className="mx-auto max-w-2xl font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
-              Begin a story that keeps going without you.
-            </h2>
-            <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
-              Set the pace, meet your cast, and let the world drift forward. Return whenever
-              you like — the story will be waiting, further along than you left it.
-            </p>
-            <Link to="/story" className="mt-9 inline-block">
-              <Button size="lg">
-                {config?.heroPrimaryCta ?? "Enter your story"}
-                <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
+            )}
+            <Link to="/chat/create">
+              <Button size="sm">
+                <Plus className="h-4 w-4" strokeWidth={1.75} />
+                Create
               </Button>
             </Link>
           </div>
+        </Section>
+      </header>
+
+      {/* Hero — hook, not pitch */}
+      <Section className="relative z-10 pb-6 pt-14 sm:pt-20">
+        <div className="max-w-2xl">
+          <Eyebrow>
+            <LiveDot />
+            {liveCount > 0
+              ? `${liveCount} companion${liveCount === 1 ? "" : "s"} live now`
+              : (config?.chatModeLabel ?? "Chat Mode")}
+          </Eyebrow>
+          <h1 className="mt-5 font-heading text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl">
+            <span className="text-aurora">
+              {config?.landingHeadline ?? "Someone's always awake in here."}
+            </span>
+          </h1>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            {config?.landingSubheadline ??
+              "Meet AI companions who talk to you, show you their world, and remember you between visits. Pick one and start."}
+          </p>
         </div>
       </Section>
+
+      {/* The hook — companion gallery, above the fold */}
+      {chatEnabled ? (
+        <Section className="relative z-10 pb-16">
+          {tags.length ? (
+            <div className="mb-8 flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => setActiveTag(null)}
+                className={cn(
+                  "rounded-full border px-4 py-1.5 font-ui text-sm transition-colors",
+                  activeTag === null
+                    ? "border-primary bg-primary/15 text-foreground"
+                    : "border-border text-muted-foreground hover:text-foreground",
+                )}
+              >
+                All
+              </button>
+              {tags.map((t) => (
+                <button
+                  key={t}
+                  type="button"
+                  onClick={() => setActiveTag(t)}
+                  className={cn(
+                    "rounded-full border px-4 py-1.5 font-ui text-sm transition-colors",
+                    activeTag === t
+                      ? "border-primary bg-primary/15 text-foreground"
+                      : "border-border text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+          ) : null}
+
+          {loading ? (
+            <div className="mt-16 flex items-center justify-center gap-3 text-muted-foreground">
+              <Loader2 className="h-5 w-5 animate-spin" strokeWidth={1.75} />
+              Gathering companions…
+            </div>
+          ) : error ? (
+            <div className="mt-12 rounded-2xl border border-destructive/40 bg-destructive/10 p-6 text-center text-sm text-foreground">
+              {error}
+            </div>
+          ) : filtered.length === 0 ? (
+            <div className="mt-12 rounded-2xl border border-border bg-card p-10 text-center">
+              <Sparkles className="mx-auto h-6 w-6 text-primary" strokeWidth={1.75} />
+              <p className="mt-4 text-muted-foreground">
+                No companions here yet. Be the first to create one.
+              </p>
+              <Link to="/chat/create" className="mt-6 inline-block">
+                <Button>
+                  <Plus className="h-4 w-4" strokeWidth={1.75} />
+                  Create a companion
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+              {filtered.map((c) => (
+                <CharacterCard key={c.characterId} character={c} />
+              ))}
+            </div>
+          )}
+        </Section>
+      ) : null}
+
+      {/* Story Mode — demoted to a slim fork, not the headline */}
+      {storyEnabled ? (
+        <Section className="relative z-10 pb-20">
+          <Link
+            to="/story"
+            className="group flex flex-col items-start gap-4 overflow-hidden rounded-3xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/50 sm:flex-row sm:items-center sm:justify-between sm:p-7"
+          >
+            <div className="flex items-start gap-4">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent ring-1 ring-accent/15">
+                <BookOpenText className="h-5 w-5" strokeWidth={1.75} />
+              </div>
+              <div>
+                <h3 className="font-heading text-lg font-semibold tracking-tight">
+                  Prefer to direct a whole world?
+                </h3>
+                <p className="mt-1 text-[0.95rem] leading-relaxed text-muted-foreground">
+                  {config?.storyModeTagline ??
+                    "Direct a living world. Third-person, cinematic, unfolding on its own — even while you're away."}
+                </p>
+              </div>
+            </div>
+            <span className="inline-flex shrink-0 items-center gap-1.5 font-ui text-sm font-medium text-accent">
+              {config?.storyModeLabel ?? "Story Mode"}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={1.75} />
+            </span>
+          </Link>
+        </Section>
+      ) : null}
 
       {/* Footer */}
       <footer className="relative z-10 border-t border-border">
