@@ -29,6 +29,7 @@ function authHeaders(): Record<string, string> {
 const REPLY_SCHEMA = {
   type: "object",
   properties: {
+    narration: { type: "string" },
     reply: { type: "string" },
     vivid: { type: "boolean" },
     imagePrompt: { type: "string" },
@@ -40,6 +41,7 @@ const REPLY_SCHEMA = {
 };
 
 export interface GeneratedReply {
+  narration: string | null;
   reply: string;
   vivid: boolean;
   imagePrompt: string | null;
@@ -50,6 +52,7 @@ export interface GeneratedReply {
 interface LLMResponse {
   status?: "DONE" | "ERROR";
   response?: {
+    narration?: string;
     reply?: string;
     vivid?: boolean;
     imagePrompt?: string;
@@ -72,6 +75,7 @@ function systemPrompt(c: CharacterBrief, smartReplyCount: number): string {
     "You are talking one-on-one with the user, who you are growing close to.",
     "Speak in FIRST PERSON, directly to the user ('I', 'you'). Stay fully in character — warm, present, emotionally real. Never break character, never mention being an AI, never narrate in third person.",
     "Keep replies to roughly 30–80 words: natural, vivid, conversational. You may use a little italic *action* now and then, sparingly.",
+    "Set 'narration' to a short, cinematic THIRD-PERSON scene line — the setting, location, time, weather, atmosphere, or sensory detail around you both (12–30 words). Use it to ground the moment and make the exchange feel like a scene unfolding. Write narration ONLY when the scene shifts, the mood deepens, or a fresh setting is worth painting; leave it empty for quick back-and-forth. Narration NEVER speaks as you, never uses 'I' or 'you' — it is the camera, not the character. Keep it distinct from 'reply' (your spoken, first-person dialogue).",
     "Set 'vivid' to true ONLY at genuine emotional or visual peaks (a tender moment, a striking setting, a reveal) — no more than occasionally. When 'vivid' is true, set 'imagePrompt' to a short, concrete visual description (subject, setting, mood, lighting) of the scene to illustrate, in an anime-illustration style. Otherwise leave imagePrompt empty and vivid false.",
     `Always provide 'smartReplies': exactly ${smartReplyCount} short first-person things the USER might say back (3–7 words each), in the user's voice, varied in tone. If ${smartReplyCount} is 0, return an empty array.`,
     "If the user reveals something worth remembering (their name, a preference, a promise, a feeling), put it in 'memoryNote' as one short third-person fact (e.g. 'User's name is Sam'; 'User loves rainy days'). Otherwise leave it empty.",
@@ -139,6 +143,7 @@ async function callLLM(
 
     const imagePrompt = r.imagePrompt?.trim() ? r.imagePrompt.trim() : null;
     return {
+      narration: r.narration?.trim() ? r.narration.trim() : null,
       reply,
       vivid: Boolean(r.vivid) && Boolean(imagePrompt),
       imagePrompt,

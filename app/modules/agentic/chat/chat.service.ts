@@ -217,6 +217,7 @@ async function applyGenerated(
     newMessage({
       role: "character",
       content: gen.reply,
+      narration: gen.narration,
       imageUrl,
       vivid: Boolean(imageUrl),
       whileAway,
@@ -248,6 +249,7 @@ export interface SessionView {
     messageId: string;
     role: ChatMessage["role"];
     content: string;
+    narration: string | null;
     imageUrl: string | null;
     vivid: boolean;
     whileAway: boolean;
@@ -276,6 +278,7 @@ function toSessionView(
       messageId: m.messageId,
       role: m.role,
       content: m.content,
+      narration: m.narration ?? null,
       imageUrl: m.imageUrl ?? null,
       vivid: Boolean(m.vivid),
       whileAway: Boolean(m.whileAway),

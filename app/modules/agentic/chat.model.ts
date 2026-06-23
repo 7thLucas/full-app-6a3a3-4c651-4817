@@ -33,6 +33,9 @@ export interface ChatMessage {
   messageId: string;
   role: ChatRole;
   content: string;
+  // Cinematic third-person scene line (setting/location/atmosphere) painted
+  // around this companion message, when the engine set one.
+  narration?: string | null;
   // Inline AI scene illustration for this message, when one was generated.
   imageUrl?: string | null;
   // True when the engine flagged this beat as an emotional peak.
@@ -78,6 +81,7 @@ const MessageSchema = new Schema<ChatMessage>(
     messageId: { type: String, required: true },
     role: { type: String, enum: ["user", "character"], required: true },
     content: { type: String, required: true },
+    narration: { type: String, default: null },
     imageUrl: { type: String, default: null },
     vivid: { type: Boolean, default: false },
     whileAway: { type: Boolean, default: false },

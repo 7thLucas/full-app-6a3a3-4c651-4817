@@ -21,6 +21,7 @@ export interface ChatMessageView {
   messageId: string;
   role: ChatRole;
   content: string;
+  narration: string | null;
   imageUrl: string | null;
   vivid: boolean;
   whileAway: boolean;

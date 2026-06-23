@@ -39,27 +39,36 @@ export function MessageBubble({
   }
 
   return (
-    <div className="flex items-start gap-3">
-      <Avatar src={avatarUrl} name={characterName} className="mt-0.5 h-9 w-9" />
-      <div className="max-w-[80%] space-y-2">
-        {message.whileAway ? (
-          <span className="inline-flex items-center gap-1.5 font-ui text-[0.65rem] uppercase tracking-wider text-accent">
-            While you were away
-          </span>
-        ) : null}
-        <div className="rounded-2xl rounded-tl-md bg-card px-4 py-2.5 text-[0.95rem] leading-relaxed text-card-foreground ring-1 ring-border">
-          {renderContent(message.content)}
-        </div>
-        {message.imageUrl ? (
-          <div className="overflow-hidden rounded-2xl border border-border bg-secondary">
-            <img
-              src={message.imageUrl}
-              alt="A scene from your conversation"
-              loading="lazy"
-              className="w-full animate-rise object-cover"
-            />
+    <div className="space-y-2.5">
+      {message.narration ? (
+        <p className="px-2 text-center font-serif text-[0.9rem] italic leading-relaxed text-muted-foreground">
+          <span className="mr-1.5 text-accent/70">—</span>
+          {message.narration}
+          <span className="ml-1.5 text-accent/70">—</span>
+        </p>
+      ) : null}
+      <div className="flex items-start gap-3">
+        <Avatar src={avatarUrl} name={characterName} className="mt-0.5 h-9 w-9" />
+        <div className="max-w-[80%] space-y-2">
+          {message.whileAway ? (
+            <span className="inline-flex items-center gap-1.5 font-ui text-[0.65rem] uppercase tracking-wider text-accent">
+              While you were away
+            </span>
+          ) : null}
+          <div className="rounded-2xl rounded-tl-md bg-card px-4 py-2.5 text-[0.95rem] leading-relaxed text-card-foreground ring-1 ring-border">
+            {renderContent(message.content)}
           </div>
-        ) : null}
+          {message.imageUrl ? (
+            <div className="overflow-hidden rounded-2xl border border-border bg-secondary">
+              <img
+                src={message.imageUrl}
+                alt="A scene from your conversation"
+                loading="lazy"
+                className="w-full animate-rise object-cover"
+              />
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   );

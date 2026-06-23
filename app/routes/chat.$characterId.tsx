@@ -65,6 +65,7 @@ export default function ChatThread() {
                   messageId: `tmp-${Date.now()}`,
                   role: "user",
                   content: trimmed,
+                  narration: null,
                   imageUrl: null,
                   vivid: false,
                   whileAway: false,
