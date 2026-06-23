@@ -295,44 +295,44 @@ function FeaturedHero({
       to={`/chat/${character.characterId}`}
       className="group block overflow-hidden rounded-2xl border border-primary/25 bg-card shadow-[0_20px_50px_-32px_var(--primary)] transition-colors hover:border-primary/45"
     >
-      <div className="relative aspect-[4/3]">
+      <div className="relative aspect-[4/5] sm:aspect-[16/9]">
         {character.avatarUrl ? (
           <img
             src={character.avatarUrl}
             alt={character.name}
-            className="absolute inset-0 h-full w-full object-cover object-left-top transition-transform duration-700 group-hover:scale-[1.03]"
+            className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center bg-secondary font-heading text-6xl text-muted-foreground">
             {initials}
           </div>
         )}
-        {/* Readability washes — left for copy, bottom for grounding. */}
-        <div className="absolute inset-0 bg-gradient-to-r from-card via-card/85 to-card/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+        {/* Readability scrim — heaviest bottom-left where the copy lives. */}
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/55 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-card/80 via-card/10 to-transparent" />
 
-        <div className="relative flex h-full max-w-[64%] flex-col gap-3.5 p-6 pb-24 sm:max-w-[55%] sm:p-8 sm:pb-24">
+        <div className="relative flex h-full flex-col justify-end gap-3 p-6 sm:max-w-[60%] sm:p-8">
           <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 font-ui text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-primary backdrop-blur">
             <Sparkles className="h-3.5 w-3.5" strokeWidth={2} />
             {badge}
           </span>
 
-          <h2 className="font-heading text-3xl font-semibold leading-[1.05] tracking-tight sm:text-4xl">
+          <h2 className="font-heading text-3xl font-semibold leading-[1.05] tracking-tight drop-shadow-sm sm:text-4xl">
             {character.name}
           </h2>
 
-          <p className="text-[0.95rem] leading-relaxed text-muted-foreground sm:text-base">
+          <p className="max-w-md text-[0.95rem] leading-relaxed text-foreground/85 sm:text-base">
             {character.tagline}
           </p>
 
           {chips.length ? (
-            <div className="mt-1 flex flex-nowrap gap-2">
+            <div className="flex flex-wrap gap-2">
               {chips.map((t, i) => {
                 const Icon = i === 0 ? BookOpenText : i === 1 ? MessageSquare : Heart;
                 return (
                   <span
                     key={t}
-                    className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-border bg-background/50 px-3 py-1.5 font-ui text-xs font-medium text-foreground/90 backdrop-blur"
+                    className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-border/70 bg-background/40 px-3 py-1.5 font-ui text-xs font-medium text-foreground/90 backdrop-blur"
                   >
                     <Icon className="h-3.5 w-3.5 text-primary" strokeWidth={1.75} />
                     {t}
@@ -341,12 +341,11 @@ function FeaturedHero({
               })}
             </div>
           ) : null}
-        </div>
-        <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
-          <span className="flex h-14 w-full items-center justify-center gap-2 rounded-full bg-primary font-ui text-base font-medium tracking-wide text-primary-foreground shadow-[0_10px_28px_-16px_var(--primary)] transition-transform group-hover:scale-[1.01]">
+
+          <span className="mt-2 inline-flex h-12 w-fit items-center gap-2 rounded-full bg-primary px-6 font-ui text-sm font-semibold tracking-wide text-primary-foreground shadow-[0_12px_30px_-14px_var(--primary)] transition-transform group-hover:scale-[1.02]">
             <Sparkles className="h-4 w-4" strokeWidth={2} />
             {cta}
-            <ChevronRight className="h-4 w-4" strokeWidth={2} />
+            <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2} />
           </span>
         </div>
       </div>
