@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router";
-import { BarChart3, Compass, Crown, LogOut, MessagesSquare, User } from "lucide-react";
+import { BarChart3, Compass, Crown, LogOut, MessagesSquare, Settings, User } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
 import { Button, Eyebrow, Section } from "~/components/ui";
 import { Wordmark } from "~/components/brand";
@@ -68,6 +68,15 @@ export default function Profile() {
           >
             <MessagesSquare className="h-4 w-4" strokeWidth={1.75} />
             My chats
+          </Button>
+          <Button
+            variant="outline"
+            size="lg"
+            className="w-full justify-start"
+            onClick={() => navigate("/chat/settings")}
+          >
+            <Settings className="h-4 w-4" strokeWidth={1.75} />
+            Autonomous settings
           </Button>
           <Button
             variant="outline"

@@ -18,6 +18,7 @@ import { signSession } from "../lib/session";
 import { buildSessionCookie, clearSessionCookie } from "../lib/cookies";
 import { SESSION_TTL_SECONDS } from "../lib/session";
 import type { AuthedRequest } from "../middleware/auth.guard";
+import { getAutonomousSettings } from "~/modules/agentic/chat/autonomous-settings.service";
 
 const logger = createLogger("AuthRoutes");
 const router = Router();
@@ -30,6 +31,8 @@ router.post("/auth/register", async (req: Request, res: Response) => {
   const { email, password, name } = req.body ?? {};
   try {
     const user = await registerUser({ email, password, name });
+    // Seed default autonomous settings for the new user.
+    void getAutonomousSettings(user.id).catch(() => {});
     res.setHeader("Set-Cookie", buildSessionCookie(signSession(user.id), SESSION_TTL_SECONDS));
     return res.json({ success: true, data: user });
   } catch (error) {
@@ -43,6 +46,8 @@ router.post("/auth/login", async (req: Request, res: Response) => {
   const { email, password } = req.body ?? {};
   try {
     const user = await loginUser({ email, password });
+    // Ensure autonomous settings exist for this user (idempotent).
+    void getAutonomousSettings(user.id).catch(() => {});
     res.setHeader("Set-Cookie", buildSessionCookie(signSession(user.id), SESSION_TTL_SECONDS));
     return res.json({ success: true, data: user });
   } catch (error) {

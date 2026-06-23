@@ -120,7 +120,7 @@ async function callLLM(
   form.set("system_prompt", SYSTEM_PROMPT);
 
   const idempotencyKey = createHash("sha256")
-    .update(`${ks}\x00${idempotencySalt}\x00${message}`)
+    .update(`${ks}\x00${idempotencySalt}\x00${message}\x00${SYSTEM_PROMPT}`)
     .digest("hex")
     .slice(0, 32);
 

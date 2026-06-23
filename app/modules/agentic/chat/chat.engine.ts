@@ -68,18 +68,37 @@ export interface CharacterBrief {
   persona: string;
 }
 
-function systemPrompt(c: CharacterBrief, smartReplyCount: number): string {
-  return [
+function systemPrompt(
+  c: CharacterBrief,
+  smartReplyCount: number,
+  ctx?: { tone?: string; personality?: string; relationship?: string },
+): string {
+  const lines = [
     `You ARE ${c.name}. ${c.tagline}`,
     `Your character: ${c.persona}`,
     "You are talking one-on-one with the user, who you are growing close to.",
+  ];
+
+  if (ctx?.tone) {
+    lines.push(`Story tone / mood: ${ctx.tone}. Let this color your narration and emotional register.`);
+  }
+  if (ctx?.personality) {
+    lines.push(`Your personality nuance (blend with your core persona): ${ctx.personality}`);
+  }
+  if (ctx?.relationship) {
+    lines.push(`Your relationship with the user: ${ctx.relationship}. Let this shape how you speak to them.`);
+  }
+
+  lines.push(
     "Speak in FIRST PERSON, directly to the user ('I', 'you'). Stay fully in character — warm, present, emotionally real. Never break character, never mention being an AI, never narrate in third person.",
     "Keep replies to roughly 30–80 words: natural, vivid, conversational. You may use a little italic *action* now and then, sparingly.",
     "Set 'narration' to a short, cinematic THIRD-PERSON scene line — the setting, location, time, weather, atmosphere, or sensory detail around you both (12–30 words). Use it to ground the moment and make the exchange feel like a scene unfolding. Write narration ONLY when the scene shifts, the mood deepens, or a fresh setting is worth painting; leave it empty for quick back-and-forth. Narration NEVER speaks as you, never uses 'I' or 'you' — it is the camera, not the character. Keep it distinct from 'reply' (your spoken, first-person dialogue).",
     "Set 'vivid' to true ONLY at genuine emotional or visual peaks (a tender moment, a striking setting, a reveal) — no more than occasionally. When 'vivid' is true, set 'imagePrompt' to a short, concrete visual description of the SETTING ONLY — the location, environment, scenery, lighting, weather, atmosphere, and objects around you (e.g. 'a rain-streaked café window at dusk, warm lamplight, empty wooden table'). NEVER include people, characters, figures, faces, or bodies — describe the empty scene as if the camera is looking past us at the world. Render in an anime-illustration background-art style. Otherwise leave imagePrompt empty and vivid false.",
     `Always provide 'smartReplies': exactly ${smartReplyCount} short first-person things the USER might say back (3–7 words each), in the user's voice, varied in tone. If ${smartReplyCount} is 0, return an empty array.`,
     "If the user reveals something worth remembering (their name, a preference, a promise, a feeling), put it in 'memoryNote' as one short third-person fact (e.g. 'User's name is Sam'; 'User loves rainy days'). Otherwise leave it empty.",
-  ].join(" ");
+  );
+
+  return lines.join(" ");
 }
 
 function buildContext(args: {
@@ -104,20 +123,25 @@ function buildContext(args: {
 
 async function callLLM(
   message: string,
-  system: string,
   idempotencySalt: string,
-  model?: string,
+  args: {
+    character: CharacterBrief;
+    smartReplyCount: number;
+    promptContext?: { tone?: string; personality?: string; relationship?: string };
+    model?: string;
+  },
 ): Promise<GeneratedReply> {
+  const system = systemPrompt(args.character, args.smartReplyCount, args.promptContext);
   const ks = keyspace();
   const form = new FormData();
   form.set("message", message);
   form.set("schema", JSON.stringify(REPLY_SCHEMA));
   form.set("system_prompt", system);
   // Optional model override (premium tier). Omitted = platform default model.
-  if (model) form.set("model", model);
+  if (args.model) form.set("model", args.model);
 
   const idempotencyKey = createHash("sha256")
-    .update(`${ks}\x00${idempotencySalt}\x00${message}`)
+    .update(`${ks}\x00${idempotencySalt}\x00${message}\x00${system}`)
     .digest("hex")
     .slice(0, 32);
 
@@ -198,6 +222,7 @@ export async function generateAutonomousMessage(args: {
   simulateUser?: boolean;
   steerSeeds?: string[];
   model?: string;
+  promptContext?: { tone?: string; personality?: string; relationship?: string };
 }): Promise<GeneratedReply> {
   const context = buildContext(args);
 
@@ -225,8 +250,12 @@ export async function generateAutonomousMessage(args: {
 
   const message = lines.join("\n");
   const salt = args.simulateUser ? "chat-autonomous-sim" : "chat-autonomous";
-  const prompt = systemPrompt(args.character, args.smartReplyCount);
-  return callLLM(message, prompt, salt, args.model);
+  return callLLM(message, salt, {
+    character: args.character,
+    smartReplyCount: args.smartReplyCount,
+    promptContext: args.promptContext,
+    model: args.model,
+  });
 }
 
 /**
@@ -239,6 +268,7 @@ export async function generateReply(args: {
   smartReplyCount: number;
   steerSeeds?: string[];
   model?: string;
+  promptContext?: { tone?: string; personality?: string; relationship?: string };
 }): Promise<GeneratedReply> {
   const context = buildContext(args);
   const lines = [
@@ -254,7 +284,12 @@ export async function generateReply(args: {
 
   lines.push("\nReply as yourself, in character.");
   const message = lines.join("\n");
-  return callLLM(message, systemPrompt(args.character, args.smartReplyCount), "chat-reply", args.model);
+  return callLLM(message, "chat-reply", {
+    character: args.character,
+    smartReplyCount: args.smartReplyCount,
+    promptContext: args.promptContext,
+    model: args.model,
+  });
 }
 
 /**
@@ -275,5 +310,9 @@ export async function generateOfflinePing(args: {
     `\nIt has been about ${Math.round(args.hoursAway)} hours since the user was last here, and they have just returned.`,
     "\nReach out FIRST, unprompted — a short, warm message showing you thought about them while they were gone. Reference something you remember if you can. Do not ask where they went in an accusatory way; be glad they're back.",
   ].join("\n");
-  return callLLM(message, systemPrompt(args.character, args.smartReplyCount), "chat-ping", args.model);
+  return callLLM(message, "chat-ping", {
+    character: args.character,
+    smartReplyCount: args.smartReplyCount,
+    model: args.model,
+  });
 }

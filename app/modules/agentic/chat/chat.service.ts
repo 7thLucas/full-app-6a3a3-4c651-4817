@@ -41,6 +41,7 @@ import {
   type CharacterBrief,
   type GeneratedReply,
 } from "./chat.engine";
+import { getAutonomousSettings, resolveAutonomousContext, type AutonomousUserContext } from "./autonomous-settings.service";
 
 const logger = createLogger("ChatService");
 
@@ -58,6 +59,35 @@ async function getConfig(): Promise<TDefaultConfigurableData> {
 
 function newMessage(partial: Omit<ChatMessage, "messageId" | "createdAt">): ChatMessage {
   return { messageId: randomUUID(), createdAt: new Date(), ...partial };
+}
+
+async function resolveUserContext(
+  ownerId: string,
+  cfg: TDefaultConfigurableData,
+): Promise<AutonomousUserContext> {
+  // For anon users, use global defaults — no personalization.
+  if (ownerId.startsWith("anon_")) {
+    return {
+      tickIntervalMinutes: cfg.chatBackgroundAdvanceMinutes,
+      effectivePingsPerHour: cfg.chatPingsPerHour,
+      simulateUser: cfg.chatSimulateUser,
+      storyTone: "",
+      personality: "",
+      relationship: "",
+      memoryDepth: cfg.memoryDepth,
+      notifyFrequency: "off",
+    };
+  }
+  const settings = await getAutonomousSettings(ownerId);
+  return resolveAutonomousContext(settings, cfg);
+}
+
+function promptContextFrom(ctx: AutonomousUserContext) {
+  const out: { tone?: string; personality?: string; relationship?: string } = {};
+  if (ctx.storyTone) out.tone = ctx.storyTone;
+  if (ctx.personality) out.personality = ctx.personality;
+  if (ctx.relationship) out.relationship = ctx.relationship;
+  return Object.keys(out).length ? out : undefined;
 }
 
 function dayKey(d: Date): string {
@@ -658,6 +688,7 @@ export async function sendMessage(
 
   session.messages.push(newMessage({ role: "user", content: trimmed, whileAway: false }));
 
+  const uctx = await resolveUserContext(ownerId, cfg);
   const seeds = session.steerSeeds?.length ? [...session.steerSeeds] : [];
   const gen = await generateReply({
     character: brief(character),
@@ -666,6 +697,7 @@ export async function sendMessage(
     userMessage: trimmed,
     smartReplyCount: cfg.smartReplyCount,
     steerSeeds: seeds.length ? seeds : undefined,
+    promptContext: promptContextFrom(uctx),
     model: pickModel(cfg, limits),
   });
 
@@ -858,35 +890,34 @@ export async function advanceAllSessions(force = false): Promise<number> {
   const cfg = await getConfig();
 
   const baseFilter = { messages: { $elemMatch: { role: "user" } } };
-  const allSessions = await ChatSessionModel.countDocuments(baseFilter).exec();
+  const allSessionsCount = await ChatSessionModel.countDocuments(baseFilter).exec();
+  const allSessions = await ChatSessionModel.find(baseFilter).exec();
 
-  let filter: Record<string, unknown> = baseFilter;
-  if (!force) {
-    const pingIntervalMs = (60 * 60 * 1000) / Math.max(0.1, cfg.chatPingsPerHour);
-    const cutoff = new Date(Date.now() - pingIntervalMs);
-    filter = { ...baseFilter, lastMessageAt: { $lt: cutoff } };
-  }
-
-  const sessions = await ChatSessionModel.find(filter).exec();
+  if (!allSessions.length) return 0;
 
   const mode = force ? "FORCE" : "scheduled";
-  logger.info(`advanceAllSessions [${mode}]: ${allSessions} active sessions, ${sessions.length} to advance`);
-  if (!sessions.length) return 0;
-
   let advanced = 0;
-  for (const session of sessions) {
+  let skipped = 0;
+
+  for (const session of allSessions) {
     const character = await CharacterModel.findOne({ characterId: session.characterId }).exec();
-    if (!character) continue;
+    if (!character) { skipped++; continue; }
 
     // Guest gate: anon users who hit the free message limit get no autonomous advances.
     const isAnon = session.ownerId.startsWith("anon_");
     if (isAnon && cfg.guestMessageLimit >= 0) {
       const userTurns = session.messages.filter((m) => m.role === "user").length;
-      if (userTurns >= cfg.guestMessageLimit) continue;
+      if (userTurns >= cfg.guestMessageLimit) { skipped++; continue; }
     }
 
-    // Background tick is server-driven — plan tier doesn't gate it. The guest
-    // limit check above is the only throttle for free/anonymous users.
+    // Per-user pacing: each user's settings determine their personal cadence.
+    const uctx = await resolveUserContext(session.ownerId, cfg);
+    if (!force) {
+      const pingIntervalMs = (60 * 60 * 1000) / Math.max(0.1, uctx.effectivePingsPerHour);
+      const cutoff = Date.now() - pingIntervalMs;
+      if (new Date(session.lastMessageAt).getTime() > cutoff) { skipped++; continue; }
+    }
+
     const { limits } = await getLimitsFor(session.ownerId);
 
     try {
@@ -896,15 +927,15 @@ export async function advanceAllSessions(force = false): Promise<number> {
         memory: session.memory,
         recentMessages: recent(session),
         smartReplyCount: cfg.smartReplyCount,
-        simulateUser: cfg.chatSimulateUser,
+        simulateUser: uctx.simulateUser,
         steerSeeds: seeds.length ? seeds : undefined,
+        promptContext: promptContextFrom(uctx),
         model: pickModel(cfg, limits),
       });
       await applyGenerated(
         session, cfg, limits, gen, true,
         character.scenario || character.persona,
       );
-      // Consume the first seed that was woven in — the rest stay for future beats.
       if (session.steerSeeds.length) session.steerSeeds.shift();
       session.lastMessageAt = new Date();
       await session.save();
@@ -918,6 +949,7 @@ export async function advanceAllSessions(force = false): Promise<number> {
     }
   }
 
+  logger.info(`advanceAllSessions [${mode}]: ${allSessionsCount} active sessions, ${advanced} advanced, ${skipped} skipped`);
   if (advanced > 0) logger.info(`Background tick advanced ${advanced} session(s)`);
   return advanced;
 }

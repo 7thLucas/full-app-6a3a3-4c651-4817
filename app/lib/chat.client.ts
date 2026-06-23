@@ -211,6 +211,33 @@ export async function regenerateChatResponse(characterId: string): Promise<Sessi
   );
 }
 
+export interface AutonomousSettings {
+  ownerId: string;
+  tickIntervalMinutes: number;
+  cadence: "slow" | "normal" | "active";
+  simulateUser: boolean;
+  storyTone: string;
+  personality: string;
+  relationship: string;
+  memoryDepth: number;
+  notifyFrequency: "off" | "daily" | "weekly";
+}
+
+export async function fetchAutonomousSettings(): Promise<AutonomousSettings> {
+  return unwrap(await apiGet<AutonomousSettings>("/api/autonomous-settings"));
+}
+
+export async function saveAutonomousSettings(
+  data: Partial<Omit<AutonomousSettings, "ownerId">>,
+): Promise<AutonomousSettings> {
+  return unwrap(
+    await apiRequest<AutonomousSettings>("/api/autonomous-settings", {
+      method: "PUT",
+      data,
+    }),
+  );
+}
+
 export async function createCharacter(
   input: CreateCharacterInput,
 ): Promise<CharacterProfileView> {

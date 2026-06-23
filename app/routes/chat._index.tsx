@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router";
-import { Loader2, Plus, Search, Sparkles, X } from "lucide-react";
+import { Loader2, Plus, Search, Settings, Sparkles, X } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
 import { cn } from "~/lib/utils";
 import { Button, Eyebrow, LiveDot, Section } from "~/components/ui";
@@ -26,6 +26,18 @@ export default function ChatDiscovery() {
   const [query, setQuery] = useState("");
   // Companion ids the visitor already has a real conversation with (>1 message).
   const [conversedIds, setConversedIds] = useState<Set<string>>(new Set());
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
 
   useEffect(() => {
     let live = true;
@@ -70,14 +82,34 @@ export default function ChatDiscovery() {
           <Wordmark appName={appName} logoUrl={config?.logoUrl} />
           <div className="flex items-center gap-2">
             {isAuthenticated ? (
-              <>
-                <span className="hidden text-sm text-muted-foreground sm:inline">
+              <div className="relative flex items-center gap-2" ref={menuRef}>
+                <button
+                  type="button"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  className="hidden rounded-lg px-2 py-1 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground sm:inline"
+                >
                   {user?.name}
-                </span>
-                <Button variant="ghost" size="sm" onClick={() => void logout()}>
-                  Sign out
-                </Button>
-              </>
+                </button>
+                {menuOpen ? (
+                  <div className="absolute right-0 top-full z-50 mt-1 w-44 rounded-xl border border-border bg-card p-1 shadow-lg">
+                    <Link
+                      to="/chat/settings"
+                      onClick={() => setMenuOpen(false)}
+                      className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-foreground transition-colors hover:bg-secondary"
+                    >
+                      <Settings className="h-4 w-4" strokeWidth={1.75} />
+                      Autonomous settings
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => { setMenuOpen(false); void logout(); }}
+                      className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary"
+                    >
+                      Sign out
+                    </button>
+                  </div>
+                ) : null}
+              </div>
             ) : (
               <Link to="/login?redirect=/chat">
                 <Button variant="ghost" size="sm">

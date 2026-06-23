@@ -7,6 +7,7 @@ import {
   Coffee,
   Heart,
   Loader2,
+  LogOut,
   MessageSquare,
   MessagesSquare,
   Plus,
@@ -124,7 +125,8 @@ export default function IndexPage() {
                   {user?.name}
                 </span>
                 <Button variant="ghost" size="sm" onClick={() => void logout()}>
-                  Sign out
+                  <span className="hidden md:block">Sign out</span>
+                  <span className="md:hidden"><LogOut /></span>
                 </Button>
               </>
             ) : (
@@ -135,7 +137,10 @@ export default function IndexPage() {
               </Link>
             )}
             <Link to={isAuthenticated ? "/chat" : "/register?redirect=/chat"}>
-              <Button size="sm">{config?.landingGetStartedLabel ?? "Get Started"}</Button>
+              <Button size="sm">
+                <span className="hidden md:block">{config?.landingGetStartedLabel ?? "Get Started"}</span>
+                <span className="md:hidden"><ArrowRight /></span>
+              </Button>
             </Link>
           </div>
         </Section>
