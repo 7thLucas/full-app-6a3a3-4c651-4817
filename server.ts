@@ -46,8 +46,18 @@ async function startServer() {
   });
 
   // Body parser middleware - ONLY for API routes, not for Remix routes
-  // Remix will handle body parsing for its own routes
-  app.use("/api", express.json());
+  // Remix will handle body parsing for its own routes.
+  // `verify` stashes the raw request bytes on req.rawBody so signature-verified
+  // webhooks (e.g. Stripe at /api/billing/webhook) can validate against the
+  // exact payload — express.json otherwise consumes the stream.
+  app.use(
+    "/api",
+    express.json({
+      verify: (req, _res, buf) => {
+        (req as unknown as { rawBody?: Buffer }).rawBody = buf;
+      },
+    }),
+  );
   app.use("/api", express.urlencoded({ extended: true }));
 
   // API Routes (before Remix handler)

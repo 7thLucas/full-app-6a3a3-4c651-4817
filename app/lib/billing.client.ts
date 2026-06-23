@@ -83,3 +83,25 @@ export async function cancelPlan(): Promise<void> {
   const res = await apiRequest("/api/billing/cancel", { method: "POST" });
   if (!res.success) throw new Error(res.message ?? "Cancel failed");
 }
+
+export interface AdminBillingStats {
+  mrr: number;
+  currency: string;
+  totalUsers: number;
+  paidUsers: number;
+  conversionRate: number;
+  planCounts: Record<PlanTier, number>;
+  plans: Record<PlanTier, PlanLimits>;
+  usageToday: { messages: number; images: number; beats: number };
+  recentUpgrades: Array<{
+    name: string;
+    email: string;
+    plan: PlanTier;
+    planExpiresAt: string | null;
+    updatedAt: string;
+  }>;
+}
+
+export async function fetchAdminBillingStats(): Promise<AdminBillingStats> {
+  return unwrap(await apiGet<AdminBillingStats>("/api/admin/billing/stats"));
+}

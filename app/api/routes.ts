@@ -6,6 +6,7 @@ import { createLogger } from "~/lib/logger";
 import { attachOptionalUser } from "./middleware/auth.guard";
 import authRoutes from "./auth/auth.routes";
 import billingRoutes from "./billing/billing.routes";
+import adminRoutes from "./admin/admin.routes";
 
 type RouteModule = {
   default?: ReturnType<typeof Router>;
@@ -27,6 +28,9 @@ router.use(authRoutes);
 
 // Billing endpoints also live in app/api (outside module auto-discovery).
 router.use(billingRoutes);
+
+// Admin analytics endpoints (role-locked).
+router.use(adminRoutes);
 
 async function discoverRouteFiles(): Promise<string[]> {
   const modulesPath = path.join(process.cwd(), "app", "modules");
