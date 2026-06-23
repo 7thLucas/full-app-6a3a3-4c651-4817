@@ -14,13 +14,14 @@ import {
   Sparkles,
   Star,
   Swords,
+  X,
   type LucideIcon,
 } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
 import { cn } from "~/lib/utils";
 import { Button, LiveDot, Section } from "~/components/ui";
 import { Wordmark } from "~/components/brand";
-import { CharacterCard } from "~/components/chat/character-card";
+import { Avatar, CharacterCard } from "~/components/chat/character-card";
 import { fetchCharacters, type CharacterCardView } from "~/lib/chat.client";
 import { useAuth } from "~/hooks/use-auth";
 
@@ -59,12 +60,12 @@ export default function IndexPage() {
   const { user, isAuthenticated, logout } = useAuth();
 
   const chatEnabled = config?.enableChatMode !== false;
-  const storyEnabled = config?.enableStoryMode !== false;
 
   const [characters, setCharacters] = useState<CharacterCardView[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     if (!chatEnabled) {
@@ -97,39 +98,23 @@ export default function IndexPage() {
     <div className="relative min-h-screen overflow-hidden bg-background font-body text-foreground grain pb-28 md:pb-0">
       <div className="aurora-backdrop animate-drift" />
 
-      {/* Top bar — wordmark, search, and the auth CTAs (CTA on top, per spec). */}
+      {/* Top bar — wordmark, then search sits between it and the auth CTAs. */}
       <header className="relative z-10 border-b border-border">
-        <Section className="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:gap-4 sm:py-5">
-          <div className="flex items-center justify-between gap-3">
-            <Wordmark appName={appName} logoUrl={config?.logoUrl} />
-            {/* Auth CTAs — kept on the top row even on mobile. */}
-            <div className="flex items-center gap-2 sm:hidden">
-              {isAuthenticated ? (
-                <Button variant="ghost" size="sm" onClick={() => void logout()}>
-                  Sign out
-                </Button>
-              ) : (
-                <Link to="/login?redirect=/chat">
-                  <Button variant="ghost" size="sm">
-                    {config?.landingSignInLabel ?? "Log in"}
-                  </Button>
-                </Link>
-              )}
-              <Link to={isAuthenticated ? "/chat" : "/register?redirect=/chat"}>
-                <Button size="sm">{config?.landingGetStartedLabel ?? "Get Started"}</Button>
-              </Link>
-            </div>
-          </div>
+        <Section className="flex items-center gap-3 py-4 sm:gap-4 sm:py-5">
+          <Wordmark appName={appName} logoUrl={config?.logoUrl} />
 
-          <Link
-            to="/chat"
-            className="group flex flex-1 items-center gap-3 rounded-full border border-border bg-card/60 px-5 py-3 text-muted-foreground backdrop-blur transition-colors hover:border-primary/50 sm:max-w-md"
+          {/* Search — full pill on desktop, icon-only trigger on mobile. */}
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            aria-label="Search stories or characters"
+            className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-card/60 text-muted-foreground backdrop-blur transition-colors hover:border-primary/40 hover:text-foreground sm:h-auto sm:w-full sm:max-w-sm sm:flex-1 sm:justify-start sm:gap-3 sm:px-5 sm:py-2.5"
           >
             <Search className="h-4 w-4 shrink-0" strokeWidth={1.75} />
-            <span className="truncate font-ui text-sm">{searchPlaceholder}</span>
-          </Link>
+            <span className="hidden truncate font-ui text-sm sm:inline">{searchPlaceholder}</span>
+          </button>
 
-          <div className="hidden items-center gap-2 sm:flex">
+          <div className="flex shrink-0 items-center gap-2">
             {isAuthenticated ? (
               <>
                 <span className="hidden text-sm text-muted-foreground lg:inline">
@@ -153,15 +138,20 @@ export default function IndexPage() {
         </Section>
       </header>
 
-      {/* Reassurance pill */}
+      {searchOpen ? (
+        <SearchOverlay
+          characters={characters}
+          placeholder={searchPlaceholder}
+          onClose={() => setSearchOpen(false)}
+        />
+      ) : null}
+
+      {/* Reassurance line — ember "live" dot ties it to the engine that keeps
+          running while you're gone. Quiet ring, no boxed-pill chrome. */}
       <Section className="relative z-10 flex justify-center pt-6">
-        <span className="inline-flex items-center gap-2.5 rounded-full border border-border bg-card/60 px-4 py-2 backdrop-blur">
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/15">
-            <Sparkles className="h-3.5 w-3.5 text-primary" strokeWidth={1.75} />
-          </span>
-          <span className="font-ui text-sm text-foreground/90">
-            {config?.landingAwayPill ?? "Stories continue while you're away."}
-          </span>
+        <span className="inline-flex items-center gap-2.5 rounded-full bg-card/40 px-4 py-1.5 font-ui text-sm text-foreground/80 ring-1 ring-inset ring-border/70">
+          <LiveDot className="h-2 w-2" />
+          {config?.landingAwayPill ?? "Stories continue while you're away."}
         </span>
       </Section>
 
@@ -220,7 +210,7 @@ export default function IndexPage() {
               </Link>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
               {filtered.map((c) => (
                 <CharacterCard key={c.characterId} character={c} />
               ))}
@@ -232,7 +222,7 @@ export default function IndexPage() {
       {/* While you're away — activity feed */}
       {chatEnabled && awayFeed.length ? (
         <Section className="relative z-10 pt-10">
-          <div className="overflow-hidden rounded-3xl border border-border bg-card/60 p-5 backdrop-blur sm:p-6">
+          <div className="overflow-hidden rounded-2xl border border-border bg-card/60 p-5 backdrop-blur sm:p-6">
             <div className="flex items-baseline justify-between gap-3">
               <h2 className="flex items-center gap-2 font-heading text-xl font-semibold tracking-tight">
                 <Sparkles className="h-4 w-4 text-primary" strokeWidth={1.75} />
@@ -259,35 +249,6 @@ export default function IndexPage() {
               </button>
             </Link>
           </div>
-        </Section>
-      ) : null}
-
-      {/* Story Mode — slim fork */}
-      {storyEnabled ? (
-        <Section className="relative z-10 pt-10">
-          <Link
-            to="/story"
-            className="group flex flex-col items-start gap-4 overflow-hidden rounded-3xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/50 sm:flex-row sm:items-center sm:justify-between sm:p-7"
-          >
-            <div className="flex items-start gap-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent ring-1 ring-accent/15">
-                <BookOpenText className="h-5 w-5" strokeWidth={1.75} />
-              </div>
-              <div>
-                <h3 className="font-heading text-lg font-semibold tracking-tight">
-                  Prefer to direct a whole world?
-                </h3>
-                <p className="mt-1 text-[0.95rem] leading-relaxed text-muted-foreground">
-                  {config?.storyModeTagline ??
-                    "Direct a living world. Third-person, cinematic, unfolding on its own — even while you're away."}
-                </p>
-              </div>
-            </div>
-            <span className="inline-flex shrink-0 items-center gap-1.5 font-ui text-sm font-medium text-accent">
-              {config?.storyModeLabel ?? "Story Mode"}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={1.75} />
-            </span>
-          </Link>
         </Section>
       ) : null}
 
@@ -326,9 +287,9 @@ function FeaturedHero({
   return (
     <Link
       to={`/chat/${character.characterId}`}
-      className="group block overflow-hidden rounded-[1.75rem] border border-primary/30 bg-card shadow-[0_30px_80px_-40px_var(--primary)] transition-colors hover:border-primary/50"
+      className="group block overflow-hidden rounded-2xl border border-primary/25 bg-card shadow-[0_20px_50px_-32px_var(--primary)] transition-colors hover:border-primary/45"
     >
-      <div className="relative min-h-[380px] sm:min-h-[420px]">
+      <div className="relative min-h-[300px] sm:min-h-[360px]">
         {character.avatarUrl ? (
           <img
             src={character.avatarUrl}
@@ -378,7 +339,7 @@ function FeaturedHero({
       </div>
 
       <div className="p-4 pt-0 sm:p-5 sm:pt-0">
-        <span className="flex h-14 w-full items-center justify-center gap-2 rounded-full bg-primary font-ui text-base font-medium tracking-wide text-primary-foreground shadow-[0_12px_40px_-12px_var(--primary)] transition-transform group-hover:scale-[1.01]">
+        <span className="flex h-14 w-full items-center justify-center gap-2 rounded-full bg-primary font-ui text-base font-medium tracking-wide text-primary-foreground shadow-[0_10px_28px_-16px_var(--primary)] transition-transform group-hover:scale-[1.01]">
           <Sparkles className="h-4 w-4" strokeWidth={2} />
           {cta}
           <ChevronRight className="h-4 w-4" strokeWidth={2} />
@@ -473,5 +434,98 @@ function AwayRow({
         </span>
       </Link>
     </li>
+  );
+}
+
+/* ── Search overlay ──────────────────────────────────────────────────── */
+
+function SearchOverlay({
+  characters,
+  placeholder,
+  onClose,
+}: {
+  characters: CharacterCardView[];
+  placeholder: string;
+  onClose: () => void;
+}) {
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  const results = useMemo(() => {
+    const term = query.trim().toLowerCase();
+    if (!term) return characters.slice(0, 6);
+    return characters
+      .filter(
+        (c) =>
+          c.name.toLowerCase().includes(term) ||
+          c.tagline?.toLowerCase().includes(term) ||
+          c.tags?.some((t) => t.toLowerCase().includes(term)),
+      )
+      .slice(0, 8);
+  }, [characters, query]);
+
+  return (
+    <div
+      className="animate-route fixed inset-0 z-50 flex justify-center bg-background/80 px-4 pt-20 backdrop-blur-sm"
+      onMouseDown={onClose}
+    >
+      <div
+        className="h-fit w-full max-w-xl overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_60px_-34px_var(--primary)]"
+        onMouseDown={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center gap-3 border-b border-border px-5">
+          <Search className="h-4 w-4 shrink-0 text-muted-foreground" strokeWidth={1.75} />
+          {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
+          <input
+            autoFocus
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={placeholder}
+            className="w-full bg-transparent py-4 font-ui text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+          />
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close search"
+            className="rounded-full p-1 text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <X className="h-4 w-4" strokeWidth={1.75} />
+          </button>
+        </div>
+
+        <ul className="max-h-[50vh] overflow-y-auto p-2">
+          {results.length ? (
+            results.map((c) => (
+              <li key={c.characterId}>
+                <Link
+                  to={`/chat/${c.characterId}`}
+                  onClick={onClose}
+                  className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-secondary"
+                >
+                  <Avatar src={c.avatarUrl} name={c.name} className="h-10 w-10" />
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate font-ui text-sm font-medium text-foreground">
+                      {c.name}
+                    </span>
+                    <span className="block truncate text-xs text-muted-foreground">
+                      {c.tagline}
+                    </span>
+                  </span>
+                </Link>
+              </li>
+            ))
+          ) : (
+            <li className="px-3 py-8 text-center text-sm text-muted-foreground">
+              No companions match “{query}”.
+            </li>
+          )}
+        </ul>
+      </div>
+    </div>
   );
 }
