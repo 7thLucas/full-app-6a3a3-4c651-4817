@@ -53,6 +53,33 @@ export function BrandMark({ className }: { className?: string }) {
   );
 }
 
+/** Full Driftoria logo — compass mark + serif lettering on transparent art.
+ *  Use for larger brand moments (auth headers, footer) where the combined
+ *  lockup carries more presence than the small mark + text. Falls back to the
+ *  composed {@link Wordmark} when no image is configured. */
+export function BrandWordmark({
+  appName,
+  wordmarkUrl,
+  logoUrl,
+  className,
+}: {
+  appName: string;
+  wordmarkUrl?: string;
+  logoUrl?: string;
+  className?: string;
+}) {
+  if (!wordmarkUrl) {
+    return <Wordmark appName={appName} logoUrl={logoUrl} className={className} />;
+  }
+  return (
+    <img
+      src={wordmarkUrl}
+      alt={appName}
+      className={cn("w-auto object-contain", className)}
+    />
+  );
+}
+
 export function Wordmark({
   appName,
   logoUrl,

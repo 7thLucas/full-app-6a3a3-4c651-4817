@@ -20,7 +20,7 @@ import {
 import { useConfigurables } from "~/modules/configurables";
 import { cn } from "~/lib/utils";
 import { Button, LiveDot, Section } from "~/components/ui";
-import { Wordmark } from "~/components/brand";
+import { BrandWordmark, Wordmark } from "~/components/brand";
 import { Avatar, CharacterCard } from "~/components/chat/character-card";
 import { fetchCharacters, type CharacterCardView } from "~/lib/chat.client";
 import { useAuth } from "~/hooks/use-auth";
@@ -255,7 +255,12 @@ export default function IndexPage() {
       {/* Footer */}
       <footer className="relative z-10 mt-12 border-t border-border">
         <Section className="flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
-          <Wordmark appName={appName} logoUrl={config?.logoUrl} />
+          <BrandWordmark
+            appName={appName}
+            wordmarkUrl={config?.wordmarkUrl}
+            logoUrl={config?.logoUrl}
+            className="h-8"
+          />
           <p className="text-sm text-muted-foreground">
             {config?.footerText ?? "A living story, powered by AI and shaped by you."}
           </p>

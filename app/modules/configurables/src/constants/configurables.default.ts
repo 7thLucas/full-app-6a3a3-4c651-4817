@@ -123,6 +123,7 @@ export type TPlans = {
 export type TDefaultConfigurableData = {
   appName: string;
   logoUrl: string;
+  wordmarkUrl: string;
   brandColor: TBrandColor;
   font: TFont;
   // Branding & copy
@@ -218,6 +219,7 @@ export type TDefaultConfigurableData = {
 export const defaultConfigurablesData: TDefaultConfigurableData = {
   appName: "Driftoria",
   logoUrl: "/brand/driftoria-mark.png",
+  wordmarkUrl: "/brand/driftoria-wordmark.png",
   brandColor: {
     // Base — deep ink night with violet undertone
     background: "#0E0D14",

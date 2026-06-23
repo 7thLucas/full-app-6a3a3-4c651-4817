@@ -3,7 +3,7 @@ import { Link, useNavigate, useSearchParams } from "react-router";
 import { ArrowLeft, Loader2, UserPlus } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
 import { Button, Eyebrow, Section } from "~/components/ui";
-import { Wordmark } from "~/components/brand";
+import { BrandWordmark, Wordmark } from "~/components/brand";
 import { useAuth } from "~/hooks/use-auth";
 
 export function meta() {
@@ -59,6 +59,12 @@ export default function RegisterPage() {
 
       <Section className="relative z-10 py-16">
         <div className="mx-auto max-w-md">
+          <BrandWordmark
+            appName={appName}
+            wordmarkUrl={config?.wordmarkUrl}
+            logoUrl={config?.logoUrl}
+            className="mb-7 h-10"
+          />
           <Eyebrow>
             <UserPlus className="h-3.5 w-3.5" strokeWidth={1.75} />
             Join {appName}
