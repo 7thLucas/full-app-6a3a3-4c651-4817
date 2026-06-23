@@ -5,7 +5,7 @@
 **Name:** Driftoria
 **Category:** AI Character & Narrative App
 **Differentiated from:** Emochi and comparable AI companion chat apps — this app adds autonomous narrative progression
-**Phase:** Pre-build
+**Phase:** Built — initial MVP generated and previewable
 
 ---
 
