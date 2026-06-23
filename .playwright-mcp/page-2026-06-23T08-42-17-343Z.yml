@@ -1,0 +1,38 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e7]: Driftoria
+    - generic [ref=e8]: 05 / 10
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - text: Core Features
+        - heading "Built for living narratives" [level=2] [ref=e12]
+      - generic [ref=e13]: Text-first MVP
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e17]: ⚡
+        - heading "Autonomous Story Engine" [level=4] [ref=e18]
+        - paragraph [ref=e19]: Advances the narrative automatically — 3 beats/day by default — generating scenes, decisions, and events without waiting for you.
+      - generic [ref=e20]:
+        - generic [ref=e21]: 🎭
+        - heading "AI Characters" [level=4] [ref=e22]
+        - paragraph [ref=e23]: Pre-built and customizable characters with distinct personalities, backstories, and motivations that evolve over time.
+      - generic [ref=e24]:
+        - generic [ref=e25]: 💬
+        - heading "Story Intervention" [level=4] [ref=e26]
+        - paragraph [ref=e27]: Drop in any time to chat, add context, introduce a scenario, or redirect the plot. Every message shapes what comes next.
+      - generic [ref=e28]:
+        - generic [ref=e29]: 📜
+        - heading "Narrative Timeline" [level=4] [ref=e30]
+        - paragraph [ref=e31]: A chronological log of every AI-generated scene alongside your interventions — a readable, living record of the story.
+      - generic [ref=e32]:
+        - generic [ref=e33]: 🎚️
+        - heading "Pacing Controls" [level=4] [ref=e34]
+        - paragraph [ref=e35]: Set story speed — slow burn (1/day), moderate (3/day), or active (6+/day). Your narrative, your rhythm, your life.
+      - generic [ref=e36]:
+        - generic [ref=e37]: 🌱
+        - heading "Scenario Seeding" [level=4] [ref=e38]
+        - paragraph [ref=e39]: Plant "what if" prompts that influence upcoming beats — without locking in a specific outcome. Shape the future.
+  - generic [ref=e40]:
+    - generic [ref=e41]: "\"Your story lives, even when you don't.\""
+    - generic [ref=e42]: Driftoria · Product Blueprint

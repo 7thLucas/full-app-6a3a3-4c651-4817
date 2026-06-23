@@ -13,6 +13,7 @@ import stylesheet from "~/tailwind.css?url";
 import { useEffect } from "react";
 import { ThemeProvider } from "next-themes";
 import { ConfigurablesProvider, ConfigurablesCSSBridge } from "~/modules/configurables";
+import { MobileNav } from "~/components/mobile-nav";
 import { GlobalError } from "./error";
 
 function ErrorReporter({ error }: { error: any }) {
@@ -107,6 +108,7 @@ export default function App() {
           <ConfigurablesCSSBridge />
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Outlet />
+            <MobileNav />
           </ThemeProvider>
         </ConfigurablesProvider>
         <ScrollRestoration />

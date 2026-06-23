@@ -1,0 +1,607 @@
+- generic:
+  - generic:
+    - navigation:
+      - generic:
+        - button:
+          - img
+        - navigation:
+          - generic:
+            - list:
+              - listitem:
+                - link:
+                  - /url: /pricing
+                  - text: Pricing
+              - listitem:
+                - link:
+                  - /url: https://docs.quantumbyte.ai
+                  - text: Documentation
+              - listitem:
+                - link:
+                  - /url: /manifesto
+                  - text: Manifesto
+              - listitem:
+                - link:
+                  - /url: /articles
+                  - text: Articles
+        - button: Login
+    - main:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Build your own AI tools to help your business
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - img
+                        - generic [ref=e572] [cursor=pointer]:
+                          - img [ref=e574]
+                          - generic [ref=e576]: Write the problem here and our AI team will build you a working app just like the one on the right
+                        - generic:
+                          - img [ref=e578]
+                          - img [ref=e580]
+                          - img [ref=e582]
+                    - generic [ref=e32]:
+                      - generic [ref=e33]:
+                        - textbox [ref=e583]:
+                          - /placeholder: I want an app to manage my company's monthly payroll and show me a list of how much each employee gets paid.
+                        - button [ref=e584] [cursor=pointer]: Build my AI — free
+                      - generic [ref=e38]:
+                        - generic [ref=e39]:
+                          - img [ref=e40]
+                          - generic [ref=e43]: Some inspirations
+                        - generic [ref=e44]:
+                          - button [ref=e585] [cursor=pointer]:
+                            - paragraph [ref=e46]: “I run an e-commerce store and I need an AI to automate our daily sales and inventory reports.”
+                            - generic [ref=e47]: Reporting Automation
+                          - button [ref=e586] [cursor=pointer]:
+                            - paragraph [ref=e49]: “I run a logistics fleet and I need an AI to track delivery times and operational bottlenecks.”
+                            - generic [ref=e50]: Operations Control
+                          - button [ref=e587] [cursor=pointer]:
+                            - paragraph [ref=e52]: “I run a legal clinic and I need an AI to help manage client documents and summarize case files.”
+                            - generic [ref=e53]: Case Management
+                    - button:
+                      - img
+                  - generic:
+                    - generic:
+                      - paragraph: The same platform global teams trust — starting at $6/mo
+              - generic:
+                - generic:
+                  - img
+                  - button:
+                    - img
+                  - button:
+                    - img
+                  - button:
+                    - img
+                  - generic:
+                    - img
+                    - img
+                    - img
+        - generic:
+          - generic:
+            - generic:
+              - generic: Sounds familiar?
+              - generic:
+                - heading [level=2]:
+                  - text: You know something's
+                  - generic:
+                    - generic: bro
+                    - generic: ken
+                - paragraph: You just don't know exactly what to build, who to hire, or where to start.
+                - paragraph: So nothing changes.
+            - generic:
+              - generic:
+                - generic:
+                  - img
+                - generic:
+                  - heading [level=3]: That's where QuantumByte comes in
+                  - paragraph: You bring the problem. Our team of AI agents handles the rest, so you're never figuring it out alone.
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic: How It Works
+              - generic:
+                - generic:
+                  - generic:
+                    - button: You talk. It builds
+                    - button: Real apps. Not templates
+                    - button: $6 to start
+                    - button: Expert backup
+                - generic:
+                  - generic:
+                    - generic:
+                      - img
+                  - generic:
+                    - generic:
+                      - heading [level=2]: You talk. The AI builds
+                      - paragraph: No forms. No specs. Just a conversation. Our AI asks about your business, how you take orders, who does what, what's slowing you down. Then it designs and builds your app on the spot.
+                      - paragraph: "*You don't need to know what to build. That's our job."
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic: Why Choose QuantumByte
+              - generic:
+                - heading [level=2]: Why teams choose QuantumByte
+              - generic:
+                - generic:
+                  - generic:
+                    - img
+                  - generic:
+                    - heading [level=3]: Speak business, not engineering.
+                    - paragraph: Describe your service in plain language. No specs. No code. QB turns business intent into a working app.
+                - generic:
+                  - generic:
+                    - img
+                  - generic:
+                    - heading [level=3]: Built fast. Go live in one click.
+                    - paragraph: Go from conversation to a deployed app in 90 seconds. No engineers. No hosting setup. No scaling headaches. Your AI service runs itself the moment it's ready.
+                - generic:
+                  - generic:
+                    - img
+                  - generic:
+                    - heading [level=3]: Bring in real experts when AI hits a wall
+                    - paragraph: "Our team finishes what AI can't — directly inside your live app. Pay only for what you use: $130 per Story Point."
+        - generic:
+          - generic:
+            - button:
+              - text: Compare alternatives
+              - img
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - heading [level=3]:
+                        - generic: QuantumByte Over Other Solutions
+                    - generic:
+                      - generic:
+                        - generic: No-Code
+                        - generic: (Bubble)
+                    - generic:
+                      - generic:
+                        - generic: Vibe-Coding
+                        - generic: (Lovable)
+                    - generic:
+                      - generic:
+                        - generic: Developers
+                        - generic: (Agency)
+                    - generic:
+                      - generic:
+                        - generic: Ready-Made
+                        - generic: (Monday)
+                    - generic:
+                      - generic: QuantumByte
+                    - generic: Input needed
+                    - generic: Wireframe
+                    - generic: Prompt/spec
+                    - generic: Tech spec
+                    - generic: None
+                    - generic:
+                      - generic: Chat
+                    - generic: You must know upfront
+                    - generic: What to build
+                    - generic: What to build
+                    - generic: Everything
+                    - generic: Nothing (limited)
+                    - generic:
+                      - generic: Just your problem
+                    - generic: Output
+                    - generic: Static app
+                    - generic: Code repo
+                    - generic: Custom app
+                    - generic: Generic app
+                    - generic:
+                      - generic: AI that acts
+                    - generic: You maintain
+                    - generic: The app
+                    - generic: Code + hosting + deploys
+                    - generic: Nothing
+                    - generic: Nothing
+                    - generic:
+                      - generic: Nothing
+                    - generic: Time to live
+                    - generic: Days
+                    - generic: Hours/days
+                    - generic: Months
+                    - generic: Minutes
+                    - generic:
+                      - generic: Minutes
+                    - generic: Customization
+                    - generic: High
+                    - generic: High
+                    - generic: High
+                    - generic: Low
+                    - generic:
+                      - generic: High
+                    - generic: Price
+                    - generic: $25-300/mo
+                    - generic: $0-20/mo
+                    - generic: $5K-50K
+                    - generic: $10-50/mo
+                    - generic:
+                      - generic: $6/mo
+                    - generic: AI built in?
+                    - generic: "No"
+                    - generic: "No"
+                    - generic: Maybe
+                    - generic: "No"
+                    - generic:
+                      - generic: "Yes"
+                    - generic: Updates
+                    - generic: Rebuild
+                    - generic: Code changes
+                    - generic: Dev hours
+                    - generic: Limited
+                    - generic:
+                      - generic: Talk to it
+                    - generic: Runs your services autonomously
+                    - generic:
+                      - generic: ✕
+                    - generic:
+                      - generic: ✕
+                    - generic:
+                      - generic: ✕
+                    - generic:
+                      - generic: ✕
+                    - generic:
+                      - generic: ✓
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic: Expert-Led Delivery
+                - heading [level=2]: Bring in real experts when AI hits a wall
+                - paragraph: Tell us what you want. We pair you with a QuantumByte expert who builds it for you, start to finish
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - blockquote: “QB asked questions about my workflow that I hadn't even considered. The app it built was smarter than what I would have asked for.”
+                - generic:
+                  - img
+                  - generic:
+                    - generic: Maria
+                    - generic: Bakery owner, Austin
+              - generic:
+                - generic:
+                  - heading [level=3]: Trusted by thousands
+                  - paragraph: Business owners across countries use QuantumByte to build AI apps that actually work for them.
+                - generic:
+                  - generic:
+                    - generic:
+                      - img
+                    - generic:
+                      - generic: 5,000+
+                      - generic: businesses
+                  - generic:
+                    - generic:
+                      - img
+                    - generic:
+                      - generic: <10m
+                      - generic: avg build time
+                  - generic:
+                    - generic:
+                      - img
+                    - generic:
+                      - generic: $6/mo
+                      - generic: to start
+        - generic:
+          - generic:
+            - generic: Pricing
+            - heading [level=2]: Build Your App Free, Upgrade as Needed
+            - paragraph: Pick a size. Scale up anytime. Cancel whenever.
+            - generic:
+              - button: Monthly
+              - button:
+                - generic: Annual
+                - generic: Save 17%
+            - generic:
+              - generic:
+                - article:
+                  - generic:
+                    - generic:
+                      - img
+                  - generic:
+                    - generic:
+                      - heading [level=3]: Free
+                      - generic:
+                        - generic: $0
+                      - paragraph: Turn your ideas into a first app draft
+                      - paragraph: See what QuantumByte can build before you pay
+                    - button: Start Free
+                    - generic:
+                      - paragraph: You can create and preview your first app draft
+                    - generic:
+                      - generic:
+                        - img
+                        - paragraph: 1 AI app
+                      - generic:
+                        - img
+                        - paragraph: AI partner included (Bear Team)
+                      - generic:
+                        - img
+                        - paragraph: QB subdomain
+                      - generic:
+                        - img
+                        - paragraph: Basic analytics
+                      - generic:
+                        - img
+                        - paragraph: Community support
+              - generic:
+                - article:
+                  - generic:
+                    - generic:
+                      - img
+                  - generic:
+                    - generic:
+                      - heading [level=3]: Build an App
+                      - generic:
+                        - generic: $6
+                        - generic: /mo
+                        - generic: $10
+                        - generic: Save 40%
+                      - paragraph: Build your first working app with AI help
+                      - paragraph: Ask Bear to create screens, edit copy, change logic, and fix issues
+                    - button: Start Building - $6/mo
+                    - generic:
+                      - generic:
+                        - paragraph: Monthly credits
+                        - generic:
+                          - combobox:
+                            - generic: 200 credits - $6/mo
+                            - img
+                      - paragraph: Pick a monthly size. Top up anytime, top-ups never expire.
+                    - generic:
+                      - paragraph: You can keep asking Bear to improve your app
+                    - generic:
+                      - generic:
+                        - img
+                        - paragraph: Feel the experience end-to-end
+                      - generic:
+                        - img
+                        - paragraph: Validate the idea before committing
+                      - generic:
+                        - img
+                        - paragraph: Confirm it fits your business process
+              - generic:
+                - article:
+                  - generic: Most Popular
+                  - generic:
+                    - generic:
+                      - img
+                  - generic:
+                    - generic:
+                      - heading [level=3]: Go Live
+                      - generic:
+                        - generic: $29
+                        - generic: /mo
+                        - generic: $82
+                        - generic: Save 65%
+                      - paragraph: Put your app online for real users
+                      - paragraph: We host it, give you a real link/domain and help you keep improving it
+                    - button: Go Live - $29/mo
+                    - generic:
+                      - generic:
+                        - paragraph: Monthly credits
+                        - generic:
+                          - combobox:
+                            - generic: 1,000 credits - $29/mo
+                            - img
+                      - paragraph: All sizes include server, custom domain, and priority support.
+                    - generic:
+                      - paragraph: Real people can open and use your app online
+                    - generic:
+                      - generic:
+                        - img
+                        - paragraph: "Everything in Build, plus:"
+                      - generic:
+                        - img
+                        - paragraph: Server included, your app goes live
+                      - generic:
+                        - img
+                        - paragraph: Custom domain (yourapp.com)
+                      - generic:
+                        - img
+                        - paragraph: Advanced analytics
+                      - generic:
+                        - img
+                        - paragraph: Priority support (< 4h response)
+                      - generic:
+                        - img
+                        - paragraph: Version history + rollback
+              - generic:
+                - article:
+                  - generic:
+                    - generic:
+                      - img
+                  - generic:
+                    - generic:
+                      - heading [level=3]: Enterprise
+                      - generic:
+                        - generic: Custom
+                      - paragraph: For teams that need dedicated support and deeper customization
+                      - paragraph: Get custom workflows, enterprise-grade service and hands-on help
+                    - button: Contact Sales
+                    - generic:
+                      - paragraph: We tailor the product and support around your business
+                    - generic:
+                      - generic:
+                        - img
+                        - paragraph: "Everything in Go Live, plus:"
+                      - generic:
+                        - img
+                        - paragraph: Fast Track human engineers (included)
+                      - generic:
+                        - img
+                        - paragraph: Custom integrations + API access
+                      - generic:
+                        - img
+                        - paragraph: SSO, audit logs, compliance
+                      - generic:
+                        - img
+                        - paragraph: SLA + dedicated success manager
+            - paragraph: Unlimited collaborators on every plan · No card needed for Free · Cancel anytime · Set a spending cap so you never get surprise-billed.
+        - generic:
+          - generic:
+            - img
+            - generic:
+              - heading [level=2]: Frequently Asked Questions
+              - generic:
+                - generic:
+                  - button:
+                    - generic: Is this just another no-code app builder?
+                    - generic:
+                      - img
+                  - generic:
+                    - paragraph: No. QB ships AI services that run your operations — not tools you have to learn to use. The app is the surface; the service is what runs.
+                - generic:
+                  - button:
+                    - generic: How is QB different from Sierra or Decagon?
+                    - generic:
+                      - img
+                  - paragraph: Sierra and Decagon are enterprise platforms with $100K+ contracts and 6-month deployments. QB serves the SMB and mid-market service operator tier. Same outcome; different audience and price.
+                - generic:
+                  - button:
+                    - generic: What's "Fast Track"?
+                    - generic:
+                      - img
+                  - paragraph: When AI hits an edge case, our engineers finish the job inside your live app. Billed at $130 per Story Point. Pay only for what you use.
+                - generic:
+                  - button:
+                    - generic: Can I describe my service in plain language?
+                    - generic:
+                      - img
+                  - paragraph: Yes. That's the whole point. Tell QB what you need — workflow, users, data — in conversation. We turn it into a working app.
+                - generic:
+                  - button:
+                    - generic: Do I need to know how to code?
+                    - generic:
+                      - img
+                  - paragraph: No. You describe what you need in plain language — like talking to a colleague. Our AI handles everything technical. If you can explain your business, you can use QuantumByte.
+                - generic:
+                  - button:
+                    - generic: What if I don't know what I need?
+                    - generic:
+                      - img
+                  - paragraph: Our AI asks guiding questions about your workflow to help clarify your pain points, and then suggests the right tool for you before building it.
+                - generic:
+                  - button:
+                    - generic: How is this different from Bubble, Lovable, or just buying Monday?
+                    - generic:
+                      - img
+                  - paragraph: Unlike no-code tools where you still have to build the UI and logic yourself, or Ready-Made solutions that are too generic, QuantumByte actually creates a completely custom app just for you, by having a conversation.
+                - generic:
+                  - button:
+                    - generic: Can I really build something useful for $6/month?
+                    - generic:
+                      - img
+                  - paragraph: Yes, $6/mo gets you a fully functional prototype with priority AI access that you can start using internally. You only need to upgrade when you are ready to scale or need a custom domain.
+                - generic:
+                  - button:
+                    - generic: What happens if I hit a limit or need help?
+                    - generic:
+                      - img
+                  - paragraph: We offer dedicated support and flexible limits. If you need more computing power or run into a wall, our team is directly reachable.
+                - generic:
+                  - button:
+                    - generic: Is my data safe?
+                    - generic:
+                      - img
+                  - paragraph: Absolutely. We follow strict industry-standard security protocols to ensure your data and app logic are isolated and protected.
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - heading [level=2]: Every day without your service running on AI is another day doing the work AI should be doing.
+                - button: Build my AI — free
+              - generic:
+                - img
+        - generic:
+          - generic:
+            - generic:
+              - link:
+                - /url: /
+                - img
+              - paragraph: The AI-powered platform that turns your ideas into real software. No code needed — just describe what you want to build.
+              - link:
+                - /url: mailto:support@quantumbyte.ai
+                - img
+                - text: support@quantumbyte.ai
+            - generic:
+              - generic:
+                - heading [level=3]: QuantumByte
+                - link:
+                  - /url: /manifesto
+                  - text: Manifesto
+                - link:
+                  - /url: /pricing
+                  - text: Pricing
+                - link:
+                  - /url: https://www.linkedin.com/company/aiquantumbyte/posts/?feedView=all
+                  - text: Careers
+              - generic:
+                - heading [level=3]: Resources
+                - link:
+                  - /url: /articles
+                  - text: Articles
+                - link:
+                  - /url: https://docs.quantumbyte.ai/
+                  - text: Documentation
+              - generic:
+                - heading [level=3]: Legal
+                - link:
+                  - /url: /privacy-policy
+                  - text: Privacy Policy
+                - link:
+                  - /url: /terms-of-service
+                  - text: Terms of Service
+        - button:
+          - generic:
+            - img
+          - generic:
+            - generic:
+              - text: Claim
+              - img
+              - text: 50 free credits
+            - generic: Build your first AI app free
+  - region "Notifications alt+T"
+  - dialog "Login" [ref=e589]:
+    - generic [ref=e590]:
+      - heading "Login" [level=2] [ref=e591]
+      - generic [ref=e592]:
+        - button "Login with Google" [active] [ref=e593] [cursor=pointer]:
+          - img [ref=e594]
+          - text: Login with Google
+        - generic [ref=e599]: Or continue with
+        - generic [ref=e600]:
+          - generic [ref=e601]:
+            - generic [ref=e602]:
+              - text: Email or Username
+              - generic [ref=e603]: "*"
+            - textbox "Email or Username *" [ref=e605]:
+              - /placeholder: Username or email
+          - generic [ref=e606]:
+            - generic [ref=e607]:
+              - generic [ref=e608]:
+                - text: Password
+                - generic [ref=e609]: "*"
+              - button "Forgot password?" [ref=e610] [cursor=pointer]
+            - generic [ref=e612]:
+              - textbox "Password *" [ref=e613]:
+                - /placeholder: "********"
+              - button [ref=e614] [cursor=pointer]:
+                - img [ref=e615]
+          - button "Login" [ref=e618] [cursor=pointer]
+        - generic [ref=e619]:
+          - text: Don't have an account?
+          - button "Sign up" [ref=e620] [cursor=pointer]
+    - button "Close" [ref=e621] [cursor=pointer]:
+      - img
+      - generic [ref=e622]: Close

@@ -14,10 +14,13 @@ import { createLogger } from "~/lib/logger";
 import {
   createCharacter,
   getCharacter,
-  listCharacters,
+  likeCharacter,
+  listCharacterCards,
+  listSessionsForOwner,
   openSession,
   sendMessage,
   toCardView,
+  toProfileView,
 } from "./chat/chat.service";
 import { resolveOwnerId } from "./chat/chat.owner";
 
@@ -30,16 +33,28 @@ function fail(res: Response, status: number, message: string) {
 
 router.get("/chat/characters", async (_req: Request, res: Response) => {
   try {
-    const characters = await listCharacters();
-    return res.json({ success: true, data: characters.map(toCardView) });
+    const cards = await listCharacterCards();
+    return res.json({ success: true, data: cards });
   } catch (error) {
     logger.error("GET /chat/characters failed", error);
     return fail(res, 500, error instanceof Error ? error.message : "Failed to load companions");
   }
 });
 
+router.get("/chat/sessions", async (req: Request, res: Response) => {
+  try {
+    const ownerId = resolveOwnerId(req, res);
+    const sessions = await listSessionsForOwner(ownerId);
+    return res.json({ success: true, data: sessions });
+  } catch (error) {
+    logger.error("GET /chat/sessions failed", error);
+    return fail(res, 500, error instanceof Error ? error.message : "Failed to load chats");
+  }
+});
+
 router.post("/chat/characters", async (req: Request, res: Response) => {
-  const { name, tagline, persona, greeting, tags, avatarPrompt } = req.body ?? {};
+  const { name, tagline, persona, greeting, tags, avatarPrompt, description, scenario, gender, category } =
+    req.body ?? {};
   if (
     typeof name !== "string" || !name.trim() ||
     typeof tagline !== "string" || !tagline.trim() ||
@@ -57,10 +72,14 @@ router.post("/chat/characters", async (req: Request, res: Response) => {
         greeting: typeof greeting === "string" ? greeting : undefined,
         tags: Array.isArray(tags) ? tags.map((t) => String(t)) : undefined,
         avatarPrompt: typeof avatarPrompt === "string" ? avatarPrompt : undefined,
+        description: typeof description === "string" ? description : undefined,
+        scenario: typeof scenario === "string" ? scenario : undefined,
+        gender: typeof gender === "string" ? gender : undefined,
+        category: typeof category === "string" ? category : undefined,
       },
       ownerId,
     );
-    return res.json({ success: true, data: toCardView(character) });
+    return res.json({ success: true, data: toProfileView(character) });
   } catch (error) {
     logger.error("POST /chat/characters failed", error);
     return fail(res, 500, error instanceof Error ? error.message : "Failed to create companion");
@@ -71,10 +90,21 @@ router.get("/chat/characters/:id", async (req: Request, res: Response) => {
   try {
     const character = await getCharacter(String(req.params.id));
     if (!character) return fail(res, 404, "Character not found");
-    return res.json({ success: true, data: toCardView(character) });
+    return res.json({ success: true, data: toProfileView(character) });
   } catch (error) {
     logger.error("GET /chat/characters/:id failed", error);
     return fail(res, 500, error instanceof Error ? error.message : "Failed to load companion");
+  }
+});
+
+router.post("/chat/characters/:id/like", async (req: Request, res: Response) => {
+  try {
+    const likeCount = await likeCharacter(String(req.params.id));
+    if (likeCount === null) return fail(res, 404, "Character not found");
+    return res.json({ success: true, data: { likeCount } });
+  } catch (error) {
+    logger.error("POST /chat/characters/:id/like failed", error);
+    return fail(res, 500, error instanceof Error ? error.message : "Failed to like companion");
   }
 });
 

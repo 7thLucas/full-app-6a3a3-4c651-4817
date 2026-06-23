@@ -1,0 +1,11 @@
+[     718ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/modules/configurables/index.ts:0
+[     724ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/components/mobile-nav.tsx:0
+[     724ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/components/ui.tsx:0
+[     724ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/components/brand.tsx:0
+[     725ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/components/chat/character-card.tsx:0
+[     725ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/lib/chat.client.ts:0
+[     725ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/hooks/use-auth.tsx:0
+[     725ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/error.tsx:0
+[     726ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:0
+[     727ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@id/__x00__virtual:react-router/hmr-runtime:0
+[     727ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/lib/utils.ts:0

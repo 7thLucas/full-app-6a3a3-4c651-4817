@@ -1,7 +1,14 @@
 import { Link } from "react-router";
-import { MessageCircleHeart } from "lucide-react";
+import { MessageCircleHeart, MessagesSquare } from "lucide-react";
 import { cn } from "~/lib/utils";
 import type { CharacterCardView } from "~/lib/chat.client";
+
+/** Compact human count: 1200 → "1.2k", 0 → "" (caller shows "New" instead). */
+function formatCount(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1).replace(/\.0$/, "")}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1).replace(/\.0$/, "")}k`;
+  return String(n);
+}
 
 /** A single collectible companion in the discovery feed — art is the hero. */
 export function CharacterCard({ character }: { character: CharacterCardView }) {
@@ -31,6 +38,17 @@ export function CharacterCard({ character }: { character: CharacterCardView }) {
           </div>
         )}
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-card via-card/70 to-transparent" />
+        {/* Social proof — real conversation count, or "New" for fresh companions. */}
+        <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-background/70 px-2 py-1 font-ui text-[0.65rem] font-medium tracking-wide text-foreground backdrop-blur">
+          {character.chatCount > 0 ? (
+            <>
+              <MessagesSquare className="h-3 w-3 text-primary" strokeWidth={2} />
+              {formatCount(character.chatCount)}
+            </>
+          ) : (
+            <span className="uppercase tracking-wider text-primary">New</span>
+          )}
+        </span>
         {character.tags?.length ? (
           <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
             {character.tags.slice(0, 2).map((t) => (

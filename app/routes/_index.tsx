@@ -57,11 +57,11 @@ export default function IndexPage() {
   const liveCount = characters.length;
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-background font-body text-foreground grain">
+    <div className="relative min-h-screen overflow-hidden bg-background font-body text-foreground grain pb-24 md:pb-0">
       <div className="aurora-backdrop animate-drift" />
 
-      {/* Nav */}
-      <header className="relative z-10 border-b border-border">
+      {/* Nav — hidden on mobile (replaced by the bottom nav) */}
+      <header className="relative z-10 hidden border-b border-border md:block">
         <Section className="flex items-center justify-between py-5">
           <Wordmark appName={appName} logoUrl={config?.logoUrl} />
           <div className="flex items-center gap-2">
@@ -91,8 +91,8 @@ export default function IndexPage() {
         </Section>
       </header>
 
-      {/* Hero — hook, not pitch */}
-      <Section className="relative z-10 pb-6 pt-14 sm:pt-20">
+      {/* Hero — compact on mobile so the gallery sits above the fold */}
+      <Section className="relative z-10 pb-5 pt-7 sm:pb-6 sm:pt-20">
         <div className="max-w-2xl">
           <Eyebrow>
             <LiveDot />
@@ -100,12 +100,12 @@ export default function IndexPage() {
               ? `${liveCount} companion${liveCount === 1 ? "" : "s"} live now`
               : (config?.chatModeLabel ?? "Chat Mode")}
           </Eyebrow>
-          <h1 className="mt-5 font-heading text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl">
+          <h1 className="mt-3 font-heading text-3xl font-semibold leading-[1.08] tracking-tight sm:mt-5 sm:text-6xl">
             <span className="text-aurora">
               {config?.landingHeadline ?? "Someone's always awake in here."}
             </span>
           </h1>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-3 max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg">
             {config?.landingSubheadline ??
               "Meet AI companions who talk to you, show you their world, and remember you between visits. Pick one and start."}
           </p>
@@ -116,12 +116,12 @@ export default function IndexPage() {
       {chatEnabled ? (
         <Section className="relative z-10 pb-16">
           {tags.length ? (
-            <div className="mb-8 flex flex-wrap gap-2">
+            <div className="-mx-6 mb-6 flex gap-2 overflow-x-auto px-6 pb-1 sm:mx-0 sm:mb-8 sm:flex-wrap sm:px-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               <button
                 type="button"
                 onClick={() => setActiveTag(null)}
                 className={cn(
-                  "rounded-full border px-4 py-1.5 font-ui text-sm transition-colors",
+                  "shrink-0 rounded-full border px-4 py-1.5 font-ui text-sm transition-colors",
                   activeTag === null
                     ? "border-primary bg-primary/15 text-foreground"
                     : "border-border text-muted-foreground hover:text-foreground",
@@ -135,7 +135,7 @@ export default function IndexPage() {
                   type="button"
                   onClick={() => setActiveTag(t)}
                   className={cn(
-                    "rounded-full border px-4 py-1.5 font-ui text-sm transition-colors",
+                    "shrink-0 rounded-full border px-4 py-1.5 font-ui text-sm transition-colors",
                     activeTag === t
                       ? "border-primary bg-primary/15 text-foreground"
                       : "border-border text-muted-foreground hover:text-foreground",

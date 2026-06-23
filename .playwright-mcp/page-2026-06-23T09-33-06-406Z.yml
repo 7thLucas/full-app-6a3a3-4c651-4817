@@ -1,0 +1,23 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img [ref=e7]
+        - generic [ref=e9]: Driftoria
+      - generic [ref=e10]:
+        - link "Sign in" [ref=e11] [cursor=pointer]:
+          - /url: /login?redirect=/chat
+          - button "Sign in" [ref=e12]
+        - link "Create" [ref=e13] [cursor=pointer]:
+          - /url: /chat/create
+          - button "Create" [ref=e14]:
+            - img [ref=e15]
+            - text: Create
+  - generic [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]: Chat Mode
+      - heading "Find someone to talk to." [level=1] [ref=e22]
+      - paragraph [ref=e23]: Meet a companion who talks to you, shows you their world, and remembers you between visits.
+    - generic [ref=e24]:
+      - img [ref=e25]
+      - text: Gathering companions…

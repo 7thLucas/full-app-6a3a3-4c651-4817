@@ -1,0 +1,38 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e7]: Driftoria
+    - generic [ref=e8]: 03 / 10
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - text: How It Works
+      - heading "A loop that never finishes" [level=2] [ref=e11]
+      - paragraph [ref=e12]: Shaped by you — not driven by you.
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: "01"
+        - generic [ref=e16]:
+          - heading "Start a story" [level=4] [ref=e17]
+          - paragraph [ref=e18]: Pick or create a character and seed an opening scenario — setting, premise, tone.
+      - generic [ref=e19]:
+        - generic [ref=e21]: "02"
+        - generic [ref=e22]:
+          - heading "Engine runs" [level=4] [ref=e23]
+          - paragraph [ref=e24]: The autonomous engine generates beats on your cadence — advancing plot and evolving characters, present or not.
+      - generic [ref=e25]:
+        - generic [ref=e26]: "03"
+        - generic [ref=e27]:
+          - heading "Step in anytime" [level=4] [ref=e28]
+          - paragraph [ref=e29]: Read new beats on the timeline, then optionally chat — add context, redirect, or speak to a character.
+      - generic [ref=e30]:
+        - generic [ref=e31]: "04"
+        - generic [ref=e32]:
+          - heading "Story absorbs input" [level=4] [ref=e33]
+          - paragraph [ref=e34]: Each intervention feeds the engine, shaping the next beats — without overriding the story's own momentum.
+      - generic [ref=e35]:
+        - generic [ref=e36]: "05"
+        - generic [ref=e37]:
+          - heading "Repeat, forever ↺" [level=4] [ref=e38]
+          - paragraph [ref=e39]: The loop continues indefinitely. The story is never finished — and never frozen.
+  - generic [ref=e40]:
+    - generic [ref=e41]: "\"Your story lives, even when you don't.\""
+    - generic [ref=e42]: Driftoria · Product Blueprint

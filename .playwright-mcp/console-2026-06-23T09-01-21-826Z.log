@@ -1,0 +1,4 @@
+[    3795ms] [LOG] PostHog loaded successfully @ https://quantumbyte.ai/assets/root-CJmiUZUA.js:10
+[    3795ms] [LOG] PostHog distinct_id: 019ef3b0-42a0-7510-ad42-a9eb186229be @ https://quantumbyte.ai/assets/root-CJmiUZUA.js:10
+[    8222ms] [WARNING] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}. @ https://quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.2:0
+[    8307ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ https://quantumbyte.ai/:0

@@ -20,10 +20,28 @@ export interface Character {
   characterId: string;
   name: string;
   tagline: string;
+  // The hidden system prompt / "definition" — personality + voice. Never sent
+  // to the public profile view.
   persona: string;
   greeting: string;
   tags: string[];
   avatarUrl: string;
+  // Long public bio shown on the character's profile page (distinct from the
+  // hidden `persona`). Safe to show anyone.
+  description: string;
+  // The opening setting/situation the conversation drops you into.
+  scenario: string;
+  gender: string;
+  // Genre/category bucket (e.g. "Romance", "Adventure").
+  category: string;
+  // Display handle for the creator, shown as "by @handle" on the profile.
+  creatorName: string;
+  // Extra portrait shots beyond `avatarUrl`, rendered as a gallery strip.
+  galleryUrls: string[];
+  // Engagement counters surfaced on the profile (the "83.4k chats" numbers).
+  chatCount: number;
+  likeCount: number;
+  followerCount: number;
   // Who created it: "system" for seeded starters, else a user id (future auth).
   creatorId: string;
   createdAt: Date;
@@ -71,6 +89,15 @@ const CharacterSchema = new Schema<CharacterDoc>(
     greeting: { type: String, required: true },
     tags: { type: [String], default: [] },
     avatarUrl: { type: String, default: "" },
+    description: { type: String, default: "" },
+    scenario: { type: String, default: "" },
+    gender: { type: String, default: "" },
+    category: { type: String, default: "" },
+    creatorName: { type: String, default: "" },
+    galleryUrls: { type: [String], default: [] },
+    chatCount: { type: Number, default: 0 },
+    likeCount: { type: Number, default: 0 },
+    followerCount: { type: Number, default: 0 },
     creatorId: { type: String, default: "system" },
   },
   { timestamps: { createdAt: true, updatedAt: false } },

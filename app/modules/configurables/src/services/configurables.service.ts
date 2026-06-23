@@ -5,6 +5,18 @@
 
 import { ConfigurableModel } from "../models/configurables.model";
 import { configurableSchemas } from "../schemas/configurables.schema";
+import { defaultConfigurablesData } from "../constants/configurables.default";
+
+/**
+ * Merge the stored config over the shipped defaults so fields added to
+ * `defaultConfigurablesData` after the singleton was first seeded (e.g.
+ * `discoveryTags`) always resolve to a sensible value instead of `undefined`.
+ * The seed only writes once, so without this back-fill new defaults never reach
+ * existing databases.
+ */
+function withDefaults(stored: Record<string, unknown> | undefined | null) {
+  return { ...defaultConfigurablesData, ...(stored ?? {}) };
+}
 
 export class ConfigurablesService {
   /**
@@ -14,15 +26,8 @@ export class ConfigurablesService {
   static async getConfig() {
     const config = await ConfigurableModel.findOne({ _singleton: true }).exec();
 
-    if (!config) {
-      return {
-        configurable_data: {},
-        configurable_schema: configurableSchemas.formSchema,
-      };
-    }
-
     return {
-      configurable_data: config.configurable_data,
+      configurable_data: withDefaults(config?.configurable_data),
       configurable_schema: configurableSchemas.formSchema,
     };
   }
@@ -41,7 +46,7 @@ export class ConfigurablesService {
    */
   static async getData() {
     const config = await ConfigurableModel.findOne({ _singleton: true }).exec();
-    return config?.configurable_data ?? {};
+    return withDefaults(config?.configurable_data);
   }
 
   /**

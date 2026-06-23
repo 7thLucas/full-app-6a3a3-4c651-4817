@@ -5,6 +5,7 @@ import { Router } from "express";
 import { createLogger } from "~/lib/logger";
 import { attachOptionalUser } from "./middleware/auth.guard";
 import authRoutes from "./auth/auth.routes";
+import billingRoutes from "./billing/billing.routes";
 
 type RouteModule = {
   default?: ReturnType<typeof Router>;
@@ -23,6 +24,9 @@ router.use(attachOptionalUser);
 // Auth endpoints live in app/api (outside the module auto-discovery scan), so
 // mount them explicitly here.
 router.use(authRoutes);
+
+// Billing endpoints also live in app/api (outside module auto-discovery).
+router.use(billingRoutes);
 
 async function discoverRouteFiles(): Promise<string[]> {
   const modulesPath = path.join(process.cwd(), "app", "modules");

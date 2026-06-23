@@ -1,0 +1,416 @@
+[    2944ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=esvg7svu:0
+[    4188ms] [ERROR] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044) @ https://app.quantumbyte.ai/assets/components-YlPz1mcy.js:138
+[    4239ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4240ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4241ms] Error: Minified React error #423; visit https://reactjs.org/docs/error-decoder.html?invariant=423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45320)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at rc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39727)
+    at ml (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39585)
+    at li (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:35969)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34922)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[    4270ms] [LOG] {streamUrl: https://tunneler.quantumbyte.ai/attach/nv7sw4gs-48…ck.quantumbyte%3A9999%2Fcommon%2Fcheck-generation} @ https://app.quantumbyte.ai/assets/use-tunneler-stream-Bn95muoV.js:53
+[    4284ms] [LOG] PostHog loaded successfully @ https://app.quantumbyte.ai/assets/root-C2oriN19.js:10
+[    4285ms] [LOG] PostHog distinct_id: 019ef3b0-42a0-7510-ad42-a9eb186229be @ https://app.quantumbyte.ai/assets/root-C2oriN19.js:10
+[    4427ms] [LOG] {streamUrl: https://tunneler.quantumbyte.ai/attach/nv7sw4gs-48…ck.quantumbyte%3A9999%2Fcommon%2Fcheck-generation} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[    4437ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[    4456ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=eswifrnh:0
+[    4548ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=eswmylpa:0
+[    4550ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=eswmzx1h:0
+[    4551ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=eswn1x8z:0
+[    4552ms] [LOG] Stream connected @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[    4553ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[    4641ms] [LOG] [ConceptPage] Slide sync: {slidesCount: 10, schemaLength: 0, isHydratingSchema: true, shouldAddMiddleEditor: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[    4711ms] [LOG] [ConceptPage] Slide sync: {slidesCount: 10, schemaLength: 0, isHydratingSchema: true, shouldAddMiddleEditor: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[    4802ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[    4802ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[    4839ms] [LOG] [ConceptPage] Slide sync: {slidesCount: 10, schemaLength: 32, isHydratingSchema: false, shouldAddMiddleEditor: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[    4846ms] [LOG] [ConceptPage] Slide sync: {slidesCount: 10, schemaLength: 32, isHydratingSchema: false, shouldAddMiddleEditor: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[    4859ms] [LOG] [ConceptPage] Slide sync: {slidesCount: 10, schemaLength: 32, isHydratingSchema: false, shouldAddMiddleEditor: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[    5507ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=esxfdlz8:0
+[    5689ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=esxkfqsw:0
+[    5809ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=esxmikxk:0
+[    6752ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[    6752ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[    6982ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=esyhp68o:0
+[    7290ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=esyscudo:0
+[    7484ms] [LOG] [Configurables] Fetching /api/configurables... @ https://nv7sw4gs-4817-prod.quantumbyte.ai/app/modules/configurables/src/hooks/use-configurables.ts:35
+[    7635ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 32} @ https://nv7sw4gs-4817-prod.quantumbyte.ai/app/modules/configurables/src/hooks/use-configurables.ts:44
+[    7636ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: true, timestamp: 1782204937925} @ https://nv7sw4gs-4817-prod.quantumbyte.ai/app/modules/configurables/src/hooks/use-configurables.ts:23
+[    7636ms] [LOG] [Configurables] QB_MIDDLE_EDITOR_READY sent to parent @ https://nv7sw4gs-4817-prod.quantumbyte.ai/app/modules/configurables/src/hooks/use-configurables.ts:29
+[    7668ms] [LOG] [Configurables] Received QB_MIDDLE_EDITOR_UPDATE {hasPayload: true} @ https://nv7sw4gs-4817-prod.quantumbyte.ai/app/modules/configurables/src/hooks/use-configurables.ts:71
+[    8291ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=eszkvm3n:0
+[    8729ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[    8729ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[    9421ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=et0ecmtv:0
+[   10086ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=et0z4s0b:0
+[   10559ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=et1cy7z5:0
+[   10693ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   10693ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   12674ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   12674ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   14441ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=et4cnqje:0
+[   14660ms] [LOG] Stream data: {event: state_change, project_id: nv7sw4gs-4817, state: ready, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, message: Project is ProjectState.READY} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[   14661ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[   14681ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   14682ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   15100ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=et4v7e0b:0
+[   15574ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=et5890i0:0
+[   16678ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   16678ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   18648ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   18649ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   19505ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=et883m4a:0
+[   20161ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=et8qewu7:0
+[   20595ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=et93kp0f:0
+[   20612ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   20612ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   22600ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   22600ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   24560ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[   24596ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   24596ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   26610ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   26611ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   28596ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   28596ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   30713ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   30713ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   32694ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   32694ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   34552ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[   34683ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   34683ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   36739ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   36739ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   38616ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   38616ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   40640ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   40640ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   42618ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   42618ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   44579ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[   44603ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   44603ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   46604ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   46604ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   48609ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   48609ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   50596ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   50597ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   52719ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   52719ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   55012ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[   55134ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   55134ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   56673ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   56673ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   58655ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   58655ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   60658ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   60658ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   62641ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   62641ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   64692ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   64692ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   64692ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[   66600ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   66600ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   68608ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   68608ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   70597ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   70598ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   72658ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   72659ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   74546ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[   74600ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   74600ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   76690ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   76691ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   78673ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   78673ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   80661ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   80661ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   82639ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   82639ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   84613ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[   84642ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   84642ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   86619ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   86619ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   88600ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   88600ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   90605ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   90605ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   92596ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   92596ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   94542ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[   94597ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   94597ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   96597ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   96597ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[   98693ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[   98693ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  100673ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  100674ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  102680ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  102680ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  104593ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[  104632ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  104633ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  106645ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  106645ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  108622ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  108622ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  110601ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  110601ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  112600ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  112601ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  114544ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[  114601ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  114601ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  116596ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  116596ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  118714ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  118714ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  120704ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  120704ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  122679ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  122679ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  124654ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[  124679ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  124679ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  126637ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  126637ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  128626ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  128626ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  130630ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  130630ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  132601ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  132601ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  134560ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[  134651ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  134651ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  136757ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  136757ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  138773ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  138773ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  140715ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  140715ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  142693ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  142693ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  144544ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[  144604ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  144604ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  146653ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  146654ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  148635ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  148636ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  150616ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  150616ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  152603ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  152603ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  154567ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[  154601ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  154601ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  156601ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  156601ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  158597ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  158597ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  160597ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  160597ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  162597ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  162597ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  164545ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[  164635ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  164635ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  166710ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  166710ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  168628ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  168628ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  170657ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  170657ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  172613ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  172614ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  174594ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[  174600ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  174600ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  176600ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  176600ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  178613ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  178614ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  180600ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  180600ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  182595ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  182596ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  184546ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[  184596ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  184596ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  186694ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  186694ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  188676ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  188676ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  190653ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  190654ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  192669ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  192669ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  194614ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  194614ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  194615ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[  196607ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  196607ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  198612ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  198612ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  200595ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  200595ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  202596ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  202596ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  204549ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[  204602ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  204602ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  206595ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  206596ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  208695ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  208695ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  210674ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  210674ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  212654ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  212654ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0
+[  214634ms] [LOG] Stream data: {success: true, url: https://nv7sw4gs-4817-prod.quantumbyte.ai, project_id: nv7sw4gs-4817, port: 30331, already_running: true} @ https://app.quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.3:0
+[  214668ms] [ERROR] Access to fetch at 'https://nv7sw4gs-4817-prod.quantumbyte.ai/' from origin 'https://app.quantumbyte.ai' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.quantumbyte.ai/dashboard/project/blueprint/nv7sw4gs-4817:0
+[  214669ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://nv7sw4gs-4817-prod.quantumbyte.ai/:0

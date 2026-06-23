@@ -79,6 +79,41 @@ export type TStarterChatCharacter = {
   greeting: string;
   tags: string[];
   avatarPrompt: string;
+  // Optional profile enrichment. When omitted, the service derives sensible
+  // fallbacks (description ← tagline, category ← first tag) so profiles still
+  // render fully populated.
+  description?: string;
+  scenario?: string;
+  gender?: string;
+  category?: string;
+};
+
+/**
+ * Per-tier entitlement limits for the freemium subscription model. Owner-tunable
+ * so plans can be re-priced/re-scoped without a redeploy. Numeric caps use
+ * `-1` to mean "unlimited"; `memoryDepth` overrides the global companion memory
+ * budget for that tier.
+ */
+export type TPlanLimits = {
+  label: string;
+  // Display price in whole currency units / month (0 = free). Billing wiring
+  // (Stripe price ids) is layered on later; this drives the paywall copy.
+  priceMonthly: number;
+  dailyMessages: number; // -1 = unlimited
+  dailyImages: number; // -1 = unlimited
+  maxCompanions: number; // -1 = unlimited
+  offlinePings: boolean;
+  characterAvatars: boolean;
+  memoryDepth: number; // chars
+  maxPacing: "slow" | "moderate" | "active";
+  storyMode: "read" | "full";
+  premiumModel: boolean;
+};
+
+export type TPlans = {
+  free: TPlanLimits;
+  plus: TPlanLimits;
+  pro: TPlanLimits;
 };
 
 export type TDefaultConfigurableData = {
@@ -141,8 +176,16 @@ export type TDefaultConfigurableData = {
   enableOfflinePings: boolean;
   offlinePingAfterHours: number;
   chatComposerPlaceholder: string;
+  // Character profile page copy
+  chatProfileStartCta: string;
+  chatAboutLabel: string;
+  chatScenarioLabel: string;
+  chatGreetingLabel: string;
+  chatSimilarLabel: string;
   discoveryTags: string[];
   starterChatCharacters: TStarterChatCharacter[];
+  // Monetization — freemium subscription tier limits
+  plans: TPlans;
   // Footer
   footerText: string;
 };
@@ -325,6 +368,11 @@ export const defaultConfigurablesData: TDefaultConfigurableData = {
   enableOfflinePings: true,
   offlinePingAfterHours: 6,
   chatComposerPlaceholder: "Say something to them…",
+  chatProfileStartCta: "Start chatting",
+  chatAboutLabel: "About",
+  chatScenarioLabel: "The setup",
+  chatGreetingLabel: "First words",
+  chatSimilarLabel: "More like this",
   discoveryTags: [
     "Romance",
     "Slice of Life",
@@ -502,6 +550,48 @@ export const defaultConfigurablesData: TDefaultConfigurableData = {
         "energetic cheerful young man, sunny smile, bright casual clothes, summer park, golden afternoon light, vibrant anime illustration, highly detailed",
     },
   ],
+  // Monetization — freemium subscription tier limits (-1 = unlimited)
+  plans: {
+    free: {
+      label: "Free",
+      priceMonthly: 0,
+      dailyMessages: 30,
+      dailyImages: 3,
+      maxCompanions: 1,
+      offlinePings: false,
+      characterAvatars: false,
+      memoryDepth: 600,
+      maxPacing: "slow",
+      storyMode: "read",
+      premiumModel: false,
+    },
+    plus: {
+      label: "Plus",
+      priceMonthly: 10,
+      dailyMessages: -1,
+      dailyImages: 25,
+      maxCompanions: 5,
+      offlinePings: true,
+      characterAvatars: true,
+      memoryDepth: 2000,
+      maxPacing: "moderate",
+      storyMode: "full",
+      premiumModel: false,
+    },
+    pro: {
+      label: "Pro",
+      priceMonthly: 25,
+      dailyMessages: -1,
+      dailyImages: -1,
+      maxCompanions: -1,
+      offlinePings: true,
+      characterAvatars: true,
+      memoryDepth: 4000,
+      maxPacing: "active",
+      storyMode: "full",
+      premiumModel: true,
+    },
+  },
   // Footer
   footerText: "Driftoria — a living story, powered by AI and shaped by you.",
 };

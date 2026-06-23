@@ -699,6 +699,35 @@ export const configurableSchemas: ConfigurableSchemas = {
       },
     },
 
+    // ── Monetization (freemium subscription tiers; -1 = unlimited) ────────
+    {
+      fieldName: "plans",
+      type: "object",
+      required: true,
+      label: "Subscription Plans & Tier Limits",
+      fields: [
+        ...(["free", "plus", "pro"] as const).map((tier) => ({
+          fieldName: tier,
+          type: "object" as const,
+          required: true,
+          label: `${tier[0].toUpperCase()}${tier.slice(1)} Plan`,
+          fields: [
+            { fieldName: "label", type: "string" as const, required: true, label: "Display Label" },
+            { fieldName: "priceMonthly", type: "number" as const, required: true, label: "Price / Month", min: 0, max: 9999 },
+            { fieldName: "dailyMessages", type: "number" as const, required: true, label: "Daily Messages (-1 = unlimited)", min: -1, max: 100000 },
+            { fieldName: "dailyImages", type: "number" as const, required: true, label: "Daily Inline Images (-1 = unlimited)", min: -1, max: 100000 },
+            { fieldName: "maxCompanions", type: "number" as const, required: true, label: "Max Companions (-1 = unlimited)", min: -1, max: 100000 },
+            { fieldName: "offlinePings", type: "boolean" as const, required: false, label: "Offline Companion Pings" },
+            { fieldName: "characterAvatars", type: "boolean" as const, required: false, label: "Character Avatar Art" },
+            { fieldName: "memoryDepth", type: "number" as const, required: true, label: "Companion Memory Depth (chars)", min: 0, max: 8000 },
+            { fieldName: "maxPacing", type: "enum" as const, required: true, label: "Max Story Pacing", options: ["slow", "moderate", "active"] },
+            { fieldName: "storyMode", type: "enum" as const, required: true, label: "Story Mode Access", options: ["read", "full"] },
+            { fieldName: "premiumModel", type: "boolean" as const, required: false, label: "Premium LLM Model" },
+          ],
+        })),
+      ],
+    },
+
     // ── Footer ──────────────────────────────────────────────────────────
     {
       fieldName: "footerText",

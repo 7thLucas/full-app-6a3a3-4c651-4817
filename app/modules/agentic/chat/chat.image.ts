@@ -35,3 +35,43 @@ export function buildImageUrl(
 export function avatarPrompt(name: string, description: string): string {
   return `${description}, portrait, character art, soft cinematic lighting, masterpiece, ${name}`;
 }
+
+/**
+ * Compose an inline scene-art prompt. Prepends the character's own setting
+ * (scenario/persona context) so the illustrated background stays coherent with
+ * where this companion lives, then reinforces a no-people environment style so
+ * the art never tries to draw a character that won't match the avatar.
+ */
+export function scenePrompt(imagePrompt: string, setting: string): string {
+  const ctx = setting.replace(/\s+/g, " ").trim().slice(0, 200);
+  const lead = ctx ? `${ctx}. ` : "";
+  return `${lead}${imagePrompt.trim()}, anime background illustration, scenery only, no people, no characters, no figures, empty scene, soft cinematic lighting`;
+}
+
+// Distinct framings so each gallery shot reads as a different photo of the same
+// character rather than a duplicate of the avatar.
+const GALLERY_SHOTS = [
+  "full body, dynamic pose, detailed background",
+  "close-up, candid expression, golden hour",
+  "three-quarter view, atmospheric setting, cinematic",
+];
+
+/**
+ * Build a small set of gallery image URLs for a character. Each shot reuses the
+ * same visual description with a different framing and a stable per-shot seed,
+ * so the strip stays consistent across reloads.
+ */
+export function buildGalleryUrls(
+  baseUrl: string,
+  name: string,
+  description: string,
+  count = GALLERY_SHOTS.length,
+): string[] {
+  return GALLERY_SHOTS.slice(0, count).map((shot, i) =>
+    buildImageUrl(baseUrl, `${description}, ${shot}, ${name}`, {
+      width: 768,
+      height: 1024,
+      seedKey: `${name}:gallery:${i}`,
+    }),
+  );
+}

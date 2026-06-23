@@ -1,0 +1,25 @@
+- generic [ref=e4]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e8]: D
+      - generic [ref=e9]:
+        - paragraph [ref=e10]: Driftoria
+        - generic [ref=e13]: AI Character & Narrative
+    - generic [ref=e14]:
+      - heading "The story that never sleeps." [level=1] [ref=e15]:
+        - text: The story
+        - text: that never
+        - text: sleeps.
+      - paragraph [ref=e16]: An AI narrative engine that writes your story forward — generating scenes and evolving characters on its own clock. Step in to shape it. Or simply read along.
+      - generic [ref=e17]:
+        - generic [ref=e18]: Autonomous
+        - generic [ref=e19]: Character-driven
+        - generic [ref=e20]: Always on
+    - generic [ref=e21]:
+      - paragraph [ref=e22]: "\"Your story lives, even when you don't.\""
+      - generic [ref=e23]: Driftoria
+  - generic [ref=e24]:
+    - img "Autonomous narrative visual" [ref=e25]
+    - generic [ref=e27]:
+      - paragraph [ref=e32]: Story engine running
+      - paragraph [ref=e33]: Three new beats generated since you last closed the app.

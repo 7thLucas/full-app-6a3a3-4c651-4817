@@ -1,0 +1,137 @@
+[    1596ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=5022fa71:20102
+[    1645ms] [LOG] [Configurables] Fetching /api/configurables... @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:35
+[    1676ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 50} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:44
+[    1676ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: false, timestamp: 1782208982653} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:23
+[    1794ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css?t=1782208982681:0
+[    1794ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css:0
+[    1795ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/chat/history.data:0
+[    1808ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/root.tsx?t=1782208982681:0
+[    1809ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/routes/chat.history.tsx?t=1782208982681:0
+[    1816ms] [ERROR] [vite] Failed to reload /app/root.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[    1817ms] [ERROR] [vite] Failed to reload /app/routes/chat.history.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[    1823ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css?t=1782208982679:0
+[    1824ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/root.tsx?t=1782208982679:0
+[    1824ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/routes/chat.history.tsx?t=1782208982679:0
+[    1827ms] [ERROR] [vite] Failed to reload /app/root.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[    1827ms] [ERROR] [vite] Failed to reload /app/routes/chat.history.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[    1827ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:3000/@vite/client:963
+[    1829ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[    2831ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[    4687ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=5022fa71:20102
+[    4706ms] [LOG] [Configurables] Fetching /api/configurables... @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:35
+[    4721ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 50} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:44
+[    4721ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: false, timestamp: 1782208985698} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:23
+[    6186ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/routes/chat.history.tsx?t=1782208987046:0
+[    6186ms] [ERROR] [vite] Failed to reload /app/routes/chat.history.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[    6186ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css?t=1782208987046:0
+[    6186ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css:0
+[    6187ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/chat/history.data:0
+[    6197ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/root.tsx?t=1782208987046:0
+[    6205ms] [ERROR] [vite] Failed to reload /app/root.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[    6212ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css?t=1782208987044:0
+[    6212ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/root.tsx?t=1782208987044:0
+[    6212ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/routes/chat.history.tsx?t=1782208987044:0
+[    6213ms] [ERROR] [vite] Failed to reload /app/root.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[    6213ms] [ERROR] [vite] Failed to reload /app/routes/chat.history.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[    6213ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:3000/@vite/client:963
+[    6215ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[    7217ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[    9262ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=5022fa71:20102
+[    9290ms] [LOG] [Configurables] Fetching /api/configurables... @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:35
+[    9321ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 50} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:44
+[    9321ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: false, timestamp: 1782208990299} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:23
+[   13722ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css:0
+[   13723ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css?t=1782208994599:0
+[   13723ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/root.tsx?t=1782208994599:0
+[   13723ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/routes/chat.history.tsx?t=1782208994599:0
+[   13726ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/chat/history.data:0
+[   13737ms] [ERROR] [vite] Failed to reload /app/root.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[   13737ms] [ERROR] [vite] Failed to reload /app/routes/chat.history.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[   13743ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css?t=1782208994597:0
+[   13744ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/routes/chat.history.tsx?t=1782208994597:0
+[   13744ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/root.tsx?t=1782208994597:0
+[   13750ms] [ERROR] [vite] Failed to reload /app/routes/chat.history.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[   13750ms] [ERROR] [vite] Failed to reload /app/root.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[   13750ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:3000/@vite/client:963
+[   13752ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[   14754ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[   16857ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=5022fa71:20102
+[   16870ms] [LOG] [Configurables] Fetching /api/configurables... @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:35
+[   16888ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 50} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:44
+[   16888ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: false, timestamp: 1782208997866} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:23
+[   27115ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=5022fa71:20102
+[   27137ms] [LOG] [Configurables] Fetching /api/configurables... @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:35
+[   27158ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 50} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:44
+[   27158ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: false, timestamp: 1782209008136} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:23
+[   32501ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=5022fa71:20102
+[   32532ms] [LOG] [Configurables] Fetching /api/configurables... @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:35
+[   32547ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 50} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:44
+[   32547ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: false, timestamp: 1782209013525} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:23
+[   42286ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/tailwind.css?t=1782209023232:0
+[   42286ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/root.tsx?t=1782209023232:0
+[   42286ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/routes/chat.history.tsx?t=1782209023232:0
+[   42287ms] [ERROR] [vite] Failed to reload /app/root.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[   42287ms] [ERROR] [vite] Failed to reload /app/routes/chat.history.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[   42287ms] [ERROR] [vite] Failed to reload /app/root.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[   42287ms] [ERROR] [vite] Failed to reload /app/routes/chat.history.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[   42288ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css?t=1782209023232:0
+[   42290ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css?t=1782209023231:0
+[   42290ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/root.tsx?t=1782209023231:0
+[   42290ms] [ERROR] [vite] Failed to reload /app/root.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[   42290ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/routes/chat.history.tsx?t=1782209023231:0
+[   42290ms] [ERROR] [vite] Failed to reload /app/routes/chat.history.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[   42290ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:3000/@vite/client:963
+[   42292ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[   43293ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[   45226ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=5022fa71:20102
+[   45239ms] [LOG] [Configurables] Fetching /api/configurables... @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:35
+[   45268ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 51} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:44
+[   45268ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: false, timestamp: 1782209026246} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:23
+[   45559ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=5022fa71:20102
+[   45569ms] [LOG] [Configurables] Fetching /api/configurables... @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:35
+[   45586ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 51} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:44
+[   45586ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: false, timestamp: 1782209026564} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:23
+[   88284ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css?t=1782209069149:0
+[   88284ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css:0
+[   88284ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:3000/@vite/client:963
+[   88285ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/chat/history.data:0
+[   88304ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[   89312ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[   91277ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=5022fa71:20102
+[   91309ms] [LOG] [Configurables] Fetching /api/configurables... @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:35
+[   91340ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 51} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:44
+[   91340ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: false, timestamp: 1782209072317} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:23
+[  102727ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/tailwind.css:0
+[  102727ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css?t=1782209083587:0
+[  102727ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/routes/chat.history.tsx?t=1782209083587:0
+[  102728ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/chat/history.data:0
+[  102740ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/root.tsx?t=1782209083587:0
+[  102740ms] [ERROR] [vite] Failed to reload /app/routes/chat.history.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[  102745ms] [ERROR] [vite] Failed to reload /app/root.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[  102746ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:3000/@vite/client:963
+[  102756ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[  103758ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[  105799ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=5022fa71:20102
+[  105811ms] [LOG] [Configurables] Fetching /api/configurables... @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:35
+[  105826ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 51} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:44
+[  105827ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: false, timestamp: 1782209086804} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:23
+[  109805ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css:0
+[  109805ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css?t=1782209090691:0
+[  109806ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/chat/history.data:0
+[  109814ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/tailwind.css?t=1782209090690:0
+[  109819ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/root.tsx?t=1782209090690:0
+[  109819ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/routes/chat.history.tsx?t=1782209090690:0
+[  109823ms] [ERROR] [vite] Failed to reload /app/root.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[  109823ms] [ERROR] [vite] Failed to reload /app/routes/chat.history.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:3000/@vite/client:881
+[  109823ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:3000/@vite/client:963
+[  109825ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[  110827ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[  112776ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=5022fa71:20102
+[  112804ms] [LOG] [Configurables] Fetching /api/configurables... @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:35
+[  112832ms] [LOG] [Configurables] Fetch OK {hasData: true, hasSchema: true, schemaLength: 51} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:44
+[  112832ms] [LOG] [Configurables] Config loaded, emitting READY {isInIframe: false, timestamp: 1782209093810} @ http://localhost:3000/app/modules/configurables/src/hooks/use-configurables.ts:23
+[  119527ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/routes/chat.history.tsx:0
+[  119527ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3000/app/tailwind.css:0
+[  119527ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/root.tsx:0
+[  119527ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/node_modules/@react-router/dev/dist/config/defaults/entry.client.tsx:0
+[  119531ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@id/__x00__virtual:react-router/inject-hmr-runtime:0

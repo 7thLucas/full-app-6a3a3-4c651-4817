@@ -9,7 +9,7 @@
  */
 
 import type { NextFunction, Request, Response } from "express";
-import { UserModel, type UserRole } from "../models/user.model";
+import { effectivePlan, UserModel, type PlanTier, type UserRole } from "../models/user.model";
 import { parseCookies, SESSION_COOKIE } from "../lib/cookies";
 import { verifySession } from "../lib/session";
 
@@ -18,6 +18,7 @@ export interface AuthUser {
   email: string;
   name: string;
   roles: UserRole[];
+  plan: PlanTier;
 }
 
 export type AuthedRequest = Request & { user?: AuthUser };
@@ -38,6 +39,7 @@ export async function attachOptionalUser(
           email: user.email,
           name: user.name,
           roles: (user.roles ?? ["user"]) as UserRole[],
+          plan: effectivePlan(user),
         };
         (req as AuthedRequest).user = authUser;
         res.locals.userId = authUser.id;
@@ -66,6 +68,35 @@ export function permissionGuard(...roles: UserRole[]) {
     }
     if (roles.length && !roles.some((r) => user.roles?.includes(r))) {
       res.status(403).json({ success: false, message: "Forbidden" });
+      return;
+    }
+    next();
+  };
+}
+
+const PLAN_RANK: Record<PlanTier, number> = { free: 0, plus: 1, pro: 2 };
+
+/**
+ * Gate a route on a minimum subscription tier. 401 if unauthenticated, 402
+ * (Payment Required) with `upgradeRequired` if the user's effective plan ranks
+ * below `minPlan`. Admins bypass the tier check.
+ */
+export function planGuard(minPlan: PlanTier) {
+  return (req: Request, res: Response, next: NextFunction): void => {
+    const user = (req as AuthedRequest).user;
+    if (!user) {
+      res.status(401).json({ success: false, message: "Authentication required" });
+      return;
+    }
+    if (user.roles?.includes("admin")) return next();
+    if (PLAN_RANK[user.plan ?? "free"] < PLAN_RANK[minPlan]) {
+      res.status(402).json({
+        success: false,
+        message: `This feature requires the ${minPlan} plan`,
+        upgradeRequired: true,
+        requiredPlan: minPlan,
+        currentPlan: user.plan ?? "free",
+      });
       return;
     }
     next();

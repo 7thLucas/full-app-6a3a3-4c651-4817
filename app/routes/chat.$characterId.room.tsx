@@ -97,7 +97,7 @@ export default function ChatThread() {
       {/* Header */}
       <header className="relative z-10 border-b border-border bg-background/80 backdrop-blur">
         <div className="mx-auto flex w-full max-w-3xl items-center gap-3 px-4 py-3">
-          <Link to="/chat">
+          <Link to={`/chat/${characterId}`}>
             <Button variant="ghost" size="sm" className="px-2">
               <ArrowLeft className="h-4 w-4" strokeWidth={1.75} />
             </Button>

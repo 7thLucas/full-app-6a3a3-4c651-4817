@@ -1,0 +1,139 @@
+[    3304ms] [LOG] PostHog loaded successfully @ https://quantumbyte.ai/assets/root-CJmiUZUA.js:10
+[    3304ms] [LOG] PostHog distinct_id: 019ef3b0-42a0-7510-ad42-a9eb186229be @ https://quantumbyte.ai/assets/root-CJmiUZUA.js:10
+[   12909ms] [WARNING] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}. @ https://quantumbyte.ai/ph-relay-xqcz/static/posthog-recorder.js?v=1.369.2:0
+[   13051ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ https://quantumbyte.ai/:0
+[   37130ms] [ERROR] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044) @ https://app.quantumbyte.ai/assets/components-YlPz1mcy.js:138
+[   37168ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[   37168ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[   37168ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[   37168ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[   37168ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[   37170ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[   37170ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[   37170ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[   37170ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[   37170ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[   37170ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[   37170ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yu (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:22:4788)
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45660)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at lc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39769)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34788)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[   37170ms] Error: Minified React error #423; visit https://reactjs.org/docs/error-decoder.html?invariant=423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at sa (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:45320)
+    at la (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39796)
+    at rc (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39727)
+    at ml (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:39585)
+    at li (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:35969)
+    at ea (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:24:34922)
+    at sn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:1651)
+    at MessagePort.Mn (https://app.quantumbyte.ai/assets/index-B5BQyelf.js:9:2044)
+[   37181ms] [LOG] PostHog loaded successfully @ https://app.quantumbyte.ai/assets/root-C2oriN19.js:10
+[   37182ms] [LOG] PostHog distinct_id: 019ef3b0-42a0-7510-ad42-a9eb186229be @ https://app.quantumbyte.ai/assets/root-C2oriN19.js:10
+[   37289ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=esp998ti:0
+[   37387ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=espbokbh:0
+[   37866ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   37868ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   37869ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   38051ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   38052ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   38053ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   38053ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   38054ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   38068ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   38069ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   38070ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   38071ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   38072ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   38074ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   38075ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   38076ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://app.quantumbyte.ai/action/deck-api:0
+[   38294ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=esq3c9qk:0
+[   40451ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://client-api.quantumbyte.ai/socket.io/?EIO=4&transport=polling&t=esrr3zxh:0

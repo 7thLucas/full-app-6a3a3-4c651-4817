@@ -8,11 +8,12 @@
  * smart-reply count, ping threshold) from the configurables module.
  */
 
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { ConfigurablesService } from "~/modules/configurables/src/services/configurables.service";
 import { defaultConfigurablesData } from "~/modules/configurables/src/constants/configurables.default";
 import type { TDefaultConfigurableData } from "~/modules/configurables/src/constants/configurables.default";
 import { createLogger } from "~/lib/logger";
+import { recordUsage } from "~/api/services/usage.service";
 import {
   CharacterModel,
   ChatSessionModel,
@@ -20,7 +21,7 @@ import {
   type ChatSession,
   type CharacterDoc,
 } from "../chat.model";
-import { avatarPrompt, buildImageUrl } from "./chat.image";
+import { avatarPrompt, buildGalleryUrls, buildImageUrl, scenePrompt } from "./chat.image";
 import {
   generateOfflinePing,
   generateReply,
@@ -47,6 +48,22 @@ function dayKey(d: Date): string {
 
 function brief(c: CharacterDoc): CharacterBrief {
   return { name: c.name, tagline: c.tagline, persona: c.persona };
+}
+
+/**
+ * Seed believable-looking engagement numbers for a starter from its name, so
+ * profiles don't all read "0 chats" before any real traffic. Deterministic, so
+ * a given starter always shows the same counts across reseeds/reloads. Real
+ * user-created characters start at zero and grow from actual use.
+ */
+function seedStats(name: string): { chatCount: number; likeCount: number; followerCount: number } {
+  const n = parseInt(createHash("sha256").update(name).digest("hex").slice(0, 8), 16);
+  const chatCount = 2_000 + (n % 90_000);
+  return {
+    chatCount,
+    likeCount: Math.round(chatCount * (0.18 + ((n >> 8) % 12) / 100)),
+    followerCount: Math.round(chatCount * (0.04 + ((n >> 16) % 6) / 100)),
+  };
 }
 
 /**
@@ -86,6 +103,15 @@ export async function ensureSeedCharacters(): Promise<void> {
                   seedKey: s.name,
                 })
               : "",
+            description: s.description ?? "",
+            scenario: s.scenario ?? "",
+            gender: s.gender ?? "",
+            category: s.category ?? "",
+            creatorName: "system",
+            galleryUrls: cfg.enableCharacterAvatars
+              ? buildGalleryUrls(cfg.imageGenUrl, s.name, s.avatarPrompt)
+              : [],
+            ...seedStats(s.name),
             creatorId: "system",
           },
         },
@@ -103,6 +129,54 @@ export async function listCharacters(): Promise<CharacterDoc[]> {
   return CharacterModel.find().sort({ createdAt: 1 }).exec();
 }
 
+/** Discovery feed as view models. Stats come from the character's own counters. */
+export async function listCharacterCards(): Promise<CharacterCardView[]> {
+  const characters = await listCharacters();
+  return characters.map(toCardView);
+}
+
+export interface ChatSummaryView {
+  characterId: string;
+  name: string;
+  tagline: string;
+  avatarUrl: string;
+  lastSnippet: string;
+  lastMessageAt: string;
+  messageCount: number;
+}
+
+/** The signed-in (or cookie-identified) owner's existing conversations, newest first. */
+export async function listSessionsForOwner(
+  ownerId: string,
+): Promise<ChatSummaryView[]> {
+  const sessions = await ChatSessionModel.find({ ownerId })
+    .sort({ lastMessageAt: -1 })
+    .exec();
+  if (!sessions.length) return [];
+
+  const characters = await CharacterModel.find({
+    characterId: { $in: sessions.map((s) => s.characterId) },
+  }).exec();
+  const byId = new Map(characters.map((c) => [c.characterId, c]));
+
+  const summaries: ChatSummaryView[] = [];
+  for (const s of sessions) {
+    const c = byId.get(s.characterId);
+    if (!c) continue; // character deleted — skip orphaned thread
+    const last = s.messages[s.messages.length - 1];
+    summaries.push({
+      characterId: c.characterId,
+      name: c.name,
+      tagline: c.tagline,
+      avatarUrl: c.avatarUrl,
+      lastSnippet: last?.content?.slice(0, 120) ?? "",
+      lastMessageAt: (s.lastMessageAt ?? s.createdAt).toISOString(),
+      messageCount: s.messages.length,
+    });
+  }
+  return summaries;
+}
+
 export async function getCharacter(characterId: string): Promise<CharacterDoc | null> {
   await ensureSeedCharacters();
   return CharacterModel.findOne({ characterId }).exec();
@@ -116,6 +190,11 @@ export async function createCharacter(
     greeting?: string;
     tags?: string[];
     avatarPrompt?: string;
+    description?: string;
+    scenario?: string;
+    gender?: string;
+    category?: string;
+    creatorName?: string;
   },
   ownerId = "user",
 ): Promise<CharacterDoc> {
@@ -137,6 +216,14 @@ export async function createCharacter(
     avatarUrl: cfg.enableCharacterAvatars
       ? buildImageUrl(cfg.imageGenUrl, avatarPrompt(name, promptText), { seedKey: name + persona })
       : "",
+    description: input.description?.trim() || tagline,
+    scenario: input.scenario?.trim() || "",
+    gender: input.gender?.trim() || "",
+    category: input.category?.trim() || "",
+    creatorName: input.creatorName?.trim() || "you",
+    galleryUrls: cfg.enableCharacterAvatars
+      ? buildGalleryUrls(cfg.imageGenUrl, name, promptText)
+      : [],
     creatorId: ownerId,
   });
   logger.info(`Created chat companion "${name}"`);
@@ -163,6 +250,11 @@ async function getOrCreateSession(
       lastVisitedAt: new Date(),
       lastMessageAt: new Date(),
     });
+    // First time anyone opens a thread with this character counts as a chat.
+    await CharacterModel.updateOne(
+      { characterId: character.characterId },
+      { $inc: { chatCount: 1 } },
+    ).exec();
   }
   return session;
 }
@@ -189,6 +281,7 @@ async function applyGenerated(
   cfg: TDefaultConfigurableData,
   gen: GeneratedReply,
   whileAway: boolean,
+  setting: string,
 ): Promise<{ smartReplies: string[] }> {
   let imageUrl: string | null = null;
 
@@ -204,12 +297,14 @@ async function applyGenerated(
       0;
     const underCap = session.imagesToday < cfg.freeTierDailyImages;
     if (underCap && turnGate) {
-      imageUrl = buildImageUrl(cfg.imageGenUrl, gen.imagePrompt, {
+      imageUrl = buildImageUrl(cfg.imageGenUrl, scenePrompt(gen.imagePrompt, setting), {
         width: 768,
         height: 512,
         seedKey: gen.imagePrompt + session.messages.length,
       });
       session.imagesToday += 1;
+      // Meter inline-image generation against the owner's daily plan budget.
+      void recordUsage(session.ownerId, "images").catch(() => {});
     }
   }
 
@@ -322,7 +417,13 @@ export async function openSession(
         hoursAway,
         smartReplyCount: cfg.smartReplyCount,
       });
-      ({ smartReplies } = await applyGenerated(session, cfg, gen, true));
+      ({ smartReplies } = await applyGenerated(
+        session,
+        cfg,
+        gen,
+        true,
+        character.scenario || character.persona,
+      ));
     } catch (err) {
       logger.warn("Offline ping failed; skipping", {
         reason: err instanceof Error ? err.message : String(err),
@@ -360,8 +461,16 @@ export async function sendMessage(
     smartReplyCount: cfg.smartReplyCount,
   });
 
-  const { smartReplies } = await applyGenerated(session, cfg, gen, false);
+  const { smartReplies } = await applyGenerated(
+    session,
+    cfg,
+    gen,
+    false,
+    character.scenario || character.persona,
+  );
   await session.save();
+  // Meter the user turn against the owner's daily plan budget.
+  void recordUsage(ownerId, "messages").catch(() => {});
   return toSessionView(character, session, smartReplies);
 }
 
@@ -371,7 +480,10 @@ export interface CharacterCardView {
   tagline: string;
   tags: string[];
   avatarUrl: string;
+  category: string;
   creatorId: string;
+  // Number of conversations started with this companion (social proof badge).
+  chatCount: number;
 }
 
 export function toCardView(c: CharacterDoc): CharacterCardView {
@@ -381,6 +493,63 @@ export function toCardView(c: CharacterDoc): CharacterCardView {
     tagline: c.tagline,
     tags: c.tags,
     avatarUrl: c.avatarUrl,
+    category: c.category || c.tags?.[0] || "",
+    creatorId: c.creatorId,
+    chatCount: c.chatCount,
+  };
+}
+
+/**
+ * Full public profile for the character's landing page. Exposes everything the
+ * card lacks — bio, scenario, gallery, stats, greeting preview — but never the
+ * hidden `persona` definition.
+ */
+export interface CharacterProfileView {
+  characterId: string;
+  name: string;
+  tagline: string;
+  description: string;
+  scenario: string;
+  greeting: string;
+  gender: string;
+  category: string;
+  creatorName: string;
+  tags: string[];
+  avatarUrl: string;
+  galleryUrls: string[];
+  chatCount: number;
+  likeCount: number;
+  followerCount: number;
+  creatorId: string;
+}
+
+export function toProfileView(c: CharacterDoc): CharacterProfileView {
+  return {
+    characterId: c.characterId,
+    name: c.name,
+    tagline: c.tagline,
+    description: c.description || c.tagline,
+    scenario: c.scenario,
+    greeting: c.greeting,
+    gender: c.gender,
+    category: c.category || c.tags?.[0] || "",
+    creatorName: c.creatorName || (c.creatorId === "system" ? "system" : "you"),
+    tags: c.tags,
+    avatarUrl: c.avatarUrl,
+    galleryUrls: c.galleryUrls ?? [],
+    chatCount: c.chatCount,
+    likeCount: c.likeCount,
+    followerCount: c.followerCount,
     creatorId: c.creatorId,
   };
+}
+
+/** Increment a character's like counter and return the new total. */
+export async function likeCharacter(characterId: string): Promise<number | null> {
+  const updated = await CharacterModel.findOneAndUpdate(
+    { characterId },
+    { $inc: { likeCount: 1 } },
+    { new: true },
+  ).exec();
+  return updated ? updated.likeCount : null;
 }

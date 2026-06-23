@@ -41,10 +41,10 @@ export default function ChatDiscovery() {
   }, [characters, activeTag]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-background font-body text-foreground grain">
+    <div className="relative min-h-screen overflow-hidden bg-background font-body text-foreground grain pb-24 md:pb-0">
       <div className="aurora-backdrop animate-drift" />
 
-      <header className="relative z-10 border-b border-border">
+      <header className="relative z-10 hidden border-b border-border md:block">
         <Section className="flex items-center justify-between py-5">
           <Wordmark appName={appName} logoUrl={config?.logoUrl} />
           <div className="flex items-center gap-2">
@@ -90,12 +90,12 @@ export default function ChatDiscovery() {
         </div>
 
         {tags.length ? (
-          <div className="mt-8 flex flex-wrap gap-2">
+          <div className="-mx-6 mt-8 flex gap-2 overflow-x-auto px-6 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <button
               type="button"
               onClick={() => setActiveTag(null)}
               className={cn(
-                "rounded-full border px-4 py-1.5 font-ui text-sm transition-colors",
+                "shrink-0 rounded-full border px-4 py-1.5 font-ui text-sm transition-colors",
                 activeTag === null
                   ? "border-primary bg-primary/15 text-foreground"
                   : "border-border text-muted-foreground hover:text-foreground",
@@ -109,7 +109,7 @@ export default function ChatDiscovery() {
                 type="button"
                 onClick={() => setActiveTag(t)}
                 className={cn(
-                  "rounded-full border px-4 py-1.5 font-ui text-sm transition-colors",
+                  "shrink-0 rounded-full border px-4 py-1.5 font-ui text-sm transition-colors",
                   activeTag === t
                     ? "border-primary bg-primary/15 text-foreground"
                     : "border-border text-muted-foreground hover:text-foreground",

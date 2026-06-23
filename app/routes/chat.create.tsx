@@ -22,6 +22,10 @@ export default function CreateCharacter() {
 
   const [name, setName] = useState("");
   const [tagline, setTagline] = useState("");
+  const [description, setDescription] = useState("");
+  const [scenario, setScenario] = useState("");
+  const [category, setCategory] = useState("");
+  const [gender, setGender] = useState("");
   const [persona, setPersona] = useState("");
   const [greeting, setGreeting] = useState("");
   const [avatarPrompt, setAvatarPrompt] = useState("");
@@ -44,6 +48,10 @@ export default function CreateCharacter() {
         persona,
         greeting: greeting.trim() || undefined,
         avatarPrompt: avatarPrompt.trim() || undefined,
+        description: description.trim() || undefined,
+        scenario: scenario.trim() || undefined,
+        category: category.trim() || undefined,
+        gender: gender.trim() || undefined,
         tags,
       });
       navigate(`/chat/${created.characterId}`);
@@ -103,6 +111,58 @@ export default function CreateCharacter() {
                 className={field}
                 maxLength={140}
               />
+            </div>
+            <div>
+              <label className="mb-2 block font-ui text-sm text-muted-foreground">
+                About them <span className="opacity-60">(public bio, optional)</span>
+              </label>
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="The backstory and details visitors see on their profile — who they are, their world, what makes them them."
+                rows={3}
+                className={cn(field, "resize-none")}
+                maxLength={1200}
+              />
+            </div>
+            <div>
+              <label className="mb-2 block font-ui text-sm text-muted-foreground">
+                The setup <span className="opacity-60">(scenario, optional)</span>
+              </label>
+              <textarea
+                value={scenario}
+                onChange={(e) => setScenario(e.target.value)}
+                placeholder="The situation the conversation opens in. Where are you, what's happening?"
+                rows={2}
+                className={cn(field, "resize-none")}
+                maxLength={600}
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="mb-2 block font-ui text-sm text-muted-foreground">
+                  Category <span className="opacity-60">(optional)</span>
+                </label>
+                <input
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  placeholder="e.g. Romance"
+                  className={field}
+                  maxLength={40}
+                />
+              </div>
+              <div>
+                <label className="mb-2 block font-ui text-sm text-muted-foreground">
+                  Gender <span className="opacity-60">(optional)</span>
+                </label>
+                <input
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  placeholder="e.g. Female"
+                  className={field}
+                  maxLength={40}
+                />
+              </div>
             </div>
             <div>
               <label className="mb-2 block font-ui text-sm text-muted-foreground">

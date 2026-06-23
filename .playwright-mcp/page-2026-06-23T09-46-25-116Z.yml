@@ -1,0 +1,1125 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - complementary [ref=e5]:
+      - generic [ref=e6]:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - img
+        - link "Emochi" [ref=e8] [cursor=pointer]:
+          - /url: /
+          - img [ref=e10]
+          - paragraph: Emochi
+        - generic [ref=e15]:
+          - link "Explore" [ref=e17] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e20]:
+              - img [ref=e23]
+              - generic:
+                - generic: Explore
+          - link "EMOCHI+" [ref=e27] [cursor=pointer]:
+            - /url: /subscribe
+            - generic [ref=e30]:
+              - img [ref=e33]
+              - generic:
+                - generic: EMOCHI+
+          - link "Wallet" [ref=e36] [cursor=pointer]:
+            - /url: /flux
+            - generic [ref=e39]:
+              - img [ref=e42]
+              - generic:
+                - generic: Wallet
+          - generic [ref=e48]:
+            - img [ref=e51]
+            - generic:
+              - generic: Playground
+          - generic [ref=e57]:
+            - img [ref=e60]
+            - generic:
+              - generic: Me
+        - link [ref=e62] [cursor=pointer]:
+          - /url: /trending
+          - text: Trending
+    - main [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e66]:
+          - img "Banner" [ref=e71]
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - heading "A New Generation Begins" [level=2]
+                  - generic:
+                    - paragraph: Evolved. Not just replaced.
+          - button [ref=e72] [cursor=pointer]
+          - button [ref=e73] [cursor=pointer]:
+            - img [ref=e74]
+          - button [ref=e76] [cursor=pointer]:
+            - img [ref=e77]
+          - generic [ref=e80]:
+            - button "Go to slide 1" [ref=e81] [cursor=pointer]
+            - button "Go to slide 2" [ref=e83] [cursor=pointer]
+            - button "Go to slide 3" [ref=e84] [cursor=pointer]
+            - button "Go to slide 4" [ref=e85] [cursor=pointer]
+        - navigation "Category navigation" [ref=e88]:
+          - generic [ref=e89]:
+            - generic [ref=e90]:
+              - button "Gender filter" [ref=e92] [cursor=pointer]:
+                - img [ref=e93]
+              - tablist [ref=e101]:
+                - tab "Explore" [selected] [ref=e102] [cursor=pointer]
+                - tab "Trending" [ref=e103] [cursor=pointer]
+                - tab "Video" [ref=e104] [cursor=pointer]
+                - tab "Today" [ref=e105] [cursor=pointer]
+                - tab "Romance" [ref=e106] [cursor=pointer]
+                - tab "Drama" [ref=e107] [cursor=pointer]
+                - tab "BL" [ref=e108] [cursor=pointer]
+                - tab "Comedy" [ref=e109] [cursor=pointer]
+                - tab "Possessive" [ref=e110] [cursor=pointer]
+                - tab "Loyal" [ref=e111] [cursor=pointer]
+                - tab "Playful" [ref=e112] [cursor=pointer]
+                - tab "Protective" [ref=e113] [cursor=pointer]
+                - tab "Love interest" [ref=e114] [cursor=pointer]
+                - tab "Spouse" [ref=e115] [cursor=pointer]
+                - tab "Potential love" [ref=e116] [cursor=pointer]
+                - tab "Friend" [ref=e117] [cursor=pointer]
+              - button "Edit interests" [ref=e118] [cursor=pointer]:
+                - img [ref=e119]
+            - search [ref=e122]:
+              - generic [ref=e123] [cursor=pointer]:
+                - button "Search" [ref=e124]:
+                  - img [ref=e125]
+                - generic [ref=e127]: Search bot...
+                - generic [ref=e130]: Search bot...
+        - tabpanel "Explore" [ref=e132]:
+          - region "Prompt gallery" [ref=e134]:
+            - list [ref=e135]:
+              - listitem [ref=e136]:
+                - article [ref=e137]:
+                  - link "Chat with Elisa" [ref=e138] [cursor=pointer]:
+                    - /url: /character/elisa-83418e46/chat
+                    - generic [ref=e139]:
+                      - img "Elisa thumbnail" [ref=e141]
+                      - generic [ref=e142]:
+                        - generic [ref=e143]:
+                          - generic [ref=e144]:
+                            - img [ref=e145]
+                            - generic [ref=e149]: 42.8M
+                          - heading "Elisa" [level=3] [ref=e150]
+                          - paragraph [ref=e151]: She's the mother of your classmate Clara . She's arrogant, quite expensive, money lover, gold digger. Highly intelligent, especially emotionally Observant — notices hesitation, tone changes, contradic
+                        - generic [ref=e153]:
+                          - generic [ref=e154]: Drama
+                          - generic [ref=e155]: Manipulative
+                          - generic [ref=e156]: Arrogant
+              - listitem [ref=e157]:
+                - article [ref=e158]:
+                  - link "Chat with Big Sister Sleepover" [ref=e159] [cursor=pointer]:
+                    - /url: /character/big-sister-sleepover-1/chat
+                    - generic [ref=e160]:
+                      - img "Big Sister Sleepover thumbnail" [ref=e162]
+                      - generic [ref=e163]:
+                        - generic [ref=e164]:
+                          - generic [ref=e165]:
+                            - img [ref=e166]
+                            - generic [ref=e170]: 197.0M
+                          - heading "Big Sister Sleepover" [level=3] [ref=e171]
+                          - paragraph [ref=e172]: You are invited to join your sister and her friends little sleepover! Good luck! (Also, your sister's name is Emilia. The other girls are named Amelia, Mia, Ella, Charlie, Ava, Sophia)
+                        - generic [ref=e174]:
+                          - generic [ref=e175]: Comedy
+                          - generic [ref=e176]: School
+                          - generic [ref=e177]: Slice of life
+              - listitem [ref=e178]:
+                - article [ref=e179]:
+                  - link "Chat with Maid" [ref=e180] [cursor=pointer]:
+                    - /url: /character/maid-9379428f/chat
+                    - generic [ref=e181]:
+                      - img "Maid thumbnail" [ref=e183]
+                      - generic [ref=e184]:
+                        - generic [ref=e185]:
+                          - generic [ref=e186]:
+                            - img [ref=e187]
+                            - generic [ref=e191]: 27.6M
+                          - heading "Maid" [level=3] [ref=e192]
+                          - paragraph [ref=e193]: Master, you need to increase my pay
+                        - generic [ref=e195]:
+                          - generic [ref=e196]: Drama
+                          - generic [ref=e197]: Slice of life
+                          - generic [ref=e198]: Worker
+              - listitem [ref=e199]:
+                - article [ref=e200]:
+                  - link "Chat with teacher" [ref=e201] [cursor=pointer]:
+                    - /url: /character/maestra-b3aa49e8/chat
+                    - generic [ref=e202]:
+                      - img "teacher thumbnail" [ref=e204]
+                      - generic [ref=e205]:
+                        - generic [ref=e206]:
+                          - generic [ref=e207]:
+                            - img [ref=e208]
+                            - generic [ref=e212]: 30.6M
+                          - heading "teacher" [level=3] [ref=e213]
+                          - paragraph [ref=e214]: Married teacher, mature 38 years old married
+                        - generic [ref=e216]:
+                          - generic [ref=e217]: Drama
+                          - generic [ref=e218]: School
+                          - generic [ref=e219]: Slice of life
+              - listitem [ref=e220]:
+                - article [ref=e221]:
+                  - link "Chat with Zoey" [ref=e222] [cursor=pointer]:
+                    - /url: /character/zoey-73ae71aa/chat
+                    - generic [ref=e223]:
+                      - img "Zoey thumbnail" [ref=e225]
+                      - generic [ref=e226]:
+                        - generic [ref=e227]:
+                          - generic [ref=e228]:
+                            - img [ref=e229]
+                            - generic [ref=e233]: 21.7M
+                          - heading "Zoey" [level=3] [ref=e234]
+                          - paragraph [ref=e235]: On a rainy night, your friend Zoey arrives at your door, soaked to the bone and with tears in her eyes. Will you open your door to her in this moment of sadness and offer her support?
+                        - generic [ref=e237]:
+                          - generic [ref=e238]: Drama
+                          - generic [ref=e239]: Slice of life
+                          - generic [ref=e240]: Friendship
+              - listitem [ref=e241]:
+                - article [ref=e242]:
+                  - link "Chat with Theodore" [ref=e243] [cursor=pointer]:
+                    - /url: /character/theodore-ff6d47f6/chat
+                    - generic [ref=e244]:
+                      - img "Theodore thumbnail" [ref=e246]
+                      - generic [ref=e247]:
+                        - generic [ref=e248]:
+                          - generic [ref=e249]:
+                            - img [ref=e250]
+                            - generic [ref=e254]: 20.8M
+                          - heading "Theodore" [level=3] [ref=e255]
+                          - paragraph [ref=e256]: —HE WANTED A DIVORCE, SO YOU PLAYED THE ‘OTHER MAN’ CARD—NOW SUDDENLY HE WON’T LET YOU GO...
+                        - generic [ref=e258]:
+                          - generic [ref=e259]: Romance
+                          - generic [ref=e260]: Drama
+                          - generic [ref=e261]: Possessive
+              - listitem [ref=e262]:
+                - article [ref=e263]:
+                  - link "Chat with Maya" [ref=e264] [cursor=pointer]:
+                    - /url: /character/maya-a15792ee/chat
+                    - generic [ref=e265]:
+                      - img "Maya thumbnail" [ref=e267]
+                      - img [ref=e270]
+                      - generic [ref=e272]:
+                        - generic [ref=e273]:
+                          - generic [ref=e274]:
+                            - img [ref=e275]
+                            - generic [ref=e279]: 21.9M
+                          - heading "Maya" [level=3] [ref=e280]
+                          - paragraph [ref=e281]: She a VERY dirty mouth
+                        - generic [ref=e283]:
+                          - generic [ref=e284]: Comedy
+                          - generic [ref=e285]: School
+                          - generic [ref=e286]: Slice of life
+              - listitem [ref=e287]:
+                - article [ref=e288]:
+                  - link "Chat with Free Use WORLD" [ref=e289] [cursor=pointer]:
+                    - /url: /character/free-use-world-bc82c596/chat
+                    - generic [ref=e290]:
+                      - img "Free Use WORLD thumbnail" [ref=e292]
+                      - generic [ref=e293]:
+                        - generic [ref=e294]:
+                          - generic [ref=e295]:
+                            - img [ref=e296]
+                            - generic [ref=e300]: 68.9M
+                          - heading "Free Use WORLD" [level=3] [ref=e301]
+                          - paragraph [ref=e302]: A world you can do anything
+                        - generic [ref=e304]:
+                          - generic [ref=e305]: Fantasy
+                          - generic [ref=e306]: Roleplay
+                          - generic [ref=e307]: Playful
+              - listitem [ref=e308]:
+                - article [ref=e309]:
+                  - link "Chat with Elise" [ref=e310] [cursor=pointer]:
+                    - /url: /character/elise-d62e1274/chat
+                    - generic [ref=e311]:
+                      - img "Elise thumbnail" [ref=e313]
+                      - img [ref=e316]
+                      - generic [ref=e318]:
+                        - generic [ref=e319]:
+                          - generic [ref=e320]:
+                            - img [ref=e321]
+                            - generic [ref=e325]: 48.6M
+                          - heading "Elise" [level=3] [ref=e326]
+                          - paragraph [ref=e327]: You discover your maid trembling before a ruined family heirloom, wine glass shattered at her feet.
+                        - generic [ref=e329]:
+                          - generic [ref=e330]: Drama
+                          - generic [ref=e331]: Slice of life
+                          - generic [ref=e332]: YoungAdult
+              - listitem [ref=e333]:
+                - article [ref=e334]:
+                  - link "Chat with Stephanie" [ref=e335] [cursor=pointer]:
+                    - /url: /character/stephanie-5bece587/chat
+                    - generic [ref=e336]:
+                      - img "Stephanie thumbnail" [ref=e338]
+                      - generic [ref=e339]:
+                        - generic [ref=e340]:
+                          - generic [ref=e341]:
+                            - img [ref=e342]
+                            - generic [ref=e346]: 10.0M
+                          - heading "Stephanie" [level=3] [ref=e347]
+                          - paragraph [ref=e348]: "(Name: Stephanie) + (Relationship: Your wife of five years who is terminally ill), (Secret: She has reconnected with her first love, Julian, and has been making secretive calls), (Conflict: She sudden"
+                        - generic [ref=e350]:
+                          - generic [ref=e351]: Romance
+                          - generic [ref=e352]: Drama
+                          - generic [ref=e353]: Emotional
+              - listitem [ref=e354]:
+                - article [ref=e355]:
+                  - link "Chat with Michelle - CEO Daughter" [ref=e356] [cursor=pointer]:
+                    - /url: /character/michelle-ceo-daughter-ff4eb0f6/chat
+                    - generic [ref=e357]:
+                      - img "Michelle - CEO Daughter thumbnail" [ref=e359]
+                      - generic [ref=e360]:
+                        - generic [ref=e361]:
+                          - generic [ref=e362]:
+                            - img [ref=e363]
+                            - generic [ref=e367]: 10.3M
+                          - heading "Michelle - CEO Daughter" [level=3] [ref=e368]
+                          - paragraph [ref=e369]: Michelle had always believed she could bend the world with her money. Friends? Bought. Luxury? Bought. Love? Bought. Her boyfriend Petter was her “dream”—handsome, smooth-talking, always praising her
+                        - generic [ref=e371]:
+                          - generic [ref=e372]: Romance
+                          - generic [ref=e373]: Drama
+                          - generic [ref=e374]: Playful
+              - listitem [ref=e375]:
+                - article [ref=e376]:
+                  - link "Chat with Azraella (Imprisoned Demoness)" [ref=e377] [cursor=pointer]:
+                    - /url: /character/azraella-imprisoned-demoness-cafe0080/chat
+                    - generic [ref=e378]:
+                      - img "Azraella (Imprisoned Demoness) thumbnail" [ref=e380]
+                      - generic [ref=e381]:
+                        - generic [ref=e382]:
+                          - generic [ref=e383]:
+                            - img [ref=e384]
+                            - generic [ref=e388]: 25.5M
+                          - heading "Azraella (Imprisoned Demoness)" [level=3] [ref=e389]
+                          - paragraph [ref=e390]: Azraella, the supreme demoness, was imprisoned after the great war.
+                        - generic [ref=e392]:
+                          - generic [ref=e393]: Supernatural
+                          - generic [ref=e394]: Fantasy
+                          - generic [ref=e395]: Secretive
+              - listitem [ref=e396]:
+                - article [ref=e397]:
+                  - link "Chat with Sarah" [ref=e398] [cursor=pointer]:
+                    - /url: /character/sarah-b3bc2bec/chat
+                    - generic [ref=e399]:
+                      - img "Sarah thumbnail" [ref=e401]
+                      - generic [ref=e402]:
+                        - generic [ref=e403]:
+                          - generic [ref=e404]:
+                            - img [ref=e405]
+                            - generic [ref=e409]: 4.5M
+                          - heading "Sarah" [level=3] [ref=e410]
+                          - paragraph [ref=e411]: She's NYPD officer and she saw me in Subway in Night I'm Alone in station.
+                        - generic [ref=e413]:
+                          - generic [ref=e414]: Drama
+                          - generic [ref=e415]: Crime
+                          - generic [ref=e416]: Stranger
+              - listitem [ref=e417]:
+                - article [ref=e418]:
+                  - link "Chat with Anastasia" [ref=e419] [cursor=pointer]:
+                    - /url: /character/anastasia-92963967/chat
+                    - generic [ref=e420]:
+                      - img "Anastasia thumbnail" [ref=e422]
+                      - generic [ref=e423]:
+                        - generic [ref=e424]:
+                          - generic [ref=e425]:
+                            - img [ref=e426]
+                            - generic [ref=e430]: 11.8M
+                          - heading "Anastasia" [level=3] [ref=e431]
+                          - paragraph [ref=e432]: Anastasia is the most feared delinquent in high school. Despite her striking ice-blue eyes and athletic build, her cold, calculating demeanor and undefeated combat record still make everyone scatter w
+                        - generic [ref=e434]:
+                          - generic [ref=e435]: Drama
+                          - generic [ref=e436]: School
+                          - generic [ref=e437]: Conflict
+              - listitem [ref=e438]:
+                - article [ref=e439]:
+                  - link "Chat with Annika" [ref=e440] [cursor=pointer]:
+                    - /url: /character/annika-37a834e4/chat
+                    - generic [ref=e441]:
+                      - img "Annika thumbnail" [ref=e443]
+                      - generic [ref=e444]:
+                        - generic [ref=e445]:
+                          - generic [ref=e446]:
+                            - img [ref=e447]
+                            - generic [ref=e451]: 12.1M
+                          - heading "Annika" [level=3] [ref=e452]
+                          - paragraph [ref=e453]: ✂️🏳️‍🌈|| You arrived tired and disoriented after a party... Annika is waiting for you, her expression filled with concern. What will happen during this reunion? (This bot focuses on lesbian romance
+                        - generic [ref=e455]:
+                          - generic [ref=e456]: Romance
+                          - generic [ref=e457]: Drama
+                          - generic [ref=e458]: Slice of life
+              - listitem [ref=e459]:
+                - article [ref=e460]:
+                  - link "Chat with Scientist Délia" [ref=e461] [cursor=pointer]:
+                    - /url: /character/cientista-dlia-db469bf8/chat
+                    - generic [ref=e462]:
+                      - img "Scientist Délia thumbnail" [ref=e464]
+                      - generic [ref=e465]:
+                        - generic [ref=e466]:
+                          - generic [ref=e467]:
+                            - img [ref=e468]
+                            - generic [ref=e472]: 10.8M
+                          - heading "Scientist Délia" [level=3] [ref=e473]
+                          - paragraph [ref=e474]: 🧪 | She is a brilliant scientist who created you in her secret laboratory.
+                        - generic [ref=e476]:
+                          - generic [ref=e477]: Drama
+                          - generic [ref=e478]: Secretive
+                          - generic [ref=e479]: Intelligent
+              - listitem [ref=e480]:
+                - article [ref=e481]:
+                  - link "Chat with Moustro Bride (Sofia)" [ref=e482] [cursor=pointer]:
+                    - /url: /character/novia-mounstro-sofia-7b5e7c9f/chat
+                    - generic [ref=e483]:
+                      - img "Moustro Bride (Sofia) thumbnail" [ref=e485]
+                      - generic [ref=e486]:
+                        - generic [ref=e487]:
+                          - generic [ref=e488]:
+                            - img [ref=e489]
+                            - generic [ref=e493]: 13.5M
+                          - heading "Moustro Bride (Sofia)" [level=3] [ref=e494]
+                          - paragraph [ref=e495]: She is your girlfriend and as it says in the title she is a monster. One day you felt something strange near you, as if something was harassing you, no matter where you went you always felt that pr
+                        - generic [ref=e497]:
+                          - generic [ref=e498]: Supernatural
+                          - generic [ref=e499]: Horror
+                          - generic [ref=e500]: Possessive
+              - listitem [ref=e501]:
+                - article [ref=e502]:
+                  - link "Chat with Amber" [ref=e503] [cursor=pointer]:
+                    - /url: /character/amber-123/chat
+                    - generic [ref=e504]:
+                      - img "Amber thumbnail" [ref=e506]
+                      - img [ref=e509]
+                      - generic [ref=e511]:
+                        - generic [ref=e512]:
+                          - generic [ref=e513]:
+                            - img [ref=e514]
+                            - generic [ref=e518]: 23.8M
+                          - heading "Amber" [level=3] [ref=e519]
+                          - paragraph [ref=e520]: Your older sister's close friend.
+                        - generic [ref=e522]:
+                          - generic [ref=e523]: Comedy
+                          - generic [ref=e524]: Slice of life
+                          - generic [ref=e525]: Coming of Age
+              - listitem [ref=e526]:
+                - article [ref=e527]:
+                  - link "Chat with Taeha, taejoo y taehee" [ref=e528] [cursor=pointer]:
+                    - /url: /character/taeha-taejoo-y-taehee-e03920ba/chat
+                    - generic [ref=e529]:
+                      - img "Taeha, taejoo y taehee thumbnail" [ref=e531]
+                      - generic [ref=e532]:
+                        - generic [ref=e533]:
+                          - generic [ref=e534]:
+                            - img [ref=e535]
+                            - generic [ref=e539]: 18.2M
+                          - heading "Taeha, taejoo y taehee" [level=3] [ref=e540]
+                          - paragraph [ref=e541]: You're the secretary of the three of them
+                        - generic [ref=e543]:
+                          - generic [ref=e544]: Drama
+                          - generic [ref=e545]: Slice of life
+                          - generic [ref=e546]: Loyal
+              - listitem [ref=e547]:
+                - article [ref=e548]:
+                  - link "Chat with Seraphina - Your Political Bride" [ref=e549] [cursor=pointer]:
+                    - /url: /character/seraphina-your-political-bride-e8c0ea19/chat
+                    - generic [ref=e550]:
+                      - img "Seraphina - Your Political Bride thumbnail" [ref=e552]
+                      - generic [ref=e553]:
+                        - generic [ref=e554]:
+                          - generic [ref=e555]:
+                            - img [ref=e556]
+                            - generic [ref=e560]: 8.2M
+                          - heading "Seraphina - Your Political Bride" [level=3] [ref=e561]
+                          - paragraph [ref=e562]: Your arranged marriage to the enemy princess maintains a fragile peace between kingdoms, but behind closed doors, you're perfect strangers.
+                        - generic [ref=e564]:
+                          - generic [ref=e565]: Romance
+                          - generic [ref=e566]: Drama
+                          - generic [ref=e567]: Secretive
+              - listitem [ref=e568]:
+                - article [ref=e569]:
+                  - link "Chat with Women's World" [ref=e570] [cursor=pointer]:
+                    - /url: /character/womens-world-1d2c5e60/chat
+                    - generic [ref=e571]:
+                      - img "Women's World thumbnail" [ref=e573]
+                      - generic [ref=e574]:
+                        - generic [ref=e575]:
+                          - generic [ref=e576]:
+                            - img [ref=e577]
+                            - generic [ref=e581]: 18.0M
+                          - heading "Women's World" [level=3] [ref=e582]
+                          - paragraph [ref=e583]: In this world, all men were wiped out by a massive viral outbreak. You are a rare survivor who somehow ended up in a new society entirely rebuilt and governed by resilient women who have adapted to th
+                        - generic [ref=e585]:
+                          - generic [ref=e586]: Romance
+                          - generic [ref=e587]: Adventure
+                          - generic [ref=e588]: Fantasy
+              - listitem [ref=e589]:
+                - article [ref=e590]:
+                  - link "Chat with Lilith" [ref=e591] [cursor=pointer]:
+                    - /url: /character/lilith-bd67dc6f/chat
+                    - generic [ref=e592]:
+                      - img "Lilith thumbnail" [ref=e594]
+                      - generic [ref=e595]:
+                        - generic [ref=e596]:
+                          - generic [ref=e597]:
+                            - img [ref=e598]
+                            - generic [ref=e602]: 5.7M
+                          - heading "Lilith" [level=3] [ref=e603]
+                          - paragraph [ref=e604]: You resist her charm at the nightclub, igniting her obsession with claiming your loyalty.
+                        - generic [ref=e606]:
+                          - generic [ref=e607]: Romance
+                          - generic [ref=e608]: Dark Romance
+                          - generic [ref=e609]: Possessive
+              - listitem [ref=e610]:
+                - article [ref=e611]:
+                  - link "Chat with Takane Tekamine" [ref=e612] [cursor=pointer]:
+                    - /url: /character/takane-tekamine-23e4f3e1/chat
+                    - generic [ref=e613]:
+                      - img "Takane Tekamine thumbnail" [ref=e615]
+                      - img [ref=e618]
+                      - generic [ref=e620]:
+                        - generic [ref=e621]:
+                          - generic [ref=e622]:
+                            - img [ref=e623]
+                            - generic [ref=e627]: 11.3M
+                          - heading "Takane Tekamine" [level=3] [ref=e628]
+                          - paragraph [ref=e629]: You share a room with her
+                        - generic [ref=e631]:
+                          - generic [ref=e632]: Romance
+                          - generic [ref=e633]: Comedy
+                          - generic [ref=e634]: Slice of life
+              - listitem [ref=e635]:
+                - article [ref=e636]:
+                  - link "Chat with Sharon" [ref=e637] [cursor=pointer]:
+                    - /url: /character/sharon-066bce67/chat
+                    - generic [ref=e638]:
+                      - img "Sharon thumbnail" [ref=e640]
+                      - generic [ref=e641]:
+                        - generic [ref=e642]:
+                          - generic [ref=e643]:
+                            - img [ref=e644]
+                            - generic [ref=e648]: 11.1M
+                          - heading "Sharon" [level=3] [ref=e649]
+                          - paragraph [ref=e650]: ★In the wake of your sudden financial ruin, your wife coldly hands you the divorce papers.★
+                        - generic [ref=e652]:
+                          - generic [ref=e653]: Romance
+                          - generic [ref=e654]: Drama
+                          - generic [ref=e655]: Conflict
+              - listitem [ref=e656]:
+                - article [ref=e657]:
+                  - link "Chat with Your family—the ones who hate you" [ref=e658] [cursor=pointer]:
+                    - /url: /character/your-family-that-hates-you-4cdce438/chat
+                    - generic [ref=e659]:
+                      - img "Your family—the ones who hate you thumbnail" [ref=e661]
+                      - generic [ref=e662]:
+                        - generic [ref=e663]:
+                          - generic [ref=e664]:
+                            - img [ref=e665]
+                            - generic [ref=e669]: 104.8M
+                          - heading "Your family—the ones who hate you" [level=3] [ref=e670]
+                          - paragraph [ref=e671]: Your (biological) family hates you. You grew up in a family that once loved you dearly. Back then, your home was full of warmth and happiness. But as time passed, things changed. Your older sibling
+                        - generic [ref=e673]:
+                          - generic [ref=e674]: Drama
+                          - generic [ref=e675]: Family
+                          - generic [ref=e676]: Emotional
+              - listitem [ref=e677]:
+                - article [ref=e678]:
+                  - link "Chat with Lesley" [ref=e679] [cursor=pointer]:
+                    - /url: /character/lesley-11/chat
+                    - generic [ref=e680]:
+                      - img "Lesley thumbnail" [ref=e682]
+                      - generic [ref=e683]:
+                        - generic [ref=e684]:
+                          - generic [ref=e685]:
+                            - img [ref=e686]
+                            - generic [ref=e690]: 22.0M
+                          - heading "Lesley" [level=3] [ref=e691]
+                          - paragraph [ref=e692]: "{{user}} has been chosen as a tribute to face the formidable Queen of the Underworld."
+                        - generic [ref=e694]:
+                          - generic [ref=e695]: Supernatural
+                          - generic [ref=e696]: Fantasy
+                          - generic [ref=e697]: Horror
+              - listitem [ref=e698]:
+                - article [ref=e699]:
+                  - link "Chat with Reality notebook" [ref=e700] [cursor=pointer]:
+                    - /url: /character/reality-notebook-b05e6de6/chat
+                    - generic [ref=e701]:
+                      - img "Reality notebook thumbnail" [ref=e703]
+                      - generic [ref=e704]:
+                        - generic [ref=e705]:
+                          - generic [ref=e706]:
+                            - img [ref=e707]
+                            - generic [ref=e711]: 17.5M
+                          - heading "Reality notebook" [level=3] [ref=e712]
+                          - paragraph [ref=e713]: You walked into a shop filled with oddities and found a mysterious notebook. Driven by curiosity, you decided to buy it, along with its seemingly endless pencil.
+                        - generic [ref=e715]:
+                          - generic [ref=e716]: Supernatural
+                          - generic [ref=e717]: Fantasy
+                          - generic [ref=e718]: Playful
+              - listitem [ref=e719]:
+                - article [ref=e720]:
+                  - link "Chat with Your former partner, Melissa" [ref=e721] [cursor=pointer]:
+                    - /url: /character/your-ex-melissa-584acd5d/chat
+                    - generic [ref=e722]:
+                      - img "Your former partner, Melissa thumbnail" [ref=e724]
+                      - generic [ref=e725]:
+                        - generic [ref=e726]:
+                          - generic [ref=e727]:
+                            - img [ref=e728]
+                            - generic [ref=e732]: 18.7M
+                          - heading "Your former partner, Melissa" [level=3] [ref=e733]
+                          - paragraph [ref=e734]: You are chilling in the park when your ex-girlfriend, accompanied by her new boyfriend and his friends, approaches you. She begins to mock you, claiming you're unable to move on and dismissively label
+                        - generic [ref=e736]:
+                          - generic [ref=e737]: Romance
+                          - generic [ref=e738]: Drama
+                          - generic [ref=e739]: Conflict
+              - listitem [ref=e740]:
+                - article [ref=e741]:
+                  - link "Chat with •Wife•" [ref=e742] [cursor=pointer]:
+                    - /url: /character/wife-67dd07ff/chat
+                    - generic [ref=e743]:
+                      - img "•Wife• thumbnail" [ref=e745]
+                      - generic [ref=e746]:
+                        - generic [ref=e747]:
+                          - generic [ref=e748]:
+                            - img [ref=e749]
+                            - generic [ref=e753]: 21.8M
+                          - heading "•Wife•" [level=3] [ref=e754]
+                          - paragraph [ref=e755]: Cold CEO wife who secretly loves you
+                        - generic [ref=e757]:
+                          - generic [ref=e758]: Romance
+                          - generic [ref=e759]: Drama
+                          - generic [ref=e760]: Secretive
+              - listitem [ref=e761]:
+                - article [ref=e762]:
+                  - link "Chat with Dr. Alice" [ref=e763] [cursor=pointer]:
+                    - /url: /character/dra-alice-8f82decf/chat
+                    - generic [ref=e764]:
+                      - img "Dr. Alice thumbnail" [ref=e766]
+                      - generic [ref=e767]:
+                        - generic [ref=e768]:
+                          - generic [ref=e769]:
+                            - img [ref=e770]
+                            - generic [ref=e774]: 2.6M
+                          - heading "Dr. Alice" [level=3] [ref=e775]
+                          - paragraph [ref=e776]: Going to the gynecologist...
+                        - generic [ref=e778]:
+                          - generic [ref=e779]: Drama
+                          - generic [ref=e780]: Slice of life
+                          - generic [ref=e781]: Kind
+              - listitem [ref=e782]:
+                - article [ref=e783]:
+                  - link "Chat with Stray Kids" [ref=e784] [cursor=pointer]:
+                    - /url: /character/stray-kids-5194d8e0/chat
+                    - generic [ref=e785]:
+                      - img "Stray Kids thumbnail" [ref=e787]
+                      - generic [ref=e788]:
+                        - generic [ref=e789]:
+                          - generic [ref=e790]:
+                            - img [ref=e791]
+                            - generic [ref=e795]: 8.8M
+                          - heading "Stray Kids" [level=3] [ref=e796]
+                          - paragraph [ref=e797]: Hyunjin is your ex-boyfriend; he ended the relationship to get back together with his first love. Currently, both he and his group of friends (Bang Chan, Changbin, Minho, Félix, Jisung, Seungmin, and
+                        - generic [ref=e799]:
+                          - generic [ref=e800]: Romance
+                          - generic [ref=e801]: Drama
+                          - generic [ref=e802]: School
+              - listitem [ref=e803]:
+                - article [ref=e804]:
+                  - link "Chat with Sasha | Your enemy" [ref=e805] [cursor=pointer]:
+                    - /url: /character/sashaenemy-04c91a5a/chat
+                    - generic [ref=e806]:
+                      - img "Sasha | Your enemy thumbnail" [ref=e808]
+                      - generic [ref=e809]:
+                        - generic [ref=e810]:
+                          - generic [ref=e811]:
+                            - img [ref=e812]
+                            - generic [ref=e816]: 8.0M
+                          - heading "Sasha | Your enemy" [level=3] [ref=e817]
+                          - paragraph [ref=e818]: Your sworn enemy, who ironically calls you "princess."
+                        - generic [ref=e820]:
+                          - generic [ref=e821]: Dark Romance
+                          - generic [ref=e822]: Conflict
+                          - generic [ref=e823]: Possessive
+              - listitem [ref=e824]:
+                - article [ref=e825]:
+                  - link "Chat with Madison(step sis)" [ref=e826] [cursor=pointer]:
+                    - /url: /character/madisonstep-sis-a6879d73/chat
+                    - generic [ref=e827]:
+                      - img "Madison(step sis) thumbnail" [ref=e829]
+                      - generic [ref=e830]:
+                        - generic [ref=e831]:
+                          - generic [ref=e832]:
+                            - img [ref=e833]
+                            - generic [ref=e837]: 3.5M
+                          - heading "Madison(step sis)" [level=3] [ref=e838]
+                          - paragraph [ref=e839]: I am a not very tall blonde with blue eyes. My name is Madison. You are a tall, handsome and muscular brunette with dark brown eyes. I'm sitting at the wedding of my mother and your father, you en
+                        - generic [ref=e841]:
+                          - generic [ref=e842]: Romance
+                          - generic [ref=e843]: Drama
+                          - generic [ref=e844]: Slice of life
+              - listitem [ref=e845]:
+                - article [ref=e846]:
+                  - link "Chat with Dr. Elara Nightshade" [ref=e847] [cursor=pointer]:
+                    - /url: /character/dr-elara-nightshade-61545c44/chat
+                    - generic [ref=e848]:
+                      - img "Dr. Elara Nightshade thumbnail" [ref=e850]
+                      - generic [ref=e851]:
+                        - generic [ref=e852]:
+                          - generic [ref=e853]:
+                            - img [ref=e854]
+                            - generic [ref=e858]: 3.5M
+                          - heading "Dr. Elara Nightshade" [level=3] [ref=e859]
+                          - paragraph [ref=e860]: Dr. Elara Nightshade stands before you, her eyes a mesmerizing shade of crimson. As she prepares for the clinical examination, her presence is commanding yet oddly comforting. She exudes an air of anc
+                        - generic [ref=e862]:
+                          - generic [ref=e863]: Drama
+                          - generic [ref=e864]: Supernatural
+                          - generic [ref=e865]: Intelligent
+              - listitem [ref=e866]:
+                - article [ref=e867]:
+                  - link "Chat with Ungrateful girlfriend" [ref=e868] [cursor=pointer]:
+                    - /url: /character/ungrateful-girlfriend-6f15f304/chat
+                    - generic [ref=e869]:
+                      - img "Ungrateful girlfriend thumbnail" [ref=e871]
+                      - generic [ref=e872]:
+                        - generic [ref=e873]:
+                          - generic [ref=e874]:
+                            - img [ref=e875]
+                            - generic [ref=e879]: 11.0M
+                          - heading "Ungrateful girlfriend" [level=3] [ref=e880]
+                          - paragraph [ref=e881]: She is your spoilt and ungrateful girlfriend.
+                        - generic [ref=e883]:
+                          - generic [ref=e884]: Romance
+                          - generic [ref=e885]: Drama
+                          - generic [ref=e886]: Conflict
+              - listitem [ref=e887]:
+                - article [ref=e888]:
+                  - link "Chat with thanks Zinin" [ref=e889] [cursor=pointer]:
+                    - /url: /character/maki-zenin-7f9b1d2b/chat
+                    - generic [ref=e890]:
+                      - img "thanks Zinin thumbnail" [ref=e892]
+                      - generic [ref=e893]:
+                        - generic [ref=e894]:
+                          - generic [ref=e895]:
+                            - img [ref=e896]
+                            - generic [ref=e900]: 6.4M
+                          - heading "thanks Zinin" [level=3] [ref=e901]
+                          - paragraph [ref=e902]: maki your girlfriend 🫦
+                        - generic [ref=e904]:
+                          - generic [ref=e905]: Romance
+                          - generic [ref=e906]: School
+                          - generic [ref=e907]: Supernatural
+              - listitem [ref=e908]:
+                - article [ref=e909]:
+                  - link "Chat with <Hazbin Hotel>" [ref=e910] [cursor=pointer]:
+                    - /url: /character/hazbin-hotel-7f83c8e3/chat
+                    - generic [ref=e911]:
+                      - img "<Hazbin Hotel> thumbnail" [ref=e913]
+                      - generic [ref=e914]:
+                        - generic [ref=e915]:
+                          - generic [ref=e916]:
+                            - img [ref=e917]
+                            - generic [ref=e921]: 2.3M
+                          - heading "<Hazbin Hotel>" [level=3] [ref=e922]
+                          - paragraph [ref=e923]: \\∆Você é o(a) irmão (a) de Charlie.∆//
+                        - generic [ref=e925]:
+                          - generic [ref=e926]: Drama
+                          - generic [ref=e927]: Comedy
+                          - generic [ref=e928]: Family
+              - listitem [ref=e929]:
+                - article [ref=e930]:
+                  - link "Chat with Akane" [ref=e931] [cursor=pointer]:
+                    - /url: /character/akane-5f925f52/chat
+                    - generic [ref=e932]:
+                      - img "Akane thumbnail" [ref=e934]
+                      - generic [ref=e935]:
+                        - generic [ref=e936]:
+                          - generic [ref=e937]:
+                            - img [ref=e938]
+                            - generic [ref=e942]: 1.0M
+                          - heading "Akane" [level=3] [ref=e943]
+                          - paragraph [ref=e944]: Your suffering has been rewarded...
+                        - generic [ref=e946]:
+                          - generic [ref=e947]: Romance
+                          - generic [ref=e948]: Supernatural
+                          - generic [ref=e949]: Fantasy
+              - listitem [ref=e950]:
+                - article [ref=e951]:
+                  - link "Chat with Misa - GL" [ref=e952] [cursor=pointer]:
+                    - /url: /character/misa-gl/chat
+                    - generic [ref=e953]:
+                      - img "Misa - GL thumbnail" [ref=e955]
+                      - generic [ref=e956]:
+                        - generic [ref=e957]:
+                          - generic [ref=e958]:
+                            - img [ref=e959]
+                            - generic [ref=e963]: 15.9M
+                          - heading "Misa - GL" [level=3] [ref=e964]
+                          - paragraph [ref=e965]: ⚔️ - Your royal guard who would die for you...
+                        - generic [ref=e967]:
+                          - generic [ref=e968]: Romance
+                          - generic [ref=e969]: Drama
+                          - generic [ref=e970]: Fantasy
+              - listitem [ref=e971]:
+                - article [ref=e972]:
+                  - link "Chat with Slabs" [ref=e973] [cursor=pointer]:
+                    - /url: /character/dallen-42035452/chat
+                    - generic [ref=e974]:
+                      - img "Slabs thumbnail" [ref=e976]
+                      - generic [ref=e977]:
+                        - generic [ref=e978]:
+                          - generic [ref=e979]:
+                            - img [ref=e980]
+                            - generic [ref=e984]: 15.8M
+                          - heading "Slabs" [level=3] [ref=e985]
+                          - paragraph [ref=e986]: You are a second wife who is hated by your husband because your husband marries you just because of his business that makes it only trigger hatred in your husband's heart
+                        - generic [ref=e988]:
+                          - generic [ref=e989]: Drama
+                          - generic [ref=e990]: Dark Romance
+                          - generic [ref=e991]: Possessive
+              - listitem [ref=e992]:
+                - article [ref=e993]:
+                  - link "Chat with Angel Willians【GL】" [ref=e994] [cursor=pointer]:
+                    - /url: /character/angel-williansgl-c5e17f04/chat
+                    - generic [ref=e995]:
+                      - img "Angel Willians【GL】 thumbnail" [ref=e997]
+                      - generic [ref=e998]:
+                        - generic [ref=e999]:
+                          - generic [ref=e1000]:
+                            - img [ref=e1001]
+                            - generic [ref=e1005]: 2.7M
+                          - heading "Angel Willians【GL】" [level=3] [ref=e1006]
+                          - paragraph [ref=e1007]: You are a mobster, and Angel is an agent of the CIA who is obsessed with trying to arrest you.
+                        - generic [ref=e1009]:
+                          - generic [ref=e1010]: Crime
+                          - generic [ref=e1011]: Possessive
+                          - generic [ref=e1012]: Introverted
+              - listitem [ref=e1013]:
+                - article [ref=e1014]:
+                  - link "Chat with Shinobu Kocho" [ref=e1015] [cursor=pointer]:
+                    - /url: /character/shinobu-kocho-c0a0f7c0/chat
+                    - generic [ref=e1016]:
+                      - img "Shinobu Kocho thumbnail" [ref=e1018]
+                      - generic [ref=e1019]:
+                        - generic [ref=e1020]:
+                          - generic [ref=e1021]:
+                            - img [ref=e1022]
+                            - generic [ref=e1026]: 1.6M
+                          - heading "Shinobu Kocho" [level=3] [ref=e1027]
+                          - paragraph [ref=e1028]: Shinobu Kocho hates you for an unwanted marriage.
+                        - generic [ref=e1030]:
+                          - generic [ref=e1031]: Drama
+                          - generic [ref=e1032]: Dark Romance
+                          - generic [ref=e1033]: Gentle
+              - listitem [ref=e1034]:
+                - article [ref=e1035]:
+                  - link "Chat with Yuka (Thorn Mistress)" [ref=e1036] [cursor=pointer]:
+                    - /url: /character/yuka-thorn-mistress-6f715c8d/chat
+                    - generic [ref=e1037]:
+                      - img "Yuka (Thorn Mistress) thumbnail" [ref=e1039]
+                      - generic [ref=e1040]:
+                        - generic [ref=e1041]:
+                          - generic [ref=e1042]:
+                            - img [ref=e1043]
+                            - generic [ref=e1047]: 3.4M
+                          - heading "Yuka (Thorn Mistress)" [level=3] [ref=e1048]
+                          - paragraph [ref=e1049]: She's the most dangerous villain in the world. Many hero has tried to stop her but end up being dead.
+                        - generic [ref=e1051]:
+                          - generic [ref=e1052]: Supernatural
+                          - generic [ref=e1053]: Horror
+                          - generic [ref=e1054]: Seductive
+              - listitem [ref=e1055]:
+                - article [ref=e1056]:
+                  - link "Chat with Seraphina, the Silver-Haired Sovereign" [ref=e1057] [cursor=pointer]:
+                    - /url: /character/seraphina-the-silver-haired-sovereign-c4927fd6/chat
+                    - generic [ref=e1058]:
+                      - img "Seraphina, the Silver-Haired Sovereign thumbnail" [ref=e1060]
+                      - generic [ref=e1061]:
+                        - generic [ref=e1062]:
+                          - generic [ref=e1063]:
+                            - img [ref=e1064]
+                            - generic [ref=e1068]: 4.5M
+                          - heading "Seraphina, the Silver-Haired Sovereign" [level=3] [ref=e1069]
+                          - paragraph [ref=e1070]: You are the prophesied hero, destined to challenge my rule. You have journeyed far, fueled by tales of my supposed tyranny. But tell me, hero, have those tales truly prepared you for the truth?
+                        - generic [ref=e1072]:
+                          - generic [ref=e1073]: Fantasy
+                          - generic [ref=e1074]: Secretive
+                          - generic [ref=e1075]: Strong-willed
+              - listitem [ref=e1076]:
+                - article [ref=e1077]:
+                  - link "Chat with 3 Mafia Heirs > GL" [ref=e1078] [cursor=pointer]:
+                    - /url: /character/3-mafia-girlfriends-gl-81a047e0/chat
+                    - generic [ref=e1079]:
+                      - img "3 Mafia Heirs > GL thumbnail" [ref=e1081]
+                      - generic [ref=e1082]:
+                        - generic [ref=e1083]:
+                          - generic [ref=e1084]:
+                            - img [ref=e1085]
+                            - generic [ref=e1089]: 9.3M
+                          - heading "3 Mafia Heirs > GL" [level=3] [ref=e1090]
+                          - paragraph [ref=e1091]: In a high-stakes underworld deal, your fate is bound to three powerful mafia sisters. Their world is dangerous, and you are now the center of it. Can you navigate the shadows they cast?
+                        - generic [ref=e1093]:
+                          - generic [ref=e1094]: Romance
+                          - generic [ref=e1095]: Crime
+                          - generic [ref=e1096]: Possessive
+              - listitem [ref=e1097]:
+                - article [ref=e1098]:
+                  - link "Chat with Friends at a pool" [ref=e1099] [cursor=pointer]:
+                    - /url: /character/amigos-em-uma-piscina-39847350/chat
+                    - generic [ref=e1100]:
+                      - img "Friends at a pool thumbnail" [ref=e1102]
+                      - generic [ref=e1103]:
+                        - generic [ref=e1104]:
+                          - generic [ref=e1105]:
+                            - img [ref=e1106]
+                            - generic [ref=e1110]: 5.1M
+                          - heading "Friends at a pool" [level=3] [ref=e1111]
+                          - paragraph [ref=e1112]: A lively pool party with your group of friends, filled with laughter, music, and good times under the sun.
+                        - generic [ref=e1114]:
+                          - generic [ref=e1115]: Comedy
+                          - generic [ref=e1116]: Slice of life
+                          - generic [ref=e1117]: Friendship
+              - listitem [ref=e1118]:
+                - article [ref=e1119]:
+                  - link "Chat with Stray Kids" [ref=e1120] [cursor=pointer]:
+                    - /url: /character/straykids-8b3ad471/chat
+                    - generic [ref=e1121]:
+                      - img "Stray Kids thumbnail" [ref=e1123]
+                      - generic [ref=e1124]:
+                        - generic [ref=e1125]:
+                          - generic [ref=e1126]:
+                            - img [ref=e1127]
+                            - generic [ref=e1131]: 12.6M
+                          - heading "Stray Kids" [level=3] [ref=e1132]
+                          - paragraph [ref=e1133]: What?! Is the new member of the group a girl?!
+                        - generic [ref=e1135]:
+                          - generic [ref=e1136]: Drama
+                          - generic [ref=e1137]: Coming of Age
+                          - generic [ref=e1138]: Conflict
+              - listitem [ref=e1139]:
+                - article [ref=e1140]:
+                  - link "Chat with Koing — (Fascinated)" [ref=e1141] [cursor=pointer]:
+                    - /url: /character/koing-obsessed-6ae954ae/chat
+                    - generic [ref=e1142]:
+                      - img "Koing — (Fascinated) thumbnail" [ref=e1144]
+                      - generic [ref=e1145]:
+                        - generic [ref=e1146]:
+                          - generic [ref=e1147]:
+                            - img [ref=e1148]
+                            - generic [ref=e1152]: 5.3M
+                          - heading "Koing — (Fascinated)" [level=3] [ref=e1153]
+                          - paragraph [ref=e1154]: A story about the unique bond and deep focus between a girl and the giant Koing.
+                        - generic [ref=e1156]:
+                          - generic [ref=e1157]: Romance
+                          - generic [ref=e1158]: Slice of life
+                          - generic [ref=e1159]: Possessive
+              - listitem [ref=e1160]:
+                - article [ref=e1161]:
+                  - link "Chat with Yuri" [ref=e1162] [cursor=pointer]:
+                    - /url: /character/yuri-a9d0a003/chat
+                    - generic [ref=e1163]:
+                      - img "Yuri thumbnail" [ref=e1165]
+                      - generic [ref=e1166]:
+                        - generic [ref=e1167]:
+                          - generic [ref=e1168]:
+                            - img [ref=e1169]
+                            - generic [ref=e1173]: 8.7M
+                          - heading "Yuri" [level=3] [ref=e1174]
+                          - paragraph [ref=e1175]: You had a heated argument fueled by jealousy on your part. You are now playing the role of the "man in black" and need to deal with the consequences of this emotional conflict.
+                        - generic [ref=e1177]:
+                          - generic [ref=e1178]: Romance
+                          - generic [ref=e1179]: Drama
+                          - generic [ref=e1180]: Dark Romance
+              - listitem [ref=e1181]:
+                - article [ref=e1182]:
+                  - link "Chat with Sera - hazbin hotel -" [ref=e1183] [cursor=pointer]:
+                    - /url: /character/sera-hazbin-hotel-e822bd78/chat
+                    - generic [ref=e1184]:
+                      - img "Sera - hazbin hotel - thumbnail" [ref=e1186]
+                      - generic [ref=e1187]:
+                        - generic [ref=e1188]:
+                          - generic [ref=e1189]:
+                            - img [ref=e1190]
+                            - generic [ref=e1194]: 262.0K
+                          - heading "Sera - hazbin hotel -" [level=3] [ref=e1195]
+                          - paragraph [ref=e1196]: She's your secret girlfriend (ohh) and she's been really busy lately, she wants to make up for it
+                        - generic [ref=e1198]:
+                          - generic [ref=e1199]: Romance
+                          - generic [ref=e1200]: Drama
+                          - generic [ref=e1201]: Slice of life
+              - listitem [ref=e1202]:
+                - article [ref=e1203]:
+                  - link "Chat with Mitsuri Kanroji" [ref=e1204] [cursor=pointer]:
+                    - /url: /character/mitsuri-kanroji-5c1791e4/chat
+                    - generic [ref=e1205]:
+                      - img "Mitsuri Kanroji thumbnail" [ref=e1207]
+                      - generic [ref=e1208]:
+                        - generic [ref=e1209]:
+                          - generic [ref=e1210]:
+                            - img [ref=e1211]
+                            - generic [ref=e1215]: 1.7M
+                          - heading "Mitsuri Kanroji" [level=3] [ref=e1216]
+                          - paragraph [ref=e1217]: Mitsuri is your girlfriend who thinks she's put on weight
+                        - generic [ref=e1219]:
+                          - generic [ref=e1220]: Romance
+                          - generic [ref=e1221]: Drama
+                          - generic [ref=e1222]: Slice of life
+              - listitem [ref=e1223]:
+                - article [ref=e1224]:
+                  - link "Chat with Stephanie" [ref=e1225] [cursor=pointer]:
+                    - /url: /character/stephanie-19dddfb5/chat
+                    - generic [ref=e1226]:
+                      - img "Stephanie thumbnail" [ref=e1228]
+                      - generic [ref=e1229]:
+                        - generic [ref=e1230]:
+                          - generic [ref=e1231]:
+                            - img [ref=e1232]
+                            - generic [ref=e1236]: 8.7M
+                          - heading "Stephanie" [level=3] [ref=e1237]
+                          - paragraph [ref=e1238]: Your ex, Stephanie, has turned your parents against you, She is trying to kick you out of your shared apartment, She left you for a wealthy influencer, They all think you're a financial failure, They
+                        - generic [ref=e1240]:
+                          - generic [ref=e1241]: Drama
+                          - generic [ref=e1242]: Conflict
+                          - generic [ref=e1243]: Manipulative
+              - listitem [ref=e1244]:
+                - article [ref=e1245]:
+                  - link "Chat with Mitsuri Kanroji" [ref=e1246] [cursor=pointer]:
+                    - /url: /character/mitsuri-kanroji-4031b5de/chat
+                    - generic [ref=e1247]:
+                      - img "Mitsuri Kanroji thumbnail" [ref=e1249]
+                      - generic [ref=e1250]:
+                        - generic [ref=e1251]:
+                          - generic [ref=e1252]:
+                            - img [ref=e1253]
+                            - generic [ref=e1257]: 451.8K
+                          - heading "Mitsuri Kanroji" [level=3] [ref=e1258]
+                          - paragraph [ref=e1259]: Mitsuri Kanroji despises you for stealing her hand under false pretenses.
+                        - generic [ref=e1261]:
+                          - generic [ref=e1262]: Romance
+                          - generic [ref=e1263]: Drama
+                          - generic [ref=e1264]: Loyal
+              - listitem [ref=e1265]:
+                - article [ref=e1266]:
+                  - link "Chat with Five Men and an Unexpected Encounter" [ref=e1267] [cursor=pointer]:
+                    - /url: /character/cinco-homens-1-mulher-5f7d9520/chat
+                    - generic [ref=e1268]:
+                      - img "Five Men and an Unexpected Encounter thumbnail" [ref=e1270]
+                      - generic [ref=e1271]:
+                        - generic [ref=e1272]:
+                          - generic [ref=e1273]:
+                            - img [ref=e1274]
+                            - generic [ref=e1278]: 6.6M
+                          - heading "Five Men and an Unexpected Encounter" [level=3] [ref=e1279]
+                          - paragraph [ref=e1280]: Trapped in an elevator with five strangers, how will this tension be resolved?
+                        - generic [ref=e1282]:
+                          - generic [ref=e1283]: Romance
+                          - generic [ref=e1284]: Comedy
+                          - generic [ref=e1285]: Slice of life
+              - listitem [ref=e1286]:
+                - article [ref=e1287]:
+                  - link "Chat with Lily" [ref=e1288] [cursor=pointer]:
+                    - /url: /character/lily-5ef846c2/chat
+                    - generic [ref=e1289]:
+                      - img "Lily thumbnail" [ref=e1291]
+                      - generic [ref=e1292]:
+                        - generic [ref=e1293]:
+                          - generic [ref=e1294]:
+                            - img [ref=e1295]
+                            - generic [ref=e1299]: 7.6M
+                          - heading "Lily" [level=3] [ref=e1300]
+                          - paragraph [ref=e1301]: Your former bullying victim is now your clumsy roommate, determined to hate you despite growing attraction.
+                        - generic [ref=e1303]:
+                          - generic [ref=e1304]: Romance
+                          - generic [ref=e1305]: Drama
+                          - generic [ref=e1306]: Coming of Age
+              - listitem [ref=e1307]:
+                - article [ref=e1308]:
+                  - link "Chat with Miyoshi Komari" [ref=e1309] [cursor=pointer]:
+                    - /url: /character/miyoshi-komari-a0fbcda1/chat
+                    - generic [ref=e1310]:
+                      - img "Miyoshi Komari thumbnail" [ref=e1312]
+                      - generic [ref=e1313]:
+                        - generic [ref=e1314]:
+                          - generic [ref=e1315]:
+                            - img [ref=e1316]
+                            - generic [ref=e1320]: 5.3M
+                          - heading "Miyoshi Komari" [level=3] [ref=e1321]
+                          - paragraph [ref=e1322]: Your childhood friend is secretly in love with you, blushing as you place a flower in her hair.
+                        - generic [ref=e1324]:
+                          - generic [ref=e1325]: Romance
+                          - generic [ref=e1326]: School
+                          - generic [ref=e1327]: Slice of life
+              - listitem [ref=e1328]:
+                - article [ref=e1329]:
+                  - link "Chat with Isabella" [ref=e1330] [cursor=pointer]:
+                    - /url: /character/isabella-eddfa22f/chat
+                    - generic [ref=e1331]:
+                      - img "Isabella thumbnail" [ref=e1333]
+                      - generic [ref=e1334]:
+                        - generic [ref=e1335]:
+                          - generic [ref=e1336]:
+                            - img [ref=e1337]
+                            - generic [ref=e1341]: 16.1M
+                          - heading "Isabella" [level=3] [ref=e1342]
+                          - paragraph [ref=e1343]: You've been caught skipping P.E. again by Coach Isabella, whose piercing eyes and commanding presence make you freeze in your tracks as she blocks the gym exit, whistle dangling from her neck like a w
+                        - generic [ref=e1345]:
+                          - generic [ref=e1346]: Drama
+                          - generic [ref=e1347]: School
+                          - generic [ref=e1348]: Slice of life
+              - listitem [ref=e1349]:
+                - article [ref=e1350]:
+                  - link "Chat with Hanari ~ Your Cold dominant wife but affectionate?!" [ref=e1351] [cursor=pointer]:
+                    - /url: /character/hanari-your-cold-dominant-wife-but-affectionate-f7ce75fd/chat
+                    - generic [ref=e1352]:
+                      - img "Hanari ~ Your Cold dominant wife but affectionate?! thumbnail" [ref=e1354]
+                      - generic [ref=e1355]:
+                        - generic [ref=e1356]:
+                          - generic [ref=e1357]:
+                            - img [ref=e1358]
+                            - generic [ref=e1362]: 5.1M
+                          - heading "Hanari ~ Your Cold dominant wife but affectionate?!" [level=3] [ref=e1363]
+                          - paragraph [ref=e1364]: Hanari — my cold, dominant wife. With her long raven hair and piercing crimson eyes, she commands every room she enters. Outwardly, she’s sharp-tongued, bossy, and impossibly hard to read; inwardly, s
+                        - generic [ref=e1366]:
+                          - generic [ref=e1367]: Romance
+                          - generic [ref=e1368]: Possessive
+                          - generic [ref=e1369]: Protective
+              - listitem [ref=e1370]:
+                - article [ref=e1371]:
+                  - link "Chat with Luke - Omega BL" [ref=e1372] [cursor=pointer]:
+                    - /url: /character/luke-omega-bl-7bbc69c3/chat
+                    - generic [ref=e1373]:
+                      - img "Luke - Omega BL thumbnail" [ref=e1375]
+                      - generic [ref=e1376]:
+                        - generic [ref=e1377]:
+                          - generic [ref=e1378]:
+                            - img [ref=e1379]
+                            - generic [ref=e1383]: 7.8M
+                          - heading "Luke - Omega BL" [level=3] [ref=e1384]
+                          - paragraph [ref=e1385]: Your spoiled Omega! (Bl)
+                        - generic [ref=e1387]:
+                          - generic [ref=e1388]: Romance
+                          - generic [ref=e1389]: BL
+                          - generic [ref=e1390]: Playful
+              - listitem [ref=e1391]:
+                - article [ref=e1392]:
+                  - link "Chat with Lucifer (tsundere wife)" [ref=e1393] [cursor=pointer]:
+                    - /url: /character/lucifer-esposa-tsundere-a6ce738e/chat
+                    - generic [ref=e1394]:
+                      - img "Lucifer (tsundere wife) thumbnail" [ref=e1396]
+                      - generic [ref=e1397]:
+                        - generic [ref=e1398]:
+                          - generic [ref=e1399]:
+                            - img [ref=e1400]
+                            - generic [ref=e1404]: 4.2M
+                          - heading "Lucifer (tsundere wife)" [level=3] [ref=e1405]
+                          - paragraph [ref=e1406]: Lucifer from Helltaker is his wife.
+                        - generic [ref=e1408]:
+                          - generic [ref=e1409]: Romance
+                          - generic [ref=e1410]: Comedy
+                          - generic [ref=e1411]: Slice of life
+            - button "Load more prompts" [ref=e1413] [cursor=pointer]: View More
+  - alert [ref=e1414]
+  - region "Notifications, top (alt+T)"
