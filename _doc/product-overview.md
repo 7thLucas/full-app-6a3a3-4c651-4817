@@ -89,9 +89,23 @@ Autonomous narrative progression. Every AI companion in this space waits for the
 
 ---
 
+## Retention Mechanics (On-Brand "Stealth Gamification")
+
+These reframe proven retention mechanics as **narrative artifacts**, preserving the literary/premium tone (see Brand & Tone). They deliver the retention pull of gamification without arcade-style XP bars, points, or leaderboards — the overt forms remain Non-Goals (below).
+
+1. **Story Continuity (streak, reframed)** — Surfaced as story *health*, not a counter. e.g. "Lyra has been waiting 3 days." Drives loss aversion through the character and world, not a flame icon.
+2. **Story Depth / Chapters (progression, reframed)** — Stories mature into Acts and Chapters over time. Progression is a narrative milestone, not accumulated points or levels.
+3. **Memorable Moments (badges, reframed)** — Auto-curated highlight reel of standout beats. Collectible feel, literary framing — never an achievement popup.
+4. **Offline-Beat Notifications (core retention loop)** — The autonomous engine already generates beats while the user is away; surface this as "a new scene unfolded while you were gone." Strongest single retention lever — leverages existing engine, no new mechanic.
+5. **Today's Beat (daily reward, reframed)** — Free-tier 1-beat/day cadence doubles as a natural daily check-in hook, framed as the day's chapter rather than a login bonus.
+
+**Why allowed here while gamification is a Non-Goal:** these expose the engine's existing momentum through narrative language. They add no XP, levels, streaks-as-counters, or leaderboards, and never break the "evolving novel" feel.
+
+---
+
 ## Non-Goals (Out of Scope)
 
-- Gamified progression: XP, levels, streaks, leaderboards.
+- Overt gamified progression: visible XP bars, numeric levels, streak counters, leaderboards, achievement popups, daily quests. (On-brand reframings are covered in Retention Mechanics above.)
 - Purely reactive chatbot with no autonomous progression.
 - Multiplayer / shared-world stories (single-user narratives at launch).
 - Image, voice, or video generation at MVP — text-first.
