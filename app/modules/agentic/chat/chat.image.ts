@@ -2,10 +2,10 @@
  * Image helper for Chat Mode.
  *
  * Builds a deterministic image URL from a text prompt by appending the
- * URL-encoded prompt to a configurable base (default: a keyless Pollinations
- * endpoint). No API key, no server round-trip — the browser loads the image
- * directly, so avatar art is effectively free to "generate". The deterministic
- * seed keeps a given character's avatar stable across reloads.
+ * URL-encoded prompt to a configurable base (default: QuantumByte's shared
+ * image-generation endpoint). No API key, no server round-trip — the browser
+ * loads the image directly, so avatar art is effectively free to "generate".
+ * The deterministic seed keeps a given character's avatar stable across reloads.
  */
 
 import { createHash } from "node:crypto";
@@ -20,13 +20,14 @@ export function buildImageUrl(
   prompt: string,
   opts: { width?: number; height?: number; seedKey?: string } = {},
 ): string {
-  const base = (baseUrl || "https://image.pollinations.ai/prompt/").trim();
+  const base = (baseUrl || "https://api.qb-deck.quantumbyte.ai/common/image-generation?prompt=").trim();
   const { width = 768, height = 768, seedKey } = opts;
   const encoded = encodeURIComponent(prompt.replace(/\s+/g, " ").trim());
   const seed = seedFrom(seedKey ?? prompt);
   const sep = base.includes("?") ? "&" : "?";
-  // Pollinations honors width/height/seed/nologo query params; other generators
-  // that take a prompt-in-path will simply ignore unknown params.
+  // The qb-deck base ends with `?prompt=`, so the encoded prompt becomes that
+  // param's value and extra params append with `&`. Prompt-in-path generators
+  // (no `?`) get the prompt on the path and ignore unknown query params.
   return `${base}${encoded}${sep}width=${width}&height=${height}&seed=${seed}&nologo=true`;
 }
 
