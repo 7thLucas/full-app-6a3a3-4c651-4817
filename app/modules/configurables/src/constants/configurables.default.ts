@@ -165,6 +165,16 @@ export type TDefaultConfigurableData = {
   // Landing (chat-first hook copy)
   landingHeadline: string;
   landingSubheadline: string;
+  landingSearchPlaceholder: string;
+  landingSignInLabel: string;
+  landingGetStartedLabel: string;
+  landingAwayPill: string;
+  landingFeaturedBadge: string;
+  landingFeaturedCta: string;
+  landingTrendingLabel: string;
+  landingAwayTitle: string;
+  landingAwaySubtitle: string;
+  landingAwayCta: string;
   // Chat Mode visuals & engine behavior
   imageGenUrl: string;
   enableCharacterAvatars: boolean;
@@ -365,6 +375,16 @@ export const defaultConfigurablesData: TDefaultConfigurableData = {
   landingHeadline: "Someone's always awake in here.",
   landingSubheadline:
     "Meet AI companions who talk to you, show you their world, and remember you between visits. Pick one and start.",
+  landingSearchPlaceholder: "Search stories or characters",
+  landingSignInLabel: "Log in",
+  landingGetStartedLabel: "Get Started",
+  landingAwayPill: "Stories continue while you're away.",
+  landingFeaturedBadge: "Live Drift",
+  landingFeaturedCta: "Start Chat",
+  landingTrendingLabel: "Trending",
+  landingAwayTitle: "While you're away",
+  landingAwaySubtitle: "Stories keep moving.",
+  landingAwayCta: "See live stories",
   // Chat Mode visuals & engine behavior
   // QuantumByte's shared image-generation endpoint (same one the creative
   // blueprints use): the prompt is URL-encoded onto the `prompt` query param.
