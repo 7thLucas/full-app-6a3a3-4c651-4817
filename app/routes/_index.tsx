@@ -101,7 +101,10 @@ export default function IndexPage() {
       {/* Top bar — branding on the left, search + auth CTAs grouped right. */}
       <header className="relative z-10 border-b border-border">
         <Section className="flex items-center justify-between gap-3 py-4 sm:gap-4 sm:py-5">
-          <Wordmark appName={appName} logoUrl={config?.logoUrl} />
+          <Wordmark
+            appName={appName}
+            logoUrl="https://client-api.quantumbyte.ai/uploads/nv7sw4gs/4817/assets/driftoria-mark_1782212529643_poni6e.png"
+          />
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             {/* Search — fixed pill on desktop, icon-only trigger on mobile. */}
@@ -255,7 +258,10 @@ export default function IndexPage() {
       {/* Footer */}
       <footer className="relative z-10 mt-12 border-t border-border">
         <Section className="flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
-          <Wordmark appName={appName} logoUrl={config?.logoUrl} />
+          <Wordmark
+            appName={appName}
+            logoUrl="https://client-api.quantumbyte.ai/uploads/nv7sw4gs/4817/assets/driftoria-mark_1782212529643_poni6e.png"
+          />
           <p className="text-sm text-muted-foreground">
             {config?.footerText ?? "A living story, powered by AI and shaped by you."}
           </p>
@@ -302,10 +308,10 @@ function FeaturedHero({
           </div>
         )}
         {/* Readability washes — left for copy, bottom for grounding. */}
-        <div className="absolute inset-0 bg-gradient-to-r from-card/70 via-card/35 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-card/50 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-card via-card/85 to-card/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
 
-        <div className="relative flex h-full max-w-[64%] flex-col gap-3.5 p-6 sm:max-w-[55%] sm:p-8">
+        <div className="relative flex h-full max-w-[64%] flex-col gap-3.5 p-6 pb-24 sm:max-w-[55%] sm:p-8 sm:pb-24">
           <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 font-ui text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-primary backdrop-blur">
             <Sparkles className="h-3.5 w-3.5" strokeWidth={2} />
             {badge}
@@ -336,14 +342,13 @@ function FeaturedHero({
             </div>
           ) : null}
         </div>
-      </div>
-
-      <div className="p-4 pt-0 sm:p-5 sm:pt-0">
-        <span className="flex h-14 w-full items-center justify-center gap-2 rounded-full bg-primary font-ui text-base font-medium tracking-wide text-primary-foreground shadow-[0_10px_28px_-16px_var(--primary)] transition-transform group-hover:scale-[1.01]">
-          <Sparkles className="h-4 w-4" strokeWidth={2} />
-          {cta}
-          <ChevronRight className="h-4 w-4" strokeWidth={2} />
-        </span>
+        <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+          <span className="flex h-14 w-full items-center justify-center gap-2 rounded-full bg-primary font-ui text-base font-medium tracking-wide text-primary-foreground shadow-[0_10px_28px_-16px_var(--primary)] transition-transform group-hover:scale-[1.01]">
+            <Sparkles className="h-4 w-4" strokeWidth={2} />
+            {cta}
+            <ChevronRight className="h-4 w-4" strokeWidth={2} />
+          </span>
+        </div>
       </div>
     </Link>
   );
