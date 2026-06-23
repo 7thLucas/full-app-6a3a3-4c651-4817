@@ -196,7 +196,7 @@ export default function StoryStudio() {
         </div>
       </header>
 
-      <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-5 py-8 lg:grid-cols-[1fr_320px]">
+      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-8 px-5 py-8 lg:grid-cols-[1fr_320px]">
         {/* Narrative column */}
         <main className="min-w-0">
           {/* Story header */}
