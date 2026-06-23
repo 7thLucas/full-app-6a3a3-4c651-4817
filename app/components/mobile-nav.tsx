@@ -42,7 +42,7 @@ const ITEMS: NavItem[] = [
   { key: "home", label: "Home", to: "/", icon: Home, gated: false },
   { key: "chats", label: "Chats", to: "/chat/history", icon: MessagesSquare, gated: true },
   { key: "new", label: "New", to: "/chat/create", icon: Plus, gated: true },
-  { key: "explore", label: "Explore", to: "/chat", icon: Compass, gated: true },
+  { key: "explore", label: "Explore", to: "/chat", icon: Compass, gated: false },
   { key: "profile", label: "Profile", to: "/profile", icon: User, gated: true },
 ];
 

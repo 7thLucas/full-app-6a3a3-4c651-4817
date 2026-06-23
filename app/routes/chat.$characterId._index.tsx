@@ -20,16 +20,8 @@ import {
   type CharacterProfileView,
 } from "~/lib/chat.client";
 
-import type { LoaderFunctionArgs } from "react-router";
-import { requireUserId } from "~/lib/auth.server";
-
 export function meta() {
   return [{ title: "Driftoria — Character" }];
-}
-
-export function loader({ request }: LoaderFunctionArgs) {
-  requireUserId(request);
-  return null;
 }
 
 /** Compact social-proof formatting: 83400 → "83.4k", 1200000 → "1.2M". */
@@ -297,11 +289,12 @@ export default function CharacterProfile() {
                   {similarLabel}
                 </h2>
                 <div className="mt-3 grid grid-cols-3 gap-3">
-                  {related.map((c) => (
+                  {related.map((c, i) => (
                     <Link
                       key={c.characterId}
                       to={`/chat/${c.characterId}`}
-                      className="group overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-primary/50"
+                      style={{ animationDelay: `${Math.min(i, 6) * 60}ms` }}
+                      className="group animate-rise overflow-hidden rounded-2xl border border-border bg-card transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
                     >
                       <div className="aspect-[3/4] w-full overflow-hidden bg-secondary">
                         {c.avatarUrl ? (

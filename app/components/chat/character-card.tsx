@@ -11,7 +11,14 @@ function formatCount(n: number): string {
 }
 
 /** A single collectible companion in the discovery feed — art is the hero. */
-export function CharacterCard({ character }: { character: CharacterCardView }) {
+export function CharacterCard({
+  character,
+  hasHistory = false,
+}: {
+  character: CharacterCardView;
+  /** When the visitor already has a conversation, jump straight into the room. */
+  hasHistory?: boolean;
+}) {
   const initials = character.name
     .split(/\s+/)
     .map((w) => w[0])
@@ -21,7 +28,7 @@ export function CharacterCard({ character }: { character: CharacterCardView }) {
 
   return (
     <Link
-      to={`/chat/${character.characterId}`}
+      to={hasHistory ? `/chat/${character.characterId}/room` : `/chat/${character.characterId}`}
       className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_20px_50px_-20px_var(--primary)]"
     >
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-secondary">

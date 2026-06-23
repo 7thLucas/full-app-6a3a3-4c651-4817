@@ -23,7 +23,7 @@ import {
   toProfileView,
 } from "./chat/chat.service";
 import { resolveOwnerId } from "./chat/chat.owner";
-import { QuotaError, quotaBody } from "~/api/services/usage.service";
+import { GuestGateError, guestGateBody, QuotaError, quotaBody } from "~/api/services/usage.service";
 
 const logger = createLogger("ChatRoutes");
 const router = Router();
@@ -139,6 +139,10 @@ router.post("/chat/sessions/:id/messages", async (req: Request, res: Response) =
     const view = await sendMessage(String(req.params.id), ownerId, text);
     return res.json({ success: true, data: view });
   } catch (error) {
+    if (error instanceof GuestGateError) {
+      res.status(401).json(guestGateBody(error));
+      return;
+    }
     if (handledQuota(res, error)) return;
     logger.error("POST /chat/sessions/:id/messages failed", error);
     const msg = error instanceof Error ? error.message : "Message failed";

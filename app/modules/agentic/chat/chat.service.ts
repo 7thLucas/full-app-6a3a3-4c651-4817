@@ -19,6 +19,8 @@ import { createLogger } from "~/lib/logger";
 import {
   getLimitsFor,
   getUsageToday,
+  GuestGateError,
+  isGuestOwner,
   QuotaError,
   recordUsage,
   withinLimit,
@@ -57,6 +59,12 @@ function dayKey(d: Date): string {
 
 function brief(c: CharacterDoc): CharacterBrief {
   return { name: c.name, tagline: c.tagline, persona: c.persona };
+}
+
+/** Model id for this owner's tier: premium when their plan allows it, else base. */
+function pickModel(cfg: TDefaultConfigurableData, limits: TPlanLimits): string | undefined {
+  const id = limits.premiumModel ? cfg.aiModelPremium : cfg.aiModelBase;
+  return id?.trim() ? id.trim() : undefined;
 }
 
 /**
@@ -526,6 +534,7 @@ export async function openSession(
         recentMessages: recent(session),
         hoursAway,
         smartReplyCount: cfg.smartReplyCount,
+        model: pickModel(cfg, limits),
       });
       ({ smartReplies } = await applyGenerated(
         session,
@@ -575,6 +584,14 @@ export async function sendMessage(
 
   const session = await getOrCreateSession(character, ownerId);
 
+  // Guests get a taste before the login gate: cap their user turns per companion.
+  if (isGuestOwner(ownerId) && cfg.guestMessageLimit >= 0) {
+    const guestTurns = session.messages.filter((m) => m.role === "user").length;
+    if (guestTurns >= cfg.guestMessageLimit) {
+      throw new GuestGateError(cfg.guestMessageLimit);
+    }
+  }
+
   session.messages.push(newMessage({ role: "user", content: trimmed, whileAway: false }));
 
   const gen = await generateReply({
@@ -583,6 +600,7 @@ export async function sendMessage(
     recentMessages: recent(session),
     userMessage: trimmed,
     smartReplyCount: cfg.smartReplyCount,
+    model: pickModel(cfg, limits),
   });
 
   const { smartReplies } = await applyGenerated(

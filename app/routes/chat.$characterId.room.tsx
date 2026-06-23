@@ -1,39 +1,45 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router";
-import { ArrowLeft, Loader2, Send } from "lucide-react";
+import { ArrowLeft, Loader2, Lock, Send } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
 import { Button } from "~/components/ui";
 import { Avatar } from "~/components/chat/character-card";
 import { MessageBubble, TypingBubble } from "~/components/chat/message-bubble";
 import { SmartReplies } from "~/components/chat/smart-replies";
 import { MemoryRibbon } from "~/components/chat/memory-ribbon";
+import { useAuth } from "~/hooks/use-auth";
 import {
+  ChatLoginRequiredError,
   openSession,
   sendChatMessage,
   type SessionView,
 } from "~/lib/chat.client";
 
-import type { LoaderFunctionArgs } from "react-router";
-import { requireUserId } from "~/lib/auth.server";
-
 export function meta() {
   return [{ title: "Driftoria — Chat" }];
-}
-
-export function loader({ request }: LoaderFunctionArgs) {
-  requireUserId(request);
-  return null;
 }
 
 export default function ChatThread() {
   const { characterId = "" } = useParams();
   const { config } = useConfigurables();
+  const { isAuthenticated } = useAuth();
 
   const [session, setSession] = useState<SessionView | null>(null);
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [draft, setDraft] = useState("");
+  const [gated, setGated] = useState(false);
+
+  // Guests may send a few messages per companion before the login gate.
+  const guestLimit = config?.guestMessageLimit ?? 5;
+  const userTurns = useMemo(
+    () => session?.messages.filter((m) => m.role === "user").length ?? 0,
+    [session?.messages],
+  );
+  const guestGated =
+    !isAuthenticated && guestLimit >= 0 && (gated || userTurns >= guestLimit);
+  const remainingTurns = Math.max(0, guestLimit - userTurns);
 
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -56,7 +62,7 @@ export default function ChatThread() {
   const send = useCallback(
     async (text: string) => {
       const trimmed = text.trim();
-      if (!trimmed || sending) return;
+      if (!trimmed || sending || guestGated) return;
       setDraft("");
       setSending(true);
       setError(null);
@@ -88,12 +94,22 @@ export default function ChatThread() {
         const updated = await sendChatMessage(characterId, trimmed);
         setSession(updated);
       } catch (e) {
-        setError(e instanceof Error ? e.message : "Message failed");
+        if (e instanceof ChatLoginRequiredError) {
+          // Roll back the optimistic user bubble — it was never accepted.
+          setSession((prev) =>
+            prev
+              ? { ...prev, messages: prev.messages.filter((m) => !m.messageId.startsWith("tmp-")) }
+              : prev,
+          );
+          setGated(true);
+        } else {
+          setError(e instanceof Error ? e.message : "Message failed");
+        }
       } finally {
         setSending(false);
       }
     },
-    [characterId, sending],
+    [characterId, sending, guestGated],
   );
 
   const character = session?.character;
@@ -163,9 +179,40 @@ export default function ChatThread() {
 
       {/* Composer */}
       <div className="relative z-10 border-t border-border bg-background/80 backdrop-blur">
+        {guestGated ? (
+          <div className="mx-auto w-full max-w-3xl px-4 py-6 text-center">
+            <Lock className="mx-auto h-6 w-6 text-primary" strokeWidth={1.75} />
+            <p className="mt-3 font-heading text-lg font-semibold tracking-tight">
+              {config?.guestGateTitle ?? "Sign in to keep the conversation going"}
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {config?.guestGateSubtitle ??
+                `${character?.name ?? "They"} will remember everything you've said so far.`}
+            </p>
+            <div className="mt-4 flex items-center justify-center gap-2">
+              <Link to={`/login?redirect=${encodeURIComponent(`/chat/${characterId}/room`)}`}>
+                <Button size="md">Sign in</Button>
+              </Link>
+              <Link
+                to={`/register?redirect=${encodeURIComponent(`/chat/${characterId}/room`)}`}
+              >
+                <Button variant="outline" size="md">
+                  Create account
+                </Button>
+              </Link>
+            </div>
+          </div>
+        ) : (
         <div className="mx-auto w-full max-w-3xl space-y-3 px-4 py-4">
           {error && session ? (
             <p className="text-xs text-destructive">{error}</p>
+          ) : null}
+          {!isAuthenticated && guestLimit >= 0 && remainingTurns <= 2 ? (
+            <p className="text-xs text-muted-foreground">
+              {remainingTurns === 0
+                ? "This is your last free message."
+                : `${remainingTurns} free message${remainingTurns === 1 ? "" : "s"} left before sign-in.`}
+            </p>
           ) : null}
           {session && !sending ? (
             <SmartReplies replies={session.smartReplies} onPick={send} disabled={sending} />
@@ -205,6 +252,7 @@ export default function ChatThread() {
             </Button>
           </form>
         </div>
+        )}
       </div>
     </div>
   );

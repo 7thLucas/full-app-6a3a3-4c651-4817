@@ -36,6 +36,31 @@ export class QuotaError extends Error {
   }
 }
 
+/** True when `ownerId` is an anonymous guest (cookie id) rather than a real user. */
+export function isGuestOwner(ownerId: string): boolean {
+  return !OBJECT_ID.test(ownerId);
+}
+
+/** Thrown when a guest hits the pre-login message gate. The client should prompt sign-in. */
+export class GuestGateError extends Error {
+  readonly limit: number;
+  constructor(limit: number) {
+    super("Sign in to keep chatting");
+    this.name = "GuestGateError";
+    this.limit = limit;
+  }
+}
+
+/** Structured 401 body for the guest login gate. */
+export function guestGateBody(err: GuestGateError) {
+  return {
+    success: false as const,
+    message: err.message,
+    loginRequired: true as const,
+    guestLimit: err.limit,
+  };
+}
+
 function dayKey(d: Date = new Date()): string {
   return d.toISOString().slice(0, 10);
 }

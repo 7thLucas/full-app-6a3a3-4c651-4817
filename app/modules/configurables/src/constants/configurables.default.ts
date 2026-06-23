@@ -173,8 +173,16 @@ export type TDefaultConfigurableData = {
   freeTierDailyImages: number;
   memoryDepth: number;
   smartReplyCount: number;
+  // Guests (not signed in) may send this many messages per companion before the
+  // login gate kicks in. -1 = unlimited (no gate).
+  guestMessageLimit: number;
   enableOfflinePings: boolean;
   offlinePingAfterHours: number;
+  // LLM model ids passed to the agentic endpoint. Empty = let the platform pick
+  // its default. `aiModelPremium` is used for companions on a plan whose
+  // `premiumModel` flag is on; everyone else gets `aiModelBase`.
+  aiModelBase: string;
+  aiModelPremium: string;
   chatComposerPlaceholder: string;
   // Character profile page copy
   chatProfileStartCta: string;
@@ -182,6 +190,9 @@ export type TDefaultConfigurableData = {
   chatScenarioLabel: string;
   chatGreetingLabel: string;
   chatSimilarLabel: string;
+  // Guest login-gate copy (shown after the guest message limit is reached)
+  guestGateTitle: string;
+  guestGateSubtitle: string;
   discoveryTags: string[];
   starterChatCharacters: TStarterChatCharacter[];
   // Monetization — freemium subscription tier limits
@@ -365,14 +376,19 @@ export const defaultConfigurablesData: TDefaultConfigurableData = {
   freeTierDailyImages: 8,
   memoryDepth: 600,
   smartReplyCount: 3,
+  guestMessageLimit: 5,
   enableOfflinePings: true,
   offlinePingAfterHours: 6,
+  aiModelBase: "",
+  aiModelPremium: "",
   chatComposerPlaceholder: "Say something to them…",
   chatProfileStartCta: "Start chatting",
   chatAboutLabel: "About",
   chatScenarioLabel: "The setup",
   chatGreetingLabel: "First words",
   chatSimilarLabel: "More like this",
+  guestGateTitle: "Sign in to keep the conversation going",
+  guestGateSubtitle: "Your companion will remember everything you've said so far.",
   discoveryTags: [
     "Romance",
     "Slice of Life",

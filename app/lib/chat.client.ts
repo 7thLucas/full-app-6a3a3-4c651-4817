@@ -83,6 +83,14 @@ function unwrap<T>(res: { success: boolean; data?: T; message?: string }): T {
   return res.data;
 }
 
+/** Thrown when the backend gates a guest behind sign-in (HTTP 401, loginRequired). */
+export class ChatLoginRequiredError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "ChatLoginRequiredError";
+  }
+}
+
 export async function fetchCharacters(): Promise<CharacterCardView[]> {
   return unwrap(await apiGet<CharacterCardView[]>("/api/chat/characters"));
 }
@@ -116,12 +124,14 @@ export async function sendChatMessage(
   characterId: string,
   text: string,
 ): Promise<SessionView> {
-  return unwrap(
-    await apiRequest<SessionView>(`/api/chat/sessions/${characterId}/messages`, {
-      method: "POST",
-      data: { text },
-    }),
+  const res = await apiRequest<SessionView>(
+    `/api/chat/sessions/${characterId}/messages`,
+    { method: "POST", data: { text } },
   );
+  if ((res as { loginRequired?: boolean }).loginRequired) {
+    throw new ChatLoginRequiredError(res.message ?? "Sign in to keep chatting");
+  }
+  return unwrap(res);
 }
 
 export interface CreateCharacterInput {

@@ -106,12 +106,15 @@ async function callLLM(
   message: string,
   system: string,
   idempotencySalt: string,
+  model?: string,
 ): Promise<GeneratedReply> {
   const ks = keyspace();
   const form = new FormData();
   form.set("message", message);
   form.set("schema", JSON.stringify(REPLY_SCHEMA));
   form.set("system_prompt", system);
+  // Optional model override (premium tier). Omitted = platform default model.
+  if (model) form.set("model", model);
 
   const idempotencyKey = createHash("sha256")
     .update(`${ks}\x00${idempotencySalt}\x00${message}`)
@@ -172,6 +175,7 @@ export async function generateReply(args: {
   recentMessages: ChatMessage[];
   userMessage: string;
   smartReplyCount: number;
+  model?: string;
 }): Promise<GeneratedReply> {
   const context = buildContext(args);
   const message = [
@@ -179,7 +183,7 @@ export async function generateReply(args: {
     `\nThe user just said:\n"""${args.userMessage}"""`,
     "\nReply as yourself, in character.",
   ].join("\n");
-  return callLLM(message, systemPrompt(args.character, args.smartReplyCount), "chat-reply");
+  return callLLM(message, systemPrompt(args.character, args.smartReplyCount), "chat-reply", args.model);
 }
 
 /**
@@ -192,6 +196,7 @@ export async function generateOfflinePing(args: {
   recentMessages: ChatMessage[];
   hoursAway: number;
   smartReplyCount: number;
+  model?: string;
 }): Promise<GeneratedReply> {
   const context = buildContext(args);
   const message = [
@@ -199,5 +204,5 @@ export async function generateOfflinePing(args: {
     `\nIt has been about ${Math.round(args.hoursAway)} hours since the user was last here, and they have just returned.`,
     "\nReach out FIRST, unprompted — a short, warm message showing you thought about them while they were gone. Reference something you remember if you can. Do not ask where they went in an accusatory way; be glad they're back.",
   ].join("\n");
-  return callLLM(message, systemPrompt(args.character, args.smartReplyCount), "chat-ping");
+  return callLLM(message, systemPrompt(args.character, args.smartReplyCount), "chat-ping", args.model);
 }

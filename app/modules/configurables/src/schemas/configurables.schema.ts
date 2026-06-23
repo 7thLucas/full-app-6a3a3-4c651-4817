@@ -628,6 +628,14 @@ export const configurableSchemas: ConfigurableSchemas = {
       max: 6,
     },
     {
+      fieldName: "guestMessageLimit",
+      type: "number",
+      required: true,
+      label: "Guest Message Limit Before Login (-1 = unlimited)",
+      min: -1,
+      max: 100,
+    },
+    {
       fieldName: "enableOfflinePings",
       type: "boolean",
       required: false,
@@ -642,10 +650,34 @@ export const configurableSchemas: ConfigurableSchemas = {
       max: 168,
     },
     {
+      fieldName: "aiModelBase",
+      type: "string",
+      required: false,
+      label: "AI Model — Base Tier (blank = platform default)",
+    },
+    {
+      fieldName: "aiModelPremium",
+      type: "string",
+      required: false,
+      label: "AI Model — Premium Tier (used when plan.premiumModel is on)",
+    },
+    {
       fieldName: "chatComposerPlaceholder",
       type: "string",
       required: false,
       label: "Chat Composer Placeholder",
+    },
+    {
+      fieldName: "guestGateTitle",
+      type: "string",
+      required: false,
+      label: "Guest Login Gate — Title",
+    },
+    {
+      fieldName: "guestGateSubtitle",
+      type: "string",
+      required: false,
+      label: "Guest Login Gate — Subtitle",
     },
     {
       fieldName: "discoveryTags",

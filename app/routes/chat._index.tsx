@@ -6,19 +6,11 @@ import { cn } from "~/lib/utils";
 import { Button, Eyebrow, LiveDot, Section } from "~/components/ui";
 import { Wordmark } from "~/components/brand";
 import { CharacterCard } from "~/components/chat/character-card";
-import { fetchCharacters, type CharacterCardView } from "~/lib/chat.client";
+import { fetchCharacters, fetchSessions, type CharacterCardView } from "~/lib/chat.client";
 import { useAuth } from "~/hooks/use-auth";
-
-import type { LoaderFunctionArgs } from "react-router";
-import { requireUserId } from "~/lib/auth.server";
 
 export function meta() {
   return [{ title: "Driftoria — Meet your companions" }];
-}
-
-export function loader({ request }: LoaderFunctionArgs) {
-  requireUserId(request);
-  return null;
 }
 
 export default function ChatDiscovery() {
@@ -32,6 +24,8 @@ export default function ChatDiscovery() {
   const [error, setError] = useState<string | null>(null);
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [query, setQuery] = useState("");
+  // Companion ids the visitor already has a real conversation with (>1 message).
+  const [conversedIds, setConversedIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     let live = true;
@@ -39,6 +33,16 @@ export default function ChatDiscovery() {
       .then((data) => live && setCharacters(data))
       .catch((e) => live && setError(e instanceof Error ? e.message : "Failed to load"))
       .finally(() => live && setLoading(false));
+    fetchSessions()
+      .then((sessions) => {
+        if (!live) return;
+        setConversedIds(
+          new Set(
+            sessions.filter((s) => s.messageCount > 1).map((s) => s.characterId),
+          ),
+        );
+      })
+      .catch(() => {});
     return () => {
       live = false;
     };
@@ -201,8 +205,17 @@ export default function ChatDiscovery() {
           </div>
         ) : (
           <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
-            {filtered.map((c) => (
-              <CharacterCard key={c.characterId} character={c} />
+            {filtered.map((c, i) => (
+              <div
+                key={c.characterId}
+                className="animate-rise"
+                style={{ animationDelay: `${Math.min(i, 8) * 60}ms` }}
+              >
+                <CharacterCard
+                  character={c}
+                  hasHistory={conversedIds.has(c.characterId)}
+                />
+              </div>
             ))}
           </div>
         )}
