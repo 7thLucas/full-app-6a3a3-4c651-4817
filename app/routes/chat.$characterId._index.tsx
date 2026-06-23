@@ -8,6 +8,7 @@ import {
   MessageCircleHeart,
   Sparkles,
   Users,
+  X,
 } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
 import { cn } from "~/lib/utils";
@@ -64,6 +65,8 @@ export default function CharacterProfile() {
   const [error, setError] = useState<string | null>(null);
   const [liked, setLiked] = useState(false);
   const [likeBump, setLikeBump] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
+  const [lightbox, setLightbox] = useState<number | null>(null);
 
   useEffect(() => {
     let live = true;
@@ -94,6 +97,29 @@ export default function CharacterProfile() {
       .slice(0, 6);
   }, [similar, profile]);
 
+  // Reveal floating navbar once the hero scrolls mostly out of view.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 220);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Lightbox: lock body scroll + close on Escape.
+  useEffect(() => {
+    if (lightbox === null) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [lightbox]);
+
   const like = async () => {
     if (liked || !profile) return;
     setLiked(true);
@@ -122,6 +148,51 @@ export default function CharacterProfile() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-background font-body text-foreground">
       <div className="aurora-backdrop opacity-40" />
+
+      {/* Floating navbar — appears on scroll */}
+      {!loading && profile ? (
+        <div
+          className={cn(
+            "fixed inset-x-0 top-0 z-30 transition-all duration-300",
+            scrolled
+              ? "pointer-events-auto translate-y-0 opacity-100"
+              : "pointer-events-none -translate-y-2 opacity-0",
+          )}
+        >
+          <div className="mx-auto flex w-full max-w-xl items-center gap-3 border-b border-border bg-background/80 px-4 py-3 backdrop-blur">
+            <Link to="/chat">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-secondary text-foreground transition-colors hover:bg-secondary/70">
+                <ArrowLeft className="h-5 w-5" strokeWidth={1.75} />
+              </span>
+            </Link>
+            <div className="min-w-0 flex-1">
+              <h2 className="truncate font-heading text-base font-semibold text-foreground">
+                {profile.name}
+              </h2>
+              {profile.category ? (
+                <span className="font-ui text-[0.7rem] uppercase tracking-wider text-muted-foreground">
+                  {profile.category}
+                </span>
+              ) : null}
+            </div>
+            <button
+              type="button"
+              onClick={like}
+              aria-label="Like"
+              className={cn(
+                "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-secondary transition-colors hover:bg-secondary/70",
+                liked ? "text-primary" : "text-foreground",
+              )}
+            >
+              <Heart
+                className="h-5 w-5"
+                strokeWidth={1.75}
+                fill={liked ? "currentColor" : "none"}
+              />
+            </button>
+          </div>
+        </div>
+      ) : null}
 
       {loading ? (
         <div className="flex h-screen items-center justify-center gap-3 text-muted-foreground">
@@ -270,13 +341,19 @@ export default function CharacterProfile() {
               <section>
                 <div className="-mx-5 flex snap-x gap-3 overflow-x-auto px-5 pb-2">
                   {profile.galleryUrls.map((url, i) => (
-                    <img
+                    <button
                       key={url}
-                      src={url}
-                      alt={`${profile.name} ${i + 1}`}
-                      loading="lazy"
-                      className="aspect-[3/4] w-40 shrink-0 snap-start rounded-2xl object-cover"
-                    />
+                      type="button"
+                      onClick={() => setLightbox(i)}
+                      className="shrink-0 snap-start overflow-hidden rounded-2xl transition-transform duration-200 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    >
+                      <img
+                        src={url}
+                        alt={`${profile.name} ${i + 1}`}
+                        loading="lazy"
+                        className="aspect-[3/4] w-40 object-cover"
+                      />
+                    </button>
                   ))}
                 </div>
               </section>
@@ -330,6 +407,39 @@ export default function CharacterProfile() {
               <MessageCircleHeart className="h-5 w-5" strokeWidth={1.75} />
               {startCta}
             </Button>
+          </div>
+        </div>
+      ) : null}
+
+      {/* Fullscreen gallery carousel */}
+      {lightbox !== null && profile?.galleryUrls?.length ? (
+        <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm">
+          <button
+            type="button"
+            onClick={() => setLightbox(null)}
+            aria-label="Close"
+            className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-secondary/80 text-foreground backdrop-blur transition-colors hover:bg-secondary"
+          >
+            <X className="h-5 w-5" strokeWidth={1.75} />
+          </button>
+          <div
+            ref={(el) => {
+              if (el) el.scrollLeft = lightbox * el.clientWidth;
+            }}
+            className="flex h-full w-full snap-x snap-mandatory overflow-x-auto overflow-y-hidden"
+          >
+            {profile.galleryUrls.map((url, i) => (
+              <div
+                key={url}
+                className="flex h-full w-full shrink-0 snap-center items-center justify-center p-4"
+              >
+                <img
+                  src={url}
+                  alt={`${profile.name} ${i + 1}`}
+                  className="max-h-full max-w-full rounded-2xl object-contain"
+                />
+              </div>
+            ))}
           </div>
         </div>
       ) : null}
