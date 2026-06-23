@@ -5,7 +5,7 @@ import { useConfigurables } from "~/modules/configurables";
 import { cn } from "~/lib/utils";
 import { Button, Eyebrow, Section } from "~/components/ui";
 import { Wordmark } from "~/components/brand";
-import { createCharacter } from "~/lib/chat.client";
+import { createCharacter, UpgradeRequiredError } from "~/lib/chat.client";
 
 import type { LoaderFunctionArgs } from "react-router";
 import { requireUserId } from "~/lib/auth.server";
@@ -64,6 +64,10 @@ export default function CreateCharacter() {
       });
       navigate(`/chat/${created.characterId}`);
     } catch (err) {
+      if (err instanceof UpgradeRequiredError) {
+        navigate("/billing");
+        return;
+      }
       setError(err instanceof Error ? err.message : "Failed to create companion");
       setBusy(false);
     }

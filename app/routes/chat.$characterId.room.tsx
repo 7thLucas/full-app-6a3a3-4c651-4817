@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { ArrowLeft, Loader2, Lock, Send } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
 import { Button } from "~/components/ui";
@@ -12,6 +12,7 @@ import {
   ChatLoginRequiredError,
   openSession,
   sendChatMessage,
+  UpgradeRequiredError,
   type SessionView,
 } from "~/lib/chat.client";
 
@@ -23,6 +24,7 @@ export default function ChatThread() {
   const { characterId = "" } = useParams();
   const { config } = useConfigurables();
   const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   const [session, setSession] = useState<SessionView | null>(null);
   const [loading, setLoading] = useState(true);
@@ -94,14 +96,18 @@ export default function ChatThread() {
         const updated = await sendChatMessage(characterId, trimmed);
         setSession(updated);
       } catch (e) {
-        if (e instanceof ChatLoginRequiredError) {
+        if (e instanceof ChatLoginRequiredError || e instanceof UpgradeRequiredError) {
           // Roll back the optimistic user bubble — it was never accepted.
           setSession((prev) =>
             prev
               ? { ...prev, messages: prev.messages.filter((m) => !m.messageId.startsWith("tmp-")) }
               : prev,
           );
-          setGated(true);
+          if (e instanceof UpgradeRequiredError) {
+            navigate("/billing");
+          } else {
+            setGated(true);
+          }
         } else {
           setError(e instanceof Error ? e.message : "Message failed");
         }

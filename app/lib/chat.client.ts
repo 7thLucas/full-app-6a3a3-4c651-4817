@@ -5,6 +5,7 @@
  */
 
 import { apiGet, apiRequest } from "~/lib/api.client";
+import { checkUpgrade } from "~/lib/billing.client";
 
 export type ChatRole = "user" | "character";
 
@@ -91,6 +92,8 @@ export class ChatLoginRequiredError extends Error {
   }
 }
 
+export { UpgradeRequiredError } from "~/lib/billing.client";
+
 export async function fetchCharacters(): Promise<CharacterCardView[]> {
   return unwrap(await apiGet<CharacterCardView[]>("/api/chat/characters"));
 }
@@ -131,6 +134,7 @@ export async function sendChatMessage(
   if ((res as { loginRequired?: boolean }).loginRequired) {
     throw new ChatLoginRequiredError(res.message ?? "Sign in to keep chatting");
   }
+  checkUpgrade(res as { upgradeRequired?: boolean; requiredPlan?: string });
   return unwrap(res);
 }
 
@@ -150,10 +154,10 @@ export interface CreateCharacterInput {
 export async function createCharacter(
   input: CreateCharacterInput,
 ): Promise<CharacterProfileView> {
-  return unwrap(
-    await apiRequest<CharacterProfileView>("/api/chat/characters", {
-      method: "POST",
-      data: input,
-    }),
-  );
+  const res = await apiRequest<CharacterProfileView>("/api/chat/characters", {
+    method: "POST",
+    data: input,
+  });
+  checkUpgrade(res as { upgradeRequired?: boolean; requiredPlan?: string });
+  return unwrap(res);
 }

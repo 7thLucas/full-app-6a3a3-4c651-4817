@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { UpgradeRequiredError } from "~/lib/billing.client";
 import { ArrowLeft, Loader2, Play, Send, Sparkles, Wand2 } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
 import { cn } from "~/lib/utils";
@@ -38,6 +39,20 @@ export default function StoryStudio() {
   const [initialLoading, setInitialLoading] = useState(true);
   const [busy, setBusy] = useState<Busy>(null);
   const [pacingBusy, setPacingBusy] = useState(false);
+  const navigate = useNavigate();
+
+  // Free tier is read-only: story writes return 402. Send those to the paywall;
+  // surface everything else as an inline error.
+  const onWriteError = useCallback(
+    (e: unknown, fallback: string) => {
+      if (e instanceof UpgradeRequiredError) {
+        navigate("/billing");
+        return;
+      }
+      setError(e instanceof Error ? e.message : fallback);
+    },
+    [navigate],
+  );
   const [error, setError] = useState<string | null>(null);
   const [draft, setDraft] = useState("");
   const [awayBanner, setAwayBanner] = useState<number>(0);
@@ -113,11 +128,7 @@ export default function StoryStudio() {
     try {
       setStory(await advanceStory());
     } catch (e) {
-      setError(
-        e instanceof Error
-          ? e.message
-          : "The engine could not advance the story",
-      );
+      onWriteError(e, "The engine could not advance the story");
     } finally {
       setBusy(null);
     }
@@ -132,7 +143,7 @@ export default function StoryStudio() {
     try {
       setStory(await interveneStory(text));
     } catch (e) {
-      setError(e instanceof Error ? e.message : "The story could not respond");
+      onWriteError(e, "The story could not respond");
       setDraft(text);
     } finally {
       setBusy(null);
@@ -146,7 +157,7 @@ export default function StoryStudio() {
     try {
       setStory(await seedStory(text));
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Could not plant that seed");
+      onWriteError(e, "Could not plant that seed");
     } finally {
       setBusy(null);
     }
@@ -158,14 +169,18 @@ export default function StoryStudio() {
     try {
       setStory(await apiSetPacing(p));
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Could not change pacing");
+      onWriteError(e, "Could not change pacing");
     } finally {
       setPacingBusy(false);
     }
   }
 
   async function handleAddCharacter(c: StoryCharacterView) {
-    setStory(await apiAddCharacter(c));
+    try {
+      setStory(await apiAddCharacter(c));
+    } catch (e) {
+      onWriteError(e, "Could not add that character");
+    }
   }
 
   const beats = story?.beats ?? [];

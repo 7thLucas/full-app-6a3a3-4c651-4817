@@ -5,6 +5,7 @@
  */
 
 import { apiGet, apiRequest } from "~/lib/api.client";
+import { checkUpgrade } from "~/lib/billing.client";
 
 export type Pacing = "slow" | "moderate" | "active";
 export type BeatKind = "autonomous" | "intervention" | "scene" | "seed";
@@ -38,6 +39,7 @@ export interface StoryView {
 }
 
 function unwrap<T>(res: { success: boolean; data?: T; message?: string }): T {
+  checkUpgrade(res as { upgradeRequired?: boolean; requiredPlan?: string; message?: string });
   if (!res.success || res.data === undefined) {
     throw new Error(res.message ?? "Request failed");
   }

@@ -28,6 +28,27 @@ export interface BillingState {
   billingMode: "live" | "mock";
 }
 
+/** Thrown when the backend gates an action behind a paid plan (HTTP 402, upgradeRequired). */
+export class UpgradeRequiredError extends Error {
+  readonly requiredPlan: string;
+  constructor(message: string, requiredPlan: string) {
+    super(message);
+    this.name = "UpgradeRequiredError";
+    this.requiredPlan = requiredPlan;
+  }
+}
+
+/** Throw UpgradeRequiredError if an API response body carries `upgradeRequired`. */
+export function checkUpgrade(res: {
+  upgradeRequired?: boolean;
+  requiredPlan?: string;
+  message?: string;
+}) {
+  if (res.upgradeRequired) {
+    throw new UpgradeRequiredError(res.message ?? "Upgrade to continue", res.requiredPlan ?? "plus");
+  }
+}
+
 function unwrap<T>(res: { success: boolean; data?: T; message?: string }): T {
   if (!res.success) throw new Error(res.message ?? "Request failed");
   return res.data as T;
