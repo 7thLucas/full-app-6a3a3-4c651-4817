@@ -102,11 +102,27 @@ function seedStats(name: string): { chatCount: number; likeCount: number; follow
  */
 export async function ensureSeedCharacters(): Promise<void> {
   const cfg = await getConfig();
-  const starters = cfg.starterChatCharacters ?? [];
+  // Source starters from the union of the code defaults and the stored config,
+  // with code defaults authoritative. A stored singleton is written once and
+  // never updated (see configurables.seed.ts), so it goes stale as new starters
+  // ship in code — and getConfig's shallow merge lets that stale array shadow
+  // the defaults entirely. Merging by name here means newly-added code starters
+  // still seed, while any owner-only starters in the stored config are kept.
+  const byName = new Map<string, TDefaultConfigurableData["starterChatCharacters"][number]>();
+  for (const s of defaultConfigurablesData.starterChatCharacters ?? []) byName.set(s.name, s);
+  for (const s of cfg.starterChatCharacters ?? []) if (!byName.has(s.name)) byName.set(s.name, s);
+  const starters = [...byName.values()];
   if (!starters.length) return;
 
-  const seededCount = await CharacterModel.countDocuments({ creatorId: "system" }).exec();
-  if (seededCount >= starters.length) {
+  // Name-based gap detection, not a count compare: an equal count with
+  // different names (e.g. a stale stored array of the same length) would
+  // otherwise short-circuit and never insert the genuinely missing starters.
+  const seededNames = new Set(
+    (await CharacterModel.find({ creatorId: "system" }, { name: 1, _id: 0 }).lean().exec()).map(
+      (c) => c.name,
+    ),
+  );
+  if (starters.every((s) => seededNames.has(s.name))) {
     await backfillStarterProfiles(cfg, starters);
     return;
   }
