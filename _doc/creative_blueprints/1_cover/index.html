@@ -1,0 +1,57 @@
+<style>
+.mode-landscape .sl-layout { flex-direction: row; }
+.mode-portrait .sl-layout { flex-direction: column; }
+.mode-landscape .sl-left { width: 46%; }
+.mode-landscape .sl-right { width: 54%; }
+.mode-portrait .sl-left { flex: none; padding: 2.5rem; }
+.mode-portrait .sl-right { flex: 1; min-height: 0; }
+</style>
+
+<section class="w-full h-full overflow-auto bg-white">
+  <div class="sl-layout flex h-full">
+
+    <!-- Left: text column -->
+    <div class="sl-left flex flex-col justify-between p-12">
+
+      <!-- Eyebrow -->
+      <div class="flex items-center gap-2">
+        <div class="w-5 h-px bg-violet-500"></div>
+        <span class="text-xs font-semibold tracking-widest uppercase text-violet-600">AI Narrative Companion</span>
+      </div>
+
+      <!-- Headline block -->
+      <div>
+        <h1 class="text-6xl font-black leading-none text-slate-900 mb-5">
+          The Story<br/>That Never<br/>Sleeps.
+        </h1>
+        <p class="text-sm text-slate-500 leading-relaxed max-w-xs">
+          Characters breathe. Scenes unfold. Your narrative advances — with or without you.
+        </p>
+        <div class="flex gap-2 mt-6">
+          <span class="bg-violet-100 text-violet-700 text-xs font-semibold px-3 py-1.5 rounded-full">Autonomous</span>
+          <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1.5 rounded-full">Character-driven</span>
+          <span class="bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1.5 rounded-full">Always on</span>
+        </div>
+      </div>
+
+      <!-- Attribution -->
+      <data-attribution />
+
+    </div>
+
+    <!-- Right: image -->
+    <div class="sl-right relative overflow-hidden">
+      <img
+        src="https://api.qb-deck.quantumbyte.ai/common/image-generation?prompt=cinematic%20illustration%20of%20a%20glowing%20open%20book%20floating%20in%20deep%20violet%20and%20indigo%20night%20sky%2C%20luminous%20AI%20characters%20and%20scenes%20emerging%20from%20its%20pages%2C%20dramatic%20editorial%20storytelling%20atmosphere%2C%20gold%20and%20purple%20light%2C%20premium%20art%20direction%2C%20dark%20moody%20cinematic"
+        alt="Autonomous narrative visual"
+        class="w-full h-full object-cover"
+      />
+      <!-- Subtle overlay card -->
+      <div class="absolute bottom-7 right-7 bg-white rounded-2xl px-5 py-3 shadow-xl">
+        <p class="text-xs font-bold text-slate-800">Story never stops.</p>
+        <p class="text-xs text-slate-400 mt-0.5">Your narrative, on its own clock.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
