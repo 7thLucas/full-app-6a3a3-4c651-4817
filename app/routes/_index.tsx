@@ -20,7 +20,7 @@ import {
 import { useConfigurables } from "~/modules/configurables";
 import { cn } from "~/lib/utils";
 import { Button, LiveDot, Section } from "~/components/ui";
-import { BrandWordmark } from "~/components/brand";
+import { Wordmark } from "~/components/brand";
 import { Avatar, CharacterCard } from "~/components/chat/character-card";
 import { fetchCharacters, type CharacterCardView } from "~/lib/chat.client";
 import { useAuth } from "~/hooks/use-auth";
@@ -98,28 +98,23 @@ export default function IndexPage() {
     <div className="relative min-h-screen overflow-hidden bg-background font-body text-foreground grain pb-28 md:pb-0">
       <div className="aurora-backdrop animate-drift" />
 
-      {/* Top bar — wordmark, then search sits between it and the auth CTAs. */}
+      {/* Top bar — branding on the left, search + auth CTAs grouped right. */}
       <header className="relative z-10 border-b border-border">
-        <Section className="flex items-center gap-3 py-4 sm:gap-4 sm:py-5">
-          <BrandWordmark
-            appName={appName}
-            wordmarkUrl={config?.wordmarkUrl}
-            logoUrl={config?.logoUrl}
-            className="h-8"
-          />
+        <Section className="flex items-center justify-between gap-3 py-4 sm:gap-4 sm:py-5">
+          <Wordmark appName={appName} logoUrl={config?.logoUrl} />
 
-          {/* Search — full pill on desktop, icon-only trigger on mobile. */}
-          <button
-            type="button"
-            onClick={() => setSearchOpen(true)}
-            aria-label="Search stories or characters"
-            className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-card/60 text-muted-foreground backdrop-blur transition-colors hover:border-primary/40 hover:text-foreground sm:h-auto sm:w-full sm:max-w-sm sm:flex-1 sm:justify-start sm:gap-3 sm:px-5 sm:py-2.5"
-          >
-            <Search className="h-4 w-4 shrink-0" strokeWidth={1.75} />
-            <span className="hidden truncate font-ui text-sm sm:inline">{searchPlaceholder}</span>
-          </button>
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            {/* Search — fixed pill on desktop, icon-only trigger on mobile. */}
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search stories or characters"
+              className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-card/60 text-muted-foreground backdrop-blur transition-colors hover:border-primary/40 hover:text-foreground sm:h-auto sm:w-56 sm:justify-start sm:gap-3 sm:px-5 sm:py-2.5"
+            >
+              <Search className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+              <span className="hidden truncate font-ui text-sm sm:inline">{searchPlaceholder}</span>
+            </button>
 
-          <div className="flex shrink-0 items-center gap-2">
             {isAuthenticated ? (
               <>
                 <span className="hidden text-sm text-muted-foreground lg:inline">
@@ -153,7 +148,7 @@ export default function IndexPage() {
 
       {/* Reassurance line — ember "live" dot ties it to the engine that keeps
           running while you're gone. Quiet ring, no boxed-pill chrome. */}
-      <Section className="relative z-10 flex justify-center pt-6">
+      <Section className="relative z-10 flex justify-center">
         <span className="inline-flex items-center gap-2.5 rounded-full bg-card/40 px-4 py-1.5 font-ui text-sm text-foreground/80 ring-1 ring-inset ring-border/70">
           <LiveDot className="h-2 w-2" />
           {config?.landingAwayPill ?? "Stories continue while you're away."}
@@ -260,12 +255,7 @@ export default function IndexPage() {
       {/* Footer */}
       <footer className="relative z-10 mt-12 border-t border-border">
         <Section className="flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
-          <BrandWordmark
-            appName={appName}
-            wordmarkUrl={config?.wordmarkUrl}
-            logoUrl={config?.logoUrl}
-            className="h-8"
-          />
+          <Wordmark appName={appName} logoUrl={config?.logoUrl} />
           <p className="text-sm text-muted-foreground">
             {config?.footerText ?? "A living story, powered by AI and shaped by you."}
           </p>
@@ -304,7 +294,7 @@ function FeaturedHero({
           <img
             src={character.avatarUrl}
             alt={character.name}
-            className="absolute inset-0 h-full w-full object-cover object-right-top transition-transform duration-700 group-hover:scale-[1.03]"
+            className="absolute inset-0 h-full w-full object-contain object-right-top transition-transform duration-700 group-hover:scale-[1.03]"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center bg-secondary font-heading text-6xl text-muted-foreground">
@@ -312,8 +302,8 @@ function FeaturedHero({
           </div>
         )}
         {/* Readability washes — left for copy, bottom for grounding. */}
-        <div className="absolute inset-0 bg-gradient-to-r from-card via-card/85 to-card/5" />
-        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-card/70 via-card/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-card/50 via-transparent to-transparent" />
 
         <div className="relative flex h-full max-w-[64%] flex-col gap-3.5 p-6 sm:max-w-[55%] sm:p-8">
           <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 font-ui text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-primary backdrop-blur">
