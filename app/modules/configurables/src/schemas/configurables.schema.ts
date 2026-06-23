@@ -538,6 +538,167 @@ export const configurableSchemas: ConfigurableSchemas = {
       label: "Starter Story Premise",
     },
 
+    // ── Mode switch (Story Mode + Chat Mode dual experience) ────────────
+    {
+      fieldName: "enableStoryMode",
+      type: "boolean",
+      required: false,
+      label: "Enable Story Mode (Director)",
+    },
+    {
+      fieldName: "enableChatMode",
+      type: "boolean",
+      required: false,
+      label: "Enable Chat Mode (Companion)",
+    },
+    {
+      fieldName: "storyModeLabel",
+      type: "string",
+      required: false,
+      label: "Story Mode — Door Label",
+    },
+    {
+      fieldName: "storyModeTagline",
+      type: "string",
+      required: false,
+      label: "Story Mode — Door Tagline",
+    },
+    {
+      fieldName: "chatModeLabel",
+      type: "string",
+      required: false,
+      label: "Chat Mode — Door Label",
+    },
+    {
+      fieldName: "chatModeTagline",
+      type: "string",
+      required: false,
+      label: "Chat Mode — Door Tagline",
+    },
+
+    // ── Chat Mode: visuals & engine behavior ────────────────────────────
+    {
+      fieldName: "imageGenUrl",
+      type: "url",
+      required: false,
+      label: "Image Generation Base URL (prompt appended, URL-encoded)",
+    },
+    {
+      fieldName: "enableCharacterAvatars",
+      type: "boolean",
+      required: false,
+      label: "Generate Character Avatar Art",
+    },
+    {
+      fieldName: "enableInlineIllustrations",
+      type: "boolean",
+      required: false,
+      label: "Generate Inline Scene Illustrations",
+    },
+    {
+      fieldName: "illustrationFrequency",
+      type: "number",
+      required: true,
+      label: "Illustration Frequency (~1 scene image per N turns)",
+      min: 1,
+      max: 20,
+    },
+    {
+      fieldName: "freeTierDailyImages",
+      type: "number",
+      required: true,
+      label: "Free Tier — Daily Inline Illustrations Cap",
+      min: 0,
+      max: 100,
+    },
+    {
+      fieldName: "memoryDepth",
+      type: "number",
+      required: true,
+      label: "Companion Memory Depth (characters)",
+      min: 0,
+      max: 4000,
+    },
+    {
+      fieldName: "smartReplyCount",
+      type: "number",
+      required: true,
+      label: "Smart Reply Suggestions Per Turn",
+      min: 0,
+      max: 6,
+    },
+    {
+      fieldName: "enableOfflinePings",
+      type: "boolean",
+      required: false,
+      label: "Enable Offline Companion Pings",
+    },
+    {
+      fieldName: "offlinePingAfterHours",
+      type: "number",
+      required: true,
+      label: "Offline Ping — Hours Away Before Companion Reaches Out",
+      min: 1,
+      max: 168,
+    },
+    {
+      fieldName: "chatComposerPlaceholder",
+      type: "string",
+      required: false,
+      label: "Chat Composer Placeholder",
+    },
+    {
+      fieldName: "discoveryTags",
+      type: "array",
+      required: false,
+      label: "Discovery Feed Filter Tags",
+      item: { type: "string", required: true },
+    },
+    {
+      fieldName: "starterChatCharacters",
+      type: "array",
+      required: false,
+      label: "Starter Chat Companions",
+      item: {
+        type: "object",
+        required: true,
+        fields: [
+          { fieldName: "name", type: "string", required: true, label: "Name" },
+          {
+            fieldName: "tagline",
+            type: "string",
+            required: true,
+            label: "Tagline",
+          },
+          {
+            fieldName: "persona",
+            type: "string",
+            required: true,
+            label: "Persona",
+          },
+          {
+            fieldName: "greeting",
+            type: "string",
+            required: true,
+            label: "Opening Greeting",
+          },
+          {
+            fieldName: "tags",
+            type: "array",
+            required: false,
+            label: "Tags",
+            item: { type: "string", required: true },
+          },
+          {
+            fieldName: "avatarPrompt",
+            type: "string",
+            required: true,
+            label: "Avatar Art Prompt",
+          },
+        ],
+      },
+    },
+
     // ── Footer ──────────────────────────────────────────────────────────
     {
       fieldName: "footerText",

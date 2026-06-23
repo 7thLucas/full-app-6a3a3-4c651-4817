@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpenText, MessageCircleHeart, Sparkles } from "lucide-react";
 import { useConfigurables } from "~/modules/configurables";
 import { Button, Eyebrow, LiveDot, Section } from "~/components/ui";
 import { FeatureIcon, Wordmark } from "~/components/brand";
@@ -22,6 +22,10 @@ export default function IndexPage() {
   const appName = config?.appName ?? "Driftoria";
   const features = config?.features ?? [];
 
+  const chatEnabled = config?.enableChatMode !== false;
+  const storyEnabled = config?.enableStoryMode !== false;
+  const primaryHref = chatEnabled ? "/chat" : "/story";
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-background font-body text-foreground grain">
       {/* Ambient backdrop */}
@@ -38,7 +42,7 @@ export default function IndexPage() {
             >
               {config?.heroSecondaryCta ?? "How it works"}
             </a>
-            <Link to="/story">
+            <Link to={primaryHref}>
               <Button size="sm">{config?.heroPrimaryCta ?? "Enter your story"}</Button>
             </Link>
           </nav>
@@ -64,21 +68,54 @@ export default function IndexPage() {
               "Driftoria writes itself. Step in anytime to shape the story — you never have to drive it."}
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link to="/story" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto">
-                {config?.heroPrimaryCta ?? "Enter your story"}
-                <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
-              </Button>
-            </Link>
-            <a href="#features" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                {config?.heroSecondaryCta ?? "How it works"}
-              </Button>
-            </a>
+          {/* Two doors — pick your experience */}
+          <div className="mt-12 grid gap-4 text-left sm:grid-cols-2">
+            {chatEnabled ? (
+              <Link
+                to="/chat"
+                className="group relative overflow-hidden rounded-3xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/15">
+                  <MessageCircleHeart className="h-5 w-5" strokeWidth={1.75} />
+                </div>
+                <h3 className="mt-5 font-heading text-xl font-semibold tracking-tight">
+                  {config?.chatModeLabel ?? "Chat Mode"}
+                </h3>
+                <p className="mt-2 text-[0.95rem] leading-relaxed text-muted-foreground">
+                  {config?.chatModeTagline ??
+                    "Meet a companion who talks to you, shows you their world, and remembers you between visits."}
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1.5 font-ui text-sm font-medium text-primary">
+                  Meet your companions
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={1.75} />
+                </span>
+              </Link>
+            ) : null}
+
+            {storyEnabled ? (
+              <Link
+                to="/story"
+                className="group relative overflow-hidden rounded-3xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent ring-1 ring-accent/15">
+                  <BookOpenText className="h-5 w-5" strokeWidth={1.75} />
+                </div>
+                <h3 className="mt-5 font-heading text-xl font-semibold tracking-tight">
+                  {config?.storyModeLabel ?? "Story Mode"}
+                </h3>
+                <p className="mt-2 text-[0.95rem] leading-relaxed text-muted-foreground">
+                  {config?.storyModeTagline ??
+                    "Direct a living world. Third-person, cinematic, unfolding on its own — even while you're away."}
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1.5 font-ui text-sm font-medium text-accent">
+                  {config?.heroPrimaryCta ?? "Enter your story"}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={1.75} />
+                </span>
+              </Link>
+            ) : null}
           </div>
 
-          <p className="mt-6 font-body text-sm italic text-muted-foreground/80">
+          <p className="mt-7 font-body text-sm italic text-muted-foreground/80">
             “{config?.tagline ?? "Your story lives, even when you don't."}”
           </p>
         </div>

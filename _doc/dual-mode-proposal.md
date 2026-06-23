@@ -184,3 +184,54 @@ The autonomous **offline companion ping** is our defensible edge Emochi cannot c
 - **P1:** Two-door landing, discovery feed (static art ok), 1:1 chat, avatar gen.
 - **P2:** Inline scene illustration + `vivid` trigger, smart-reply chips, memory ribbon.
 - **P3:** Offline companion pings, character creation publishing, monetization gates.
+
+---
+
+## 10. Implementation status (2026-06-23)
+
+| Feature | Status | Notes |
+|---|---|---|
+| Two-door landing (Story / Chat) | ✅ Done | `app/routes/_index.tsx`, toggled by `enableChatMode`/`enableStoryMode`. |
+| Discovery feed + tag filter | ✅ Done | `chat._index.tsx`, seeds 3 starter companions from config. |
+| 1:1 first-person chat | ✅ Done | `chat.$characterId.tsx` + `chat.engine.ts` (first-person system prompt). |
+| Avatar art generation | ✅ Done | Keyless Pollinations URL via `imageGenUrl`; cached on character doc. |
+| Inline scene illustration (`vivid`) | ✅ Done | Throttled by `illustrationFrequency` + `freeTierDailyImages` cap. |
+| Smart-reply chips | ✅ Done | Count via `smartReplyCount`; engine returns them per turn. |
+| Companion memory + ribbon | ✅ Done | Rolling `memory[]` capped by `memoryDepth`; `MemoryRibbon` UI. |
+| Offline companion ping | ✅ Done | On session open after `offlinePingAfterHours`; reuses engine. |
+| Character creation | ✅ Done | `chat.create.tsx` → `POST /api/chat/characters`, auto-avatar. |
+| **Per-user threads (`ownerId`)** | ✅ Done | Anonymous per-browser cookie (`chat.owner.ts`); auth-ready. |
+| Monetization gates (paywall UI) | ⚠️ Partial | Free-tier image cap enforced server-side; **no billing/upgrade UI**. |
+| Multi-room per character (new chat) | ❌ Not done | One thread per (character, owner). No "start fresh" / alt scenarios. |
+| Multi-story (Story Mode) | ❌ Not done | Story Mode still singleton — unchanged. |
+| Group chat (many chars, one room) | ❌ Not done | Out of scope this pass. |
+| Voice / TTS | ❌ Not done | Emochi has it; intentionally deferred. |
+| Real auth / accounts | ❌ Not done | Cookie identity only; no login, no cross-device. |
+
+---
+
+## 11. What's missing vs Emochi
+
+Honest gaps remaining after this build:
+
+1. **Accounts & cross-device sync** — Emochi has real login; we have an anonymous
+   per-browser cookie. Clear cookies / switch device = new identity. Wire auth →
+   `resolveOwnerId` already prefers an authenticated id when present.
+2. **Voice messages / TTS** — Emochi speaks; we are text + image only.
+3. **Scale of catalog** — Emochi: 800k–1M creator characters with ratings, trending,
+   search. We have a flat feed + tag filter + create. No popularity ranking, no search,
+   no creator profiles, no moderation queue.
+4. **Multiple chats per character** — Emochi lets you branch/restart scenarios; we keep
+   one continuous thread per character.
+5. **Richer memory** — Emochi markets a tuned long-term memory system; ours is a simple
+   capped fact list injected each turn (no summarization/embeddings/retrieval).
+6. **Image quality/consistency** — keyless Pollinations is "good enough to sell the
+   dream" but not character-consistent across scenes (no seed-locked identity / LoRA).
+   Swap `imageGenUrl` for a controllable generator for production polish.
+7. **Monetization surface** — server caps exist; no plans, paywall, upgrade flow, or
+   billing.
+8. **Safety/moderation** — no content filter on user-created characters, generated text,
+   or generated images. Required before public launch.
+
+**Our edge Emochi lacks:** the autonomous **offline companion ping** + the whole Story
+Mode living-world engine. Lean into these — they are the differentiation.

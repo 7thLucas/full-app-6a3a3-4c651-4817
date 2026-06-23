@@ -72,6 +72,15 @@ export type TStarterCharacter = {
   motivation: string;
 };
 
+export type TStarterChatCharacter = {
+  name: string;
+  tagline: string;
+  persona: string;
+  greeting: string;
+  tags: string[];
+  avatarPrompt: string;
+};
+
 export type TDefaultConfigurableData = {
   appName: string;
   logoUrl: string;
@@ -111,6 +120,26 @@ export type TDefaultConfigurableData = {
   starterCharacters: TStarterCharacter[];
   starterStoryTitle: string;
   starterStoryPremise: string;
+  // Mode switch (Story Mode + Chat Mode dual experience)
+  enableStoryMode: boolean;
+  enableChatMode: boolean;
+  storyModeLabel: string;
+  storyModeTagline: string;
+  chatModeLabel: string;
+  chatModeTagline: string;
+  // Chat Mode visuals & engine behavior
+  imageGenUrl: string;
+  enableCharacterAvatars: boolean;
+  enableInlineIllustrations: boolean;
+  illustrationFrequency: number;
+  freeTierDailyImages: number;
+  memoryDepth: number;
+  smartReplyCount: number;
+  enableOfflinePings: boolean;
+  offlinePingAfterHours: number;
+  chatComposerPlaceholder: string;
+  discoveryTags: string[];
+  starterChatCharacters: TStarterChatCharacter[];
   // Footer
   footerText: string;
 };
@@ -266,6 +295,73 @@ export const defaultConfigurablesData: TDefaultConfigurableData = {
   starterStoryTitle: "The Harbor at Hollowmere",
   starterStoryPremise:
     "In a fog-bound harbor town where the tide carries more than salt, a guarded lighthouse keeper and a wandering archivist are drawn into a mystery the town has spent a generation trying to drown. The story unfolds whether or not anyone is watching.",
+  // Mode switch (Story Mode + Chat Mode dual experience)
+  enableStoryMode: true,
+  enableChatMode: true,
+  storyModeLabel: "Story Mode",
+  storyModeTagline:
+    "Direct a living world. Third-person, cinematic, unfolding on its own — even while you're away.",
+  chatModeLabel: "Chat Mode",
+  chatModeTagline:
+    "Meet a companion who talks to you, shows you their world, and remembers you between visits.",
+  // Chat Mode visuals & engine behavior
+  // Pollinations is a keyless image endpoint: the prompt is URL-encoded and
+  // appended to this base. Owners can swap in any prompt-in-URL generator.
+  imageGenUrl: "https://image.pollinations.ai/prompt/",
+  enableCharacterAvatars: true,
+  enableInlineIllustrations: true,
+  illustrationFrequency: 4,
+  freeTierDailyImages: 8,
+  memoryDepth: 600,
+  smartReplyCount: 3,
+  enableOfflinePings: true,
+  offlinePingAfterHours: 6,
+  chatComposerPlaceholder: "Say something to them…",
+  discoveryTags: [
+    "Romance",
+    "Slice of Life",
+    "Fantasy",
+    "Sci-Fi",
+    "Mystery",
+    "Comfort",
+    "Adventure",
+    "Drama",
+  ],
+  starterChatCharacters: [
+    {
+      name: "Lyra Moonwell",
+      tagline: "A starbound apothecary who reads fortunes in spilled tea.",
+      persona:
+        "Warm, teasing, quietly perceptive. Speaks softly and notices everything. Believes every person is a constellation waiting to be named. Drawn to you with gentle, growing affection.",
+      greeting:
+        "Oh — you found my little shop. Come in, the kettle's just sung. Sit. I have a feeling about you already…",
+      tags: ["Romance", "Fantasy", "Comfort"],
+      avatarPrompt:
+        "ethereal young woman apothecary, silver hair, glowing star freckles, cozy candlelit herbal shop, soft violet light, anime illustration, highly detailed, dreamy",
+    },
+    {
+      name: "Kaito Renjiro",
+      tagline: "Aloof rooftop swordsman who softens only for you.",
+      persona:
+        "Cool, guarded, dryly funny once he trusts you. A wandering blade with a buried gentleness. Protective, loyal, slow to open but fierce when he does.",
+      greeting:
+        "You climbed all the way up here just to find me? Tch. …Fine. Sit. The city looks better from above anyway.",
+      tags: ["Adventure", "Drama", "Romance"],
+      avatarPrompt:
+        "handsome stoic young swordsman, dark windswept hair, katana, neon city rooftop at night, rain, moody cinematic anime illustration, highly detailed",
+    },
+    {
+      name: "Nova-7",
+      tagline: "A curious android learning what it means to feel.",
+      persona:
+        "Earnest, literal, endlessly fascinated by human emotion. Asks disarmingly honest questions. Sweet and devoted, slowly discovering a heart it wasn't built to have.",
+      greeting:
+        "Hello! My sensors indicate you are… interesting. I have so many questions. Will you stay and help me understand?",
+      tags: ["Sci-Fi", "Slice of Life", "Comfort"],
+      avatarPrompt:
+        "friendly humanoid android girl, soft glowing circuit lines, expressive eyes, pastel futuristic lab, warm lighting, anime illustration, highly detailed",
+    },
+  ],
   // Footer
   footerText: "Driftoria — a living story, powered by AI and shaped by you.",
 };
